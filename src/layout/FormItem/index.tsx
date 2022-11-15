@@ -6,30 +6,20 @@ import { connect, mapProps } from '@formily/react';
 import cls from 'classnames';
 
 import './index.scss';
+import { CommonLayoutProps } from '../FormLayout';
 
-export interface FormItemProps {
+export interface FormItemProps extends CommonLayoutProps {
   className?: string,
   style?: React.CSSProperties,
-  prefixCls?: string,
   noLabel?: boolean,
   label?: React.ReactNode,
-  labelPosition?: 'top' | 'left' | 'border',
-  labelWidth?: number | string,
-  labelAlign?: 'left' | 'right',
-  labelWrap?: boolean,
   labelStyle?: React.CSSProperties,
   wrapperWidth?: number | string,
   wrapperAlign?: 'left' | 'right',
   wrapperStyle?: React.CSSProperties,
-  wrapperWrap?: boolean,
-  fullWidth?: boolean,
-  colon?: boolean,
   tooltip?: React.ReactNode,
-  tooltipIcon?: React.ReactNode,
-  tooltipLayout?: 'text' | 'icon',
   required?: boolean,
   display?: 'visible' | 'hidden' | 'none',
-  showFeedback?: boolean,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {}),
   feedbackText?: React.ReactNode,
   feedbackIcon?: React.ReactNode,
@@ -43,7 +33,7 @@ type ComposeFormItem = React.FC<React.PropsWithChildren<FormItemProps>> & {
 
 export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props => {
   const {
-    prefixCls = 'iimm',
+    prefixCls,
     noLabel,
     label,
     labelPosition,
@@ -121,7 +111,7 @@ export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props =
     }
   };
   const renderLabel = () => {
-    if (noLabel || !label || labelPosition === 'border') return null;
+    if (noLabel || !label || labelPosition === 'inner') return null;
     return (
       <div
         style={labelStyle}
