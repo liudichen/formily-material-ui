@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "baseUrl": "./"
+  }
+}
