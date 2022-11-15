@@ -66,6 +66,7 @@ export const Input = forwardRef((props, ref) => {
       value={value ?? ''}
       onChange={onTextFieldChange}
       label={renderLabel()}
+      error={error}
       inputProps={{
         readOnly,
         ...(inputProps || {}),

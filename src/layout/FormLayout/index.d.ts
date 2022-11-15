@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import { GridProps } from '@mui/material';
 
 export interface CommonLayoutProps {
@@ -9,12 +9,17 @@ export interface CommonLayoutProps {
   labelWrap?: boolean,
   wrapperAlign?: 'left' | 'right',
   wrapperWrap?: boolean,
+  wrapperWidth?: number | string,
+  wrapperAlign?: 'left' | 'right',
   fullWidth?: boolean,
   colon?: boolean,
   tooltipIcon?: React.ReactNode,
   tooltipLayout?: 'text' | 'icon',
   showFeedback?: boolean,
 }
+
+declare const FormLayoutContext = createContext<CommonLayoutProps>(null);
+export declare const useFormLayout = () => useContext(FormLayoutContext);
 
 interface ColsProps {
   xs?: number,

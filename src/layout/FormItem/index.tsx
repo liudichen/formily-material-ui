@@ -6,7 +6,7 @@ import { connect, mapProps } from '@formily/react';
 import cls from 'classnames';
 
 import './index.scss';
-import { CommonLayoutProps } from '../FormLayout';
+import { CommonLayoutProps, useFormLayout } from '../FormLayout';
 
 export interface FormItemProps extends CommonLayoutProps {
   className?: string,
@@ -14,8 +14,6 @@ export interface FormItemProps extends CommonLayoutProps {
   noLabel?: boolean,
   label?: React.ReactNode,
   labelStyle?: React.CSSProperties,
-  wrapperWidth?: number | string,
-  wrapperAlign?: 'left' | 'right',
   wrapperStyle?: React.CSSProperties,
   tooltip?: React.ReactNode,
   required?: boolean,
@@ -31,28 +29,33 @@ type ComposeFormItem = React.FC<React.PropsWithChildren<FormItemProps>> & {
   BaseItem?: React.FC<React.PropsWithChildren<FormItemProps>>
 };
 
+const getLayoutProps = (layout:CommonLayoutProps, props:FormItemProps) => {
+  const layoutProps = { ...(layout || {}) };
+  const { prefixCls, labelPosition, labelAlign, labelWidth, labelWrap, wrapperAlign, wrapperWidth, wrapperWrap, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = props;
+  if (prefixCls) layoutProps.prefixCls = prefixCls;
+  if (labelPosition) layoutProps.labelPosition = labelPosition;
+  if (labelAlign) layoutProps.labelAlign = labelAlign;
+  if (typeof labelWidth !== 'undefined') layoutProps.labelWidth = labelWidth;
+  if (typeof labelWrap === 'boolean') layoutProps.labelWrap = labelWrap;
+  if (wrapperAlign) layoutProps.wrapperAlign = wrapperAlign;
+  if (typeof wrapperWidth !== 'undefined') layoutProps.wrapperWidth = wrapperWidth;
+  if (typeof wrapperWrap === 'boolean') layoutProps.wrapperWrap = wrapperWrap;
+  if (typeof fullWidth === 'boolean') layoutProps.fullWidth = fullWidth;
+  if (typeof colon === 'boolean') layoutProps.colon = colon;
+  if (tooltipIcon) layoutProps.tooltipIcon = tooltipIcon;
+  if (tooltipLayout) layoutProps.tooltipLayout = tooltipLayout;
+  if (typeof showFeedback === 'boolean') layoutProps.showFeedback = showFeedback;
+  return layoutProps;
+};
 export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props => {
   const {
-    prefixCls,
     noLabel,
     label,
-    labelPosition,
-    labelWidth,
-    labelAlign,
     labelStyle: labelSx,
-    labelWrap,
-    wrapperAlign,
     wrapperStyle: wrapperSx,
-    wrapperWrap,
-    wrapperWidth,
-    fullWidth,
-    colon,
     tooltip,
-    tooltipIcon,
-    tooltipLayout,
     required,
     display,
-    showFeedback,
     feedbackStatus,
     feedbackText,
     feedbackIcon,
@@ -64,6 +67,21 @@ export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props =
     style,
   } = props;
   const [ active, setActive ] = useState(false);
+  const layout = useFormLayout();
+  const { prefixCls,
+    labelPosition,
+    labelWidth,
+    labelAlign,
+    labelWrap,
+    wrapperAlign,
+    wrapperWrap,
+    wrapperWidth,
+    fullWidth,
+    colon,
+    tooltipIcon,
+    tooltipLayout,
+    showFeedback,
+  } = getLayoutProps(layout, props);
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
     if (labelWidth) {
