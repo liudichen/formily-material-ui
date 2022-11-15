@@ -1,0 +1,199 @@
+$prefixCls: iimm-formily-item;
+$errorColor: #f44336;
+$warningColor: #faad14;
+$successColor: #52c41a;
+
+.#{$prefixCls} {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  &-label {
+    label {
+      cursor: text;
+    }
+  }
+}
+.#{$prefixCls}-row {
+  display: flex;
+  flex-direction: row;
+}
+.#{$prefixCls}-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.#{$prefixCls}-label {
+  position: relative;
+  display: flex;
+
+  &-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-tooltip {
+    cursor: help;
+
+    * {
+      cursor: help;
+    }
+
+    label {
+      border-bottom: 1px dashed currentColor;
+    }
+  }
+}
+
+.#{$prefixCls}-label-align-left {
+  > .#{$prefixCls}-label {
+    justify-content: flex-start;
+  }
+}
+.#{$prefixCls}-label-align-right {
+  > .#{$prefixCls}-label {
+    justify-content: flex-end;
+  }
+}
+
+.#{$prefixCls}-label-wrap {
+  .#{$prefixCls}-label {
+    label {
+      white-space: pre-line;
+      word-break: break-all;
+    }
+  }
+}
+
+.#{$prefixCls}-control {
+  flex: 1;
+  max-width: 100%;
+
+  .#{$prefixCls}-control-content {
+    display: flex;
+
+    .#{$prefixCls}-control-content-component {
+      width: 100%;
+
+      &-has-feedback-icon {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .#{$prefixCls}-addon-before {
+      margin-right: 8px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .#{$prefixCls}-addon-after {
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+  }
+
+  .#{$prefixCls}-help,
+  .#{$prefixCls}-extra {
+    min-height: 22px;
+    line-height: 22px;
+  }
+}
+
+
+.#{$prefixCls}-label-tooltip-icon {
+  margin-left: 4px;
+  color: #00000073;
+  display: flex;
+  align-items: center;
+
+  span {
+    display: inline-flex;
+  }
+}
+
+.#{$prefixCls}-control-align-left {
+  .#{$prefixCls}-control-content {
+    justify-content: flex-start;
+  }
+}
+
+.#{$prefixCls}-control-align-right {
+  .#{$prefixCls}-control-content {
+    justify-content: flex-end;
+  }
+}
+
+.#{$prefixCls}-control-wrap {
+  .#{$prefixCls}-control {
+    white-space: pre-line;
+    word-break: break-all;
+  }
+}
+
+.#{$prefixCls}-required {
+  color: $errorColor;
+  margin-right: 4px;
+  display: inline-block;
+  font-family: SimSun, sans-serif;
+}
+
+.#{$prefixCls}-colon {
+  margin-left: 2px;
+  margin-right: 4px;
+}
+
+.#{$prefixCls}-help,
+.#{$prefixCls}-extra {
+  clear: both;
+  // min-height: @form-item-margin-bottom - 2;
+  color: rgba(0, 0, 0, 0.45);
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  padding-top: 0px;
+}
+
+.#{$prefixCls}-fullness {
+  > .#{$prefixCls}-control {
+    > .#{$prefixCls}-control-content {
+      > .#{$prefixCls}-control-content-component {
+        > *:first-child {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.#{$prefixCls}-control-content-component-has-feedback-icon {
+  border-radius: 2px;
+  // border: 1px solid @border-color-base;
+  padding-right: 8px;
+  transition: all 0.3s;
+  touch-action: manipulation;
+  outline: none;
+}
+
+.#{$prefixCls}-error {
+  &:not([disabled]):hover {
+    border-color: $errorColor;
+  }
+  
+}
+
+.#{$prefixCls}-error-help {
+  color: $errorColor !important;
+}
+
+.#{$prefixCls}-warning-help {
+  color: $warningColor !important;
+}
+
+.#{$prefixCls}-success-help {
+  color: $successColor !important;
+}
