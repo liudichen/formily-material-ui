@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
 import { unstable_useId } from '@mui/material/utils';
-import { useMemoizedFn, useSafeState } from 'ahooks';
 
 export const Popover = forwardRef((props, ref) => {
   const {

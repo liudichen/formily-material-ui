@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { CommonLayoutProps } from '../FormLayout';
+
 export interface FormItemProps extends CommonLayoutProps {
+  prefixCls?: string,
   className?: string,
   style?: React.CSSProperties,
   noLabel?: boolean,

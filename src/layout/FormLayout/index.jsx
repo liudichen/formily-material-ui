@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { Grid } from '@mui/material';
+import { HelpOutline } from '@mui/icons-material';
 
 export const FormLayoutContext = createContext(null);
 export const useFormLayout = () => useContext(FormLayoutContext);
@@ -18,14 +19,14 @@ const getItemColsProps = (props) => {
 export const FormLayout = (props) => {
   const {
     // eslint-disable-next-line no-unused-vars
-    prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
+    colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     xs, sm, md, lg, xl, defaultCols,
     children,
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
   return (
-    <FormLayoutContext.Provider value={{ prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout }}>
+    <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout }}>
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) return null;
@@ -43,6 +44,9 @@ export const FormLayout = (props) => {
 
 FormLayout.defaultProps = {
   defaultCols: { xs: 6, sm: 4, md: 3, xl: 2 },
+  labelWidth: 80,
+  tooltipIcon: <HelpOutline fontSize='small' />,
+  feedbackLayout: 'text',
 };
 
 export default FormLayout;
