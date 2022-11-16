@@ -10,7 +10,8 @@ import { useFormLayout } from '../FormLayout';
 import { useOverflow } from '../../hooks';
 
 
-const getLayoutProps = (layout, props) => {
+const useFormItemLayout = (props) => {
+  const layout = useFormLayout();
   const layoutProps = { ...(layout || {}) };
   const { prefixCls, labelPosition, labelAlign, labelWidth, labelWrap, wrapperAlign, wrapperWidth, wrapperWrap, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = props;
   if (prefixCls) layoutProps.prefixCls = prefixCls;
@@ -56,8 +57,7 @@ export const BaseItem = (props) => {
     error,
   } = props;
   const [ active, setActive ] = useState(false);
-  const layout = useFormLayout();
-  const { prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = getLayoutProps(layout, props);
+  const { prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = useFormItemLayout(props);
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
@@ -133,6 +133,7 @@ export const BaseItem = (props) => {
       </div>
     );
   };
+  console.log('item', showFeedback, props);
   return (
     <div
       style={style}
@@ -189,11 +190,9 @@ export const BaseItem = (props) => {
           className={cls({
             [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
             [`${prefixCls}-help`]: true,
-            [`${prefixCls}-help-enter`]: true,
-            [`${prefixCls}-help-enter-active`]: true,
           })}
         >
-          {feedbackText || ' '}
+          {feedbackText || <>&nbsp;</>}
         </div>
       )}
       { !!extra && (<div className={`${prefixCls}-extra`}>{extra}</div>)}
