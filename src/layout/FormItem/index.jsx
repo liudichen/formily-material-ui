@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tooltip } from '@mui/material';
 import { useCreation } from 'ahooks';
 import { isVoidField } from '@formily/core';
@@ -38,12 +38,12 @@ const ICON_MAP = {
 };
 
 export const BaseItem = (props) => {
-  const [ active, setActive ] = useState(false);
+  const formatProps = useFormItemLayout(props);
   const {
     prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, children, className, style, error,
-  } = useFormItemLayout(props);
+  } = formatProps;
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
@@ -127,15 +127,12 @@ export const BaseItem = (props) => {
         [`${prefixCls}-${feedbackStatus}`]: !!feedbackStatus,
         [`${prefixCls}-feedback-has-text`]: !!feedbackText,
         [`${prefixCls}-fullness`]: !!fullWidth || !!feedbackIcon,
-        [`${prefixCls}-active`]: active,
         [`${prefixCls}-label-align-${labelAlign}`]: true,
         [`${prefixCls}-control-align-${wrapperAlign}`]: true,
         [`${prefixCls}-label-wrap`]: !!labelWrap,
         [`${prefixCls}-control-wrap`]: !!wrapperWrap,
         [`${className}`]: !!className,
       })}
-      onFocus={() => { if (feedbackIcon) setActive(true); }}
-      onBlur={() => { if (feedbackIcon) setActive(false); }}
     >
       <div className={cls({
         [`${prefixCls}-row`]: labelPosition === 'left',
@@ -246,7 +243,7 @@ export const FormItem = connect(
     return {
       ...props,
       label: props.label ?? field.title,
-      feedbackStatus: props.feedbackStatus ?? takeFeedbackStatus(),
+      feedbackStatus: takeFeedbackStatus(),
       feedbackText: props.feedbackText ?? takeMessage(),
       required: props.required ?? takeRequired(),
       tooltip: props.tooltip ?? field.description,
