@@ -62,15 +62,14 @@ export const BaseItem = (props) => {
     tooltipLayout,
     showFeedback,
   } = getLayoutProps(layout, props);
-  console.log('formITem', props, layout);
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
-    if (labelWidth) {
+    if (labelWidth && labelPosition === 'left') {
       sx.width = labelWidth === 'auto' ? undefined : labelWidth;
       sx.maxWidth = labelWidth === 'auto' ? undefined : labelWidth;
     }
     return sx;
-  }, [ labelSx, labelWidth ]);
+  }, [ labelSx, labelWidth, labelPosition ]);
   const wrapperStyle = useCreation(() => {
     const sx = wrapperSx || {};
     if (wrapperWidth) {
