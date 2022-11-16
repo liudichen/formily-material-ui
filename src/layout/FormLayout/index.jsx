@@ -45,6 +45,7 @@ export const FormLayout = (props) => {
 FormLayout.defaultProps = {
   defaultCols: { xs: 6, sm: 4, md: 3, xl: 2 },
   labelWidth: 80,
+  tooltipLayout: 'icon',
   tooltipIcon: <HelpOutline fontSize='small' />,
   feedbackLayout: 'text',
 };
