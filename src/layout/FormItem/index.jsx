@@ -108,7 +108,7 @@ export const BaseItem = (props) => {
         style={labelStyle}
         className={cls({
           [`${prefixCls}-label`]: true,
-          [`${prefixCls}-lalbel-tooltip`]: !!tooltip && tooltipLayout === 'text',
+          [`${prefixCls}-label-tooltip`]: !!tooltip && tooltipLayout === 'text',
         })}
       >
         {renderLabelText()}
@@ -138,6 +138,7 @@ export const BaseItem = (props) => {
         [`${prefixCls}-row`]: labelPosition === 'left',
         [`${prefixCls}-column`]: labelPosition === 'top',
         [`${prefixCls}-error`]: !!error,
+        [`${prefixCls}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
       })}>
         {renderLabel()}
         <div className={`${prefixCls}-control`}>
