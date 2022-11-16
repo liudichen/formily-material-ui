@@ -17,15 +17,23 @@ $successColor: #52c41a;
 .#{$prefixCls}-row {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 .#{$prefixCls}-column {
   display: flex;
   flex-direction: column;
+  // align-items: center;
+  align-content: center;
+}
+
+.#{$prefixCls}-error {
+  color: $errorColor;
 }
 
 .#{$prefixCls}-label {
   position: relative;
   display: flex;
+  align-content: center;
 
   &-content {
     overflow: hidden;

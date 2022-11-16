@@ -45,6 +45,7 @@ export const BaseItem = (props) => {
     children,
     className,
     style,
+    error,
   } = props;
   const [ active, setActive ] = useState(false);
   const layout = useFormLayout();
@@ -147,6 +148,7 @@ export const BaseItem = (props) => {
       <div className={cls({
         [`${prefixCls}-row`]: labelPosition === 'left',
         [`${prefixCls}-column`]: labelPosition === 'top',
+        [`${prefixCls}-error`]: !!error,
       })}>
         {renderLabel()}
         <div className={`${prefixCls}-control`}>
@@ -241,6 +243,7 @@ export const FormItem = connect(
       required: props.required ?? takeRequired(),
       tooltip: props.tooltip ?? field.description,
       display: props.display ?? field.display,
+      error: props.error ?? field.selfInvalid,
     };
   })
 );
