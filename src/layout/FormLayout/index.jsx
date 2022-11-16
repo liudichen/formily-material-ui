@@ -30,21 +30,16 @@ export const FormLayout = observer((props) => {
   return (
     <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout }}>
       <Grid {...restProps} container>
-        { React.Children.map(children, (child, i) => {
-          if (!child) {
-            return null;
-          }
+        { React.Children.map(children, (child) => {
+          if (!child) { return null; }
           if ((child.type?.displayName || child.type?.render?.name)?.startsWith('Grid')) {
             return child;
           }
           if (child.type?.displayName === 'Field') {
             const name = child.props.name;
-            if (!name) {
-              return null;
-            }
+            if (!name) { return null; }
             if (form) {
               const field = form.query(`${name}`)?.take()?.display ?? form.query(`*.${name}`)?.take()?.display;
-              console.log('field', field);
               if (field && field !== 'visible') {
                 return null;
               }
