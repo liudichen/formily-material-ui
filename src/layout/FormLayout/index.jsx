@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react';
+import { observer, useForm } from '@formily/react';
 import { Grid } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
 
@@ -16,7 +17,7 @@ const getItemColsProps = (props) => {
   return newProps;
 };
 
-export const FormLayout = (props) => {
+export const FormLayout = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
@@ -25,12 +26,30 @@ export const FormLayout = (props) => {
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
+  const form = useForm();
   return (
     <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout }}>
       <Grid {...restProps} container>
-        { React.Children.map(children, (child) => {
-          if (!child) return null;
-          if (child.props.item === true || child.props.container === true) return child;
+        { React.Children.map(children, (child, i) => {
+          if (!child) {
+            return null;
+          }
+          if ((child.type?.displayName || child.type?.render?.name)?.startsWith('Grid')) {
+            return child;
+          }
+          if (child.type?.displayName === 'Field') {
+            const name = child.props.name;
+            if (!name) {
+              return null;
+            }
+            if (form) {
+              const field = form.query(`${name}`)?.take()?.display ?? form.query(`*.${name}`)?.take()?.display;
+              console.log('field', field);
+              if (field && field !== 'visible') {
+                return null;
+              }
+            }
+          }
           return (
             <Grid item {...{ ...itemBaseProps, ...getItemColsProps(child.props) }}>
               {child}
@@ -40,7 +59,7 @@ export const FormLayout = (props) => {
       </Grid>
     </FormLayoutContext.Provider>
   );
-};
+});
 
 FormLayout.defaultProps = {
   defaultCols: { xs: 6, sm: 4, md: 3, xl: 2 },
