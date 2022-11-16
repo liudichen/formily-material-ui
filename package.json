@@ -23,6 +23,8 @@
     "access": "public"
   },
   "peerDependencies": {
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
     "@mui/material": ">=5.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

@@ -32,3 +32,7 @@ interface ColsProps {
 export interface FormLayoutProps extends CommonLayoutProps, Omit<GridProps, 'item'> {
   defaultCols?: ColsProps,
 }
+
+export declare const FormLayout: React.FC<React.PropsWithChildren<FormLayoutProps>>;
+
+export default FormLayout;

@@ -6,30 +6,10 @@ import { connect, mapProps } from '@formily/react';
 import cls from 'classnames';
 
 import './index.scss';
-import { CommonLayoutProps, useFormLayout } from '../FormLayout';
+import { useFormLayout } from '../FormLayout';
 
-export interface FormItemProps extends CommonLayoutProps {
-  className?: string,
-  style?: React.CSSProperties,
-  noLabel?: boolean,
-  label?: React.ReactNode,
-  labelStyle?: React.CSSProperties,
-  wrapperStyle?: React.CSSProperties,
-  tooltip?: React.ReactNode,
-  required?: boolean,
-  display?: 'visible' | 'hidden' | 'none',
-  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {}),
-  feedbackText?: React.ReactNode,
-  feedbackIcon?: React.ReactNode,
-  extra?: React.ReactNode,
-  addonBefore?: React.ReactNode,
-  addonAfter?: React.ReactNode,
-}
-type ComposeFormItem = React.FC<React.PropsWithChildren<FormItemProps>> & {
-  BaseItem?: React.FC<React.PropsWithChildren<FormItemProps>>
-};
 
-const getLayoutProps = (layout:CommonLayoutProps, props:FormItemProps) => {
+const getLayoutProps = (layout, props) => {
   const layoutProps = { ...(layout || {}) };
   const { prefixCls, labelPosition, labelAlign, labelWidth, labelWrap, wrapperAlign, wrapperWidth, wrapperWrap, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = props;
   if (prefixCls) layoutProps.prefixCls = prefixCls;
@@ -47,7 +27,7 @@ const getLayoutProps = (layout:CommonLayoutProps, props:FormItemProps) => {
   if (typeof showFeedback === 'boolean') layoutProps.showFeedback = showFeedback;
   return layoutProps;
 };
-export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props => {
+export const BaseItem = (props) => {
   const {
     noLabel,
     label,
@@ -82,6 +62,7 @@ export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props =
     tooltipLayout,
     showFeedback,
   } = getLayoutProps(layout, props);
+  console.log('formITem', props, layout);
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
     if (labelWidth) {
@@ -213,18 +194,16 @@ export const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>> = props =
   );
 };
 
-export const FormItem: ComposeFormItem = connect(
+export const FormItem = connect(
   BaseItem,
   mapProps((props, field) => {
     if (isVoidField(field)) {
       return {
         ...props,
-        tooltip: props.tooltip || field.description,
-        label: field.title || props.label,
-        required: props.required,
-        extra: props.extra,
-        display: props.display || field.display,
-      } as FormItemProps;
+        tooltip: props.tooltip ?? field.description,
+        label: props.label ?? field.description,
+        display: props.display ?? field.display,
+      };
     }
     if (!field) return props;
     const takeFeedbackStatus = () => {
@@ -232,7 +211,7 @@ export const FormItem: ComposeFormItem = connect(
       return field.decoratorProps.feedbackStatus || field.validateStatus;
     };
     const takeMessage = () => {
-      const split = (messages:any[]) => {
+      const split = (messages) => {
         return messages.reduce((buf, text, index) => {
           if (!text) return buf;
           return index < messages.length - 1
@@ -257,15 +236,14 @@ export const FormItem: ComposeFormItem = connect(
     };
     return {
       ...props,
-      label: props.label || field.title,
-      feedbackStatus: takeFeedbackStatus(),
-      feedbackText: takeMessage(),
-      required: takeRequired(),
-      extra: props.extra,
-      tooltip: props.tooltip || field.description,
-      display: props.display || field.display,
-    } as FormItemProps;
-  }),
+      label: props.label ?? field.title,
+      feedbackStatus: props.feedbackStatus ?? takeFeedbackStatus(),
+      feedbackText: props.feedbackText ?? takeMessage(),
+      required: props.required ?? takeRequired(),
+      tooltip: props.tooltip ?? field.description,
+      display: props.display ?? field.display,
+    };
+  })
 );
 
 FormItem.BaseItem = BaseItem;

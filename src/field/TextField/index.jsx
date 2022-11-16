@@ -5,6 +5,7 @@ import { connect, mapProps } from '@formily/react';
 import { TextField as MuiTextField, InputAdornment, IconButton, FormLabel, Stack, Tooltip } from '@mui/material';
 import { Close, HelpOutline } from '@mui/icons-material';
 
+import { useFormLayout } from '../../layout/FormLayout';
 
 export const Input = forwardRef((props, ref) => {
   const {
@@ -13,9 +14,12 @@ export const Input = forwardRef((props, ref) => {
     label, labelPosition, labelProps,
     tooltip,
     showClear: showClearProp, required, error, readOnly,
-    inputProps, InputProps, endAdornmentItem,
+    inputProps, InputProps, endAdornmentItem, fullWidth,
+    ...restProps
   } = props;
   const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
+  const layout = useFormLayout();
+  console.log('layout', layout, props);
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;
@@ -102,9 +106,15 @@ export const Input = forwardRef((props, ref) => {
         ) : null,
         ...(InputProps || {}),
       }}
+      fullWidth={fullWidth ?? layout?.fullWidth}
+      {...restProps}
     />
   );
 });
+
+Input.defaultProps = {
+  size: 'small',
+};
 
 export const FormilyInput = connect(
   Input,
@@ -113,7 +123,6 @@ export const FormilyInput = connect(
     return {
       ...props,
       error: props.error ?? field.selfInvalid,
-      fullWidth: true,
       tooltip: props.tooltip ?? field.description,
       readOnly: props.readOnly ?? field.readOnly,
       disabled: props.disabled ?? field.disabled,

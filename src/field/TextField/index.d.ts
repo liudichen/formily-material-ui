@@ -1,11 +1,9 @@
 import React from 'react';
 import { SxProps, InputProps as MuiInputProps, InputLabelProps, FormLabelProps, SelectProps } from '@mui/material';
-import { connect } from '@formily/react';
 
-export interface InputProps {
-  value?: string | number,
-  defaultValue?: string | number,
-  onChange?: (value: string | number | undefined | null) => void,
+import { FieldBaseProps } from '../../types';
+
+export interface InputProps extends FieldBaseProps<string | number> {
   label?: React.ReactNode,
   labelPosition?: 'top' | 'left' | 'inner',
   labelStyle?: React.CSSProperties,
@@ -14,9 +12,6 @@ export interface InputProps {
   tooltipLayout?: 'icon' | 'text',
   showClear?: boolean,
   required?: boolean,
-  error?: boolean,
-  readOnly?: boolean,
-  disabled?: boolean,
   labelProps?: Omit<FormLabelProps, 'error'>,
 
   type: 'text' | 'password' | 'date' | 'color' | 'datetime-local' | 'email' | 'month' | 'number' | 'tel' | 'time' | 'url' | 'week' | 'datetime',
@@ -43,22 +38,6 @@ export interface InputProps {
   InputProps?: MuiInputProps,
 }
 
-export declare const Input: React.ForwardRefRenderFunction<any, InputProps>;
+export declare const Input: React.ForwardRefRenderFunction<unknown, InputProps>;
 
-export declare const FormilyInput = connect(
-  Input,
-  mapProps((props, field) => {
-    if (isVoidField(field)) return props;
-    return {
-      ...props,
-      error: props.error ?? field.selfInvalid,
-      fullWidth: props.fullWidth ?? true,
-      tooltip: props.tooltip ?? field.description,
-      readOnly: props.readOnly ?? field.readOnly,
-      disabled: props.disabled ?? field.disabled,
-      required: props.required ?? field.required,
-      defaultValue: props.defaultValue ?? field.initialValue,
-      label: props.label ?? field.title,
-    };
-  }),
-);
+export declare const FormilyInput: React.FC<InputProps>;
