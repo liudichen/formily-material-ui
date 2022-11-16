@@ -158,7 +158,7 @@ export const BaseItem = (props) => {
               })}
             >
               {children}
-              { feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus) && (
+              {showFeedback && feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus) && (
                 <Popover
                   triggerType='hover'
                   trigger={(
