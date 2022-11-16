@@ -10,7 +10,7 @@ import { useFormLayout } from '../../layout/FormLayout';
 export const Input = forwardRef((props, ref) => {
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp,
+    value: valueProp, onChange: onChangeProp, defaultValue,
     label, labelPosition, labelProps,
     tooltip,
     showClear: showClearProp, required, error, readOnly,
