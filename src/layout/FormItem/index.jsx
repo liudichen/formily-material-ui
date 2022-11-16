@@ -11,23 +11,23 @@ import { useOverflow } from '../../hooks';
 
 
 const useFormItemLayout = (props) => {
-  const layout = useFormLayout();
-  const layoutProps = { ...(layout || {}) };
-  const { prefixCls, labelPosition, labelAlign, labelWidth, labelWrap, wrapperAlign, wrapperWidth, wrapperWrap, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = props;
-  if (prefixCls) layoutProps.prefixCls = prefixCls;
-  if (labelPosition) layoutProps.labelPosition = labelPosition;
-  if (labelAlign) layoutProps.labelAlign = labelAlign;
-  if (typeof labelWidth !== 'undefined') layoutProps.labelWidth = labelWidth;
-  if (typeof labelWrap === 'boolean') layoutProps.labelWrap = labelWrap;
-  if (wrapperAlign) layoutProps.wrapperAlign = wrapperAlign;
-  if (typeof wrapperWidth !== 'undefined') layoutProps.wrapperWidth = wrapperWidth;
-  if (typeof wrapperWrap === 'boolean') layoutProps.wrapperWrap = wrapperWrap;
-  if (typeof fullWidth === 'boolean') layoutProps.fullWidth = fullWidth;
-  if (typeof colon === 'boolean') layoutProps.colon = colon;
-  if (tooltipIcon) layoutProps.tooltipIcon = tooltipIcon;
-  if (tooltipLayout) layoutProps.tooltipLayout = tooltipLayout;
-  if (typeof showFeedback === 'boolean') layoutProps.showFeedback = showFeedback;
-  return layoutProps;
+  const layout = useFormLayout() || {};
+  return {
+    ...props,
+    prefixCls: props.prefixCls ?? layout.prefixCls,
+    labelPosition: props.labelPosition ?? layout.labelPosition,
+    labelAlign: props.labelAlign ?? layout.labelAlign,
+    labelWidth: props.labelWidth ?? layout.labelWidth,
+    labelWrap: props.labelWrap ?? layout.labelWrap,
+    wrapperAlign: props.wrapperAlign ?? layout.wrapperAlign,
+    wrapperWidth: props.wrapperWidth ?? layout.wrapperWidth,
+    wrapperWrap: props.wrapperWrap ?? layout.wrapperWrap,
+    fullWidth: props.fullWidth ?? layout.fullWidth,
+    colon: props.colon ?? layout.colon,
+    tooltipIcon: props.tooltipIcon ?? layout.tooltipIcon,
+    tooltipLayout: props.tooltipLayout ?? layout.tooltipLayout,
+    showFeedback: props.showFeedback ?? layout.showFeedback,
+  };
 };
 
 const ICON_MAP = {
@@ -37,27 +37,12 @@ const ICON_MAP = {
 };
 
 export const BaseItem = (props) => {
-  const {
-    noLabel,
-    label,
-    labelStyle: labelSx,
-    wrapperStyle: wrapperSx,
-    tooltip,
-    required,
-    display,
-    feedbackStatus,
-    feedbackText,
-    feedbackIcon,
-    extra,
-    addonBefore,
-    addonAfter,
-    children,
-    className,
-    style,
-    error,
-  } = props;
   const [ active, setActive ] = useState(false);
-  const { prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = useFormItemLayout(props);
+  const {
+    prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback,
+    noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
+    addonAfter, children, className, style, error,
+  } = useFormItemLayout(props);
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
