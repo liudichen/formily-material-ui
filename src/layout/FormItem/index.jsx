@@ -7,6 +7,7 @@ import cls from 'classnames';
 
 import './index.scss';
 import { useFormLayout } from '../FormLayout';
+import { useOverflow } from '../../hooks';
 
 
 const getLayoutProps = (layout, props) => {
@@ -27,6 +28,13 @@ const getLayoutProps = (layout, props) => {
   if (typeof showFeedback === 'boolean') layoutProps.showFeedback = showFeedback;
   return layoutProps;
 };
+
+const ICON_MAP = {
+  error: <></>,
+  success: <></>,
+  warning: <></>,
+};
+
 export const BaseItem = (props) => {
   const {
     noLabel,
@@ -49,20 +57,8 @@ export const BaseItem = (props) => {
   } = props;
   const [ active, setActive ] = useState(false);
   const layout = useFormLayout();
-  const { prefixCls,
-    labelPosition,
-    labelWidth,
-    labelAlign,
-    labelWrap,
-    wrapperAlign,
-    wrapperWrap,
-    wrapperWidth,
-    fullWidth,
-    colon,
-    tooltipIcon,
-    tooltipLayout,
-    showFeedback,
-  } = getLayoutProps(layout, props);
+  const { prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback } = getLayoutProps(layout, props);
+  const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
     if (labelWidth && labelPosition === 'left') {
@@ -80,18 +76,28 @@ export const BaseItem = (props) => {
     return sx;
   }, [ wrapperSx, wrapperWidth ]);
   if (display !== 'visible') return null;
+  const getOverflowTooltip = () => {
+    if (overflow) {
+      return (
+        <div>
+          <div>{label}</div>
+          {!!tooltip && tooltip === 'text' && (<div>{tooltip}</div>)}
+        </div>
+      );
+    }
+  };
   const renderLabelText = () => {
     const labelChildren = (
-      <div className={`${prefixCls}-label-content`}>
-        <span>
+      <div className={`${prefixCls}-label-content`} ref={containerRef}>
+        <span ref={contentRef}>
           {required && <span className={`${prefixCls}-required`}>{'*'}</span>}
           <label>{label}</label>
         </span>
       </div>
     );
-    if ((tooltipLayout === 'text' && tooltip)) {
+    if ((tooltipLayout === 'text' && tooltip) || overflow) {
       return ((
-        <Tooltip placement='top' arrow title={tooltip}>
+        <Tooltip placement='top' arrow title={getOverflowTooltip()}>
           {labelChildren}
         </Tooltip>
       ));
