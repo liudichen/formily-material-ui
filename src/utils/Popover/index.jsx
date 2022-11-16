@@ -22,7 +22,6 @@ export const Popover = forwardRef((props, ref) => {
   const handleOpen = useMemoizedFn((e) => {
     if (!disabled) { setAnchorE1(e.currentTarget); }
   });
-  console.log('props', anchorE1, props);
   return (
     <>
       <span

@@ -3,18 +3,18 @@ import { Tooltip } from '@mui/material';
 import { useCreation } from 'ahooks';
 import { isVoidField } from '@formily/core';
 import { connect, mapProps } from '@formily/react';
+import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline } from '@mui/icons-material';
 import cls from 'classnames';
 
 import './index.scss';
 import { useFormLayout } from '../FormLayout';
 import { useOverflow } from '../../hooks';
-
+import { Popover } from '../../utils/Popover';
 
 const useFormItemLayout = (props) => {
   const layout = useFormLayout() || {};
   return {
     ...props,
-    prefixCls: props.prefixCls ?? layout.prefixCls,
     labelPosition: props.labelPosition ?? layout.labelPosition,
     labelAlign: props.labelAlign ?? layout.labelAlign,
     labelWidth: props.labelWidth ?? layout.labelWidth,
@@ -27,19 +27,20 @@ const useFormItemLayout = (props) => {
     tooltipIcon: props.tooltipIcon ?? layout.tooltipIcon,
     tooltipLayout: props.tooltipLayout ?? layout.tooltipLayout,
     showFeedback: props.showFeedback ?? layout.showFeedback,
+    feedbackLayout: props.feedbackLayout ?? layout.feedbackLayout,
   };
 };
 
 const ICON_MAP = {
-  error: <></>,
-  success: <></>,
-  warning: <></>,
+  error: <HighlightOffOutlined fontSize='small' />,
+  success: <CheckCircleOutline fontSize='small' />,
+  warning: <ErrorOutlineOutlined fontSize='small' />,
 };
 
 export const BaseItem = (props) => {
   const [ active, setActive ] = useState(false);
   const {
-    prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback,
+    prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, children, className, style, error,
   } = useFormItemLayout(props);
@@ -118,7 +119,6 @@ export const BaseItem = (props) => {
       </div>
     );
   };
-  console.log('item', showFeedback, props);
   return (
     <div
       style={style}
@@ -154,14 +154,28 @@ export const BaseItem = (props) => {
               style={wrapperStyle}
               className={cls({
                 [`${prefixCls}-control-content-component`]: true,
-                [`${prefixCls}-control-content-component-has-feedback-icon`]: !!feedbackIcon,
+                [`${prefixCls}-control-content-component-has-feedback-icon`]: feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus),
               })}
             >
               {children}
-              {!!feedbackIcon && (
-                <div className={cls(`${prefixCls}-feedback-icon`)}>
-                  {feedbackIcon}
-                </div>
+              { feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus) && (
+                <Popover
+                  triggerType='hover'
+                  trigger={(
+                    <div className={cls({
+                      [`${prefixCls}-feedback-icon}`]: true,
+                      [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
+                    })}>
+                      {feedbackIcon ?? ICON_MAP[feedbackStatus]}
+                    </div>
+                  )}
+                  content={
+                    <div className={cls({ [`${prefixCls}-help`]: true })} >
+                      <span className={`${prefixCls}-${feedbackStatus}-help`}>{ICON_MAP[feedbackStatus]}</span>
+                      {feedbackText}
+                    </div>
+                  }
+                />
               )}
             </div>
             {!!addonAfter && (
@@ -170,7 +184,7 @@ export const BaseItem = (props) => {
           </div>
         </div>
       </div>
-      { showFeedback && (
+      { showFeedback && feedbackLayout !== 'popover' && (
         <div
           className={cls({
             [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
@@ -183,6 +197,10 @@ export const BaseItem = (props) => {
       { !!extra && (<div className={`${prefixCls}-extra`}>{extra}</div>)}
     </div>
   );
+};
+
+BaseItem.defaultProps = {
+  prefixCls: 'iimm-formily-item',
 };
 
 export const FormItem = connect(

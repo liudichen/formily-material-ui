@@ -18,14 +18,14 @@ const getItemColsProps = (props) => {
 export const FormLayout = (props) => {
   const {
     // eslint-disable-next-line no-unused-vars
-    prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback,
+    prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     xs, sm, md, lg, xl, defaultCols,
     children,
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
   return (
-    <FormLayoutContext.Provider value={{ prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback }}>
+    <FormLayoutContext.Provider value={{ prefixCls, colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout }}>
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) return null;
@@ -43,7 +43,6 @@ export const FormLayout = (props) => {
 
 FormLayout.defaultProps = {
   defaultCols: { xs: 6, sm: 4, md: 3, xl: 2 },
-  prefixCls: 'iimm-formily-item',
 };
 
 export default FormLayout;

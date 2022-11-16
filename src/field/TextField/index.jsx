@@ -19,7 +19,6 @@ export const Input = forwardRef((props, ref) => {
   } = props;
   const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
   const layout = useFormLayout();
-  console.log('layout', layout, props);
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;

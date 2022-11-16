@@ -2,7 +2,6 @@ import React, { createContext, useContext } from 'react';
 import { GridProps } from '@mui/material';
 
 export interface CommonLayoutProps {
-  prefixCls?: string,
   labelPosition?: 'top' | 'left' | 'inner',
   labelWidth?: number | string,
   labelAlign?: 'left' | 'right',
@@ -16,6 +15,7 @@ export interface CommonLayoutProps {
   tooltipIcon?: React.ReactNode,
   tooltipLayout?: 'text' | 'icon',
   showFeedback?: boolean,
+  feedbackLayout?: 'popover' | 'text',
 }
 
 declare const FormLayoutContext = createContext<CommonLayoutProps>(null);
