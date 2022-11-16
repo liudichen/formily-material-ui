@@ -7,9 +7,8 @@ export const useOverflow = (deps) => {
   const dependencies = JSON.stringify(deps);
   useEffect(() => {
     requestAnimationFrame(() => {
-      const contentWidth = contentRef.current.getBoundingClientRect().width;
-      const containerWidth =
-          containerRef.current.getBoundingClientRect().width;
+      const contentWidth = contentRef.current?.getBoundingClientRect()?.width;
+      const containerWidth = containerRef.current?.getBoundingClientRect()?.width;
       if (contentWidth && containerWidth && containerWidth < contentWidth) {
         if (!overflow) setOverflow(true);
       } else {
