@@ -31,8 +31,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.4.0",
     "@mui/system": "^5.4.0",
     "react": "^17.0.2 || ^18.0.0",
