@@ -1,9 +1,10 @@
 import React from 'react';
+import { useSafeState } from 'ahooks';
 
 let gloabalId = 0;
 
 const useGlobalId = (idOverride?: number | string) => {
-  const [ defaultId, setDefaultId ] = React.useState(idOverride);
+  const [ defaultId, setDefaultId ] = useSafeState(idOverride);
   const id = idOverride ?? defaultId;
   React.useEffect(() => {
     if (defaultId === null || defaultId === undefined) {
