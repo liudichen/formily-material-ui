@@ -19,12 +19,6 @@ export const DatePicker = (props) => {
       onChange={onChange}
       renderInput={(params) => <TextField {...params} size={size}/>}
       {...restProps}
-      componentsProps={{
-        actionBar: {
-          actions: [ 'today', 'clear', 'accept', 'cancel' ],
-          translate: 'yes',
-        },
-      }}
     />
   );
 };
@@ -32,4 +26,10 @@ export const DatePicker = (props) => {
 DatePicker.defaultProps = {
   size: 'small',
   inputFormat: 'YYYY-MM-DD',
+  componentsProps: {
+    actionBar: {
+      actions: [ 'today', 'clear', 'accept', 'cancel' ],
+      translate: 'yes',
+    },
+  },
 };
