@@ -8,4 +8,4 @@ interface Result {
   contentRef: IRef
 }
 
-export declare const useOverflow: (deps: any) => Result;
+export declare const useOverflow: (deps: any[]) => Result;

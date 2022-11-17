@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useSafeState } from 'ahooks';
 
-export const useOverflow = (deps) => {
-  const [ overflow, setOverflow ] = useState(false);
+export const useOverflow = (deps = []) => {
+  const [ overflow, setOverflow ] = useSafeState(false);
   const containerRef = useRef();
   const contentRef = useRef();
-  const dependencies = JSON.stringify(deps);
   useEffect(() => {
     requestAnimationFrame(() => {
       const contentWidth = contentRef.current?.getBoundingClientRect()?.width;
@@ -15,7 +15,7 @@ export const useOverflow = (deps) => {
         if (overflow) setOverflow(false);
       }
     });
-  }, [ dependencies ]);
+  }, [ ...deps ]);
 
   return {
     overflow,
