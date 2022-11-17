@@ -6,13 +6,13 @@ import {
   DesktopDateRangePickerProps,
   DesktopDateRangePickerSlotsComponent,
   DesktopDateRangePickerSlotsComponentsProps,
-} from '../DesktopDateRangePicker';
+} from './DesktopDateRangePicker';
 import {
   MobileDateRangePicker,
   MobileDateRangePickerProps,
   MobileDateRangePickerSlotsComponent,
   MobileDateRangePickerSlotsComponentsProps,
-} from '../MobileDateRangePicker';
+} from './MobileDateRangePicker';
 
 export interface DateRangePickerSlotsComponent
   extends MobileDateRangePickerSlotsComponent,
@@ -66,6 +66,7 @@ export const DateRangePicker = React.forwardRef(function DateRangePicker<
 
   if (isDesktop) {
     return (
+      /**@ts-ignore */
       <DesktopDateRangePicker
         ref={ref}
         PopperProps={PopperProps}
