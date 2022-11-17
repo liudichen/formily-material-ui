@@ -4,7 +4,7 @@ import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '
 import { connect, mapProps } from '@formily/react';
 
 import { useFetchOptions, useId } from '../../hooks';
-import { COLORS } from '../../utils';
+import { COLORS, isEqual } from '../../utils';
 
 export const RadioGroup = (props) => {
   const {
@@ -18,10 +18,10 @@ export const RadioGroup = (props) => {
   const options = useFetchOptions(optionsProp, { onLoading: setLoading });
   const [ value, onChange ] = useControllableValue(props);
   const name = useId(nameProp);
-  const handleChange = useMemoizedFn((e) => {
-    if (!readOnly) onChange(e.target.value);
+  const handleChange = useMemoizedFn((value) => {
+    if (!readOnly) onChange(value ?? null);
   });
-  console.log('options-radio', options);
+  console.log('options-radio', value);
   if (loading) {
     return (
       <Skeleton
@@ -36,8 +36,6 @@ export const RadioGroup = (props) => {
   return (
     <MuiRadioGroup
       row={layout === 'horizontal'}
-      value={value || null}
-      onChange={handleChange}
       name={name}
       sx={sx}
     >
@@ -56,6 +54,9 @@ export const RadioGroup = (props) => {
               checkedIcon={item.checkedIcon ?? checkedIcon}
               required={item.required}
               sx={itemSx}
+              value={item.value}
+              onChange={() => handleChange(item.value)}
+              checked={isEqual(item.value, value)}
             />
           }
         />
