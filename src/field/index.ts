@@ -15,3 +15,6 @@ export * from './Switch/formilySwitch';
 
 export * from './ToggleButtonGroup';
 export * from './ToggleButtonGroup/formilyToggleButton';
+
+
+export * from './DateLocalizationProvider';
