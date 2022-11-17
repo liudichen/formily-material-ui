@@ -34,6 +34,7 @@ $successColor: #52c41a;
   position: relative;
   display: flex;
   align-content: center;
+  min-height: 25px;
 
   &-content {
     overflow: hidden;
