@@ -74,15 +74,20 @@ export const BaseItem = (props) => {
     }
   };
   const renderLabelText = () => {
+    if (labelPosition === 'inner' && keepTopSpace) {
+      return (
+        <div className={`${prefixCls}-label-content`}>
+          <span>
+            &nbsp;
+          </span>
+        </div>
+      );
+    }
     const labelChildren = (
       <div className={`${prefixCls}-label-content`} ref={containerRef}>
         <span ref={contentRef}>
           {required && <span className={`${prefixCls}-required`}>{'*'}</span>}
-          { label ? (
-            <label>{label}</label>
-          ) : (
-            <span>&nbsp;</span>
-          )}
+          <label>{label}</label>
         </span>
       </div>
     );
@@ -113,7 +118,7 @@ export const BaseItem = (props) => {
         style={labelStyle}
         className={cls({
           [`${prefixCls}-label`]: true,
-          [`${prefixCls}-label-tooltip`]: !!tooltip && tooltipLayout === 'text',
+          [`${prefixCls}-label-tooltip`]: !!tooltip && tooltipLayout === 'text' && labelPosition !== 'inner',
         })}
       >
         {renderLabelText()}
