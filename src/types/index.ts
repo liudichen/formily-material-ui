@@ -9,7 +9,7 @@ export interface FieldBaseProps<T> {
 
 export interface IFieldOptionItem {
   value: any,
-  label: React.ReactNode,
+  label: string,
 }
 
 export type IFieldPropOptionItem = string | number | IFieldOptionItem;
