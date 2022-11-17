@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
-import { unstable_useId } from '@mui/material/utils';
+
+import { useId } from '../../../hooks';
 
 export const Popover = forwardRef((props, ref) => {
   const {
@@ -12,7 +13,7 @@ export const Popover = forwardRef((props, ref) => {
     ...restProps
   } = props;
   const [ anchorE1, setAnchorE1 ] = useSafeState(null);
-  const id = unstable_useId(idProp);
+  const id = useId(idProp);
   const handleColse = useMemoizedFn((e) => {
     if (anchorE1 && !disabled) {
       setAnchorE1(null);
