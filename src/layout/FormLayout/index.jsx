@@ -63,6 +63,7 @@ FormLayout.defaultProps = {
   tooltipIcon: <HelpOutline fontSize='small' />,
   feedbackLayout: 'text',
   spacing: 0.5,
+  fullWidth: true,
 };
 
 export default FormLayout;
