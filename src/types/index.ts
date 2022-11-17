@@ -17,3 +17,5 @@ export type IFieldPropOptionItem = string | number | IFieldOptionItem;
 type IFieldPropFnOption = () => IFieldOptionItem[] | Promise<IFieldOptionItem[]>;
 
 export type IFieldPropOptions = IFieldPropOptionItem[] | IFieldPropFnOption;
+
+export type IColors = 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'|string;

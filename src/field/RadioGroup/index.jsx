@@ -21,7 +21,6 @@ export const RadioGroup = (props) => {
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
-  console.log('options-radio', value);
   if (loading) {
     return (
       <Skeleton
