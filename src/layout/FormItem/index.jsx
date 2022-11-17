@@ -42,7 +42,7 @@ export const BaseItem = (props) => {
   const {
     prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, children, className, style, error,
+    addonAfter, children, className, style, error, feedbackClassName, extraClassName,
   } = formatProps;
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
@@ -187,12 +187,13 @@ export const BaseItem = (props) => {
           className={cls({
             [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
             [`${prefixCls}-help`]: true,
+            [`${feedbackClassName}`]: !!feedbackClassName,
           })}
         >
           {feedbackText || <>&nbsp;</>}
         </div>
       )}
-      { !!extra && (<div className={`${prefixCls}-extra`}>{extra}</div>)}
+      { !!extra && (<div className={cls({ [`${prefixCls}-extra`]: true, [`${extraClassName}`]: !!extraClassName })}>{extra}</div>)}
     </div>
   );
 };
