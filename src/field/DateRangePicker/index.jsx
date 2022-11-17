@@ -30,8 +30,6 @@ export const DateRangePicker = (props) => {
 
 DateRangePicker.defaultProps = {
   size: 'small',
-  startText: '起',
-  endText: '止',
   toText: '-',
   toSx: { mx: 0.5 },
   inputFormat: 'YYYY-MM-DD',
