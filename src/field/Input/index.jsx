@@ -35,7 +35,7 @@ export const Input = forwardRef((props, ref) => {
     return showClearProp ?? false;
   }, [ showClearProp, props.type ]);
   const renderLabel = () => {
-    if ((labelPosition ?? layout.labelPosition) !== 'border') return;
+    if ((labelPosition ?? layout.labelPosition) !== 'inner') return;
     return (
       <FormLabel error={error} {...(labelProps || {})}>
         <Stack direction='row' width='100%'>

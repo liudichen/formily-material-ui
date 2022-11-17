@@ -6,13 +6,11 @@ import { FieldBaseProps } from '../../types';
 export interface InputProps extends FieldBaseProps<string | number> {
   label?: React.ReactNode,
   labelPosition?: 'top' | 'left' | 'inner',
-  labelStyle?: React.CSSProperties,
   fullWidth?: boolean,
   tooltip?: React.ReactNode,
-  tooltipLayout?: 'icon' | 'text',
   showClear?: boolean,
   required?: boolean,
-  labelProps?: Omit<FormLabelProps, 'error'>,
+  labelProps?: FormLabelProps,
 
   type: 'text' | 'password' | 'date' | 'color' | 'datetime-local' | 'email' | 'month' | 'number' | 'tel' | 'time' | 'url' | 'week' | 'datetime',
   margin?: 'none' | 'dense' | 'normal',
@@ -40,4 +38,6 @@ export interface InputProps extends FieldBaseProps<string | number> {
 
 export declare const Input: React.ForwardRefRenderFunction<unknown, InputProps>;
 
-export declare const FormilyInput: React.FC<React.PropsWithChildren<InputProps>>;
+export declare const FormilyInput: React.FC<React.PropsWithChildren<InputProps>> & {
+  displayName: 'formilyMuiInput'
+};
