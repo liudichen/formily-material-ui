@@ -12,7 +12,7 @@ interface IUseFieldOptionsConfig {
   deps?: any[],
 }
 
-export const useFetchOptions = (optionsProp: IFieldPropOptions, config: IUseFieldOptionsConfig = {}) => {
+export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFieldOptionsConfig = {}) => {
   const { onLoading, callback, deps = [] } = config;
   const [ options, setOptions ] = useSafeState<IFieldOptionItem[]>([]);
   const getOptions = useMemoizedFn(async () => {

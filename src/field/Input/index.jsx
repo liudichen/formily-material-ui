@@ -35,7 +35,7 @@ export const Input = forwardRef((props, ref) => {
     return showClearProp ?? false;
   }, [ showClearProp, props.type ]);
   const renderLabel = () => {
-    if (labelPosition !== 'border') return;
+    if ((labelPosition ?? layout.labelPosition) !== 'border') return;
     return (
       <FormLabel error={error} {...(labelProps || {})}>
         <Stack direction='row' width='100%'>
@@ -118,7 +118,7 @@ Input.defaultProps = {
 export const FormilyInput = connect(
   Input,
   mapProps((props, field) => {
-    if (isVoidField(field)) return props;
+    if (!field || isVoidField(field)) return props;
     return {
       ...props,
       error: props.error ?? field.selfInvalid,
