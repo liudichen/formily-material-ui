@@ -3,13 +3,11 @@ import { SxProps } from '@mui/material';
 
 import { IFieldPropOptions, FieldBaseProps } from '../../types';
 
-export interface CheckboxGroupProps extends FieldBaseProps<any[]> {
+export interface RadioGroupProps extends FieldBaseProps<any> {
   /** 选项或返回选项的函数。
    *选项值：{value,label,color?,size?,disabled?,icon?,required?,checkedIcon?}
    */
   options?: IFieldPropOptions,
-  minCount?: number,
-  maxCount?: number,
   layout?: 'horizontal' | 'vertical',
   /** 传递给每个checkbox项 */
   itemSx?: SxProps,
@@ -22,9 +20,11 @@ export interface CheckboxGroupProps extends FieldBaseProps<any[]> {
   checkedIcon?: React.ReactNode,
   size?: 'medium' | 'small',
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
+  name?: string,
 }
 
-type CheckboxGroupType = React.FC<CheckboxGroupProps>;
+type RadioGroupType = React.FC<RadioGroupProps>;
 
-export declare const CheckboxGroup: CheckboxGroupType;
-export declare const FormilyCheckboxGroup: CheckboxGroupType;
+export declare const RadioGroup: RadioGroupType;
+
+export declare const FormilyRadioGroup: RadioGroupType;

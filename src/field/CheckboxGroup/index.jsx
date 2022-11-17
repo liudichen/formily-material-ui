@@ -4,9 +4,7 @@ import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
 import { connect, mapProps } from '@formily/react';
 
 import { useFetchOptions } from '../../hooks';
-import { isEqual, isInArray } from '../../utils';
-
-const colors = [ 'default', 'primary', 'secondary', 'error', 'info', 'success', 'warning' ];
+import { isEqual, isInArray, COLORS } from '../../utils';
 
 export const CheckboxGroup = (props) => {
   const {
@@ -70,7 +68,7 @@ export const CheckboxGroup = (props) => {
           control={
             <Checkbox
               size={item.size ?? size}
-              color={item.color && colors.includes(item.color) ? item.color : color}
+              color={item.color && COLORS.includes(item.color) ? item.color : color}
               disabled={item.disabled ?? disabled}
               checked={isInArray(item.value, value)}
               onChange={(e) => handleChange(e, item.value)}
