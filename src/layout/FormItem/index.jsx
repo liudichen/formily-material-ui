@@ -78,7 +78,7 @@ export const BaseItem = (props) => {
       return (
         <div className={`${prefixCls}-label-content`}>
           <span>
-            &nbsp;
+            <label>&nbsp;</label>
           </span>
         </div>
       );
