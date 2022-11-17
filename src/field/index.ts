@@ -16,5 +16,8 @@ export * from './Switch/formilySwitch';
 export * from './ToggleButtonGroup';
 export * from './ToggleButtonGroup/formilyToggleButton';
 
-
+// ====== Date ==============
 export * from './DateLocalizationProvider';
+
+export * from './DatePicker';
+export * from './DatePicker/formilyDatePicker';
