@@ -1,7 +1,6 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
-import { connect, mapProps } from '@formily/react';
 
 import { useFetchOptions } from '../../hooks';
 import { isEqual, isInArray, COLORS } from '../../utils';
@@ -87,15 +86,3 @@ export const CheckboxGroup = (props) => {
 CheckboxGroup.defaultProps = {
   layout: 'horizontal',
 };
-
-export const FormilyCheckboxGroup = connect(
-  CheckboxGroup,
-  mapProps({
-    dataSource: 'options',
-    initialValue: 'defaultValue',
-    readOnly: true,
-    disabled: true,
-  })
-);
-
-FormilyCheckboxGroup.displayName = 'muiFormilyCheckboxGroup';

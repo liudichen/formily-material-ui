@@ -23,8 +23,5 @@ export interface RadioGroupProps extends FieldBaseProps<any> {
   name?: string,
 }
 
-type RadioGroupType = React.FC<RadioGroupProps>;
+export declare const RadioGroup: React.FC<RadioGroupProps>;
 
-export declare const RadioGroup: RadioGroupType;
-
-export declare const FormilyRadioGroup: RadioGroupType;

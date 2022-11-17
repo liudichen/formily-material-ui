@@ -24,7 +24,4 @@ export interface CheckboxGroupProps extends FieldBaseProps<any[]> {
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
 }
 
-type CheckboxGroupType = React.FC<CheckboxGroupProps>;
-
-export declare const CheckboxGroup: CheckboxGroupType;
-export declare const FormilyCheckboxGroup: CheckboxGroupType;
+export declare const CheckboxGroup: React.FC<CheckboxGroupProps>;

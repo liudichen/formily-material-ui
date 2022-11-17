@@ -1,8 +1,17 @@
 export * from './CheckboxGroup';
-export * from './RadioGroup';
-export * from './Input';
-export * from './Select';
-export * from './Switch';
+export * from './CheckboxGroup/formilyCheckboxGroup';
 
-export { ToggleButtonGroup, ToggleButtonGroupProps } from './ToggleButtonGroup';
-export { FormilyToggleButtonGroup } from './ToggleButtonGroup/formilyToggleButton';
+export * from './Input';
+export * from './Input/formilyInput';
+
+export * from './RadioGroup';
+export * from './RadioGroup/formilyRadioGroup';
+
+export * from './Select';
+export * from './Select/formilySelect';
+
+export * from './Switch';
+export * from './Switch/formilySwitch';
+
+export * from './ToggleButtonGroup';
+export * from './ToggleButtonGroup/formilyToggleButton';

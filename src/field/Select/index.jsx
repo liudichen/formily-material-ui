@@ -2,8 +2,6 @@ import React, { forwardRef } from 'react';
 import { useControllableValue, useSafeState } from 'ahooks';
 import { Autocomplete, TextField, FormLabel, Stack, Tooltip } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
-import { isVoidField } from '@formily/core';
-import { connect, mapProps } from '@formily/react';
 
 import { useFetchOptions } from '../../hooks';
 import { isEqual } from '../../utils';
@@ -80,24 +78,3 @@ Select.defaultProps = {
   size: 'small',
   variant: 'outlined',
 };
-
-export const FormilySelect = connect(
-  Select,
-  mapProps({
-    description: 'tooltip',
-    title: 'label',
-    dataSource: 'options',
-    initialValue: 'defaultValue',
-    readOnly: true,
-    required: true,
-    disabled: true,
-  }, (props, field) => {
-    if (!field || isVoidField) return props;
-    return {
-      ...props,
-      error: field.selfInvalid,
-    };
-  })
-);
-
-FormilySelect.displayName = 'muiFormilySelect';

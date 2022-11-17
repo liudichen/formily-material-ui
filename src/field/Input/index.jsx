@@ -1,7 +1,5 @@
 import React, { forwardRef } from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
-import { isVoidField } from '@formily/core';
-import { connect, mapProps } from '@formily/react';
 import { TextField as MuiTextField, InputAdornment, IconButton, FormLabel, Stack, Tooltip } from '@mui/material';
 import { Close, HelpOutline } from '@mui/icons-material';
 
@@ -114,22 +112,3 @@ export const Input = forwardRef((props, ref) => {
 Input.defaultProps = {
   size: 'small',
 };
-
-export const FormilyInput = connect(
-  Input,
-  mapProps((props, field) => {
-    if (!field || isVoidField(field)) return props;
-    return {
-      ...props,
-      error: props.error ?? field.selfInvalid,
-      tooltip: props.tooltip ?? field.description,
-      readOnly: props.readOnly ?? field.readOnly,
-      disabled: props.disabled ?? field.disabled,
-      required: props.required ?? field.required,
-      defaultValue: props.defaultValue ?? field.initialValue,
-      label: props.label ?? field.title,
-    };
-  })
-);
-
-FormilyInput.displayName = 'muiFormilyInput';

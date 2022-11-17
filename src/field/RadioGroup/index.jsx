@@ -1,7 +1,6 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
-import { connect, mapProps } from '@formily/react';
 
 import { useFetchOptions, useId } from '../../hooks';
 import { COLORS, isEqual } from '../../utils';
@@ -67,14 +66,3 @@ export const RadioGroup = (props) => {
 RadioGroup.defaultProps = {
   layout: 'horizontal',
 };
-
-export const FormilyRadioGroup = connect(
-  RadioGroup,
-  mapProps({
-    dataSource: 'options',
-    initialValue: 'defaultValue',
-    readOnly: true,
-    disabled: true,
-  })
-);
-FormilyRadioGroup.displayName = 'muiFormilyRadioGroup';

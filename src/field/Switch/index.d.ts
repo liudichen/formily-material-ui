@@ -10,5 +10,3 @@ export interface SwitchProps extends MuiSwitchProps {
 }
 
 export declare const Switch: React.FC<SwitchProps>;
-
-export declare const FormilySwitch: React.FC<SwitchProps>;
