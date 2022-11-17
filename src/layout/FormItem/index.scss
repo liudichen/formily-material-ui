@@ -206,3 +206,7 @@ $successColor: #52c41a;
 .#{$prefixCls}-success-help {
   color: $successColor !important;
 }
+
+.#{$prefixCls}-blank-help {
+  color:transparent !important;
+}

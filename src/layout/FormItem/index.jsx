@@ -3,7 +3,7 @@ import { Tooltip } from '@mui/material';
 import { useCreation } from 'ahooks';
 import { isVoidField } from '@formily/core';
 import { connect, mapProps } from '@formily/react';
-import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline } from '@mui/icons-material';
+import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
 import cls from 'classnames';
 
 import './index.scss';
@@ -84,7 +84,9 @@ export const BaseItem = (props) => {
       );
     }
     const labelChildren = (
-      <div className={`${prefixCls}-label-content`} ref={containerRef}>
+      <div className={cls({
+        [`${prefixCls}-label-content`]: true,
+      })} ref={containerRef}>
         <span ref={contentRef}>
           {required && <span className={`${prefixCls}-required`}>{'*'}</span>}
           <label>{label}</label>
@@ -162,11 +164,11 @@ export const BaseItem = (props) => {
               style={wrapperStyle}
               className={cls({
                 [`${prefixCls}-control-content-component`]: true,
-                [`${prefixCls}-control-content-component-has-feedback-icon`]: feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus),
+                [`${prefixCls}-control-content-component-has-feedback-icon`]: feedbackLayout === 'popover',
               })}
             >
               {children}
-              {showFeedback && feedbackLayout === 'popover' && [ 'warning', 'error', 'success' ].includes(feedbackStatus) && (
+              { showFeedback && feedbackLayout === 'popover' && ([ 'warning', 'error', 'success' ].includes(feedbackStatus) ? (
                 <Popover
                   triggerType='hover'
                   trigger={(
@@ -184,6 +186,16 @@ export const BaseItem = (props) => {
                     </div>
                   }
                 />
+              ) : (
+                <div
+                  className={cls({
+                    [`${prefixCls}-feedback-icon}`]: true,
+                    [`${prefixCls}-blank-help`]: true,
+                  })}
+                >
+                  {feedbackIcon ?? <RemoveOutlined fontSize='small' />}
+                </div>
+              )
               )}
             </div>
             {!!addonAfter && (
