@@ -20,7 +20,7 @@ export const Select = forwardRef((props, ref) => {
     ...restProps
   } = props;
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useControllableValue(props, { defaultValue: props.multiple ? [] : null });
+  const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag ? [ refreshOptionsFlag ] : undefined });
   const layout = useFormLayout();
   const renderLabel = () => {
@@ -57,7 +57,7 @@ export const Select = forwardRef((props, ref) => {
       ref={ref}
       loading={loading}
       options={options}
-      value={value}
+      value={value || (props.multiple ? [] : null)}
       fullWidth={fullWidth ?? layout?.fullWidth}
       onChange={(e, v) => onChange(v)}
       isOptionEqualToValue={(op, v) => isEqual(op.value, v?.value)}
@@ -83,17 +83,19 @@ Select.defaultProps = {
 
 export const FormilySelect = connect(
   Select,
-  mapProps((props, field) => {
+  mapProps({
+    description: 'tooltip',
+    title: 'label',
+    dataSource: 'options',
+    initialValue: 'defaultValue',
+    readOnly: true,
+    required: true,
+    disabled: true,
+  }, (props, field) => {
     if (!field || isVoidField) return props;
     return {
       ...props,
-      error: props.error ?? field.selfInvalid,
-      tooltip: props.tooltip ?? field.description,
-      readOnly: props.readOnly ?? field.readOnly,
-      required: props.required ?? field.required,
-      defaultValue: props.defaultValue ?? field.initialValue,
-      label: props.label ?? field.title,
-      options: props.options ?? field.dataSource,
+      error: field.selfInvalid,
     };
   })
 );
