@@ -61,6 +61,7 @@
     "@tabler/icons": "^1.111.0",
     "ahooks": "^3.7.2",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.6",
     "react-device-detect": "^2.2.2",
     "react-dropzone": "^14.2.3"
   }

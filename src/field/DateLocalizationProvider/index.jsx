@@ -1,6 +1,7 @@
 import React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+import { LocalizationProvider, zhCN } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import zh from 'dayjs/locale/zh-cn';
 
 export const DateLocalizationProvider = (props) => {
   const { children, ...restProps } = props;
@@ -15,4 +16,6 @@ export const DateLocalizationProvider = (props) => {
 
 DateLocalizationProvider.defaultProps = {
   dateAdapter: AdapterDayjs,
+  adapterLocale: zh,
+  localeText: zhCN.components.MuiLocalizationProvider.defaultProps.localeText,
 };
