@@ -21,6 +21,7 @@ export interface FormItemProps extends CommonLayoutProps {
   addonAfter?: React.ReactNode,
   extraClassName?: string,
   feedbackClassName?: string,
+  keepTopSpace?: boolean,
 }
 type ComposeFormItem = React.FC<React.PropsWithChildren<FormItemProps>> & {
   BaseItem?: React.FC<React.PropsWithChildren<FormItemProps>>

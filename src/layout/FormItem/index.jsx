@@ -43,6 +43,7 @@ export const BaseItem = (props) => {
     prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, children, className, style, error, feedbackClassName, extraClassName,
+    keepTopSpace,
   } = formatProps;
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
@@ -77,7 +78,11 @@ export const BaseItem = (props) => {
       <div className={`${prefixCls}-label-content`} ref={containerRef}>
         <span ref={contentRef}>
           {required && <span className={`${prefixCls}-required`}>{'*'}</span>}
-          <label>{label}</label>
+          { label ? (
+            <label>{label}</label>
+          ) : (
+            <span>&nbsp;</span>
+          )}
         </span>
       </div>
     );
@@ -91,7 +96,7 @@ export const BaseItem = (props) => {
     return labelChildren;
   };
   const renderTooltipIcon = () => {
-    if (tooltip && tooltipLayout === 'icon') {
+    if (tooltip && tooltipLayout === 'icon' && labelPosition !== 'inner') {
       return (
         <span>
           <Tooltip placement='top' title={tooltip} arrow>
@@ -102,7 +107,7 @@ export const BaseItem = (props) => {
     }
   };
   const renderLabel = () => {
-    if (noLabel || !label || labelPosition === 'inner') return null;
+    if (noLabel || !label || (labelPosition === 'inner' && !keepTopSpace)) return null;
     return (
       <div
         style={labelStyle}
@@ -113,7 +118,7 @@ export const BaseItem = (props) => {
       >
         {renderLabelText()}
         {renderTooltipIcon()}
-        {label !== ' ' && !!colon && (
+        {label !== ' ' && labelPosition !== 'inner' && !!colon && (
           <span className={`${prefixCls}-colon`}>:</span>
         )}
       </div>
