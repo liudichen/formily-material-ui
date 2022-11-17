@@ -132,4 +132,4 @@ export const FormilyInput = connect(
   })
 );
 
-FormilyInput.displayName = 'formilyMuiInput';
+FormilyInput.displayName = 'muiFormilyInput';

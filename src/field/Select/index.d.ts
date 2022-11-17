@@ -18,5 +18,5 @@ export interface SelectProps extends FieldBaseProps<IFieldOptionItem | IFieldOpt
 export declare const Select: React.ForwardRefRenderFunction<unknown, SelectProps>;
 
 export declare const FormilySelect: React.FC<SelectProps> & {
-  displayName: 'formilyMuiSelect'
+  displayName: 'muiFormilySelect'
 };

@@ -39,5 +39,5 @@ export interface InputProps extends FieldBaseProps<string | number> {
 export declare const Input: React.ForwardRefRenderFunction<unknown, InputProps>;
 
 export declare const FormilyInput: React.FC<React.PropsWithChildren<InputProps>> & {
-  displayName: 'formilyMuiInput'
+  displayName: 'muiFormilyInput'
 };

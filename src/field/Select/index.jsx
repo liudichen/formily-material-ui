@@ -100,4 +100,4 @@ export const FormilySelect = connect(
   })
 );
 
-FormilySelect.displayName = 'formilyMuiSelect';
+FormilySelect.displayName = 'muiFormilySelect';
