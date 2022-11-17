@@ -9,7 +9,7 @@ import cls from 'classnames';
 import './index.scss';
 import { useFormLayout } from '../FormLayout';
 import { useOverflow } from '../../hooks';
-import { Popover } from '../../utils/Popover';
+import { Popover } from '../../utils/component';
 
 const useFormItemLayout = (props) => {
   const layout = useFormLayout() || {};
