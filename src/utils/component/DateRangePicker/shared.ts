@@ -13,9 +13,9 @@ import {
 } from '@mui/x-date-pickers/internals';
 import { useThemeProps } from '@mui/material/styles';
 import { ExportedDateRangePickerViewProps } from './DateRangePickerView';
-import { DateRangeValidationError } from '../internal/hooks/validation/useDateRangeValidation';
-import { DateRange } from '../internal/models';
-import { parseRangeInputValue } from '../internal/utils/date-utils';
+import { DateRangeValidationError } from './useDateRangeValidation';
+import { DateRange } from './model_dateRange';
+import { parseRangeInputValue } from './date-utils';
 import { ExportedDateRangePickerInputProps } from './DateRangePickerInput';
 
 export interface BaseDateRangePickerProps<TInputDate, TDate>

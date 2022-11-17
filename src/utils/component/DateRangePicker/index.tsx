@@ -6,13 +6,13 @@ import {
   DesktopDateRangePickerProps,
   DesktopDateRangePickerSlotsComponent,
   DesktopDateRangePickerSlotsComponentsProps,
-} from '../DesktopDateRangePicker';
+} from './DesktopDateRangePicker';
 import {
   MobileDateRangePicker,
   MobileDateRangePickerProps,
   MobileDateRangePickerSlotsComponent,
   MobileDateRangePickerSlotsComponentsProps,
-} from '../MobileDateRangePicker';
+} from './MobileDateRangePicker';
 
 export interface DateRangePickerSlotsComponent
   extends MobileDateRangePickerSlotsComponent,

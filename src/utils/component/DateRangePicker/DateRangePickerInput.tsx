@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@mui/material';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
 import {
   useUtils,
   executeInTheNextEventLoopTick,
@@ -11,13 +12,23 @@ import {
   useMaskedInput,
   onSpaceOrEnter,
 } from '@mui/x-date-pickers/internals';
-import { CurrentlySelectingRangeEndProps, DateRange } from '../internal/models/dateRange';
-import { DateRangeValidationError } from '../internal/hooks/validation/useDateRangeValidation';
-import {
-  DateRangePickerInputClasses,
-  getDateRangePickerInputUtilityClass,
-} from './dateRangePickerInputClasses';
+import { CurrentlySelectingRangeEndProps, DateRange } from './model_dateRange';
+import { DateRangeValidationError } from './useDateRangeValidation';
 
+export interface DateRangePickerInputClasses {
+  root: string;
+}
+
+export type DateRangePickerInputClassKey = keyof DateRangePickerInputClasses;
+
+export function getDateRangePickerInputUtilityClass(slot: string) {
+  return generateUtilityClass('MuiDateRangePickerInput', slot);
+}
+
+export const dateRangePickerInputClasses: DateRangePickerInputClasses = generateUtilityClasses(
+  'MuiDateRangePickerInput',
+  [ 'root' ],
+);
 const useUtilityClasses = (ownerState: DateRangePickerInputProps<any, any>) => {
   const { classes } = ownerState;
   const slots = {

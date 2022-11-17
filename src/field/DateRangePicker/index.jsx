@@ -2,7 +2,7 @@ import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { Box, TextField } from '@mui/material';
 
-import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/x-date-pro/DateRangePicker';
+import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/DateRangePicker';
 
 export const DateRangePicker = (props) => {
   const {
