@@ -1,17 +1,13 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
+import { SxProps, ToggleButtonGroupProps as MuiToggleButtonGroupProps } from '@mui/material';
 
-import { FieldBaseProps, IColors, IFieldPropOptions } from '../../types';
+import { FieldBaseProps, IFieldPropOptions } from '../../types';
 
-export interface ToggleButtonGroupProps extends FieldBaseProps<any | any[]> {
+export interface ToggleButtonGroupProps extends FieldBaseProps<any | any[]>, Omit<MuiToggleButtonGroupProps, 'value'|'onChange'> {
   options?: IFieldPropOptions
   minCount?: number,
   maxCount?: number,
-  exclusive?: boolean,
   layout?: 'horizontal' | 'vertical',
-  color?: IColors | 'standard',
-  size?: 'small'| 'medium'| 'large'| string,
-  sx?: SxProps,
   itemSx?: SxProps,
   itemFullWidth?: boolean,
   itemWidth?: number | string,
@@ -19,4 +15,4 @@ export interface ToggleButtonGroupProps extends FieldBaseProps<any | any[]> {
   itemMaxWidth?: number | string,
 }
 
-export declare const ToggleButtonGroup: React.FC<ToggleButtonGroupProps>;
+export declare const ToggleButtonGroup: React.ForwardRefRenderFunction<any, ToggleButtonGroupProps>;

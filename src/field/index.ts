@@ -9,7 +9,6 @@ export * from './Select';
 export * from './Switch';
 
 export * from './ToggleButtonGroup';
-export * from './ToggleButtonGroup/formilyToggleButton';
 
 // ====== Date ==============
 export * from './DateLocalizationProvider';

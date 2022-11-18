@@ -1,20 +1,23 @@
 import React from 'react';
 import { useSafeState, useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
 import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton } from '@mui/material';
+import { observer } from '@formily/react';
 
 import { isEqual, isInArray, COLORS } from '../../utils';
-import { useFetchOptions } from '../../hooks';
+import { useFetchOptions, useFormilyFieldProps } from '../../hooks';
 
-export const ToggleButtonGroup = (props) => {
+export const ToggleButtonGroup = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { options: true });
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    minCount, maxCount, exclusive,
-    layout, sx, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
-  } = props;
+    minCount, maxCount, exclusive, orientation,
+    layout, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
+    ...restProps
+  } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)) });
   const itemSx = useCreation(() => {
@@ -65,13 +68,13 @@ export const ToggleButtonGroup = (props) => {
   }
   return (
     <MuiToggleButtonGroup
-      orientation={layout}
+      orientation={orientation ?? layout}
       disabled={disabled}
       exclusive={exclusive}
       fullWidth={itemFullWidth}
       size={size}
       color={color}
-      sx={sx}
+      {...restProps}
     >
       { options.map((item, index) => (
         <MuiToggleButton
@@ -82,14 +85,14 @@ export const ToggleButtonGroup = (props) => {
           value={item.value}
           onClick={() => handleChange(item.value)}
           selected={exclusive ? isEqual(item.value, value) : isInArray(item.value, value)}
-          sx={itemSx}
+          sx={item?.sx ?? itemSx}
         >
           { item.label }
         </MuiToggleButton>
       ))}
     </MuiToggleButtonGroup>
   );
-};
+}, { forwardRef: true });
 
 ToggleButtonGroup.defaultProps = {
   size: 'small',
@@ -97,3 +100,5 @@ ToggleButtonGroup.defaultProps = {
   itemSx: { fontWeight: 'bold' },
   itemMinWidth: 50,
 };
+
+ToggleButtonGroup.displayName = 'muiFormilyToggleButtonGroup';
