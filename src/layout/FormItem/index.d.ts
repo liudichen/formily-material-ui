@@ -12,7 +12,6 @@ export interface FormItemProps extends CommonLayoutProps {
   wrapperStyle?: React.CSSProperties,
   tooltip?: React.ReactNode,
   required?: boolean,
-  display?: 'visible' | 'hidden' | 'none',
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {}),
   feedbackText?: React.ReactNode,
   feedbackIcon?: React.ReactNode,
@@ -23,11 +22,5 @@ export interface FormItemProps extends CommonLayoutProps {
   feedbackClassName?: string,
   keepTopSpace?: boolean,
 }
-type ComposeFormItem = React.FC<React.PropsWithChildren<FormItemProps>> & {
-  BaseItem?: React.FC<React.PropsWithChildren<FormItemProps>>
-};
 
-export declare const BaseItem:React.FC<React.PropsWithChildren<FormItemProps>>;
-export declare const FormItem: ComposeFormItem;
-
-export default FormItem;
+export declare const FormItem:React.FC<React.PropsWithChildren<FormItemProps>>;

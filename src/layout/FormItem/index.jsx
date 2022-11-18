@@ -1,14 +1,13 @@
 import React from 'react';
-import { Tooltip } from '@mui/material';
 import { useCreation } from 'ahooks';
-import { isVoidField } from '@formily/core';
-import { connect, mapProps } from '@formily/react';
+import { observer } from '@formily/react';
+import { Tooltip } from '@mui/material';
 import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
 import cls from 'classnames';
 
 import './index.scss';
 import { useFormLayout } from '../FormLayout';
-import { useOverflow } from '../../hooks';
+import { useOverflow, useFormilyFieldProps } from '../../hooks';
 import { Popover } from '../../utils/component';
 
 const useFormItemLayout = (props) => {
@@ -37,14 +36,15 @@ const ICON_MAP = {
   warning: <ErrorOutlineOutlined fontSize='small' />,
 };
 
-export const BaseItem = (props) => {
+export const FormItem = observer((props) => {
   const formatProps = useFormItemLayout(props);
+  const formilyFieldProps = useFormilyFieldProps(formatProps, { tooltip: true, label: true, error: true, required: true, readOnly: false, disabled: false, feedbackStatus: true, feedbackText: true, defaultValue: false });
   const {
     prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
-    noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, display, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
+    noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, children, className, style, error, feedbackClassName, extraClassName,
     keepTopSpace,
-  } = formatProps;
+  } = formilyFieldProps;
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
@@ -62,7 +62,6 @@ export const BaseItem = (props) => {
     }
     return sx;
   }, [ wrapperSx, wrapperWidth ]);
-  if (display !== 'visible') return null;
   const getOverflowTooltip = () => {
     if (overflow) {
       return (
@@ -218,65 +217,10 @@ export const BaseItem = (props) => {
       { !!extra && (<div className={cls({ [`${prefixCls}-extra`]: true, [`${extraClassName}`]: !!extraClassName })}>{extra}</div>)}
     </div>
   );
-};
+});
 
-BaseItem.defaultProps = {
+FormItem.defaultProps = {
   prefixCls: 'iimm-formily-item',
 };
 
-export const FormItem = connect(
-  BaseItem,
-  mapProps((props, field) => {
-    if (isVoidField(field)) {
-      return {
-        ...props,
-        tooltip: props.tooltip ?? field.description,
-        label: props.label ?? field.description,
-        display: props.display ?? field.display,
-      };
-    }
-    if (!field) return props;
-    const takeFeedbackStatus = () => {
-      if (field.validating) return 'pending';
-      return field.decoratorProps.feedbackStatus || field.validateStatus;
-    };
-    const takeMessage = () => {
-      const split = (messages) => {
-        return messages.reduce((buf, text, index) => {
-          if (!text) return buf;
-          return index < messages.length - 1
-            ? buf.concat([ text, ', ' ])
-            : buf.concat([ text ]);
-        }, []);
-      };
-      if (field.validating) return;
-      if (props.feedbackText) return props.feedbackText;
-      if (field.selfErrors.length) return split(field.selfErrors);
-      if (field.selfWarnings.length) return split(field.selfWarnings);
-      if (field.selfSuccesses.length) return split(field.selfSuccesses);
-    };
-    const takeRequired = () => {
-      if (field.required && field.pattern !== 'readPretty') {
-        return true;
-      }
-      if ('required' in props) {
-        return props.required;
-      }
-      return false;
-    };
-    return {
-      ...props,
-      label: props.label ?? field.title,
-      feedbackStatus: takeFeedbackStatus(),
-      feedbackText: props.feedbackText ?? takeMessage(),
-      required: props.required ?? takeRequired(),
-      tooltip: props.tooltip ?? field.description,
-      display: props.display ?? field.display,
-      error: props.error ?? field.selfInvalid,
-    };
-  })
-);
-
-FormItem.BaseItem = BaseItem;
-
-export default FormItem;
+FormItem.displayName = 'muiFormilyFormItem';
