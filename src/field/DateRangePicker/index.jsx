@@ -1,17 +1,20 @@
 import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { Box, TextField } from '@mui/material';
+import { observer } from '@formily/react';
 
 import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/DateRangePicker';
+import { useFormilyFieldProps } from '../../hooks';
 
-export const DateRangePicker = (props) => {
+export const DateRangePicker = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props);
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     size, toText, toSx, fullWidth, color, variant, TextFieldSx,
     ...restProps
-  } = props;
-  const [ value, onChange ] = useControllableValue(props);
+  } = formilyFieldProps;
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
   return (
     <MuiDateRangePicker
       value={value || [ null, null ]}
@@ -26,7 +29,7 @@ export const DateRangePicker = (props) => {
       {...restProps}
     />
   );
-};
+}, { forwardRef: true });
 
 DateRangePicker.defaultProps = {
   size: 'small',
@@ -40,3 +43,5 @@ DateRangePicker.defaultProps = {
     },
   },
 };
+
+DateRangePicker.displayName = 'muiFormilyDateRangePicker';

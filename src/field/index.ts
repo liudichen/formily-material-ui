@@ -16,6 +16,5 @@ export * from './DateLocalizationProvider';
 export * from './DatePicker';
 
 export * from './DateRangePicker';
-export * from './DateRangePicker/formilyDateRangePicer';
 
 export * from './DateTimePicker';
