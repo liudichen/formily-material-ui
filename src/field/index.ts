@@ -1,5 +1,4 @@
 export * from './CheckboxGroup';
-export * from './CheckboxGroup/formilyCheckboxGroup';
 
 export * from './Input';
 

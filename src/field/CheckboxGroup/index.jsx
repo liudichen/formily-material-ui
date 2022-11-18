@@ -1,21 +1,24 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
+import { observer } from '@formily/react';
 
-import { useFetchOptions } from '../../hooks';
+import { useFetchOptions, useFormilyFieldProps } from '../../hooks';
 import { isEqual, isInArray, COLORS } from '../../utils';
 
-export const CheckboxGroup = (props) => {
+export const CheckboxGroup = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { options: true });
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, children,
     readOnly, disabled,
     minCount, maxCount, layout,
     itemSx, labelPlacement,
-    sx,
+    row,
     icon, checkedIcon, size, color,
-  } = props;
+    ...restProps
+  } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const [ value, onChange ] = useControllableValue(props);
@@ -58,7 +61,7 @@ export const CheckboxGroup = (props) => {
     );
   }
   return (
-    <FormGroup sx={sx} row={layout === 'horizontal'} >
+    <FormGroup row={row ?? layout === 'horizontal'} {...restProps}>
       { options.map((item, index) => (
         <FormControlLabel
           key={index}
@@ -81,8 +84,10 @@ export const CheckboxGroup = (props) => {
       ))}
     </FormGroup>
   );
-};
+}, { forwardRef: true });
 
 CheckboxGroup.defaultProps = {
   layout: 'horizontal',
 };
+
+CheckboxGroup.displayName = 'muiFormilyCheckboxGroup';

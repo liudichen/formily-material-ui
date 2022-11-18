@@ -1,9 +1,9 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
+import { FormGroupProps, SxProps } from '@mui/material';
 
 import { IFieldPropOptions, FieldBaseProps } from '../../types';
 
-export interface CheckboxGroupProps extends FieldBaseProps<any[]> {
+export interface CheckboxGroupProps extends FieldBaseProps<any[]>, Omit<FormGroupProps, 'sx'> {
   /** 选项或返回选项的函数。
    *选项值：{value,label,color?,size?,disabled?,icon?,required?,checkedIcon?}
    */
@@ -24,4 +24,4 @@ export interface CheckboxGroupProps extends FieldBaseProps<any[]> {
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
 }
 
-export declare const CheckboxGroup: React.FC<CheckboxGroupProps>;
+export declare const CheckboxGroup: React.ForwardRefRenderFunction<CheckboxGroupProps>;
