@@ -106,7 +106,7 @@ export const FormItem = observer((props) => {
       return (
         <span>
           <Tooltip placement='top' title={tooltip} arrow>
-            <span>{tooltipIcon}</span>
+            <span style={{ cursor: 'help' }}>{tooltipIcon}</span>
           </Tooltip>
         </span>
       );
