@@ -16,3 +16,7 @@ export const isFunction = (value: any) => typeof value === 'function';
 export const isString = (value: any) => typeof value === 'string';
 export const isNumber = (value: any) => typeof value === 'number';
 export const isUndefined = (value: any) => typeof value === 'undefined';
+
+
+export const isBrowser = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+export const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
