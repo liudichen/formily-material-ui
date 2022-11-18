@@ -1,5 +1,5 @@
 export * from './component';
 
-export * from './compare';
+export * from './isX';
 
 export * from './constant';

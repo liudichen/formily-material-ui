@@ -10,3 +10,9 @@ export const isInArray = (value: any, array: any[]) => {
     ? array.includes(value)
     : array.some(item => isEqual(value, item));
 };
+
+export const isObject = (value: any) => value !== null && typeof value === 'object';
+export const isFunction = (value: any) => typeof value === 'function';
+export const isString = (value: any) => typeof value === 'string';
+export const isNumber = (value: any) => typeof value === 'number';
+export const isUndefined = (value: any) => typeof value === 'undefined';
