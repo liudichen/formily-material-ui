@@ -2,7 +2,6 @@ import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
 
 export const DatePicker = (props) => {
   const {
@@ -15,7 +14,7 @@ export const DatePicker = (props) => {
   return (
     <MuiDatePicker
       label={labelPosition === 'inner' ? label : undefined}
-      value={value ? dayjs.isDayjs(value) ? value : dayjs(value) : null}
+      value={value || null}
       onChange={onChange}
       renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth}/>}
       {...restProps}
