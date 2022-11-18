@@ -9,7 +9,6 @@ export * from './RadioGroup/formilyRadioGroup';
 export * from './Select';
 
 export * from './Switch';
-export * from './Switch/formilySwitch';
 
 export * from './ToggleButtonGroup';
 export * from './ToggleButtonGroup/formilyToggleButton';

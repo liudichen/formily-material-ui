@@ -9,4 +9,4 @@ export interface SwitchProps extends MuiSwitchProps {
   right?: React.ReactNode,
 }
 
-export declare const Switch: React.FC<SwitchProps>;
+export declare const Switch: React.ForwardRefRenderFunction<any, SwitchProps>;

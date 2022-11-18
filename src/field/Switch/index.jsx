@@ -1,8 +1,12 @@
 import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { Switch as MuiSwitch, Stack, useTheme } from '@mui/material';
+import { observer } from '@formily/react';
 
-export const Switch = (props) => {
+import { useFormilyFieldProps } from '../../hooks';
+
+export const Switch = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { required: true });
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
@@ -10,7 +14,7 @@ export const Switch = (props) => {
     left, right, error, spacing,
     color, edge,
     ...restProps
-  } = props;
+  } = formilyFieldProps;
   const [ value, onChange ] = useControllableValue(props);
   const theme = useTheme();
   return (
@@ -49,8 +53,10 @@ export const Switch = (props) => {
       )}
     </Stack>
   );
-};
+}, { forwardRef: true });
 
 Switch.defaultProps = {
   color: 'primary',
 };
+
+Switch.displayName = 'muiFormilySwitch';
