@@ -1,8 +1,6 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
+import { Typography } from '@mui/material';
 import { styled, useThemeProps } from '@mui/material/styles';
-import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
-import { unstable_composeClasses as composeClasses } from '@mui/material';
 import {
   PickersToolbar,
   PickersToolbarButton,
@@ -11,6 +9,8 @@ import {
   BaseToolbarProps,
   useLocaleText,
 } from '@mui/x-date-pickers/internals';
+
+import { generateUtilityClass, generateUtilityClasses, composeClasses } from '../mui-utils';
 import { DateRange, CurrentlySelectingRangeEndProps } from './model_dateRange';
 
 export interface DateRangePickerToolbarClasses {

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import clsx from 'clsx';
-import { SxProps } from '@mui/system';
 import { alpha, styled, Theme, useThemeProps } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/material';
 import { DAY_MARGIN, useUtils, areDayPropsEqual } from '@mui/x-date-pickers/internals';
 import { PickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
-import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
+import { SxProps } from '@mui/material';
+
+import { composeClasses, generateUtilityClass, generateUtilityClasses } from '../mui-utils';
 
 export interface DateRangePickerDayClasses {
   /** Styles applied to the root element. */

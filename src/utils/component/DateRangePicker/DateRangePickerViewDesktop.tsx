@@ -1,8 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/material';
-import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
 import {
   useDefaultDates,
   useUtils,
@@ -17,6 +15,8 @@ import {
   DAY_MARGIN,
   DayValidationProps,
 } from '@mui/x-date-pickers/internals';
+
+import { generateUtilityClass, generateUtilityClasses, composeClasses } from '../mui-utils';
 import { calculateRangePreview } from './date-range-manager';
 import { DateRange } from './model_dateRange';
 import { DateRangePickerDay, DateRangePickerDayProps } from './DateRangePickerDay';

@@ -1,8 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { styled, useThemeProps } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/material';
-import { generateUtilityClass, generateUtilityClasses } from '@mui/material';
 import {
   useUtils,
   executeInTheNextEventLoopTick,
@@ -12,6 +10,8 @@ import {
   useMaskedInput,
   onSpaceOrEnter,
 } from '@mui/x-date-pickers/internals';
+
+import { composeClasses, generateUtilityClass, generateUtilityClasses } from '../mui-utils';
 import { CurrentlySelectingRangeEndProps, DateRange } from './model_dateRange';
 import { DateRangeValidationError } from './useDateRangeValidation';
 
