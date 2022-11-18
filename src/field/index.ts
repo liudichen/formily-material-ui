@@ -4,7 +4,6 @@ export * from './CheckboxGroup/formilyCheckboxGroup';
 export * from './Input';
 
 export * from './RadioGroup';
-export * from './RadioGroup/formilyRadioGroup';
 
 export * from './Select';
 

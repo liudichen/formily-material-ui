@@ -1,22 +1,24 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
+import { observer } from '@formily/react';
 
-import { useFetchOptions, useId } from '../../hooks';
+import { useFetchOptions, useFormilyFieldProps } from '../../hooks';
 import { COLORS, isEqual } from '../../utils';
 
-export const RadioGroup = (props) => {
+export const RadioGroup = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { options: true });
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    layout, sx, size, color, disabled, itemSx, readOnly, name: nameProp,
+    layout, sx, size, color, disabled, itemSx, readOnly,
     labelPlacement, icon, checkedIcon,
-  } = props;
+    ...restProps
+  } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading });
   const [ value, onChange ] = useControllableValue(props);
-  const name = useId(nameProp);
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
@@ -36,6 +38,7 @@ export const RadioGroup = (props) => {
       row={layout === 'horizontal'}
       name={name}
       sx={sx}
+      {...restProps}
     >
       { options.map((item, index) => (
         <FormControlLabel
@@ -61,8 +64,10 @@ export const RadioGroup = (props) => {
       ))}
     </MuiRadioGroup>
   );
-};
+}, { forwardRef: true });
 
 RadioGroup.defaultProps = {
   layout: 'horizontal',
 };
+
+RadioGroup.displayName = 'muiFormilyRadioGroup';
