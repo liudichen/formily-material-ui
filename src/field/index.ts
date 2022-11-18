@@ -10,6 +10,8 @@ export * from './Switch';
 
 export * from './ToggleButtonGroup';
 
+export * from './Transfer';
+
 // ====== Date ==============
 export * from './DateLocalizationProvider';
 
