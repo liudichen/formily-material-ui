@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSafeState, useSize } from 'ahooks';
 
-export const useOverflow = () => {
+export const useOverflow = (threhod = 0) => {
   const [ overflow, setOverflow ] = useSafeState(false);
   const containerRef = useRef();
   const contentRef = useRef();
@@ -10,7 +10,7 @@ export const useOverflow = () => {
   useEffect(() => {
     requestAnimationFrame(() => {
       const contentWidth = contentRef.current?.getBoundingClientRect()?.width;
-      if (contentWidth && containerWidth && containerWidth < contentWidth) {
+      if (contentWidth && containerWidth && (containerWidth < contentWidth + threhod)) {
         if (!overflow) setOverflow(true);
       } else {
         if (overflow) setOverflow(false);
