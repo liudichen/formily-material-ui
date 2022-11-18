@@ -1,11 +1,14 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
 import { TextField as MuiTextField, InputAdornment, IconButton, FormLabel, Stack, Tooltip } from '@mui/material';
 import { Close, HelpOutline } from '@mui/icons-material';
+import { observer } from '@formily/react';
 
 import { useFormLayout } from '../../layout/FormLayout';
+import { useFormilyFieldProps } from '../../hooks';
 
-export const Input = forwardRef((props, ref) => {
+export const Input = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { error: true, tooltip: true, required: true, label: true });
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
@@ -14,7 +17,7 @@ export const Input = forwardRef((props, ref) => {
     showClear: showClearProp, required, error, readOnly,
     inputProps, InputProps, endAdornmentItem, fullWidth,
     ...restProps
-  } = props;
+  } = formilyFieldProps;
   const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
   const layout = useFormLayout();
   const onTextFieldChange = useMemoizedFn((e) => {
@@ -63,7 +66,6 @@ export const Input = forwardRef((props, ref) => {
   };
   return (
     <MuiTextField
-      ref={ref}
       value={value ?? ''}
       onChange={onTextFieldChange}
       label={renderLabel()}
@@ -107,8 +109,10 @@ export const Input = forwardRef((props, ref) => {
       {...restProps}
     />
   );
-});
+}, { forwardRef: true });
 
 Input.defaultProps = {
   size: 'small',
 };
+
+Input.displayName = 'muiFormilyInput';

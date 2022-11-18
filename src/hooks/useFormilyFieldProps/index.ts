@@ -19,6 +19,8 @@ export const useFormilyFieldProps = (props: ICommonProps, config: IUseFormilyFie
     ...props,
   };
   formatProps.defaultValue = props.defaultValue ?? field.initialValue;
+  formatProps.disabled = props.disabled ?? field.disabled;
+  formatProps.readOnly = props.readOnly ?? field.readOnly;
   if (config?.error) {
     formatProps.error = props.error ?? field.selfInvalid;
   }
