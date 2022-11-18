@@ -2,7 +2,7 @@ import React from 'react';
 import { PopoverProps as MuiPopoverProps } from '@mui/material';
 
 export interface PopoverProps extends MuiPopoverProps {
-  triggerType?: 'hover' | 'trigger',
+  triggerType?: 'hover' | 'click',
   disabled?: boolean,
   trigger?: React.ReactNode,
   content?: React.ReactNode,
