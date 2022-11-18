@@ -13,7 +13,7 @@ export const RadioGroup = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     layout, sx, size, color, disabled, itemSx, readOnly,
-    labelPlacement, icon, checkedIcon,
+    labelPlacement, icon, checkedIcon, row,
     ...restProps
   } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
@@ -35,7 +35,7 @@ export const RadioGroup = observer((props) => {
   }
   return (
     <MuiRadioGroup
-      row={layout === 'horizontal'}
+      row={row ?? layout === 'horizontal'}
       name={name}
       sx={sx}
       {...restProps}
