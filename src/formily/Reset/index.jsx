@@ -1,9 +1,9 @@
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
-import { useParentForm } from '@formily/react';
+import { useParentForm, observer } from '@formily/react';
 import { Button } from '@mui/material';
 
-export const Reset = (props) => {
+export const Reset = observer((props) => {
   const {
     forceClear,
     validate,
@@ -36,7 +36,7 @@ export const Reset = (props) => {
       {children}
     </Button>
   );
-};
+});
 
 Reset.defaultProps = {
   children: '重置',
