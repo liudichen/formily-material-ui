@@ -10,8 +10,13 @@ export interface DateRangePickerProps extends MuiDateRangePickerProps {
   toText?: React.ReactNode,
   /** 两个文本框之间元素外层Box的sx */
   toSx?: SxProps,
-  /** 文本框充满宽度 */
+  /** 文本框宽度拉满？ */
   fullWidth?: boolean,
+  /** 选中时文本框颜色 */
+  color?: 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning',
+  /** 文本框样式 */
+  variant?: 'outlined' | 'filled' | 'standard',
+  textFieldSx?: SxProps,
 }
 
 export declare const DateRangePicker: React.FC<DateRangePickerProps>;

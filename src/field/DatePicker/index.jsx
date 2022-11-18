@@ -7,7 +7,7 @@ export const DatePicker = (props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    size, labelPosition, label, fullWidth,
+    size, labelPosition, label, fullWidth, color, variant, TextFieldSx,
     ...restProps
   } = props;
   const [ value, onChange ] = useControllableValue(props);
@@ -16,7 +16,7 @@ export const DatePicker = (props) => {
       label={labelPosition === 'inner' ? label : undefined}
       value={value || null}
       onChange={onChange}
-      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth}/>}
+      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
       {...restProps}
     />
   );
