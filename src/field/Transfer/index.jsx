@@ -1,10 +1,10 @@
 import React from 'react';
 import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from 'ahooks';
 import { observer } from '@formily/react';
-import { Box, Grid, IconButton, Skeleton } from '@mui/material';
+import { Box, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
 
-import { useFetchOptions, useFormilyFieldProps } from '../../hooks';
+import { useFetchOptions, useFormilyFieldProps, useOverflow } from '../../hooks';
 import { isInArray, isEqual } from '../../utils';
 import { intersection, not, union } from './util';
 import ListCard from './ListCard';
@@ -14,8 +14,8 @@ export const Transfer = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, options: optionsProp, refreshFlag,
-    listSx: listSxProp, cardSx: cardSxProp, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps, buttonProps,
-    keepExtraItems, width, minWidth, maxWidth, height, minHeight, maxHeight,
+    listSx: listSxProp, cardSx: cardSxProp, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps, iconButtonProps,
+    keepExtraItems, width, minWidth, maxWidth, height, minHeight, maxHeight, containerBoxProps, overflowThreshold, overflowRatio,
     readOnly, disabled, error,
     showSearch, showSelectAll, titles,
   } = formilyFieldProps;
@@ -74,13 +74,16 @@ export const Transfer = observer((props) => {
     setValue(newValue);
     setChecked(not(checked, leftChecked));
   });
+  const { overflow, containerRef, contentRef, containerWidth } = useOverflow(overflowThreshold, overflowRatio);
   const cardSx = useCreation(() => {
     const sx = { ...(cardSxProp || {}) };
     if (width) sx.width = width;
     if (minWidth) sx.minWidth = minWidth;
-    if (maxWidth) sx.maxWidth = maxWidth;
+    if (maxWidth || containerWidth) {
+      sx.maxWidth = maxWidth || containerWidth;
+    }
     return sx;
-  }, [ cardSxProp, width, minWidth, maxWidth ]);
+  }, [ cardSxProp, width, minWidth, maxWidth, containerWidth ]);
   const listSx = useCreation(() => {
     const sx = { ...(listSxProp || {}) };
     if (height) sx.height = height;
@@ -90,10 +93,13 @@ export const Transfer = observer((props) => {
   }, [ listSxProp, height, minHeight, maxHeight ]);
   return (
     <Box
+      ref={containerRef}
       display='flex'
-      gap={1}
+      gap={'4px'}
       alignItems='center'
       justifyContent='center'
+      flexDirection={overflow ? 'column' : 'row'}
+      {...(containerBoxProps || {})}
     >
       { loading ? (
         <Skeleton
@@ -104,6 +110,7 @@ export const Transfer = observer((props) => {
         />
       ) : (
         <ListCard
+          ref={contentRef}
           error={error}
           readOnly={readOnly}
           disabled={disabled}
@@ -125,39 +132,30 @@ export const Transfer = observer((props) => {
           itemCheckboxProps={itemCheckboxProps}
         />
       )}
-      <Box>
-        <Grid
-          container
-          direction='column'
-          alignItems='center'
-          spacing={3}
+      <Box
+        display='flex'
+        flexDirection='column'
+        sx={{
+          transform: overflow ? 'rotate(90deg)' : undefined,
+        }}
+      >
+        <IconButton
+          color = 'primary'
+          {...(iconButtonProps || {})}
+          onClick = {onClickToRight}
+          disabled = {disabled || readOnly || !leftChecked?.length}
         >
-          <Grid
-            item
-          >
-            <IconButton
-              color = 'primary'
-              {...(buttonProps || {})}
-              onClick = {onClickToRight}
-              disabled = {disabled || readOnly || !leftChecked?.length}
-            >
-              <IconArrowBigRight />
-            </IconButton>
-          </Grid>
-          <Grid
-            item
-          >
-            <IconButton
-              color = 'primary'
-              tabIndex={-1}
-              {...(buttonProps || {})}
-              onClick = {onClickToLeft}
-              disabled = {disabled || readOnly || !rightChecked?.length}
-            >
-              <IconArrowBigLeft />
-            </IconButton>
-          </Grid>
-        </Grid>
+          <IconArrowBigRight />
+        </IconButton>
+        <IconButton
+          color = 'primary'
+          tabIndex={-1}
+          {...(iconButtonProps || {})}
+          onClick = {onClickToLeft}
+          disabled = {disabled || readOnly || !rightChecked?.length}
+        >
+          <IconArrowBigLeft />
+        </IconButton>
       </Box>
       { loading ? (
         <Skeleton
@@ -199,7 +197,9 @@ Transfer.defaultProps = {
   titles: [ '可选项', '已选项' ],
   maxHeight: '85vh',
   minHeight: 250,
-  maxWidth: 250,
+  minWidth: 200,
+  overflowRatio: 1.5,
+  overflowThreshold: 40,
 };
 
 Transfer.displayName = 'muiFormilyTransfer';

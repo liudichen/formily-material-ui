@@ -20,7 +20,6 @@ const ListCard = forwardRef((props, ref) => {
     setKeyword(v);
     setChecked([]);
   };
-  console.log('error', error);
   return (
     <Card
       ref={ref}
