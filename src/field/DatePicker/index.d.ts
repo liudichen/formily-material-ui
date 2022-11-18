@@ -4,7 +4,8 @@ import { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
 
 export interface DatePickerProps extends MuiDatePickerProps {
   size?: 'small' | 'medium',
-  labelPosition?: 'inner' | 'top' | 'left',
+  /** 显示内部label? */
+  showInnerLabel?: boolean,
   label?: React.ReactNode,
   defaultValue?: any,
   /** 文本框宽度拉满？ */

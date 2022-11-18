@@ -12,14 +12,14 @@ export const DateTimePicker = observer((props) => {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     size, fullWidth, color, variant, TextFieldSx,
-    label, labelPosition,
+    label, showInnerLabel,
     ...restProps
   } = formilyFieldProps;
   const [ value, onChange ] = useControllableValue(formilyFieldProps, { defaultValue: null });
 
   return (
     <MuiDateTimePicker
-      label={labelPosition === 'inner' ? label : undefined}
+      label={showInnerLabel ? label : undefined}
       value={value || null}
       onChange={onChange}
       renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}

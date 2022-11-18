@@ -4,7 +4,8 @@ import { DateTimePickerProps as MuiDateTimePickerProps } from '@mui/x-date-picke
 
 export interface DateTimePickerProps extends MuiDateTimePickerProps {
   size?: 'small' | 'medium',
-  labelPosition?: 'inner' | 'top' | 'left',
+  /** 显示内部label? */
+  showInnerLabel?: boolean,
   label?: React.ReactNode,
   defaultValue?: any,
   /** 文本框宽度拉满？ */
