@@ -2,15 +2,19 @@ import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { TextField } from '@mui/material';
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
+import { observer } from '@formily/react';
 
-export const DatePicker = (props) => {
+import { useFormilyFieldProps } from '../../hooks';
+
+export const DatePicker = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props);
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     size, labelPosition, label, fullWidth, color, variant, TextFieldSx,
     ...restProps
-  } = props;
-  const [ value, onChange ] = useControllableValue(props);
+  } = formilyFieldProps;
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
   return (
     <MuiDatePicker
       label={labelPosition === 'inner' ? label : undefined}
@@ -20,7 +24,7 @@ export const DatePicker = (props) => {
       {...restProps}
     />
   );
-};
+});
 
 DatePicker.defaultProps = {
   size: 'small',
@@ -32,3 +36,5 @@ DatePicker.defaultProps = {
     },
   },
 };
+
+DatePicker.displayName = 'muiFormilyDatePicker';
