@@ -18,7 +18,7 @@ export const Input = observer((props) => {
     inputProps, InputProps, endAdornmentItem, fullWidth,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
+  const [ value, onChange ] = useControllableValue(formilyFieldProps, { defaultValue: '' });
   const layout = useFormLayout();
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;

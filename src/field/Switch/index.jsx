@@ -15,7 +15,7 @@ export const Switch = observer((props) => {
     color, edge,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
   const theme = useTheme();
   return (
     <Stack

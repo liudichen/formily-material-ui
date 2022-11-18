@@ -18,7 +18,7 @@ export const RadioGroup = observer((props) => {
   } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading });
-  const [ value, onChange ] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
@@ -54,7 +54,7 @@ export const RadioGroup = observer((props) => {
               icon={item.icon ?? icon}
               checkedIcon={item.checkedIcon ?? checkedIcon}
               required={item.required}
-              sx={itemSx}
+              sx={item.sx ?? itemSx}
               value={item.value}
               onChange={() => handleChange(item.value)}
               checked={isEqual(item.value, value)}

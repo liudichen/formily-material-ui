@@ -19,8 +19,8 @@ export const Select = observer((props) => {
     ...restProps
   } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useControllableValue(props);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag ? [ refreshOptionsFlag ] : undefined });
+  const [ value, onChange ] = useControllableValue(formilyFieldProps);
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
   const layout = useFormLayout();
   const renderLabel = () => {
     if ((labelPosition ?? layout?.labelPosition) !== 'inner') return;
