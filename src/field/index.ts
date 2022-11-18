@@ -24,3 +24,5 @@ export * from './DatePicker/formilyDatePicker';
 
 export * from './DateRangePicker';
 export * from './DateRangePicker/formilyDateRangePicer';
+
+export * from './DateTimePicker';
