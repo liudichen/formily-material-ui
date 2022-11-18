@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // from @mui/lab@5.0.0-alpha.108
 import React from 'react';
 import { capitalize } from '@mui/material/utils';
@@ -9,7 +8,7 @@ import { composeClasses } from '../mui-utils';
 import { useId } from '../../../hooks';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
-const useUtilityClasses = (ownerState: any) => {
+const useUtilityClasses = (ownerState) => {
   const { loading, loadingPosition, classes } = ownerState;
 
   const slots = {
@@ -31,10 +30,10 @@ const useUtilityClasses = (ownerState: any) => {
 };
 
 // TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
-const rootShouldForwardProp = (prop: any) =>
+const rootShouldForwardProp = (prop) =>
   prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
-  shouldForwardProp: prop => rootShouldForwardProp(prop) || prop === 'classes',
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiLoadingButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -48,7 +47,6 @@ const LoadingButtonRoot = styled(Button, {
       },
     ];
   },
-  // @ts-ignore
 })(({ ownerState, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
     {
@@ -99,7 +97,6 @@ const LoadingButtonLoadingIndicator = styled('div', {
       styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
     ];
   },
-  // @ts-ignore
 })(({ theme, ownerState }) => ({
   position: 'absolute',
   visibility: 'visible',
@@ -138,10 +135,9 @@ const LoadingButtonLoadingIndicator = styled('div', {
   }),
 }));
 
-const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
+export const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
   const {
-  // @ts-ignore
     children, disabled = false, id: idProp, loading = false, loadingIndicator: loadingIndicatorProp, loadingPosition = 'center', variant = 'text',
     ...other
   } = props;
@@ -163,7 +159,6 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const loadingButtonLoadingIndicator = loading ? (
-  // @ts-ignore
     <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
       {loadingIndicator}
     </LoadingButtonLoadingIndicator>
