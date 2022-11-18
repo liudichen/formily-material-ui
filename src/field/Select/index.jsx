@@ -1,14 +1,15 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useControllableValue, useSafeState } from 'ahooks';
 import { Autocomplete, TextField, FormLabel, Stack, Tooltip } from '@mui/material';
+import { observer } from '@formily/react';
 import { HelpOutline } from '@mui/icons-material';
 
-import { useFetchOptions } from '../../hooks';
+import { useFetchOptions, useFormilyFieldProps } from '../../hooks';
 import { isEqual } from '../../utils';
 import { useFormLayout } from '../../layout/FormLayout';
 
-
-export const Select = forwardRef((props, ref) => {
+export const Select = observer((props) => {
+  const formilyFieldProps = useFormilyFieldProps(props, { options: true, required: true, label: true, tooltip: true, error: true });
   const {
     options: optionsProp, fullWidth, refreshOptionsFlag, error, labelPosition, required, label, labelProps, tooltip,
     // eslint-disable-next-line no-unused-vars
@@ -16,7 +17,7 @@ export const Select = forwardRef((props, ref) => {
     placeholder, variant,
     disableCloseOnSelect,
     ...restProps
-  } = props;
+  } = formilyFieldProps;
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag ? [ refreshOptionsFlag ] : undefined });
@@ -52,7 +53,6 @@ export const Select = forwardRef((props, ref) => {
   };
   return (
     <Autocomplete
-      ref={ref}
       loading={loading}
       options={options}
       value={value || (props.multiple ? [] : null)}
@@ -72,9 +72,11 @@ export const Select = forwardRef((props, ref) => {
       {...restProps}
     />
   );
-});
+}, { forwardRef: true });
 
 Select.defaultProps = {
   size: 'small',
   variant: 'outlined',
 };
+
+Select.displayName = 'muiFormilySelect';
