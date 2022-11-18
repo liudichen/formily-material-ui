@@ -5,8 +5,8 @@ export interface DatePickerProps extends MuiDatePickerProps {
   size?: 'small' | 'medium',
   labelPosition?: 'inner' | 'top' | 'left',
   label?: React.ReactNode,
-  placeholder?: React.ReactNode,
   defaultValue?: any,
+  fullWidth?: boolean,
 }
 
 export declare const DatePicker: React.FC<DatePickerProps>;

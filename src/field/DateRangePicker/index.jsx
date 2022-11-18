@@ -8,7 +8,7 @@ export const DateRangePicker = (props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    size, toText, toSx,
+    size, toText, toSx, fullWidth,
     ...restProps
   } = props;
   const [ value, onChange ] = useControllableValue(props);
@@ -18,9 +18,9 @@ export const DateRangePicker = (props) => {
       onChange={onChange}
       renderInput={(startProps, endProps) => (
         <>
-          <TextField {...startProps} size={size}/>
+          <TextField {...startProps} size={size} fullWidth={fullWidth} />
           <Box sx={toSx}>{ toText }</Box>
-          <TextField {...endProps} size={size} />
+          <TextField {...endProps} size={size} fullWidth={fullWidth} />
         </>
       )}
       {...restProps}

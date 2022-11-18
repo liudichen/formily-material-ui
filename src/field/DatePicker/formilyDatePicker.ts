@@ -8,6 +8,12 @@ export const FormilyDatePicker = connect(
     initialValue: 'defaultValue',
     readOnly: true,
     disabled: true,
+  }, (props, field) => {
+    if (!field) return props;
+    return {
+      ...props,
+      label: props.label ?? field.title,
+    };
   }),
 );
 
