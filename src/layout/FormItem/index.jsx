@@ -9,6 +9,7 @@ import './index.scss';
 import { useFormLayout } from '../FormLayout';
 import { useOverflow, useFormilyFieldProps } from '../../hooks';
 import { Popover } from '../../utils/component';
+import { prefixCls } from '../../utils';
 
 const useFormItemLayout = (props) => {
   const layout = useFormLayout() || {};
@@ -40,11 +41,12 @@ export const FormItem = observer((props) => {
   const formatProps = useFormItemLayout(props);
   const formilyFieldProps = useFormilyFieldProps(formatProps, { tooltip: true, label: true, error: true, required: true, readOnly: false, disabled: false, feedbackStatus: true, feedbackText: true, defaultValue: false });
   const {
-    prefixCls, labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
+    labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, children, className, style, error, feedbackClassName, extraClassName,
     keepTopSpace,
   } = formilyFieldProps;
+  const prefix = `${prefixCls}-form-item`;
   const { overflow, containerRef, contentRef } = useOverflow();
   const labelStyle = useCreation(() => {
     const sx = labelSx || {};
@@ -75,7 +77,7 @@ export const FormItem = observer((props) => {
   const renderLabelText = () => {
     if (labelPosition === 'inner' && keepTopSpace) {
       return (
-        <div className={`${prefixCls}-label-content`}>
+        <div className={`${prefix}-label-content`}>
           <span>
             <label>&nbsp;</label>
           </span>
@@ -84,10 +86,10 @@ export const FormItem = observer((props) => {
     }
     const labelChildren = (
       <div className={cls({
-        [`${prefixCls}-label-content`]: true,
+        [`${prefix}-label-content`]: true,
       })} ref={containerRef}>
         <span ref={contentRef}>
-          {required && <span className={`${prefixCls}-required`}>{'*'}</span>}
+          {required && <span className={`${prefix}-required`}>{'*'}</span>}
           <label>{label}</label>
         </span>
       </div>
@@ -118,14 +120,14 @@ export const FormItem = observer((props) => {
       <div
         style={labelStyle}
         className={cls({
-          [`${prefixCls}-label`]: true,
-          [`${prefixCls}-label-tooltip`]: !!tooltip && tooltipLayout === 'text' && labelPosition !== 'inner',
+          [`${prefix}-label`]: true,
+          [`${prefix}-label-tooltip`]: !!tooltip && tooltipLayout === 'text' && labelPosition !== 'inner',
         })}
       >
         {renderLabelText()}
         {renderTooltipIcon()}
         {label !== ' ' && labelPosition !== 'inner' && !!colon && (
-          <span className={`${prefixCls}-colon`}>:</span>
+          <span className={`${prefix}-colon`}>:</span>
         )}
       </div>
     );
@@ -134,36 +136,36 @@ export const FormItem = observer((props) => {
     <div
       style={style}
       className={cls({
-        [`${prefixCls}`]: true,
-        [`${prefixCls}-${feedbackStatus}`]: !!feedbackStatus,
-        [`${prefixCls}-feedback-has-text`]: !!feedbackText,
-        [`${prefixCls}-fullness`]: !!fullWidth || !!feedbackIcon,
-        [`${prefixCls}-label-align-${labelAlign}`]: true,
-        [`${prefixCls}-control-align-${wrapperAlign}`]: true,
-        [`${prefixCls}-label-wrap`]: !!labelWrap,
-        [`${prefixCls}-control-wrap`]: !!wrapperWrap,
+        [`${prefix}`]: true,
+        [`${prefix}-${feedbackStatus}`]: !!feedbackStatus,
+        [`${prefix}-feedback-has-text`]: !!feedbackText,
+        [`${prefix}-fullness`]: !!fullWidth || !!feedbackIcon,
+        [`${prefix}-label-align-${labelAlign}`]: true,
+        [`${prefix}-control-align-${wrapperAlign}`]: true,
+        [`${prefix}-label-wrap`]: !!labelWrap,
+        [`${prefix}-control-wrap`]: !!wrapperWrap,
         [`${className}`]: !!className,
       })}
     >
       <div className={cls({
-        [`${prefixCls}-row`]: labelPosition === 'left',
-        [`${prefixCls}-column`]: labelPosition === 'top',
-        [`${prefixCls}-error`]: !!error,
-        [`${prefixCls}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
+        [`${prefix}-row`]: labelPosition === 'left',
+        [`${prefix}-column`]: labelPosition === 'top',
+        [`${prefix}-error`]: !!error,
+        [`${prefix}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
       })}>
         {renderLabel()}
-        <div className={`${prefixCls}-control`}>
-          <div className={cls(`${prefixCls}-control-content`)}>
+        <div className={`${prefix}-control`}>
+          <div className={cls(`${prefix}-control-content`)}>
             {!!addonBefore && (
-              <div className={cls(`${prefixCls}-addon-before`)}>
+              <div className={cls(`${prefix}-addon-before`)}>
                 {addonBefore}
               </div>
             )}
             <div
               style={wrapperStyle}
               className={cls({
-                [`${prefixCls}-control-content-component`]: true,
-                [`${prefixCls}-control-content-component-has-feedback-icon`]: feedbackLayout === 'popover',
+                [`${prefix}-control-content-component`]: true,
+                [`${prefix}-control-content-component-has-feedback-icon`]: feedbackLayout === 'popover',
               })}
             >
               {children}
@@ -172,15 +174,15 @@ export const FormItem = observer((props) => {
                   triggerType='hover'
                   trigger={(
                     <div className={cls({
-                      [`${prefixCls}-feedback-icon}`]: true,
-                      [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
+                      [`${prefix}-feedback-icon}`]: true,
+                      [`${prefix}-${feedbackStatus}-help`]: !!feedbackStatus,
                     })}>
                       {feedbackIcon ?? ICON_MAP[feedbackStatus]}
                     </div>
                   )}
                   content={
-                    <div className={cls({ [`${prefixCls}-help`]: true })} >
-                      <span className={`${prefixCls}-${feedbackStatus}-help`}>{ICON_MAP[feedbackStatus]}</span>
+                    <div className={cls({ [`${prefix}-help`]: true })} >
+                      <span className={`${prefix}-${feedbackStatus}-help`}>{ICON_MAP[feedbackStatus]}</span>
                       {feedbackText}
                     </div>
                   }
@@ -188,8 +190,8 @@ export const FormItem = observer((props) => {
               ) : (
                 <div
                   className={cls({
-                    [`${prefixCls}-feedback-icon}`]: true,
-                    [`${prefixCls}-blank-help`]: true,
+                    [`${prefix}-feedback-icon}`]: true,
+                    [`${prefix}-blank-help`]: true,
                   })}
                 >
                   {feedbackIcon ?? <RemoveOutlined fontSize='small' />}
@@ -198,7 +200,7 @@ export const FormItem = observer((props) => {
               )}
             </div>
             {!!addonAfter && (
-              <div className={cls(`${prefixCls}-addon-after`)}>{addonAfter}</div>
+              <div className={cls(`${prefix}-addon-after`)}>{addonAfter}</div>
             )}
           </div>
         </div>
@@ -206,21 +208,21 @@ export const FormItem = observer((props) => {
       { showFeedback && feedbackLayout !== 'popover' && (
         <div
           className={cls({
-            [`${prefixCls}-${feedbackStatus}-help`]: !!feedbackStatus,
-            [`${prefixCls}-help`]: true,
+            [`${prefix}-${feedbackStatus}-help`]: !!feedbackStatus,
+            [`${prefix}-help`]: true,
             [`${feedbackClassName}`]: !!feedbackClassName,
           })}
         >
           {feedbackText || <>&nbsp;</>}
         </div>
       )}
-      { !!extra && (<div className={cls({ [`${prefixCls}-extra`]: true, [`${extraClassName}`]: !!extraClassName })}>{extra}</div>)}
+      { !!extra && (<div className={cls({ [`${prefix}-extra`]: true, [`${extraClassName}`]: !!extraClassName })}>{extra}</div>)}
     </div>
   );
 });
 
 FormItem.defaultProps = {
-  prefixCls: 'iimm-formily-item',
+
 };
 
 FormItem.displayName = 'muiFormilyFormItem';
