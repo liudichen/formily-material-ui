@@ -189,21 +189,21 @@ $prefix: #{$prefixCls}-form-item;
 
 .#{$prefix}-error {
   &:not([disabled]):hover {
-    border-color: $errorColor;
+    border-color: $error-color;
   }
   
 }
 
 .#{$prefix}-error-help {
-  color: $errorColor !important;
+  color: $error-color !important;
 }
 
 .#{$prefix}-warning-help {
-  color: $warningColor !important;
+  color: $warning-color !important;
 }
 
 .#{$prefix}-success-help {
-  color: $successColor !important;
+  color: $success-color !important;
 }
 
 .#{$prefix}-blank-help {
