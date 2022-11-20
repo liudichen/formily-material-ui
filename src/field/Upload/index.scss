@@ -89,7 +89,7 @@ $upload-picture-card-border-style: $border-style-base;
     }
 
     &.#{$upload-prefix-cls}-drag-hover:not(.#{$upload-prefix-cls}-disabled) {
-      border-color: @primary-7;
+      border-color: $primary-7;
     }
 
     &.#{$upload-prefix-cls}-disabled {
@@ -107,12 +107,12 @@ $upload-picture-card-border-style: $border-style-base;
     }
 
     &:not(.#{$upload-prefix-cls}-disabled):hover {
-      border-color: @primary-5;
+      border-color: $primary-5;
     }
 
     p.#{$upload-prefix-cls}-drag-icon {
       .#{$iconfont-css-prefix} {
-        color: @primary-5;
+        color: $primary-5;
         font-size: 48px;
       }
 
@@ -206,11 +206,11 @@ $upload-picture-card-border-style: $border-style-base;
         opacity: 0;
       }
 
-      &-btn.@{ant-prefix}-btn-sm {
-        height: $line-height-base * $font-size-base;
-        line-height: 1;
-        vertical-align: top;
-      }
+      // &-btn.@{ant-prefix}-btn-sm {
+      //   height: $line-height-base * $font-size-base;
+      //   line-height: 1;
+      //   vertical-align: top;
+      // }
 
       &.picture {
         top: 22px;
