@@ -21,12 +21,12 @@ module.exports = {
   ],
   overrides: [
     {
-      files: [ '*.ts', '*.tsx' ],
+      files: ['*.ts', '*.tsx'],
       extends: 'eslint-config-egg/typescript',
       parser: '@typescript-eslint/parser',
       plugins: [
-        '@typescript-eslint/eslint-plugin',
         'react',
+        '@typescript-eslint/eslint-plugin',
       ],
     },
   ],
@@ -41,8 +41,9 @@ module.exports = {
         argsIgnorePattern: '(^_)|(^props$)|(^e$)',
       },
     ],
-    'arrow-parens': [ 'warn', 'always' ],
-    'no-empty': [ 'error', { allowEmptyCatch: true }],
+    'array-bracket-spacing': ['warn', 'always'],
+    'arrow-parens': ['warn', 'always'],
+    'no-empty': ['error', { allowEmptyCatch: true }],
     'prefer-promise-reject-errors': 'off',
   },
 };
