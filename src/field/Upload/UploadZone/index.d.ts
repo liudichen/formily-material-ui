@@ -27,3 +27,5 @@ export interface UploadZoneProps {
 }
 
 export declare const UploadZone: React.ForwardRefRenderFunction<unknown, UploadZoneProps>;
+
+export default UploadZone;

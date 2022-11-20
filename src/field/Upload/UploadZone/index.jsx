@@ -17,3 +17,5 @@ UploadZone.defaultProps = {
 };
 
 UploadZone.displayName = 'UploadZone';
+
+export default UploadZone;

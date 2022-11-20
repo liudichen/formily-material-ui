@@ -12,6 +12,8 @@ export * from './ToggleButtonGroup';
 
 export * from './Transfer';
 
+export * from './Upload';
+
 // ====== Date ==============
 export * from './DateLocalizationProvider';
 

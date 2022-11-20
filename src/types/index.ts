@@ -23,3 +23,10 @@ export type IColors = 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warni
 export interface ICommonProps {
   [key: string]: any
 }
+
+export interface IUploadedFile extends File {
+  url?: string,
+  thumbUrl?: string,
+  status?: 'error' | 'done' | 'uploading',
+  message?: string,
+}
