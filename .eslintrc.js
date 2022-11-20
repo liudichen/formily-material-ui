@@ -41,7 +41,7 @@ module.exports = {
         argsIgnorePattern: '(^_)|(^props$)|(^e$)',
       },
     ],
-    'array-bracket-spacing': ['warn', 'always'],
+    'array-bracket-spacing': ['warn', 'never'],
     'arrow-parens': ['warn', 'always'],
     'no-empty': ['error', { allowEmptyCatch: true }],
     'prefer-promise-reject-errors': 'off',
