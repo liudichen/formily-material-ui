@@ -14,6 +14,8 @@ export * from './Transfer';
 
 export * from './Upload';
 
+export * from './KeyWords';
+
 // ====== Date ==============
 export * from './DateLocalizationProvider';
 
