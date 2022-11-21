@@ -12,13 +12,13 @@ export const Input = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    label, labelPosition, labelProps,
+    label, showInnerLabel, labelProps,
     tooltip,
     showClear: showClearProp, required, error, readOnly,
     inputProps, InputProps, endAdornmentItem, fullWidth,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(formilyFieldProps, { defaultValue: '' });
+  const [value, onChange] = useControllableValue(formilyFieldProps, { defaultValue: '' });
   const layout = useFormLayout();
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
@@ -34,9 +34,9 @@ export const Input = observer((props) => {
       return showClearProp ?? true;
     }
     return showClearProp ?? false;
-  }, [ showClearProp, props.type ]);
+  }, [showClearProp, props.type]);
   const renderLabel = () => {
-    if ((labelPosition ?? layout.labelPosition) !== 'inner') return;
+    if (!showInnerLabel) return undefined;
     return (
       <FormLabel error={error} {...(labelProps || {})}>
         <Stack direction='row' width='100%'>

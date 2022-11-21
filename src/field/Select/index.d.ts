@@ -7,7 +7,8 @@ export interface SelectProps extends FieldBaseProps<IFieldOptionItem | IFieldOpt
   options?: IFieldPropOptions,
   refreshOptionsFlag?: any,
   label?: string,
-  labelPosition?: 'top' | 'left' | 'inner',
+  /** 显示内部label? */
+  showInnerLabel?: boolean,
   placeholder?: string,
   required?: boolean,
   labelProps?: FormLabelProps,

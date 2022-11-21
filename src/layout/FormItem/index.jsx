@@ -55,7 +55,7 @@ export const FormItem = observer((props) => {
       sx.maxWidth = labelWidth === 'auto' ? undefined : labelWidth;
     }
     return sx;
-  }, [ labelSx, labelWidth, labelPosition ]);
+  }, [labelSx, labelWidth, labelPosition]);
   const wrapperStyle = useCreation(() => {
     const sx = wrapperSx || {};
     if (wrapperWidth) {
@@ -63,7 +63,7 @@ export const FormItem = observer((props) => {
       sx.maxWidth = wrapperWidth === 'auto' ? undefined : wrapperWidth;
     }
     return sx;
-  }, [ wrapperSx, wrapperWidth ]);
+  }, [wrapperSx, wrapperWidth]);
   const getOverflowTooltip = () => {
     if (overflow) {
       return (
@@ -151,7 +151,7 @@ export const FormItem = observer((props) => {
         [`${prefix}-row`]: labelPosition === 'left',
         [`${prefix}-column`]: labelPosition === 'top',
         [`${prefix}-error`]: !!error,
-        [`${prefix}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
+        [`${prefix}-${feedbackStatus}-help`]: ['warning', 'error'].includes(feedbackStatus),
       })}>
         {renderLabel()}
         <div className={`${prefix}-control`}>
@@ -169,7 +169,7 @@ export const FormItem = observer((props) => {
               })}
             >
               {children}
-              { showFeedback && feedbackLayout === 'popover' && ([ 'warning', 'error', 'success' ].includes(feedbackStatus) ? (
+              { showFeedback && feedbackLayout === 'popover' && (['warning', 'error', 'success'].includes(feedbackStatus) ? (
                 <Popover
                   triggerType='hover'
                   trigger={(

@@ -11,19 +11,19 @@ import { useFormLayout } from '../../layout/FormLayout';
 export const Select = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { options: true, required: true, label: true, tooltip: true, error: true });
   const {
-    options: optionsProp, fullWidth, refreshOptionsFlag, error, labelPosition, required, label, labelProps, tooltip,
+    options: optionsProp, fullWidth, refreshOptionsFlag, error, showInnerLabel, required, label, labelProps, tooltip,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
     placeholder, variant,
     disableCloseOnSelect,
     ...restProps
   } = formilyFieldProps;
-  const [ loading, setLoading ] = useSafeState(false);
-  const [ value, onChange ] = useControllableValue(formilyFieldProps);
+  const [loading, setLoading] = useSafeState(false);
+  const [value, onChange] = useControllableValue(formilyFieldProps);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
   const layout = useFormLayout();
   const renderLabel = () => {
-    if ((labelPosition ?? layout?.labelPosition) !== 'inner') return;
+    if (!showInnerLabel) return;
     return (
       <FormLabel error={error} {...(labelProps || {})}>
         <Stack direction='row' width='100%'>

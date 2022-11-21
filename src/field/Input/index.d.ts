@@ -5,7 +5,8 @@ import { FieldBaseProps } from '../../types';
 
 export interface InputProps extends FieldBaseProps<string | number> {
   label?: React.ReactNode,
-  labelPosition?: 'top' | 'left' | 'inner',
+  /** 显示内部label? */
+  showInnerLabel?: boolean,
   fullWidth?: boolean,
   tooltip?: React.ReactNode,
   showClear?: boolean,
