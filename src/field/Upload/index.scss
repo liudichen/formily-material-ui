@@ -295,25 +295,30 @@ $upload-picture-card-border-style: $border-style-base;
       }
     
     }
-  .#{$upload-item}-thumbnail {
-    display: block;
-    width: 48px;
-    height: 48px;
-    text-align: center;
-    line-height: 60px;
-    opacity: 0.8;
-    margin-right: 4px;
-    cursor: pointer;
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+    .#{$upload-item}-thumbnail {
+      display: block;
+      width: 48px;
+      height: 48px;
+      text-align: center;
+      line-height: 60px;
+      opacity: 0.8;
+      margin-right: 4px;
+      cursor: pointer;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
     }
-  }
     .#{$upload-item}-name {
       flex: 1;
       margin: 0;
       padding: 0 $padding-xs;
+    }
+    .#{$upload-prefix-cls}-action-icon {      
+      position: static;
+      flex: none;
+      right: 0;
     }
   }
 

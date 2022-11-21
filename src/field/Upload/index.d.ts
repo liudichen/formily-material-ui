@@ -23,6 +23,7 @@ export interface UploadProps extends UploadZoneProps, FieldBaseProps<IUploadedFi
   uploadListClassName?: string,
   itemStyle?: React.CSSProperties,
   itemClassName?: string,
+  className?: string,
 }
 
 export declare const Upload: React.ForwardRefRenderFunction<unknown, React.PropsWithChildren<UploadProps>>;

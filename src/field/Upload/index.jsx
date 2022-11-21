@@ -2,9 +2,11 @@ import React from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 import { Button } from '@mui/material';
 import { observer } from '@formily/react';
+import classNames from 'classnames';
 
 import { updateFileList, removeFileItem } from './util';
-import { isImage, fileToBase64 } from '../../utils';
+import { isImage, fileToBase64, prefixCls } from '../../utils';
+import './styles.scss';
 import UploadZone from './UploadZone';
 import UploadList from './UploadList';
 import { useFormilyFieldProps } from '../../hooks';
@@ -24,7 +26,7 @@ export const Upload = observer((props) => {
     ref, maxCount, transformFile,
     disabled, readOnly,
     onRemove, validator, onDropAccepted, accept, onDrop, onDropRejected, isImage: isImageProp = isImage, onPreview,
-    previewFile, uploadListStyle, uploadListClassName, itemStyle, itemClassName,
+    previewFile, uploadListStyle, uploadListClassName, itemStyle, itemClassName, className,
     showPreviewIcon, showRemoveIcon, previewIcon, removeIcon, children, uploadButtonProps, uploadButtonText,
     ...restProps
   } = formilyFieldProps;
@@ -73,7 +75,10 @@ export const Upload = observer((props) => {
   });
   console.log('fileList', fileList);
   return (
-    <>
+    <div className={classNames({
+      [`${prefixCls}-upload`]: true,
+      [`${className}`]: !!className,
+    })}>
       <UploadZone
         ref={ref}
         multiple={maxCount !== 1}
@@ -107,7 +112,7 @@ export const Upload = observer((props) => {
         previewIcon={previewIcon}
         removeIcon={removeIcon}
       />
-    </>
+    </div>
   );
 }, { forwardRef: true });
 

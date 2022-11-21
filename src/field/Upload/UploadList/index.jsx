@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
 import { IconFileInfo, IconPhoto } from '@tabler/icons';
 import { ImageCarouselModal } from 'mui-component';
+import classNames from 'classnames';
 
 import ListItem from './ListItem';
+import { prefixCls } from '../../../utils';
 
 const UploadList = (props) => {
   const {
@@ -73,13 +75,16 @@ const UploadList = (props) => {
   return (
     <div
       style={{
-        display: 'block',
-        width: '100%',
-        fontSize: '14px',
-        alignItems: 'center',
+        // display: 'block',
+        // width: '100%',
+        // fontSize: '14px',
+        // alignItems: 'center',
         ...(style || {}),
       }}
-      className={className}
+      className={classNames({
+        [`${prefixCls}-upload-list`]: true,
+        [`${className}`]: !!className,
+      })}
     >
       { !!imagesList.length && (
         <ImageCarouselModal

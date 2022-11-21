@@ -3,7 +3,6 @@ import { Tooltip } from '@mui/material';
 import { IconTrash } from '@tabler/icons';
 import classNames from 'classnames';
 
-import '../../index.scss';
 import { prefixCls as prefix } from '../../../../utils';
 const prefixCls = `${prefix}-upload`;
 
@@ -22,7 +21,6 @@ const ListItem = (props) => {
     onPreview,
     onRemove,
   } = props;
-  console.log('itemProps', props);
   const { status, message } = file;
   const iconNode = iconRender?.(file) || customPreviewIcon;
   let icon = (
@@ -72,7 +70,9 @@ const ListItem = (props) => {
   return (
     <div
       className={classNames({
-        [`${prefixCls}-list-text-container`]: true, [`${prefixCls}-upload-item-error`]: status === 'error',
+        [`${prefixCls}-list-item`]: true,
+        // [`${prefixCls}-list-text-container`]: true,
+        [`${prefixCls}-error`]: status === 'error',
         [`${className}`]: !!className,
       })}
       sx={style}
@@ -85,14 +85,14 @@ const ListItem = (props) => {
         </div>
       )}
       <Tooltip title={tooltip} arrow placement='top'>
-        <div className={`${prefixCls}-item-name`}>
+        <div className={`${prefixCls}-list-item-name`}>
           {file.name}
         </div>
       </Tooltip>
       {showRemoveIcon && typeof onRemove === 'function' && (
         <Tooltip title='删除' arrow placement='top'>
           <div
-            className={`${prefixCls}-action-icon`}
+            className={`${prefixCls}-list-item-action-icon`}
             onClick={() => onRemove(file)}
           >
             {removeIcon || <IconTrash size='1.2rem' />}
