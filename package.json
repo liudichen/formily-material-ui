@@ -49,7 +49,6 @@
     "eslint-config-egg": "^12.1.0",
     "eslint-plugin-react": "^7.31.10",
     "father": "^4.1.0",
-    "react": "^17.0.2",
     "sass": "^1.56.1",
     "typescript": "^4.8.4"
   },
