@@ -55,12 +55,12 @@
   "dependencies": {
     "@formily/core": "^2.2.12",
     "@formily/react": "^2.2.12",
+    "@formily/reactive": "^2.2.12",
     "@tabler/icons": "^1.111.0",
     "ahooks": "^3.7.2",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.6",
     "mui-component": "^0.1.43",
-    "react-device-detect": "^2.2.2",
     "react-draggable": "^4.4.5",
     "react-dropzone": "^14.2.3"
   }
