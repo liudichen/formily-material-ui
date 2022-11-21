@@ -17,7 +17,7 @@ export * from './Upload';
 export * from './KeyWords';
 
 // ====== Date ==============
-export * from './DateLocalizationProvider';
+export * from './DateTimeLocalizationProvider';
 
 export * from './DatePicker';
 
