@@ -23,6 +23,7 @@ const UploadList = (props) => {
   const forceUpdate = useUpdate();
   const [open, setOpen] = useSafeState(false);
   const [selectedItem, setSelectedItem] = useSafeState(0);
+  console.log('isIamge', props);
   // 更新文件的预览图
   useEffect(() => {
     (items || []).forEach((file) => {
@@ -50,10 +51,10 @@ const UploadList = (props) => {
     if (typeof iconRender === 'function') {
       return iconRender(file);
     }
-    return isImage && isImage(file) ? <IconPhoto size='1.2rem' color={file.error ? 'red' : 'grey'}/> : <IconFileInfo size='1.2rem' color={file.error ? 'red' : 'grey'}/>;
+    return isImage?.(file) ? <IconPhoto size='1.2rem' /> : <IconFileInfo size='1.2rem'/>;
   });
 
-  const imagesList = (items || []).filter((item) => isImage(item) && (item.url || item.thumbUrl)).map((item, index) => ({ src: item.url || item.thumbUrl, title: item.name, itemIndex: index }));
+  const imagesList = (items || []).filter((item) => isImage?.(item) && (item.url || item.thumbUrl)).map((item, index) => ({ src: item.url || item.thumbUrl, title: item.name, itemIndex: index }));
 
   const getImageIndex = useMemoizedFn((file, imagesList) => {
     const index = imagesList.filter((item) => item.src === file.url || item.src === file.thumbUrl)[0]?.itemIndex ?? -1;
@@ -99,7 +100,7 @@ const UploadList = (props) => {
           onRemove={onRemove}
           onPreview={onPreview}
           iconRender={internalIconRender}
-          isImage={isImage}
+          isImage={isImage?.(file)}
           style={itemStyle}
           className={itemClassName}
           {...restProps}

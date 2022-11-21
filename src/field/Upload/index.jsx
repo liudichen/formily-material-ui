@@ -23,7 +23,7 @@ export const Upload = observer((props) => {
     value: valueProp, onChange: onChangeProp, defaultValue,
     ref, maxCount, transformFile,
     disabled, readOnly,
-    onRemove, validator, onDropAccepted, accept, onDrop, onDropRejected, isImage, onPreview,
+    onRemove, validator, onDropAccepted, accept, onDrop, onDropRejected, isImage: isImageProp = isImage, onPreview,
     previewFile, uploadListStyle, uploadListClassName, itemStyle, itemClassName,
     showPreviewIcon, showRemoveIcon, previewIcon, removeIcon, children, uploadButtonProps, uploadButtonText,
     ...restProps
@@ -71,6 +71,7 @@ export const Upload = observer((props) => {
     }
     onDropAccepted?.(acceptedFiles, e);
   });
+  console.log('fileList', fileList);
   return (
     <>
       <UploadZone
@@ -91,23 +92,21 @@ export const Upload = observer((props) => {
           </Button>
         )}
       </UploadZone>
-      {fileList.length > 0 && (
-        <UploadList
-          items={fileList}
-          isImage={isImage}
-          previewFile={previewFile}
-          style={uploadListStyle ?? {}}
-          className={uploadListClassName}
-          itemClassName={itemClassName}
-          itemStyle={itemStyle}
-          onRemove={handleRemove}
-          onPreview={onPreview}
-          showPreviewIcon={showPreviewIcon}
-          showRemoveIcon={showRemoveIcon && (!disabled && !readOnly)}
-          previewIcon={previewIcon}
-          removeIcon={removeIcon}
-        />
-      )}
+      <UploadList
+        items={fileList || []}
+        isImage={isImageProp}
+        previewFile={previewFile}
+        style={uploadListStyle ?? {}}
+        className={uploadListClassName}
+        itemClassName={itemClassName}
+        itemStyle={itemStyle}
+        onRemove={handleRemove}
+        onPreview={onPreview}
+        showPreviewIcon={showPreviewIcon}
+        showRemoveIcon={showRemoveIcon && (!disabled && !readOnly)}
+        previewIcon={previewIcon}
+        removeIcon={removeIcon}
+      />
     </>
   );
 }, { forwardRef: true });

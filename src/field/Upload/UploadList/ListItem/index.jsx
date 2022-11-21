@@ -3,6 +3,7 @@ import { Tooltip } from '@mui/material';
 import { IconTrash } from '@tabler/icons';
 import classNames from 'classnames';
 
+import '../../index.scss';
 import { prefixCls as prefix } from '../../../../utils';
 const prefixCls = `${prefix}-upload`;
 
@@ -21,6 +22,7 @@ const ListItem = (props) => {
     onPreview,
     onRemove,
   } = props;
+  console.log('itemProps', props);
   const { status, message } = file;
   const iconNode = iconRender?.(file) || customPreviewIcon;
   let icon = (
@@ -29,8 +31,7 @@ const ListItem = (props) => {
     </div>
   );
 
-  const isImg = isImage?.(file);
-  const thumbnail = isImg ? (
+  const thumbnail = isImage ? (
     <img
       src={file.thumbUrl || file.url}
       alt={file.name}

@@ -35,16 +35,16 @@ $upload-picture-card-border-style: $border-style-base;
     cursor: pointer;
   }
 
-  &&-select {
+  &-select {
     display: inline-block;
   }
 
-  &&-disabled {
+  &-disabled {
     color: $disabled-color;
     cursor: not-allowed;
   }
 
-  &&-select-picture-card {
+  &-select-picture-card {
     width: $upload-picture-card-size;
     height: $upload-picture-card-size;
     margin-right: 8px;
@@ -67,13 +67,13 @@ $upload-picture-card-border-style: $border-style-base;
 
     &:hover {
       border-color: $primary-color;
-      .#{$upload-prefix-cls}-disabled& {
+      .#{$upload-prefix-cls}-disabled {
         border-color: $border-color-base;
       }
     }
   }
 
-  &&-drag {
+  &-drag {
     position: relative;
     width: 100%;
     height: 100%;

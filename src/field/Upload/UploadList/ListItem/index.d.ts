@@ -8,7 +8,7 @@ interface ListItemProps {
   file?: IUploadedFile,
   onClickThumb?: (imageIndex: number) => void,
   iconRender?: (file:IUploadedFile) => React.ReactNode,
-  isImage?: (file:IUploadedFile) => boolean,
+  isImage?: boolean,
   imageIndex?: number,
   showPreviewIcon?: boolean,
   showRemoveIcon?: boolean,
