@@ -26,7 +26,7 @@ $prefix: #{$prefixCls}-form-item;
 }
 
 .#{$prefix}-error {
-  color: $errorColor;
+  color: $error-color;
 }
 
 .#{$prefix}-label {
@@ -146,7 +146,7 @@ $prefix: #{$prefixCls}-form-item;
 }
 
 .#{$prefix}-required {
-  color: $errorColor;
+  color: $error-color;
   margin-right: 4px;
   display: inline-block;
   font-family: SimSun, sans-serif;
