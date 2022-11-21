@@ -1,21 +1,22 @@
 import React from 'react';
-import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
+import { useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme, Paper } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import Draggable from 'react-draggable';
+import classNames from 'classnames';
 
 import { Reset } from '../Reset';
 import { Submit } from '../Submit';
 import { useId } from '../../hooks';
-import { DraggablePaper } from '../../utils';
 
 export const ModalForm = observer((props) => {
   const {
     trigger, title, titleProps, contentProps, actionsProps, triggerProps,
     children,
     showClose, showReset, showSubmit,
-    submitText, resetText, submitProps, resetProps, createFormOptions, memo,
+    submitText, resetText, submitProps, resetProps, createFormOptions,
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
     disabled,
@@ -23,15 +24,12 @@ export const ModalForm = observer((props) => {
     draggable, responsive, breakpoint,
     ...restProps
   } = props;
-  const titleId = useId();
-  const [open, setOpen] = useSafeState(false);
-  const dp = useCreation(() => {
-    return memo ? [createFormOptions] : undefined;
-  }, [memo, createFormOptions]);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), dp);
   const theme = useTheme();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
-  React.useImperativeHandle(ref, () => form, [form]);
+  const titleId = useId();
+  const [open, setOpen] = useSafeState(false);
+  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [createForm]);
+  React.useImperativeHandle(ref, () => form);
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
@@ -43,10 +41,15 @@ export const ModalForm = observer((props) => {
     const res = await onFinish?.(values);
     if (res === true) {
       onClose();
-      // if (destroyOnClose) {
-      //   form?.reset('*');
-      // }
     }
+  });
+  const DraggablePaper = useMemoizedFn((props) => {
+    const { handle = `.${titleId}`, cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
+    return (
+      <Draggable handle={handle} cancel={cancel}>
+        <Paper {...restProps} />
+      </Draggable>
+    );
   });
   const dom = (
     <Dialog
@@ -59,7 +62,7 @@ export const ModalForm = observer((props) => {
       <FormProvider form={form}>
         <DialogTitle
           {...(titleProps || {})}
-          id={titleProps?.id || titleId}
+          className={classNames(titleId, titleProps?.className)}
           sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }
           } >
           {title}
