@@ -40,14 +40,17 @@ const ListItem = (props) => {
   );
   const aClassName = classNames({
     [`${prefixCls}-list-item-thumbnail`]: true,
-    // [`${prefixCls}-list-item-file`]: !!isImg && !isImg,
+    [`${prefixCls}-list-item-thumbnail-file`]: !isImage,
+    [`${prefixCls}-error`]: status === 'error',
   });
   icon = (
-    <div
-      className={aClassName}
-    >
-      {thumbnail}
-    </div>
+    <Tooltip arrow placement='top' title={isImage ? '图片预览' : ''}>
+      <div
+        className={aClassName}
+      >
+        {thumbnail}
+      </div>
+    </Tooltip>
   );
   const handleOnPreview = useMemoizedFn(async (file, e, imageIndex) => {
     if (typeof onPreview === 'function') {
@@ -71,8 +74,8 @@ const ListItem = (props) => {
     <div
       className={classNames({
         [`${prefixCls}-list-item`]: true,
-        // [`${prefixCls}-list-text-container`]: true,
         [`${prefixCls}-error`]: status === 'error',
+        [`${prefixCls}-list-item-error`]: status === 'error',
         [`${className}`]: !!className,
       })}
       sx={style}
@@ -85,14 +88,20 @@ const ListItem = (props) => {
         </div>
       )}
       <Tooltip title={tooltip} arrow placement='top'>
-        <div className={`${prefixCls}-list-item-name`}>
+        <div className={classNames({
+          [`${prefixCls}-list-item-name`]: true,
+          [`${prefixCls}-error`]: status === 'error',
+        })}>
           {file.name}
         </div>
       </Tooltip>
       {showRemoveIcon && typeof onRemove === 'function' && (
         <Tooltip title='删除' arrow placement='top'>
           <div
-            className={`${prefixCls}-list-item-action-icon`}
+            className={classNames({
+              [`${prefixCls}-list-item-action-icon`]: true,
+              [`${prefixCls}-error`]: status === 'error',
+            })}
             onClick={() => onRemove(file)}
           >
             {removeIcon || <IconTrash size='1.2rem' />}

@@ -1,22 +1,25 @@
 @import './def.scss';
 @import './color.scss';
 
-$background-color-light: hsv(0, 0, 98%); // background of header and selected item
-$background-color-base: hsv(0, 0, 96%); // Default grey background color
+$background-color-light: #d9d9d9; // background of header and selected item
+$background-color-base: #f5f5f5; // Default grey background color
 
 // Disabled states
-$disabled-color: fade(#000, 25%);
+$disabled-color: #404040;
 $disabled-bg: $background-color-base;
-$disabled-active-bg: tint($black, 90%);
-$disabled-color-dark: fade(#fff, 35%);
+$disabled-active-bg: #e6e6e6;
+$disabled-color-dark: #a6a6a6;
 
 
 // Border color
-$border-color-base: hsv(0, 0, 85%); // base border outline a component
-$border-color-split: hsv(0, 0, 94%); // split border inside a component
+$border-color-base: #d9d9d9; // base border outline a component
+$border-color-split: #f0f0f0; // split border inside a component
 $border-color-inverse: $white;
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
+$border-radius-base: 2px;
+$border-radius-sm: 2px;
+$border-radius-md: 4px;
 
 
 // vertical paddings
@@ -33,14 +36,14 @@ $margin-sm: 12px; // Form controls and items
 $margin-xs: 8px; // small items
 $margin-xss: 4px; // more small
 
-$text-color: fade($black, 85%);
-$text-color-secondary: fade($black, 45%);
+$text-color: #262626;
+$text-color-secondary: #8c8c8c;
 $text-color-inverse: $white;
 $icon-color: inherit;
-$icon-color-hover: fade($black, 75%);
-$heading-color: fade($black, 85%);
-$text-color-dark: fade($white, 85%);
-$text-color-secondary-dark: fade($white, 65%);
+$icon-color-hover: #404040;
+$heading-color: #262626;
+$text-color-dark: #d9d9d9;
+$text-color-secondary-dark: #a6a6a6;
 $text-selection-bg: $primary-color;
 $font-variant-base: tabular-nums;
 $font-feature-settings-base: 'tnum';
@@ -50,8 +53,6 @@ $font-size-sm: 12px;
 
 
 $line-height-base: 1.5715;
-$border-radius-base: 2px;
-$border-radius-sm: 2px;
 
 // Upload
 // ---

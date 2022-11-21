@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
-import { IconFileInfo, IconPhoto } from '@tabler/icons';
 import { ImageCarouselModal } from 'mui-component';
+import { PhotoTwoTone, FilePresentTwoTone } from '@mui/icons-material';
 import classNames from 'classnames';
 
 import ListItem from './ListItem';
@@ -25,7 +25,6 @@ const UploadList = (props) => {
   const forceUpdate = useUpdate();
   const [open, setOpen] = useSafeState(false);
   const [selectedItem, setSelectedItem] = useSafeState(0);
-  console.log('isIamge', props);
   // 更新文件的预览图
   useEffect(() => {
     (items || []).forEach((file) => {
@@ -53,7 +52,9 @@ const UploadList = (props) => {
     if (typeof iconRender === 'function') {
       return iconRender(file);
     }
-    return isImage?.(file) ? <IconPhoto size='1.2rem' /> : <IconFileInfo size='1.2rem'/>;
+    return isImage?.(file) ?
+      <PhotoTwoTone fontSize='large'/> :
+      <FilePresentTwoTone fontSize='large'/>;
   });
 
   const imagesList = (items || []).filter((item) => isImage?.(item) && (item.url || item.thumbUrl)).map((item, index) => ({ src: item.url || item.thumbUrl, title: item.name, itemIndex: index }));
@@ -74,13 +75,7 @@ const UploadList = (props) => {
 
   return (
     <div
-      style={{
-        // display: 'block',
-        // width: '100%',
-        // fontSize: '14px',
-        // alignItems: 'center',
-        ...(style || {}),
-      }}
+      style={style}
       className={classNames({
         [`${prefixCls}-upload-list`]: true,
         [`${className}`]: !!className,

@@ -73,7 +73,6 @@ export const Upload = observer((props) => {
     }
     onDropAccepted?.(acceptedFiles, e);
   });
-  console.log('fileList', fileList);
   return (
     <div className={classNames({
       [`${prefixCls}-upload`]: true,

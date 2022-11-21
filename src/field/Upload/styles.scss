@@ -1,5 +1,4 @@
 @import '../../styles/theme.scss';
-@import '../../styles/iconfont.scss';
 
 $upload-prefix-cls: #{$prefixCls}-upload;
 
@@ -13,7 +12,11 @@ $upload-prefix-cls: #{$prefixCls}-upload;
   list-style: none;
   font-feature-settings: $font-feature-settings-base;
   &-error {
-    color: $error-color;
+    color: $error-color !important;
+    &:hover {
+      color: $error-color !important;
+      opacity: 1;
+    }
   }
   &-list {
     box-sizing: border-box;
@@ -24,26 +27,36 @@ $upload-prefix-cls: #{$prefixCls}-upload;
     font-variant: $font-variant-base;
     line-height: $line-height-base;
     list-style: none;
+    transition: background-color 0.3s;
     font-feature-settings: $font-feature-settings-base;
-        &::before {
-        display: table;
-        content: '';
-      }
+    &::before {
+      display: table;
+      content: '';
+    }
 
-      &::after {
-        display: table;
-        clear: both;
-        content: '';
-      }
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
     line-height: $line-height-base;
-
     &-item {
       display: flex;
       width: 100%;
       align-items: center;
       justify-content: center;
+      padding-left: $margin-xs;
+      padding-right: $margin-xs;
+      margin-top: $margin-xss;
+      margin-bottom: $margin-xss;
       transition: opacity $animation-duration-slow, height $animation-duration-slow;
-
+      border: $border-width-base $border-style-base $border-color-base;
+      border-radius: $border-radius-md;
+      &:hover {
+        background-color: $item-hover-bg;
+        border-color: $text-color-secondary;
+        opacity: 1;
+      }
       &::before {
         display: table;
         width: 0;
@@ -52,13 +65,15 @@ $upload-prefix-cls: #{$prefixCls}-upload;
       }
 
       &-thumbnail {
-        display: block;
+        display: flex;
         width: 48px;
         height: 48px;
-        text-align: center;
+        justify-content: center;
         line-height: 60px;
+        align-items: center;
         opacity: 0.8;
         margin-right: 4px;
+        color: $primary-5;
         cursor: pointer;
         img {
           max-width: 100%;
@@ -66,7 +81,11 @@ $upload-prefix-cls: #{$prefixCls}-upload;
           object-fit: contain;
         }
       }
+      &-thumbnail-file {
+        cursor: default;
+      }
       &-name {
+        color: $text-color;
         flex: 1;
         margin: 0;
         overflow: hidden;
@@ -74,11 +93,23 @@ $upload-prefix-cls: #{$prefixCls}-upload;
         white-space: nowrap;
         padding: 0 $padding-xs;
       }
-      &-action-icon {      
+      &-action-icon {
+        transition: opacity $animation-duration-slow;
         position: static;
         flex: none;
+        color: $text-color;
         right: 0;
+        opacity: 0.4;
+        cursor: pointer;
+        &:hover {
+          opacity: 1;
+        }
       }
+    }
+    
+    &-item-error {
+      border-color: $error-color;
+      border-style: dashed;
     }
   } 
 }
