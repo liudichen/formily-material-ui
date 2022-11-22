@@ -34,7 +34,7 @@ export const StepsForm = observer((props) => {
   }, [count]);
   const [activeStep, setActiveStep] = useSafeState(0);
   const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [depend]);
-  React.useImperativeHandle(formRef, () => form);
+  React.useImperativeHandle(formRef, () => form, [form]);
   const handleStepChange = useMemoizedFn((step) => {
     if (typeof step === 'number') {
       setActiveStep(step);
