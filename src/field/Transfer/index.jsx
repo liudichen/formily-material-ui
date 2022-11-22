@@ -13,7 +13,8 @@ export const Transfer = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { options: true, error: true });
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, options: optionsProp, refreshFlag,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
+    options: optionsProp, refreshFlag,
     listSx: listSxProp, cardSx: cardSxProp, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps, iconButtonProps,
     keepExtraItems, width, minWidth, maxWidth, height, minHeight, maxHeight, containerBoxProps, overflowThreshold, overflowRatio,
     readOnly, disabled, error,

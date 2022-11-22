@@ -41,11 +41,12 @@ interface IProps extends ICommonProps {
   display?: 'visible' | 'hidden' | 'none' | string,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | string,
   feedbackText?: React.ReactNode,
+  noField?: boolean,
 }
 
 export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldProps = {}) => {
   const field = useField();
-  if (!field) return props;
+  if (!field || props?.noField) return props;
   const formatProps = {
     ...props,
   };

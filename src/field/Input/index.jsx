@@ -11,7 +11,7 @@ export const Input = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { error: true, tooltip: true, required: true, label: true });
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     label, showInnerLabel, labelProps,
     tooltip,
     showClear: showClearProp, required, error, readOnly,

@@ -16,6 +16,8 @@ export interface TimePickerProps extends MuiTimePickerProps {
   textFieldSx?: SxProps,
   /** 显示秒？ */
   showSecond?: boolean,
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
 export declare const TimePicker: React.ForwardRefExoticComponent<TimePickerProps>;

@@ -11,7 +11,7 @@ export const CheckboxGroup = observer((props) => {
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, children,
+    value: valueProp, onChange: onChangeProp, defaultValue, children, noField,
     readOnly, disabled,
     minCount, maxCount, layout,
     itemSx, labelPlacement,

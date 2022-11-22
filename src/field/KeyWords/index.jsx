@@ -11,7 +11,7 @@ export const KeyWords = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { error: true });
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     readOnly, disabled, error,
     showClear, autoClear,
     textConvert,

@@ -11,7 +11,7 @@ export const ToggleButtonGroup = observer((props) => {
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     minCount, maxCount, exclusive, orientation,
     layout, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
     ...restProps

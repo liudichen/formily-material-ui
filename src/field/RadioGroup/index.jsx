@@ -11,7 +11,7 @@ export const RadioGroup = observer((props) => {
   const {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     layout, sx, size, color, disabled, itemSx, readOnly,
     labelPlacement, icon, checkedIcon, row,
     ...restProps

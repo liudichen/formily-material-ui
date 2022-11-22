@@ -15,6 +15,8 @@ export interface DateTimePickerProps extends MuiDateTimePickerProps {
   /** 文本框样式 */
   variant?: 'outlined' | 'filled' | 'standard',
   textFieldSx?: SxProps,
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
 export declare const DateTimePicker: React.FC<DateTimePickerProps>;

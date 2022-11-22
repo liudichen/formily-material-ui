@@ -13,7 +13,7 @@ export const Select = observer((props) => {
   const {
     options: optionsProp, fullWidth, refreshOptionsFlag, error, showInnerLabel, required, label, labelProps, tooltip,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     placeholder, variant,
     disableCloseOnSelect,
     ...restProps

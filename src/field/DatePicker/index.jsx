@@ -10,7 +10,7 @@ export const DatePicker = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props);
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     size, showInnerLabel, label, fullWidth, color, variant, TextFieldSx,
     ...restProps
   } = formilyFieldProps;

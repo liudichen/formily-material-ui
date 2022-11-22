@@ -7,6 +7,8 @@ export interface SwitchProps extends MuiSwitchProps {
   spacing?: number,
   left?: React.ReactNode,
   right?: React.ReactNode,
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
 export declare const Switch: React.ForwardRefExoticComponent<SwitchProps>;

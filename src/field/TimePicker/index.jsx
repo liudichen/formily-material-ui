@@ -10,7 +10,7 @@ export const TimePicker = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props);
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     size, fullWidth, color, variant, TextFieldSx,
     label, showInnerLabel, showSecond, views, inputFormat,
     ...restProps

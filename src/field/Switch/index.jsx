@@ -9,7 +9,7 @@ export const Switch = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { required: true });
   const {
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue,
+    value: valueProp, onChange: onChangeProp, defaultValue, noField,
     readOnly,
     left, right, error, spacing,
     color, edge,

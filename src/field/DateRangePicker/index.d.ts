@@ -17,6 +17,8 @@ export interface DateRangePickerProps extends MuiDateRangePickerProps {
   /** 文本框样式 */
   variant?: 'outlined' | 'filled' | 'standard',
   textFieldSx?: SxProps,
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
 export declare const DateRangePicker: React.ForwardRefExoticComponent<DateRangePickerProps>;
