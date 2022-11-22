@@ -3,8 +3,9 @@ import { useField } from '@formily/react';
 import { isVoidField } from '@formily/core';
 
 import { ICommonProps } from '../../types';
+import { useFormLayout, CommonLayoutProps } from '../../layout/FormLayout';
 
-interface IUseFormilyFieldProps {
+interface IuseFormilyFieldConfig {
   /** @default undefined   */
   label?: boolean,
   /** @default undefined   */
@@ -27,9 +28,23 @@ interface IUseFormilyFieldProps {
   feedbackText?: boolean,
   /** @default undefined   */
   feedbackStatus?: boolean,
+  /** @default undefined   */
+  fullWidth?: boolean,
+  labelPosition?: boolean,
+  labelAlign?: boolean,
+  labelWidth?: boolean,
+  labelWrap?: boolean,
+  wrapperAlign?: boolean,
+  wrapperWidth?: boolean,
+  wrapperWrap?: boolean,
+  colon?: boolean,
+  tooltipIcon?: boolean,
+  tooltipLayout?: boolean,
+  showFeedback?: boolean,
+  feedbackLayout?: boolean,
 }
 
-interface IProps extends ICommonProps {
+interface IProps extends ICommonProps, CommonLayoutProps {
   label?: React.ReactNode,
   tooltip?: React.ReactNode,
   defaultValue?: any,
@@ -41,18 +56,35 @@ interface IProps extends ICommonProps {
   display?: 'visible' | 'hidden' | 'none' | string,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | string,
   feedbackText?: React.ReactNode,
-  noField?: boolean,
 }
 
-export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldProps = {}) => {
+export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConfig = {}) => {
+  if (props?.noField) return props;
+  const layout = useFormLayout();
   const field = useField();
-  if (!field || props?.noField) return props;
+  if (!field && !layout) return props;
   const formatProps = {
     ...props,
   };
-  if (config.display) { formatProps.display = props.display ?? field.display; }
+  if (config?.display) { formatProps.display = props.display ?? field.display; }
   if (config?.label) { formatProps.label = props.label ?? field.title; }
   if (config?.tooltip) { formatProps.tooltip = props?.tooltip ?? field.description; }
+  if (layout) {
+    formatProps.noField = props.noField ?? layout.noField;
+    if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;
+    if (config?.labelPosition) formatProps.labelPosition = props.labelPosition ?? layout.labelPosition;
+    if (config?.labelAlign) formatProps.labelAlign = props.labelAlign ?? layout.labelAlign;
+    if (config?.labelWidth) formatProps.labelWidth = props.labelWidth ?? layout.labelWidth;
+    if (config?.labelWrap) formatProps.labelWrap = props.labelWrap ?? layout.labelWrap;
+    if (config?.wrapperAlign) formatProps.wrapperAlign = props.wrapperAlign ?? layout.wrapperAlign;
+    if (config?.wrapperWidth) formatProps.wrapperWidth = props.wrapperWidth ?? layout.wrapperWidth;
+    if (config?.wrapperWrap) formatProps.wrapperWrap = props.wrapperWrap ?? layout.wrapperWrap;
+    if (config?.colon) formatProps.colon = props.colon ?? layout.colon;
+    if (config?.tooltipIcon) formatProps.tooltipIcon = props.tooltipIcon ?? layout.tooltipIcon;
+    if (config?.tooltipLayout) formatProps.tooltipLayout = props.tooltipLayout ?? layout.tooltipLayout;
+    if (config?.showFeedback) formatProps.showFeedback = props.showFeedback ?? layout.showFeedback;
+    if (config?.feedbackLayout) formatProps.feedbackLayout = props.feedbackLayout ?? layout.feedbackLayout;
+  }
   if (isVoidField(field)) {
     return formatProps;
   }

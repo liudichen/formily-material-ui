@@ -16,6 +16,8 @@ export interface CommonLayoutProps {
   tooltipLayout?: 'text' | 'icon',
   showFeedback?: boolean,
   feedbackLayout?: 'popover' | 'text',
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
 declare const FormLayoutContext = createContext<CommonLayoutProps>(null);

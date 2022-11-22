@@ -4,11 +4,10 @@ import { TextField as MuiTextField, InputAdornment, IconButton, FormLabel, Stack
 import { Close, HelpOutline } from '@mui/icons-material';
 import { observer } from '@formily/react';
 
-import { useFormLayout } from '../../layout/FormLayout';
 import { useFormilyFieldProps } from '../../hooks';
 
 export const Input = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, { error: true, tooltip: true, required: true, label: true });
+  const formilyFieldProps = useFormilyFieldProps(props, { error: true, tooltip: true, required: true, label: true, fullWidth: true });
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, noField,
@@ -19,7 +18,6 @@ export const Input = observer((props) => {
     ...restProps
   } = formilyFieldProps;
   const [value, onChange] = useControllableValue(formilyFieldProps, { defaultValue: '' });
-  const layout = useFormLayout();
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;
@@ -105,7 +103,7 @@ export const Input = observer((props) => {
         ) : null,
         ...(InputProps || {}),
       }}
-      fullWidth={fullWidth ?? layout?.fullWidth}
+      fullWidth={fullWidth}
       {...restProps}
     />
   );

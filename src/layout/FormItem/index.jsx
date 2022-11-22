@@ -6,30 +6,9 @@ import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveO
 import cls from 'classnames';
 
 import './index.scss';
-import { useFormLayout } from '../FormLayout';
 import { useOverflow, useFormilyFieldProps } from '../../hooks';
 import { Popover } from '../../utils/component';
 import { prefixCls } from '../../utils';
-
-const useFormItemLayout = (props) => {
-  const layout = useFormLayout() || {};
-  return {
-    ...props,
-    labelPosition: props.labelPosition ?? layout.labelPosition,
-    labelAlign: props.labelAlign ?? layout.labelAlign,
-    labelWidth: props.labelWidth ?? layout.labelWidth,
-    labelWrap: props.labelWrap ?? layout.labelWrap,
-    wrapperAlign: props.wrapperAlign ?? layout.wrapperAlign,
-    wrapperWidth: props.wrapperWidth ?? layout.wrapperWidth,
-    wrapperWrap: props.wrapperWrap ?? layout.wrapperWrap,
-    fullWidth: props.fullWidth ?? layout.fullWidth,
-    colon: props.colon ?? layout.colon,
-    tooltipIcon: props.tooltipIcon ?? layout.tooltipIcon,
-    tooltipLayout: props.tooltipLayout ?? layout.tooltipLayout,
-    showFeedback: props.showFeedback ?? layout.showFeedback,
-    feedbackLayout: props.feedbackLayout ?? layout.feedbackLayout,
-  };
-};
 
 const ICON_MAP = {
   error: <HighlightOffOutlined fontSize='small' />,
@@ -38,8 +17,9 @@ const ICON_MAP = {
 };
 
 export const FormItem = observer((props) => {
-  const formatProps = useFormItemLayout(props);
-  const formilyFieldProps = useFormilyFieldProps(formatProps, { tooltip: true, label: true, error: true, required: true, readOnly: false, disabled: false, feedbackStatus: true, feedbackText: true, defaultValue: false });
+  const formilyFieldProps = useFormilyFieldProps(props, { tooltip: true, label: true, error: true, required: true, readOnly: false, disabled: false, feedbackStatus: true, feedbackText: true, defaultValue: false,
+    labelPosition: true, labelAlign: true, labelWidth: true, labelWrap: true, wrapperAlign: true, wrapperWidth: true, wrapperWrap: true, fullWidth: true, colon: true, tooltipIcon: true, tooltipLayout: true, showFeedback: true, feedbackLayout: true,
+  });
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
