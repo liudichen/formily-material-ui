@@ -23,7 +23,7 @@ export const Upload = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue,
-    ref, maxCount, transformFile,
+    maxCount, transformFile,
     disabled, readOnly,
     onRemove, validator, onDropAccepted, accept, onDrop, onDropRejected, isImage: isImageProp = isImage, onPreview,
     previewFile, uploadListStyle, uploadListClassName, itemStyle, itemClassName, className,
@@ -79,7 +79,6 @@ export const Upload = observer((props) => {
       [`${className}`]: !!className,
     })}>
       <UploadZone
-        ref={ref}
         multiple={maxCount !== 1}
         disabled={disabled || readOnly}
         accept={accept}

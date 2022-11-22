@@ -16,4 +16,4 @@ export interface SelectProps extends FieldBaseProps<IFieldOptionItem | IFieldOpt
   variant?: 'outlined' | 'filled' | 'standard',
 }
 
-export declare const Select: React.ForwardRefRenderFunction<any, SelectProps>;
+export declare const Select: React.ForwardRefExoticComponent<any, SelectProps>;

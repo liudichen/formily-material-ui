@@ -19,4 +19,4 @@ export interface DateRangePickerProps extends MuiDateRangePickerProps {
   textFieldSx?: SxProps,
 }
 
-export declare const DateRangePicker: React.ForwardRefRenderFunction<any, DateRangePickerProps>;
+export declare const DateRangePicker: React.ForwardRefExoticComponent<DateRangePickerProps>;

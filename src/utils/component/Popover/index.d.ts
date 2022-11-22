@@ -8,4 +8,4 @@ export interface PopoverProps extends MuiPopoverProps {
   content?: React.ReactNode,
 }
 
-export declare const Popover: React.ForwardRefRenderFunction<unknown, PopoverProps>;
+export declare const Popover: React.ForwardRefExoticComponent<PopoverProps>;

@@ -18,6 +18,6 @@ interface ListItemProps {
   onRemove?: (file: IUploadedFile) => void,
 }
 
-declare const ListItem: React.FunctionComponent<ListItemProps>;
+declare const ListItem: React.FC<ListItemProps>;
 
 export default ListItem;

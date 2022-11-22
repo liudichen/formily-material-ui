@@ -17,3 +17,5 @@ export interface TimePickerProps extends MuiTimePickerProps {
   /** 显示秒？ */
   showSecond?: boolean,
 }
+
+export declare const TimePicker: React.ForwardRefExoticComponent<TimePickerProps>;

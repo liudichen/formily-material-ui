@@ -15,4 +15,4 @@ export interface ToggleButtonGroupProps extends FieldBaseProps<any | any[]>, Omi
   itemMaxWidth?: number | string,
 }
 
-export declare const ToggleButtonGroup: React.ForwardRefRenderFunction<any, ToggleButtonGroupProps>;
+export declare const ToggleButtonGroup: React.ForwardRefExoticComponent<ToggleButtonGroupProps>;

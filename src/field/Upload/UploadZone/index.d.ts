@@ -38,6 +38,6 @@ export interface UploadZoneProps {
   validator?: (file: File) => any,
 }
 
-export declare const UploadZone: React.ForwardRefRenderFunction<unknown, UploadZoneProps>;
+export declare const UploadZone: React.ForwardRefExoticComponent<UploadZoneProps>;
 
 export default UploadZone;

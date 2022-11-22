@@ -23,5 +23,5 @@ export interface RadioGroupProps extends FieldBaseProps<any> {
   name?: string,
 }
 
-export declare const RadioGroup: React.ForwardRefRenderFunction<any, RadioGroupProps>;
+export declare const RadioGroup: React.ForwardRefExoticComponent<RadioGroupProps>;
 

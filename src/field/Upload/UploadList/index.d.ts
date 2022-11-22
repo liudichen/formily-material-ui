@@ -20,6 +20,6 @@ export interface UploadListProps {
   items?: IUploadedFile[],
 }
 
-declare const UploadList: React.FunctionComponent<UploadListProps>;
+declare const UploadList: React.FC<UploadListProps>;
 
 export default UploadList;

@@ -24,4 +24,4 @@ export interface CheckboxGroupProps extends FieldBaseProps<any[]>, Omit<FormGrou
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
 }
 
-export declare const CheckboxGroup: React.ForwardRefRenderFunction<CheckboxGroupProps>;
+export declare const CheckboxGroup: React.ForwardRefExoticComponent<CheckboxGroupProps>;

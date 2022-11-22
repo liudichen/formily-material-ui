@@ -37,5 +37,5 @@ export interface InputProps extends FieldBaseProps<string | number> {
   InputProps?: MuiInputProps,
 }
 
-export declare const Input: React.ForwardRefRenderFunction<unknown, InputProps>;
+export declare const Input: React.ForwardRefExoticComponent<InputProps>;
 
