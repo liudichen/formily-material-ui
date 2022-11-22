@@ -59,16 +59,12 @@ interface IProps extends ICommonProps, CommonLayoutProps {
 }
 
 export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConfig = {}) => {
-  if (props?.noField) return props;
   const layout = useFormLayout();
   const field = useField();
-  if (!field && !layout) return props;
+  if ((props?.noField || !field) && !layout) return props;
   const formatProps = {
     ...props,
   };
-  if (config?.display) { formatProps.display = props.display ?? field.display; }
-  if (config?.label) { formatProps.label = props.label ?? field.title; }
-  if (config?.tooltip) { formatProps.tooltip = props?.tooltip ?? field.description; }
   if (layout) {
     formatProps.noField = props.noField ?? layout.noField;
     if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;
@@ -85,7 +81,12 @@ export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConf
     if (config?.showFeedback) formatProps.showFeedback = props.showFeedback ?? layout.showFeedback;
     if (config?.feedbackLayout) formatProps.feedbackLayout = props.feedbackLayout ?? layout.feedbackLayout;
   }
-  if (isVoidField(field)) {
+  if (field && !props.noField) {
+    if (config?.display) { formatProps.display = props.display ?? field.display; }
+    if (config?.label) { formatProps.label = props.label ?? field.title; }
+    if (config?.tooltip) { formatProps.tooltip = props?.tooltip ?? field.description; }
+  }
+  if (formatProps.noField || !field || isVoidField(field)) {
     return formatProps;
   }
   if (config?.defaultValue !== false) {
