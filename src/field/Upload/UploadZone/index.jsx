@@ -1,7 +1,7 @@
-import { forwardRef } from 'react';
+import React from 'react';
 import { useDropzone } from 'react-dropzone';
 
-export const UploadZone = forwardRef((props, ref) => {
+export const UploadZone = React.forwardRef((props, ref) => {
   const { children, ...restProps } = props;
   const { getInputProps, getRootProps } = useDropzone({ ...restProps });
   return (

@@ -19,14 +19,14 @@ export const CheckboxGroup = observer((props) => {
     icon, checkedIcon, size, color,
     ...restProps
   } = formilyFieldProps;
-  const [ loading, setLoading ] = useSafeState(false);
-  const [ optionsValues, setOptionsValues ] = useSafeState([]);
-  const [ value, onChange ] = useControllableValue(formilyFieldProps);
+  const [loading, setLoading] = useSafeState(false);
+  const [optionsValues, setOptionsValues] = useSafeState([]);
+  const [value, onChange] = useControllableValue(formilyFieldProps);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)) });
   const handleChange = useMemoizedFn((e, optionValue) => {
     if (readOnly) { return; }
     const checked = e.target.checked;
-    let newValue = [ ...(value || []) ];
+    let newValue = [...(value || [])];
     const optionIndex = newValue.findIndex((ele) => isEqual(ele, optionValue));
     if (optionIndex === -1) {
       if (checked) {

@@ -16,9 +16,9 @@ export const RadioGroup = observer((props) => {
     labelPlacement, icon, checkedIcon, row,
     ...restProps
   } = formilyFieldProps;
-  const [ loading, setLoading ] = useSafeState(false);
+  const [loading, setLoading] = useSafeState(false);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading });
-  const [ value, onChange ] = useControllableValue(formilyFieldProps);
+  const [value, onChange] = useControllableValue(formilyFieldProps);
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });

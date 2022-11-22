@@ -14,10 +14,10 @@ export const DateRangePicker = observer((props) => {
     size, toText, toSx, fullWidth, color, variant, TextFieldSx,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(formilyFieldProps);
+  const [value, onChange] = useControllableValue(formilyFieldProps);
   return (
     <MuiDateRangePicker
-      value={value || [ null, null ]}
+      value={value || [null, null]}
       onChange={onChange}
       renderInput={(startProps, endProps) => (
         <>
@@ -38,7 +38,7 @@ DateRangePicker.defaultProps = {
   inputFormat: 'YYYY-MM-DD',
   componentsProps: {
     actionBar: {
-      actions: [ 'today', 'clear', 'accept' ],
+      actions: ['today', 'clear', 'accept'],
       translate: 'yes',
     },
   },

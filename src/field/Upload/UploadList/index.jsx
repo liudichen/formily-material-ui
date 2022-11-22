@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React from 'react';
 import { useMemoizedFn, useSafeState, useUpdate } from 'ahooks';
 import { ImageCarouselModal } from 'mui-component';
 import { PhotoTwoTone, FilePresentTwoTone } from '@mui/icons-material';
@@ -26,7 +26,7 @@ const UploadList = (props) => {
   const [open, setOpen] = useSafeState(false);
   const [selectedItem, setSelectedItem] = useSafeState(0);
   // 更新文件的预览图
-  useEffect(() => {
+  React.useEffect(() => {
     (items || []).forEach((file) => {
       if (
         typeof document === 'undefined' ||

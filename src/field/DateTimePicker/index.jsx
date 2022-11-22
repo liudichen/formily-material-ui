@@ -15,7 +15,7 @@ export const DateTimePicker = observer((props) => {
     label, showInnerLabel,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(formilyFieldProps, { defaultValue: null });
+  const [value, onChange] = useControllableValue(formilyFieldProps, { defaultValue: null });
 
   return (
     <MuiDateTimePicker
@@ -34,7 +34,7 @@ DateTimePicker.defaultProps = {
   disableMaskedInput: true,
   componentsProps: {
     actionBar: {
-      actions: [ 'today', 'clear', 'accept' ],
+      actions: ['today', 'clear', 'accept'],
       translate: 'yes',
     },
   },

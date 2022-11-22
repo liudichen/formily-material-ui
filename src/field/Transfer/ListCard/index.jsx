@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useSafeState } from 'ahooks';
 import { Box, Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListItem, ListItemIcon, ListItemText, TextField } from '@mui/material';
 
 import { intersection } from '../util';
 import { isEqual, isInArray } from '../../../utils';
 
-const ListCard = forwardRef((props, ref) => {
+const ListCard = React.forwardRef((props, ref) => {
   const {
     showSelectAll, showSearch,
     disabled, readOnly, options, error,
@@ -14,7 +14,7 @@ const ListCard = forwardRef((props, ref) => {
     listSx, cardSx, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps,
   } = props;
   const checkedNumber = intersection(checked, items).length;
-  const [ keyword, setKeyword ] = useSafeState('');
+  const [keyword, setKeyword] = useSafeState('');
   const onKeywordChange = (v) => {
     if (readOnly || disabled) return;
     setKeyword(v);

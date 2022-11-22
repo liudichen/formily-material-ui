@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 13:46:38
- * @LastEditTime: 2022-10-14 22:13:53
- */
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { observer } from '@formily/react';

@@ -1,10 +1,10 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { Popover as MuiPopover } from '@mui/material';
 
 import { useId } from '../../../hooks';
 
-export const Popover = forwardRef((props, ref) => {
+export const Popover = React.forwardRef((props, ref) => {
   const {
     onClose: onCloseProp,
     triggerType, disabled,
@@ -12,7 +12,7 @@ export const Popover = forwardRef((props, ref) => {
     content, children,
     ...restProps
   } = props;
-  const [ anchorE1, setAnchorE1 ] = useSafeState(null);
+  const [anchorE1, setAnchorE1] = useSafeState(null);
   const id = useId(idProp);
   const handleColse = useMemoizedFn((e) => {
     if (anchorE1 && !disabled) {

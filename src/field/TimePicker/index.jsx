@@ -15,14 +15,14 @@ export const TimePicker = observer((props) => {
     label, showInnerLabel, showSecond, views, inputFormat,
     ...restProps
   } = formilyFieldProps;
-  const [ value, onChange ] = useControllableValue(formilyFieldProps, { defaultValue: null });
+  const [value, onChange] = useControllableValue(formilyFieldProps, { defaultValue: null });
   return (
     <MuiTimePicker
       value={value || null}
       onChange={onChange}
       label={showInnerLabel ? label : undefined}
       renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
-      views={views ?? (showSecond ? [ 'hours', 'minutes', 'seconds' ] : undefined)}
+      views={views ?? (showSecond ? ['hours', 'minutes', 'seconds'] : undefined)}
       inputFormat={inputFormat ?? (showSecond ? 'HH:mm:ss' : undefined)}
       {...restProps}
     />
@@ -33,7 +33,7 @@ TimePicker.defaultProps = {
   size: 'small',
   componentsProps: {
     actionBar: {
-      actions: [ 'today', 'clear', 'accept' ],
+      actions: ['today', 'clear', 'accept'],
       translate: 'yes',
     },
   },
