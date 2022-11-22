@@ -14,6 +14,8 @@ export interface SelectProps extends FieldBaseProps<IFieldOptionItem | IFieldOpt
   labelProps?: FormLabelProps,
   tooltip?: React.ReactNode,
   variant?: 'outlined' | 'filled' | 'standard',
+  /** 不从FormLayout获取fullWidth信息 */
+  noFormLayout?: boolean,
 }
 
 export declare const Select: React.ForwardRefExoticComponent<any, SelectProps>;

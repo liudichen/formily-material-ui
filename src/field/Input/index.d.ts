@@ -35,6 +35,8 @@ export interface InputProps extends FieldBaseProps<string | number> {
   endAdornmentItem?: React.ReactNode,
   InputLabelProps?: Omit<InputLabelProps, 'endAdornment'>,
   InputProps?: MuiInputProps,
+  /** 不从FormLayout获取fullWidth信息 */
+  noFormLayout?: boolean,
 }
 
 export declare const Input: React.ForwardRefExoticComponent<InputProps>;

@@ -42,6 +42,7 @@ interface IuseFormilyFieldConfig {
   tooltipLayout?: boolean,
   showFeedback?: boolean,
   feedbackLayout?: boolean,
+  noFormLayout?: boolean,
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
@@ -56,16 +57,18 @@ interface IProps extends ICommonProps, CommonLayoutProps {
   display?: 'visible' | 'hidden' | 'none' | string,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | string,
   feedbackText?: React.ReactNode,
+  /** 不从FormLayout获取信息 */
+  noFormLayout?: boolean,
 }
 
 export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConfig = {}) => {
   const layout = useFormLayout();
   const field = useField();
-  if ((props?.noField || !field) && !layout) return props;
+  if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return props;
   const formatProps = {
     ...props,
   };
-  if (layout) {
+  if (layout && !props?.noFormLayout) {
     formatProps.noField = props.noField ?? layout.noField;
     if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;
     if (config?.labelPosition) formatProps.labelPosition = props.labelPosition ?? layout.labelPosition;
