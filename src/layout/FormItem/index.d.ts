@@ -21,6 +21,7 @@ export interface FormItemProps extends CommonLayoutProps {
   extraClassName?: string,
   feedbackClassName?: string,
   keepTopSpace?: boolean,
+  error?: boolean,
 }
 
 export declare const FormItem:React.FC<React.PropsWithChildren<FormItemProps>>;
