@@ -18,14 +18,16 @@ export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'v
   onFinish?: (values?: object, allValues?: object) => void,
   createFormOptions?: IFormProps,
 
-  ResultRender?: React.Component<ResultRenderProps> | React.FunctionComponent<ResultRenderProps> | React.ElementType,
+  ResultRender?: React.Component<ResultRenderProps> | React.FC<ResultRenderProps> | React.ElementType,
 
   /** 重建form实例的depend项 */
   depend?: any,
+  /** 获取form实例 */
+  formRef?: React.RefObject<Form>
 }
 
-declare const StepsForm: React.ForwardRefRenderFunction<Form, StepFormProps> & {
-  StepForm: React.FunctionComponent<StepFormProps>
+declare const StepsForm: React.ForwardRefExoticComponent<StepFormProps> & {
+  StepForm: React.FC<StepFormProps>
 };
 
 export {

@@ -20,7 +20,7 @@ export const ModalForm = observer((props) => {
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
     disabled,
-    ref, PaperComponent, fullScreen,
+    formRef, PaperComponent, fullScreen,
     draggable, responsive, breakpoint, depend, disableVisibleRecreateForm,
     ...restProps
   } = props;
@@ -31,7 +31,7 @@ export const ModalForm = observer((props) => {
   const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
   const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend]);
 
-  React.useImperativeHandle(ref, () => form, [form]);
+  React.useImperativeHandle(formRef, () => form, [form]);
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { DialogProps, DialogActionsProps, DialogContentProps, DialogTitleProps, LinkProps } from '@mui/material';
+import { Form } from '@formily/core';
 
 import { ResetProps } from '../Reset';
 import { SubmitProps } from '../Submit';
@@ -35,4 +36,7 @@ export interface ModalFormProps extends DialogProps {
   depend?: any,
   /** 禁用modl的open控制重新创建form实例 */
   disableVisibleRecreateForm?: boolean,
+  formRef?: React.MutableRefObject<Form>
 }
+
+export declare const ModalForm: React.ForwardRefExoticComponent<ModalFormProps>;
