@@ -25,13 +25,15 @@ export const Switch = observer((props) => {
     >
       { !!left && (
         <span
-          style={{
-            cursor: readOnly || props.disabled ? 'default' : 'pointer',
-            color: error && !value ? 'red' : undefined,
-          }}
           onClick={() => { if (!readOnly && !props.disabled) onChange(false); }}
         >
-          <label>{left}</label>
+          <label
+            style={{
+              cursor: readOnly || props.disabled ? 'default' : 'pointer',
+              color: error && !value ? 'red' : undefined,
+            }}>
+            {left}
+          </label>
         </span>
       )}
       <MuiSwitch
@@ -42,13 +44,16 @@ export const Switch = observer((props) => {
       />
       { !!right && (
         <span
-          style={{
-            cursor: readOnly || props.disabled ? 'default' : 'pointer',
-            color: value ? error ? 'red' : theme.palette?.[color]?.dark : undefined,
-          }}
           onClick={() => { if (!readOnly && !props.disabled) onChange(true); }}
         >
-          <label>{right}</label>
+          <label
+            style={{
+              cursor: readOnly || props.disabled ? 'default' : 'pointer',
+              color: value ? error ? 'red' : theme.palette?.[color]?.dark : undefined,
+            }}
+          >
+            {right}
+          </label>
         </span>
       )}
     </Stack>
