@@ -28,7 +28,7 @@ export const ModalForm = observer((props) => {
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const titleId = useId();
   const [open, setOpen] = useSafeState(false);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [createForm]);
+  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }));
   React.useImperativeHandle(ref, () => form);
 
   const onClose = useMemoizedFn(async (e, reason) => {
