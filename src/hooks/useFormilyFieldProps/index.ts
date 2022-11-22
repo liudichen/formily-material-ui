@@ -1,8 +1,8 @@
+import React from 'react';
 import { useField } from '@formily/react';
 import { isVoidField } from '@formily/core';
 
 import { ICommonProps } from '../../types';
-import React from 'react';
 
 interface IUseFormilyFieldProps {
   /** @default undefined   */

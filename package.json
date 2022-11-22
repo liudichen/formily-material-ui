@@ -1,7 +1,7 @@
 {
   "name": "@iimm/formily-mui",
   "version": "1.0.0",
-  "description": "form field components based on @mui/material and @formily/xxx",
+  "description": "form field components based on @mui/material and @formily/react",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "scripts": {
@@ -16,6 +16,8 @@
     "material UI",
     "form",
     "field",
+    "modal form",
+    "steps form",
     "component",
     "iimm"
   ],
