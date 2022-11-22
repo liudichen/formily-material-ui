@@ -1,7 +1,19 @@
+/* eslint-disable jsdoc/check-tag-names */
 import React from 'react';
+import {} from 'react-dropzone';
+
+interface IAccept {
+  [key: string]: string[]
+}
 
 export interface UploadZoneProps {
-  accept?: string | string[],
+  /** 接受文件类型，格式为{mimeType: ext[]}
+   * @exmaple
+   * ```javascript
+   *  accept: {"image/*":[".png",".jpg"]}
+   * ```
+   * */
+  accept?: IAccept,
   style?: object,
   multiple?: boolean,
   preventDropOnDocument?: boolean,
