@@ -21,19 +21,21 @@ export const ModalForm = observer((props) => {
     open: openProp, onClose: onCloseProp,
     disabled,
     ref, PaperComponent, fullScreen,
-    draggable, responsive, breakpoint,
+    draggable, responsive, breakpoint, depend, disableVisibleRecreateForm,
     ...restProps
   } = props;
   const theme = useTheme();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const titleId = useId();
   const [open, setOpen] = useSafeState(false);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }));
-  React.useImperativeHandle(ref, () => form);
+  const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
+  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend]);
+
+  React.useImperativeHandle(ref, () => form, [form]);
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
-    if (trigger && res !== false) {
+    if (trigger && res !== false || !trigger) {
       setOpen(false);
     }
   });
@@ -51,75 +53,73 @@ export const ModalForm = observer((props) => {
       </Draggable>
     );
   });
-  const dom = (
-    <Dialog
-      {...restProps}
-      fullScreen={fullScreen ?? (responsive ? down : undefined)}
-      PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
-      open={trigger ? open : !!openProp}
-      onClose={onClose}
-    >
-      <FormProvider form={form}>
-        <DialogTitle
-          {...(titleProps || {})}
-          className={classNames(titleId, titleProps?.className)}
-          sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }
-          } >
-          {title}
-          {showClose && (
-            <Tooltip arrow placement='top' title='关闭'>
-              <IconButton
-                aria-label='close'
-                onClick={onClose}
-                sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }}
-              >
-                <CloseIcon/>
-              </IconButton>
-            </Tooltip>
-          )}
-        </DialogTitle>
-        <DialogContent {...(contentProps || {})}>
-          {children}
-        </DialogContent>
-        <DialogActions {...(actionsProps || {})}>
-          {extraActions}
-          { showReset && (
-            <Reset {...(resetProps || {})}>
-              {resetText}
-            </Reset>
-          )}
-          { showSubmit && (
-            <Submit
-              {...(submitProps || {})}
-              onSubmit={onSubmit}
-            >
-              {submitText}
-            </Submit>
-          )}
-        </DialogActions>
-      </FormProvider>
-    </Dialog>
-  );
 
-  return trigger ? (
+  return (
     <>
-      <Link
-        underline='none'
-        {...(triggerProps || {})}
-        sx={{ cursor: 'pointer', ...(triggerProps?.sx || {}) }}
-        onClick={(e) => {
-          if (!disabled) {
-            setOpen(true);
-            triggerProps?.onClick?.(e);
-          }
-        }}
+      { !!trigger && (
+        <Link
+          underline='none'
+          {...(triggerProps || {})}
+          sx={{ cursor: 'pointer', ...(triggerProps?.sx || {}) }}
+          onClick={(e) => {
+            if (!disabled) {
+              setOpen(true);
+              triggerProps?.onClick?.(e);
+            }
+          }}
+        >
+          {trigger}
+        </Link>
+      )}
+      <Dialog
+        {...restProps}
+        fullScreen={fullScreen ?? (responsive ? down : undefined)}
+        PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
+        open={trigger ? open : !!openProp}
+        onClose={onClose}
       >
-        {trigger}
-      </Link>
-      {dom}
+        <FormProvider form={form}>
+          <DialogTitle
+            {...(titleProps || {})}
+            className={classNames(titleId, titleProps?.className)}
+            sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }
+            } >
+            {title}
+            {showClose && (
+              <Tooltip arrow placement='top' title='关闭'>
+                <IconButton
+                  aria-label='close'
+                  onClick={onClose}
+                  sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }}
+                >
+                  <CloseIcon/>
+                </IconButton>
+              </Tooltip>
+            )}
+          </DialogTitle>
+          <DialogContent {...(contentProps || {})}>
+            {children}
+          </DialogContent>
+          <DialogActions {...(actionsProps || {})}>
+            {extraActions}
+            { showReset && (
+              <Reset {...(resetProps || {})}>
+                {resetText}
+              </Reset>
+            )}
+            { showSubmit && (
+              <Submit
+                {...(submitProps || {})}
+                onSubmit={onSubmit}
+              >
+                {submitText}
+              </Submit>
+            )}
+          </DialogActions>
+        </FormProvider>
+      </Dialog>
     </>
-  ) : dom;
-
+  );
 }, { forwardRef: true });
 
 ModalForm.defaultProps = {

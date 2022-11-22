@@ -31,4 +31,8 @@ export interface ModalFormProps extends DialogProps {
   responsive?: boolean,
   /** 响应式全屏的断点 */
   breakpoint?: 'xs' | 'sml' | 'md' | 'lg' | 'xl',
+  /** 重新创建form实例的depend，会自动传入open,如果只受modal显隐控制，则不要传此参数 */
+  depend?: any,
+  /** 禁用modl的open控制重新创建form实例 */
+  disableVisibleRecreateForm?: boolean,
 }
