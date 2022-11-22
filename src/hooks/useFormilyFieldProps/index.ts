@@ -56,7 +56,7 @@ export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldProp
     return formatProps;
   }
   if (config?.defaultValue !== false) {
-    formatProps.defaultValue = props.defaultValue ?? field.initialValue;
+    formatProps.defaultValue = field.initialValue ?? props.defaultValue;
   }
   if (config?.disabled !== false) {
     formatProps.disabled = props.disabled ?? field.disabled;
@@ -80,7 +80,7 @@ export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldProp
     formatProps.required = takeRequired();
   }
   if (config?.options) {
-    formatProps.options = props?.options ?? field.dataSource;
+    formatProps.options = field.dataSource ?? props.options;
   }
   if (config?.feedbackStatus) {
     formatProps.feedbackStatus = props.feedbackStatus ?? (field.validating ? 'pending' : (field.decoratorProps.feedbackStatus || field.validateStatus));
