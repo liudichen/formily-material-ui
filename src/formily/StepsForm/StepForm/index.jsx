@@ -3,8 +3,9 @@ import { useMemoizedFn, useSafeState } from 'ahooks';
 import { toJS } from '@formily/reactive';
 import { observer, useParentForm } from '@formily/react';
 import { Box, Button, Grid } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { Space } from 'mui-component';
+
+import { LoadingButton } from '../../../utils';
 
 const StepForm = observer((props) => {
   const { stepIndex, stepsCount, onFinish, onPrevious, nextProps, nextText, previousText, previousProps, children, handleStepChange, onSubmitFail,

@@ -2,5 +2,6 @@ import { defineConfig } from 'father';
 
 export default defineConfig({
   esm: {},
-  prebundle: {},
+  // prebundle: {},
+  extraBabelPresets: ["@babel/preset-react"],
 });

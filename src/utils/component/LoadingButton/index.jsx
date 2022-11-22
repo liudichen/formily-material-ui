@@ -12,9 +12,9 @@ const useUtilityClasses = (ownerState) => {
   const { loading, loadingPosition, classes } = ownerState;
 
   const slots = {
-    root: [ 'root', loading && 'loading' ],
-    startIcon: [ loading && `startIconLoading${capitalize(loadingPosition)}` ],
-    endIcon: [ loading && `endIconLoading${capitalize(loadingPosition)}` ],
+    root: ['root', loading && 'loading'],
+    startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
+    endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
     loadingIndicator: [
       'loadingIndicator',
       loading && `loadingIndicator${capitalize(loadingPosition)}`,
@@ -50,13 +50,13 @@ const LoadingButtonRoot = styled(Button, {
 })(({ ownerState, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
     {
-      transition: theme.transitions.create([ 'opacity' ], {
+      transition: theme.transitions.create(['opacity'], {
         duration: theme.transitions.duration.short,
       }),
       opacity: 0,
     },
   ...(ownerState.loadingPosition === 'center' && {
-    transition: theme.transitions.create([ 'background-color', 'box-shadow', 'border-color' ], {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
     [`&.${loadingButtonClasses.loading}`]: {
@@ -67,7 +67,7 @@ const LoadingButtonRoot = styled(Button, {
     ownerState.fullWidth && {
     [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
         {
-          transition: theme.transitions.create([ 'opacity' ], {
+          transition: theme.transitions.create(['opacity'], {
             duration: theme.transitions.duration.short,
           }),
           opacity: 0,
@@ -78,7 +78,7 @@ const LoadingButtonRoot = styled(Button, {
     ownerState.fullWidth && {
     [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
         {
-          transition: theme.transitions.create([ 'opacity' ], {
+          transition: theme.transitions.create(['opacity'], {
             duration: theme.transitions.duration.short,
           }),
           opacity: 0,
