@@ -1,27 +1,15 @@
 import React from 'react';
-import { useControllableValue } from 'ahooks';
-import { TextField } from '@mui/material';
-import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
 import { observer } from '@formily/react';
 
 import { useFormilyFieldProps } from '../../hooks';
+import { DatePickerBase } from './DatePickerBase';
+import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
 export const DatePicker = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props);
-  const {
-    // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, noField,
-    size, showInnerLabel, label, fullWidth, color, variant, TextFieldSx,
-    ...restProps
-  } = formilyFieldProps;
-  const [value, onChange] = useControllableValue(formilyFieldProps);
+  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig, fullWidth: true, label: true });
   return (
-    <MuiDatePicker
-      label={showInnerLabel ? label : undefined}
-      value={value || null}
-      onChange={onChange}
-      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
-      {...restProps}
+    <DatePickerBase
+      {...formilyFieldProps}
     />
   );
 });
