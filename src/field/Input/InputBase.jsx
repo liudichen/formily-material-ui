@@ -1,9 +1,10 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
-import { TextField as MuiTextField, InputAdornment, IconButton, FormLabel, Stack, Tooltip } from '@mui/material';
-import { Close, HelpOutline } from '@mui/icons-material';
+import { TextField as MuiTextField, InputAdornment, IconButton } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 import { FormItemBase } from '../../layout';
+import { renderInnerLabel } from '../../utils';
 
 export const InputBase = React.forwardRef((props, ref) => {
   const {
@@ -34,41 +35,12 @@ export const InputBase = React.forwardRef((props, ref) => {
     }
     return showClearProp ?? false;
   }, [showClearProp, props.type]);
-  const renderLabel = () => {
-    if (!showInnerLabel) return undefined;
-    return (
-      <FormLabel error={error} {...(innerLabelProps || {})}>
-        <Stack direction='row' width='100%'>
-          <span title={label} style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-            {required && (
-              <span style={{ color: 'red' }}>
-              *&nbsp;
-              </span>
-            )}
-            { label }
-          &nbsp;
-          </span>
-          { !!tooltip && (
-            <Tooltip
-              title={tooltip}
-              arrow
-              placement='top'
-            >
-              <HelpOutline
-                fontSize='small'
-              />
-            </Tooltip>
-          )}
-        </Stack>
-      </FormLabel>
-    );
-  };
   const dom = (
     <MuiTextField
       ref={ref}
       value={value ?? ''}
       onChange={onTextFieldChange}
-      label={renderLabel()}
+      label={renderInnerLabel({ showInnerLabel, label, required, error, innerLabelProps, tooltip })}
       error={error}
       inputProps={{
         readOnly,
