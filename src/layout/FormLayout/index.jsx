@@ -26,8 +26,7 @@ export const FormLayout = observer((props) => {
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
-  let form = useForm();
-  if (noForm) form = null;
+  const form = useForm();
   return (
     <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }}>
       <Grid {...restProps} container>
@@ -36,7 +35,7 @@ export const FormLayout = observer((props) => {
           if ((child.type?.displayName || child.type?.render?.name)?.startsWith('Grid')) {
             return child;
           }
-          if (form && child.type?.displayName === 'Field') {
+          if (!noForm && form && child.type?.displayName === 'Field') {
             const name = child.props.name;
             if (!name) { return null; }
             const field = form?.query(`${name}`)?.take()?.display ?? form?.query(`*.${name}`)?.take()?.display;

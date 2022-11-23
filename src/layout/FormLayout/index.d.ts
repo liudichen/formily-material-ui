@@ -33,8 +33,6 @@ interface ColsProps {
 }
 
 interface IFormLayoutContext extends CommonLayoutProps {
-  /** 手动指定无需获取form信息 */
-  noForm?: boolean,
   /** 传递给下层formField，是否包裹FormItemBase
    * @default true
    */
@@ -43,12 +41,18 @@ interface IFormLayoutContext extends CommonLayoutProps {
 }
 
 export interface FormLayoutProps extends IFormLayoutContext, Omit<GridProps, 'item'> {
+  /** 手动指定无需获取form信息 */
+  noForm?: boolean,
   defaultCols?: ColsProps,
 }
 
 declare const FormLayoutContext = createContext<IFormLayoutContext>(null);
 export declare const useFormLayout = () => useContext(FormLayoutContext);
 
+/** 本质是1个 container=true 的Grid组件，如果child名称是Grid开头则原样保留child，如果child名称是Field则检查display不等于visible的都丢弃，其他的都自动变成
+ *  ```<Grid item>{child}</Grid>```
+ * 同时，本组件接受一些传递给子组件的布局信息
+ */
 export declare const FormLayout: React.FC<React.PropsWithChildren<FormLayoutProps>>;
 
 export default FormLayout;
