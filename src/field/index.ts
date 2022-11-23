@@ -5,6 +5,7 @@ export * from './Input';
 export * from './Input/InputBase';
 
 export * from './RadioGroup';
+export * from './RadioGroup/RadioGroupBase';
 
 export * from './Select';
 export * from './Select/SelectBase';
