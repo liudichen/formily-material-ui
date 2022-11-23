@@ -7,8 +7,9 @@
  */
 import React from 'react';
 import { StepIconProps, ButtonProps, BoxProps } from '@mui/material';
-import { LoadingButtonProps } from '@mui/lab';
 import { ObjectField } from '@formily/core';
+
+import { SubmitProps } from '../../Submit';
 
 interface objectValue {
   [key: string] : any,
@@ -37,12 +38,12 @@ export interface StepFormProps extends BoxProps {
 
   handleStepChange?: (direction?: 'next' | 'previous' | number) => void,
   onFinish?: (values?: object, allValues?: object, stepObjField: ObjectField) => void,
-  onSubmitFail?: (error?: any) => void,
+  onSubmitFail?: (error?: Error) => void,
   onPrevious?: (stepObjField: ObjectField) => void,
   previousText?: React.ReactNode,
   previousProps?: Omit<ButtonProps, 'onClick'>,
   nextText?: [React.ReactNode, React.ReactNode],
-  nextProps?: Omit<Omit<LoadingButtonProps, 'onClick'>, 'loading'>,
+  nextProps?: Omit<SubmitProps, 'onSubmit' | 'onSubmitFailed'>,
 }
 
 declare const StepForm: React.ForwardRefRenderFunction<Form, StepFormProps>;

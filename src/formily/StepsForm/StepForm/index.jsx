@@ -1,46 +1,31 @@
 import React from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import { useMemoizedFn } from 'ahooks';
 import { toJS } from '@formily/reactive';
-import { observer, useParentForm } from '@formily/react';
+import { observer } from '@formily/react';
 import { Box, Button, Grid } from '@mui/material';
 import { Space } from 'mui-component';
 
-import { LoadingButton } from '../../../utils';
+import { Submit } from '../../Submit';
 
 const StepForm = observer((props) => {
   const { stepIndex, stepsCount, onFinish, onPrevious, nextProps, nextText, previousText, previousProps, children, handleStepChange, onSubmitFail,
     // eslint-disable-next-line no-unused-vars
-    title, subTitle, icon, name,
+    title, subTitle, icon, name, field,
     ...restProps } = props;
-  const [loading, setLoading] = useSafeState(false);
-  const field = useParentForm();
-  const onSubmit = useMemoizedFn(async () => {
-    try {
-      setLoading(true);
-      await field.validate();
-      if (field.valid) {
-        let res = false;
-        const allValues = toJS(field?.form?.values || {});
-        if (stepIndex + 1 !== stepsCount) {
-          res = await onFinish?.(toJS(field.value), allValues, field);
-        } else {
-          const valuesArr = Object.values(allValues);
-          let values = {};
-          for (let i = 0; i < valuesArr.length; i++) {
-            values = { ...values, ...(valuesArr[i] || {}) };
-          }
-          res = await onFinish?.(values, allValues, field);
-        }
-        setLoading(false);
-        if (res !== false) {
-          handleStepChange?.('next');
-        }
-      } else {
-        setLoading(false);
+
+  const onSubmit = useMemoizedFn(async (stepValues) => {
+    const allValues = toJS(field?.form?.values || {});
+    let v = { ...(stepValues || {}) };
+    if (stepIndex + 1 === stepsCount) {
+      const valuesArr = Object.values(allValues);
+      v = {};
+      for (let i = 0; i < valuesArr.length; i++) {
+        v = { ...v, ...(valuesArr[i] || {}) };
       }
-    } catch (error) {
-      onSubmitFail?.(error, toJS(field?.value));
-      setLoading(false);
+    }
+    const res = await onFinish?.(v, allValues, field);
+    if (res !== false) {
+      handleStepChange?.('next');
     }
   });
   const onPreviousClick = useMemoizedFn(() => {
@@ -66,15 +51,15 @@ const StepForm = observer((props) => {
                 {previousText}
               </Button>
             )}
-            <LoadingButton
+            <Submit
               variant='contained'
-              loading={loading}
               size='small'
               {...(nextProps || {})}
-              onClick={onSubmit}
+              onSubmitFailed={onSubmitFail}
+              onSubmit={onSubmit}
             >
               { stepIndex + 1 === stepsCount ? nextText?.[1] : nextText?.[0] }
-            </LoadingButton>
+            </Submit>
           </Space>
         </Grid>
       </Grid>
