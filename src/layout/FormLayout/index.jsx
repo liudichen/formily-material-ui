@@ -21,12 +21,13 @@ export const FormLayout = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
     colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
-    xs, sm, md, lg, xl, defaultCols, noField,
+    xs, sm, md, lg, xl, defaultCols, noField, noForm,
     children,
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
-  const form = useForm();
+  let form = useForm();
+  if (noForm) form = null;
   return (
     <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField }}>
       <Grid {...restProps} container>
@@ -35,14 +36,12 @@ export const FormLayout = observer((props) => {
           if ((child.type?.displayName || child.type?.render?.name)?.startsWith('Grid')) {
             return child;
           }
-          if (child.type?.displayName === 'Field') {
+          if (form && child.type?.displayName === 'Field') {
             const name = child.props.name;
             if (!name) { return null; }
-            if (form) {
-              const field = form.query(`${name}`)?.take()?.display ?? form.query(`*.${name}`)?.take()?.display;
-              if (field && field !== 'visible') {
-                return null;
-              }
+            const field = form?.query(`${name}`)?.take()?.display ?? form?.query(`*.${name}`)?.take()?.display;
+            if (field && field !== 'visible') {
+              return null;
             }
           }
           return (
