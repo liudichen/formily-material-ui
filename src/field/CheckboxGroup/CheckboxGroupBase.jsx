@@ -126,6 +126,7 @@ export const CheckboxGroupBase = (props) => {
 CheckboxGroupBase.defaultProps = {
   layout: 'horizontal',
   withFormItem: true,
+  size: 'small',
 };
 
 CheckboxGroupBase.displayName = 'muiFormilyCheckboxGroupBase';
