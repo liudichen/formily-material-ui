@@ -5,44 +5,59 @@ import { isVoidField } from '@formily/core';
 import { ICommonProps } from '../../types';
 import { useFormLayout, CommonLayoutProps } from '../../layout/FormLayout';
 
-interface IuseFormilyFieldConfig {
-  /** @default undefined   */
+interface IUseFormilyFieldConfig {
+  /** 是否从Field获取label(title)配置 */
   label?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取required配置 */
   required?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取error配置 */
   error?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取tooltip(description配置 */
   tooltip?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取optionos(dataSource)配置 */
   options?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取display配置 */
   display?: boolean,
-  /** @default true   */
+  /** 是否从Field获取defaultValue(initialValue)配置 */
   defaultValue?: boolean,
-  /** @default true   */
+  /** 是否从Field获取disabled配置 */
   disabled?: boolean,
-  /** @default true   */
+  /** 是否从Field获取readOnly配置 */
   readOnly?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取feedbackText配置 */
   feedbackText?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取feedbackStatus配置 */
   feedbackStatus?: boolean,
-  /** @default undefined   */
+  /** 是否从Field获取fullWidth配置 */
   fullWidth?: boolean,
+  /** 是否从FormLayout获取labelPosition配置*/
   labelPosition?: boolean,
+  /** 是否从FormLayout获取labelAlign配置 */
   labelAlign?: boolean,
+  /** 是否从FormLayout获取labelWidth配置*/
   labelWidth?: boolean,
+  /** 是否从FormLayout获取labelWrap配置 */
   labelWrap?: boolean,
+  /** 是否从FormLayout获取wrapperAlign配置 */
   wrapperAlign?: boolean,
+  /** 是否从FormLayout获取wrapperWidth配置*/
   wrapperWidth?: boolean,
+  /** 是否从FormLayout获取wrapperWrap配置 */
   wrapperWrap?: boolean,
+  /** 是否从FormLayout获取colon配置 */
   colon?: boolean,
+  /** 是否从FormLayout获取tooltipIcon配置 */
   tooltipIcon?: boolean,
+  /** 是否从FormLayout获取tooltipLayout配置*/
   tooltipLayout?: boolean,
+  /** 是否从FormLayout获取showFeedback配置 */
   showFeedback?: boolean,
+  /** 是否从FormLayout获取feedbackLayout配置*/
   feedbackLayout?: boolean,
+  /** 是否从FormLayout获取配置*/
   noFormLayout?: boolean,
+  /** 传递给子formfield是否包含外部FormItemBase包裹*/
+  withFormItem?: boolean,
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
@@ -59,9 +74,10 @@ interface IProps extends ICommonProps, CommonLayoutProps {
   feedbackText?: React.ReactNode,
   /** 不从FormLayout获取信息 */
   noFormLayout?: boolean,
+  withFormItem?: boolean,
 }
 
-export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConfig = {}) => {
+export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldConfig = {}) => {
   const layout = useFormLayout();
   const field = useField();
   if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return props;
@@ -70,6 +86,7 @@ export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConf
   };
   if (layout && !props?.noFormLayout) {
     formatProps.noField = props.noField ?? layout.noField;
+    if (config?.withFormItem) formatProps.withFormItem = props.withFormItem ?? layout?.withFormItem;
     if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;
     if (config?.labelPosition) formatProps.labelPosition = props.labelPosition ?? layout.labelPosition;
     if (config?.labelAlign) formatProps.labelAlign = props.labelAlign ?? layout.labelAlign;
@@ -92,13 +109,13 @@ export const useFormilyFieldProps = (props: IProps, config: IuseFormilyFieldConf
   if (formatProps.noField || !field || isVoidField(field)) {
     return formatProps;
   }
-  if (config?.defaultValue !== false) {
+  if (config?.defaultValue) {
     formatProps.defaultValue = field.initialValue ?? props.defaultValue;
   }
-  if (config?.disabled !== false) {
+  if (config?.disabled) {
     formatProps.disabled = props.disabled ?? field.disabled;
   }
-  if (config?.readOnly !== false) {
+  if (config?.readOnly) {
     formatProps.readOnly = props.readOnly ?? field.readOnly;
   }
   if (config?.error) {

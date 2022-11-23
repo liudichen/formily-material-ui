@@ -27,4 +27,5 @@ export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
   error?: boolean,
 }
 
+/** 所有属性均需要手动指定，无法从外部获取 */
 export declare const FormItemBase: React.FC<React.PropsWithChildren<FormItemBaseProps>>;
