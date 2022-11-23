@@ -4,7 +4,7 @@ import { Switch as MuiSwitch, Stack, useTheme } from '@mui/material';
 
 import { FormItemBase } from '../../layout';
 
-export const SwitchBase = React.forwardRef((props) => {
+export const SwitchBase = React.forwardRef((props, ref) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -39,6 +39,7 @@ export const SwitchBase = React.forwardRef((props) => {
         </span>
       )}
       <MuiSwitch
+        ref={ref}
         required={required}
         checked={!!value}
         onChange={(e) => { if (!readOnly) onChange(e.target.checked); }}

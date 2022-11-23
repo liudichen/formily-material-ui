@@ -14,6 +14,4 @@ export const FormItem = observer((props) => {
   );
 });
 
-FormItem.defaultProps = {};
-
 FormItem.displayName = 'muiFormilyFormItem';
