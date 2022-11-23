@@ -25,18 +25,15 @@ export const RadioGroupBase = React.forwardRef((props, ref) => {
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
-  if (loading) {
-    return (
-      <Skeleton
-        variant='rectangular'
-        animation='wave'
-        width={'100%'}
-      >
-        <Radio />
-      </Skeleton>
-    );
-  }
-  const dom = (
+  const dom = loading ? (
+    <Skeleton
+      variant='rectangular'
+      animation='wave'
+      width={'100%'}
+    >
+      <Radio />
+    </Skeleton>
+  ) : (
     <MuiRadioGroup
       ref={ref}
       row={row ?? layout === 'horizontal'}
