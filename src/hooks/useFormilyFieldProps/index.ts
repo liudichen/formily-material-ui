@@ -82,16 +82,17 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
     ...props,
   };
   const layout = useFormLayout();
-  const withFormItem = props?.withFormItem ?? layout?.withFormItem;
+  const withFormItem = props?.withFormItem ?? (props?.noFormLayout ? undefined : layout?.withFormItem);
   formatProps.withFormItem = withFormItem;
+  const field = useField();
+  if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return formatProps;
+
   let config = {} as IUseFormilyFieldConfig;
   if (withFormItem) {
     config = { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
   } else {
     config = { ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
   }
-  const field = useField();
-  if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return formatProps;
   if (layout && !props?.noFormLayout) {
     formatProps.noField = props.noField ?? layout.noField;
     if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;

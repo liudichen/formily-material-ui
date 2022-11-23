@@ -23,6 +23,8 @@ export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<Form
   size?: 'medium' | 'small',
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
 
+  /** 不从Field获取信息 */
+  noField?: boolean,
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */

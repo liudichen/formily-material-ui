@@ -18,6 +18,8 @@ export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFiel
   variant?: 'outlined' | 'filled' | 'standard',
 
 
+  /** 不从Field获取信息 */
+  noField?: boolean,
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */

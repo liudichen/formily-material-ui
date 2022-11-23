@@ -38,6 +38,8 @@ export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<Fo
   InputLabelProps?: Omit<InputLabelProps, 'endAdornment'>,
   InputProps?: MuiInputProps,
 
+  /** 不从Field获取信息 */
+  noField?: boolean,
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */

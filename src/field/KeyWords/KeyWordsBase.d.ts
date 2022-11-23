@@ -32,6 +32,8 @@ export interface KeyWordsBaseProps extends FieldBaseProps<string[]>, Omit<FormIt
   /** 包裹chips的Box组件的props */
   chipsBoxProps?: BoxProps,
 
+  /** 不从Field获取信息 */
+  noField?: boolean,
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */
