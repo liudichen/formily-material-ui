@@ -9,7 +9,6 @@ export const UseFormilyFieldPropsFormItemConfig = {
   readOnly: false, disabled: false, defaultValue: false,
   feedbackStatus: true, feedbackText: true,
   labelPosition: true, labelAlign: true, labelWidth: true, labelWrap: true, wrapperAlign: true, wrapperWidth: true, wrapperWrap: true, fullWidth: true, colon: true, tooltipIcon: true, tooltipLayout: true, showFeedback: true, feedbackLayout: true,
-  withFormItem: false,
 };
 
 /** 适用于useFormilyFieldProps时formfield的基础通用config */
@@ -17,5 +16,4 @@ export const UseFormilyFieldPropsFormFieldBaseConfig = {
   readOnly: true,
   disabled: true,
   defaultValue: true,
-  withFormItem: true,
 };
