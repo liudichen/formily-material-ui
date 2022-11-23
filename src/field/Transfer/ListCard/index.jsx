@@ -5,7 +5,7 @@ import { Box, Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListI
 import { intersection } from '../util';
 import { isEqual, isInArray } from '../../../utils';
 
-const ListCard = React.forwardRef((props, ref) => {
+const ListCard = (props) => {
   const {
     showSelectAll, showSearch,
     disabled, readOnly, options, error,
@@ -22,7 +22,6 @@ const ListCard = React.forwardRef((props, ref) => {
   };
   return (
     <Card
-      ref={ref}
       sx={{
         boxShadow: '0px 2px 5px #999999',
         ...(cardSx || {}),
@@ -104,6 +103,6 @@ const ListCard = React.forwardRef((props, ref) => {
       </List>
     </Card>
   );
-});
+};
 
 export default ListCard;

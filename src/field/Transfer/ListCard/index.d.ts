@@ -31,6 +31,6 @@ interface ListCardProps extends ListCardCommonProps {
   handleToggleAll?: (items: Item[]) => void,
 }
 
-declare const ListCard: React.ForwardRefExoticComponent<ListCardProps>;
+declare const ListCard: React.FC<ListCardProps>;
 
 export default ListCard;
