@@ -5,4 +5,4 @@ import { SelectBaseProps } from './SelectBase';
 export interface SelectProps extends SelectBaseProps {
 }
 
-export declare const Select: React.ForwardRefExoticComponent<any, SelectProps>;
+export declare const Select: React.ForwardRefExoticComponent<SelectProps>;
