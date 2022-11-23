@@ -32,3 +32,4 @@ export * from './DateTimePicker';
 export * from './DateTimePicker/DateTimePickerBase';
 
 export * from './TimePicker';
+export * from './TimePicker/TimePickerBase';
