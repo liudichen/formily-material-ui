@@ -3,10 +3,9 @@ import { observer } from '@formily/react';
 
 import { TimePickerBase } from './TimePickerBase';
 import { useFormilyFieldProps } from '../../hooks';
-import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
 export const TimePicker = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig, fullWidth: true, label: true });
+  const formilyFieldProps = useFormilyFieldProps(props, { fullWidth: true, label: true });
   return (
     <TimePickerBase
       {...formilyFieldProps}

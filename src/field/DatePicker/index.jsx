@@ -1,12 +1,11 @@
 import React from 'react';
 import { observer } from '@formily/react';
 
-import { useFormilyFieldProps } from '../../hooks';
 import { DatePickerBase } from './DatePickerBase';
-import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
+import { useFormilyFieldProps } from '../../hooks';
 
 export const DatePicker = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig, fullWidth: true, label: true });
+  const formilyFieldProps = useFormilyFieldProps(props, { fullWidth: true, label: true });
   return (
     <DatePickerBase
       {...formilyFieldProps}

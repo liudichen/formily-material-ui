@@ -3,10 +3,9 @@ import { observer } from '@formily/react';
 
 import { UploadBase } from './UploadBase';
 import { useFormilyFieldProps } from '../../hooks';
-import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
 export const Upload = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig });
+  const formilyFieldProps = useFormilyFieldProps(props, { });
   return (
     <UploadBase
       {...formilyFieldProps}

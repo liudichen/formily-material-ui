@@ -56,8 +56,6 @@ interface IUseFormilyFieldConfig {
   feedbackLayout?: boolean,
   /** 是否从FormLayout获取配置*/
   noFormLayout?: boolean,
-  /** 传递给子formfield是否包含外部FormItemBase包裹*/
-  withFormItem?: boolean,
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
@@ -77,16 +75,25 @@ interface IProps extends ICommonProps, CommonLayoutProps {
   withFormItem?: boolean,
 }
 
-export const useFormilyFieldProps = (props: IProps, config: IUseFormilyFieldConfig = {}) => {
-  const layout = useFormLayout();
-  const field = useField();
-  if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return props;
+import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
+
+export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFieldConfig = {}) => {
   const formatProps = {
     ...props,
   };
+  const layout = useFormLayout();
+  const withFormItem = props?.withFormItem ?? layout?.withFormItem;
+  formatProps.withFormItem = withFormItem;
+  let config = {} as IUseFormilyFieldConfig;
+  if (withFormItem) {
+    config = { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
+  } else {
+    config = { ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
+  }
+  const field = useField();
+  if ((props?.noField || !field) && (!layout || props?.noFormLayout)) return formatProps;
   if (layout && !props?.noFormLayout) {
     formatProps.noField = props.noField ?? layout.noField;
-    if (config?.withFormItem) formatProps.withFormItem = props.withFormItem ?? layout?.withFormItem;
     if (config?.fullWidth) formatProps.fullWidth = props.fullWidth ?? layout?.fullWidth;
     if (config?.labelPosition) formatProps.labelPosition = props.labelPosition ?? layout.labelPosition;
     if (config?.labelAlign) formatProps.labelAlign = props.labelAlign ?? layout.labelAlign;
