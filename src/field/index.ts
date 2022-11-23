@@ -14,6 +14,7 @@ export * from './Switch';
 export * from './Switch/SwitchBase';
 
 export * from './ToggleButtonGroup';
+export * from './ToggleButtonGroup/ToggleButtonGroupBase';
 
 export * from './Transfer';
 
