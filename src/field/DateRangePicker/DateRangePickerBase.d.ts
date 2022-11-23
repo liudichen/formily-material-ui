@@ -29,4 +29,4 @@ export interface DateRangePickerBaseProps extends MuiDateRangePickerProps, Omit<
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const DateRangePickerBase: React.ForwardRefExoticComponent<DateRangePickerBaseProps>;
+export declare const DateRangePickerBase: React.FC<DateRangePickerBaseProps>;

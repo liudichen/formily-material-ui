@@ -5,4 +5,4 @@ import { SwitchBaseProps } from './SwitchBase';
 export interface SwitchProps extends SwitchBaseProps {
 }
 
-export declare const Switch: React.ForwardRefExoticComponent<SwitchProps>;
+export declare const Switch: React.FC<SwitchProps>;

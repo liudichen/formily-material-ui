@@ -11,7 +11,7 @@ export const ToggleButtonGroup = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 ToggleButtonGroup.defaultProps = {
   size: 'small',

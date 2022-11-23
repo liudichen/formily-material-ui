@@ -11,6 +11,6 @@ export const Switch = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 Switch.displayName = 'muiFormilySwitch';

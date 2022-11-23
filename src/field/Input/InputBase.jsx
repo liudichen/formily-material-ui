@@ -6,7 +6,7 @@ import { Close } from '@mui/icons-material';
 import { FormItemBase } from '../../layout';
 import { renderInnerLabel } from '../../utils';
 
-export const InputBase = React.forwardRef((props, ref) => {
+export const InputBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -37,7 +37,6 @@ export const InputBase = React.forwardRef((props, ref) => {
   }, [showClearProp, props.type]);
   const dom = (
     <MuiTextField
-      ref={ref}
       value={value ?? ''}
       onChange={onTextFieldChange}
       label={renderInnerLabel({ showInnerLabel, label, required, error, innerLabelProps, tooltip })}
@@ -118,7 +117,7 @@ export const InputBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 InputBase.defaultProps = {
   size: 'small',

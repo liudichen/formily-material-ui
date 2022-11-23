@@ -5,7 +5,7 @@ import { TimePicker as MuiTimePicker } from '@mui/x-date-pickers';
 
 import { FormItemBase } from '../../layout';
 
-export const TimePickerBase = React.forwardRef((props, ref) => {
+export const TimePickerBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -20,7 +20,6 @@ export const TimePickerBase = React.forwardRef((props, ref) => {
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
   const dom = (
     <MuiTimePicker
-      ref={ref}
       value={value || null}
       onChange={onChange}
       label={showInnerLabel ? label : undefined}
@@ -67,7 +66,7 @@ export const TimePickerBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 TimePickerBase.defaultProps = {
   size: 'small',

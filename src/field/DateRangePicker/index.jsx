@@ -11,6 +11,6 @@ export const DateRangePicker = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 DateRangePicker.displayName = 'muiFormilyDateRangePicker';

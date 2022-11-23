@@ -11,6 +11,6 @@ export const Input = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 Input.displayName = 'muiFormilyInput';

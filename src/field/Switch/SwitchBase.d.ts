@@ -20,4 +20,4 @@ export interface SwitchBaseProps extends MuiSwitchProps, Omit<FormItemBaseProps,
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const SwitchBase: React.ForwardRefExoticComponent<SwitchBaseProps>;
+export declare const SwitchBase: React.FC<SwitchBaseProps>;

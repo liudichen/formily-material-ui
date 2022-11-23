@@ -11,6 +11,6 @@ export const Select = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 Select.displayName = 'muiFormilySelect';

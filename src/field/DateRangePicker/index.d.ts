@@ -5,4 +5,4 @@ import { DateRangePickerBaseProps } from './DateRangePickerBase';
 export interface DateRangePickerProps extends DateRangePickerBaseProps {
 }
 
-export declare const DateRangePicker: React.ForwardRefExoticComponent<DateRangePickerProps>;
+export declare const DateRangePicker: React.FC<DateRangePickerProps>;

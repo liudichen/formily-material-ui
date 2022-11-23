@@ -17,7 +17,7 @@ const defaultPreviewFile = (file) => {
   return new Promise((resolve) => resolve(''));
 };
 
-export const UploadBase = React.forwardRef((props, ref) => {
+export const UploadBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -29,7 +29,7 @@ export const UploadBase = React.forwardRef((props, ref) => {
     disabled, readOnly,
     onRemove, validator, onDropAccepted, accept, onDrop, onDropRejected, isImage: isImageProp = isImage, onPreview,
     previewFile, uploadListStyle, uploadListClassName, itemStyle, itemClassName, className,
-    showPreviewIcon, showRemoveIcon, previewIcon, removeIcon, children, uploadButtonProps, uploadButtonText,
+    showPreviewIcon, showRemoveIcon, previewIcon, removeIcon, children, uploadButtonProps, uploadButtonText, uploadRef,
     ...restProps
   } = props;
   const [fileList, setFileList] = useControllableValue(props, { defaultValue: [] });
@@ -81,7 +81,7 @@ export const UploadBase = React.forwardRef((props, ref) => {
       [`${className}`]: !!className,
     })}>
       <UploadZone
-        ref={ref}
+        ref={uploadRef}
         multiple={maxCount !== 1}
         disabled={disabled || readOnly}
         accept={accept}
@@ -152,7 +152,7 @@ export const UploadBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 UploadBase.defaultProps = {
   showPreviewIcon: true,

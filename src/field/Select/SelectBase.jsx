@@ -6,7 +6,7 @@ import { useFetchOptions } from '../../hooks';
 import { isEqual, renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
 
-export const SelectBase = React.forwardRef((props, ref) => {
+export const SelectBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -24,7 +24,6 @@ export const SelectBase = React.forwardRef((props, ref) => {
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
   const dom = (
     <Autocomplete
-      ref={ref}
       loading={loading}
       options={options}
       value={value || (props.multiple ? [] : null)}
@@ -81,7 +80,7 @@ export const SelectBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 SelectBase.defaultProps = {
   size: 'small',

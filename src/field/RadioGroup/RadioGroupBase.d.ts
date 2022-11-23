@@ -33,5 +33,5 @@ export interface RadioGroupBaseProps extends FieldBaseProps<any>, Omit<FormItemB
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const RadioGroupBase: React.ForwardRefExoticComponent<RadioGroupBaseProps>;
+export declare const RadioGroupBase: React.FC<RadioGroupBaseProps>;
 

@@ -11,6 +11,6 @@ export const RadioGroup = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 RadioGroup.displayName = 'muiFormilyRadioGroup';

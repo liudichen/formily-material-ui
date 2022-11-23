@@ -25,4 +25,4 @@ export interface ToggleButtonGroupBaseProps extends FieldBaseProps<any | any[]>,
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const ToggleButtonGroupBase: React.ForwardRefExoticComponent<ToggleButtonGroupBaseProps>;
+export declare const ToggleButtonGroupBase: React.FC<ToggleButtonGroupBaseProps>;

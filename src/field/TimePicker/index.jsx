@@ -11,6 +11,6 @@ export const TimePicker = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 TimePicker.displayName = 'muiFormilyTimePicker';

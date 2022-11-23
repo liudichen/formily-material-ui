@@ -5,4 +5,4 @@ import { CheckboxGroupBaseProps } from './CheckboxGroupBase';
 export interface CheckboxGroupProps extends CheckboxGroupBaseProps {
 }
 
-export declare const CheckboxGroup: React.ForwardRefExoticComponent<CheckboxGroupProps>;
+export declare const CheckboxGroup: React.FC<CheckboxGroupProps>;

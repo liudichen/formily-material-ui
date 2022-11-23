@@ -6,7 +6,7 @@ import { FormItemBase } from '../../layout';
 import { useFetchOptions } from '../../hooks';
 import { COLORS, isEqual } from '../../utils';
 
-export const RadioGroupBase = React.forwardRef((props, ref) => {
+export const RadioGroupBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -35,7 +35,6 @@ export const RadioGroupBase = React.forwardRef((props, ref) => {
     </Skeleton>
   ) : (
     <MuiRadioGroup
-      ref={ref}
       row={row ?? layout === 'horizontal'}
       name={name}
       sx={sx}
@@ -103,7 +102,7 @@ export const RadioGroupBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 RadioGroupBase.defaultProps = {
   layout: 'horizontal',

@@ -5,4 +5,4 @@ import { ToggleButtonGroupBaseProps } from './ToggleButtonGroupBase';
 export interface ToggleButtonGroupProps extends ToggleButtonGroupBaseProps {
 }
 
-export declare const ToggleButtonGroup: React.ForwardRefExoticComponent<ToggleButtonGroupProps>;
+export declare const ToggleButtonGroup: React.FC<ToggleButtonGroupProps>;

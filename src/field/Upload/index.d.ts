@@ -5,4 +5,4 @@ import { UploadBaseProps } from './UploadBase';
 export interface UploadProps extends UploadBaseProps {
 }
 
-export declare const Upload: React.ForwardRefExoticComponent<React.PropsWithChildren<UploadProps>>;
+export declare const Upload: React.FC<React.PropsWithChildren<UploadProps>>;

@@ -6,7 +6,7 @@ import { FormItemBase } from '../../layout';
 import { isEqual, isInArray, COLORS } from '../../utils';
 import { useFetchOptions } from '../../hooks';
 
-export const ToggleButtonGroupBase = React.forwardRef((props, ref) => {
+export const ToggleButtonGroupBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -70,7 +70,6 @@ export const ToggleButtonGroupBase = React.forwardRef((props, ref) => {
     )
   ) : (
     <MuiToggleButtonGroup
-      ref={ref}
       orientation={orientation ?? layout}
       disabled={disabled}
       exclusive={exclusive}
@@ -132,7 +131,7 @@ export const ToggleButtonGroupBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 ToggleButtonGroupBase.defaultProps = {
   size: 'small',

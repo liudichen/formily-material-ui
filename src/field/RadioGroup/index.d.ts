@@ -5,5 +5,5 @@ import { RadioGroupBaseProps } from './RadioGroupBase';
 export interface RadioGroupProps extends RadioGroupBaseProps {
 }
 
-export declare const RadioGroup: React.ForwardRefExoticComponent<RadioGroupProps>;
+export declare const RadioGroup: React.FC<RadioGroupProps>;
 

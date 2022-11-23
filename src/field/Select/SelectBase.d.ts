@@ -28,4 +28,4 @@ export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFiel
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const SelectBase: React.ForwardRefExoticComponent<SelectBaseProps>;
+export declare const SelectBase: React.FC<SelectBaseProps>;

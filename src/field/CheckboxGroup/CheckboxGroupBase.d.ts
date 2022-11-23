@@ -33,4 +33,4 @@ export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<Form
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const CheckboxGroupBase: React.ForwardRefExoticComponent<CheckboxGroupBaseProps>;
+export declare const CheckboxGroupBase: React.FC<CheckboxGroupBaseProps>;

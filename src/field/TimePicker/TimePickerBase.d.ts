@@ -30,4 +30,4 @@ export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBa
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const TimePickerBase: React.ForwardRefExoticComponent<TimePickerBaseProps>;
+export declare const TimePickerBase: React.FC<TimePickerBaseProps>;

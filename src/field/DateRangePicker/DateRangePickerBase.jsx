@@ -5,7 +5,7 @@ import { Box, TextField } from '@mui/material';
 import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/DateRangePicker';
 import { FormItemBase } from '../../layout';
 
-export const DateRangePickerBase = React.forwardRef((props, ref) => {
+export const DateRangePickerBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -19,7 +19,6 @@ export const DateRangePickerBase = React.forwardRef((props, ref) => {
   const [value, onChange] = useControllableValue(props);
   const dom = (
     <MuiDateRangePicker
-      ref={ref}
       value={value || [null, null]}
       onChange={onChange}
       renderInput={(startProps, endProps) => (
@@ -69,7 +68,7 @@ export const DateRangePickerBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 DateRangePickerBase.defaultProps = {
   size: 'small',

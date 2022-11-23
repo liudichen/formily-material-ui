@@ -6,7 +6,7 @@ import { useFetchOptions } from '../../hooks';
 import { isEqual, isInArray, COLORS } from '../../utils';
 import { FormItemBase } from '../../layout/FormItem/FormItemBase';
 
-export const CheckboxGroupBase = React.forwardRef((props, ref) => {
+export const CheckboxGroupBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -61,7 +61,7 @@ export const CheckboxGroupBase = React.forwardRef((props, ref) => {
       <Checkbox />
     </Skeleton>
   ) : (
-    <FormGroup row={row ?? layout === 'horizontal'} ref={ref} {...restProps}>
+    <FormGroup row={row ?? layout === 'horizontal'} {...restProps}>
       { options.map((item, index) => (
         <FormControlLabel
           key={index}
@@ -121,7 +121,7 @@ export const CheckboxGroupBase = React.forwardRef((props, ref) => {
       {dom}
     </FormItemBase>
   ) : dom;
-});
+};
 
 CheckboxGroupBase.defaultProps = {
   layout: 'horizontal',

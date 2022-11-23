@@ -7,5 +7,5 @@ export interface InputProps extends InputBaseProps {
   noField?: boolean,
 }
 
-export declare const Input: React.ForwardRefExoticComponent<InputProps>;
+export declare const Input: React.FC<InputProps>;
 

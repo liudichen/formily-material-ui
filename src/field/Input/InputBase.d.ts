@@ -48,5 +48,5 @@ export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<Fo
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const InputBase: React.ForwardRefExoticComponent<InputBaseProps>;
+export declare const InputBase: React.FC<InputBaseProps>;
 

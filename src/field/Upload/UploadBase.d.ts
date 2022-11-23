@@ -25,6 +25,7 @@ export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUpload
   itemStyle?: React.CSSProperties,
   itemClassName?: string,
   className?: string,
+  uploadRef?: React.RefObject,
 
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
@@ -36,4 +37,4 @@ export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUpload
   formItemStyle?: React.CSSProperties,
 }
 
-export declare const UploadBase: React.ForwardRefExoticComponent<React.PropsWithChildren<UploadBaseProps>>;
+export declare const UploadBase: React.FC<React.PropsWithChildren<UploadBaseProps>>;

@@ -11,6 +11,6 @@ export const Upload = observer((props) => {
       {...formilyFieldProps}
     />
   );
-}, { forwardRef: true });
+});
 
 Upload.displayName = 'muiFormilyUpload';
