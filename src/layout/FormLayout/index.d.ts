@@ -20,9 +20,6 @@ export interface CommonLayoutProps {
   noField?: boolean,
 }
 
-declare const FormLayoutContext = createContext<CommonLayoutProps>(null);
-export declare const useFormLayout = () => useContext(FormLayoutContext);
-
 interface ColsProps {
   xs?: number,
   sm?: number,
@@ -31,11 +28,22 @@ interface ColsProps {
   xl?: number,
 }
 
-export interface FormLayoutProps extends CommonLayoutProps, Omit<GridProps, 'item'> {
-  defaultCols?: ColsProps,
+interface IFormLayoutContext extends CommonLayoutProps {
   /** 手动指定无需获取form信息 */
   noForm?: boolean,
+  /** 传递给下层formField，是否包裹FormItemBase
+   * @default true
+   */
+  withFormItem?: boolean,
+
 }
+
+export interface FormLayoutProps extends IFormLayoutContext, Omit<GridProps, 'item'> {
+  defaultCols?: ColsProps,
+}
+
+declare const FormLayoutContext = createContext<IFormLayoutContext>(null);
+export declare const useFormLayout = () => useContext(FormLayoutContext);
 
 export declare const FormLayout: React.FC<React.PropsWithChildren<FormLayoutProps>>;
 

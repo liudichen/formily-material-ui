@@ -20,7 +20,7 @@ const getItemColsProps = (props) => {
 export const FormLayout = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
-    colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
+    colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, withFormItem,
     xs, sm, md, lg, xl, defaultCols, noField, noForm,
     children,
     ...restProps
@@ -29,7 +29,7 @@ export const FormLayout = observer((props) => {
   let form = useForm();
   if (noForm) form = null;
   return (
-    <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField }}>
+    <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }}>
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) { return null; }
@@ -63,6 +63,7 @@ FormLayout.defaultProps = {
   feedbackLayout: 'text',
   spacing: 0.5,
   fullWidth: true,
+  withFormItem: true,
 };
 
 export default FormLayout;
