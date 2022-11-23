@@ -20,6 +20,7 @@ export * from './Transfer';
 export * from './Transfer/TransferBase';
 
 export * from './Upload';
+export * from './Upload/UploadBase';
 
 export * from './KeyWords';
 export * from './KeyWords/KeyWordsBase';
