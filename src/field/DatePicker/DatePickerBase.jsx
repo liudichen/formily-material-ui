@@ -9,7 +9,7 @@ export const DatePickerBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, fieldItemCls: className, fieldItemStyle: style, error, feedbackCls, extraCls,
+    addonAfter, formItemCls: className, formItemStyle: style, error, feedbackCls, extraCls,
     keepTopSpace,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,

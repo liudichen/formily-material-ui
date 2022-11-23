@@ -23,9 +23,9 @@ export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBa
   /** 外层包裹FormItemBase? */
   withFormItem?: boolean,
   /** 当 withFormItem=true时传递给FormItemBase的className*/
-  fieldItemCls?: string,
+  formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
-  fieldItemStyle?: React.CSSProperties,
+  formItemStyle?: React.CSSProperties,
 }
 
 export declare const DatePickerBase: React.FC<DatePickerBaseProps>;
