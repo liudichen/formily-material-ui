@@ -10,6 +10,10 @@ export interface CommonLayoutProps {
   wrapperWrap?: boolean,
   wrapperWidth?: number | string,
   wrapperAlign?: 'left' | 'right',
+  /**
+   * 子项fullWidth
+   * @default true
+   */
   fullWidth?: boolean,
   colon?: boolean,
   tooltipIcon?: React.ReactNode,
