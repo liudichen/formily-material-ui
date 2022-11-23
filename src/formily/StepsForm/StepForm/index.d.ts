@@ -8,6 +8,7 @@
 import React from 'react';
 import { StepIconProps, ButtonProps, BoxProps } from '@mui/material';
 import { LoadingButtonProps } from '@mui/lab';
+import { ObjectField } from '@formily/core';
 
 interface objectValue {
   [key: string] : any,
@@ -33,9 +34,9 @@ export interface StepFormProps extends BoxProps {
   // -------------- 2 -------------
 
   handleStepChange?: (direction?: 'next' | 'previous' | number) => void,
-  onFinish?: (values?: object, allValues?: object) => void,
+  onFinish?: (values?: object, allValues?: object, stepObjField: ObjectField) => void,
   onSubmitFail?: (error?: any, fieldVaue?: object) => void,
-  onPrevious?: () => void,
+  onPrevious?: (stepObjField: ObjectField) => void,
   previousText?: React.ReactNode,
   previousProps?: Omit<ButtonProps, 'onClick'>,
   nextText?: [React.ReactNode, React.ReactNode],

@@ -22,14 +22,14 @@ const StepForm = observer((props) => {
         let res = false;
         const allValues = toJS(field?.form?.values || {});
         if (stepIndex + 1 !== stepsCount) {
-          res = await onFinish?.(toJS(field.value), allValues);
+          res = await onFinish?.(toJS(field.value), allValues, field);
         } else {
           const valuesArr = Object.values(allValues);
           let values = {};
           for (let i = 0; i < valuesArr.length; i++) {
             values = { ...values, ...(valuesArr[i] || {}) };
           }
-          res = await onFinish?.(values, allValues);
+          res = await onFinish?.(values, allValues, field);
         }
         setLoading(false);
         if (res !== false) {
@@ -44,7 +44,7 @@ const StepForm = observer((props) => {
     }
   });
   const onPreviousClick = useMemoizedFn(() => {
-    onPrevious?.();
+    onPrevious?.(field);
     handleStepChange?.('previous');
   });
 
