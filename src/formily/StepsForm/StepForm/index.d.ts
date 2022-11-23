@@ -31,11 +31,13 @@ export interface StepFormProps extends BoxProps {
   stepIndex?: number,
   /** [不要手动传递,但可以通过props获取到]步骤总数 */
   stepsCount?: number,
+  /** [不要手动传递,但可以通过props获取到]当前Step对应的ObjectField对象 */
+  field?: ObjectField,
   // -------------- 2 -------------
 
   handleStepChange?: (direction?: 'next' | 'previous' | number) => void,
   onFinish?: (values?: object, allValues?: object, stepObjField: ObjectField) => void,
-  onSubmitFail?: (error?: any, fieldVaue?: object) => void,
+  onSubmitFail?: (error?: any) => void,
   onPrevious?: (stepObjField: ObjectField) => void,
   previousText?: React.ReactNode,
   previousProps?: Omit<ButtonProps, 'onClick'>,

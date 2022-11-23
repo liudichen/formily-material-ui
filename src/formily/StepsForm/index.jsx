@@ -75,10 +75,10 @@ export const StepsForm = observer((props) => {
                 { (direction ?? orientation) === 'vertical' && (
                   <StepContent {...(stepContentProps || {})}>
                     <ObjectField name={name ?? index}>
-                      {(_field) => {
+                      {(field) => {
                         return (
                           <>
-                            {React.cloneElement(child, overwriteProps)}
+                            {React.cloneElement(child, { ...overwriteProps, field })}
                           </>
                         );
                       }}
@@ -104,10 +104,10 @@ export const StepsForm = observer((props) => {
             }
             return (
               <ObjectField name={name ?? index}>
-                {(_field) => {
+                {(field) => {
                   return (
                     <Box>
-                      { React.cloneElement(child, overwriteProps)}
+                      { React.cloneElement(child, { ...overwriteProps, field })}
                     </Box>
                   );
                 }}
