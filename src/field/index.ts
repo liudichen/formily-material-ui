@@ -17,6 +17,7 @@ export * from './ToggleButtonGroup';
 export * from './ToggleButtonGroup/ToggleButtonGroupBase';
 
 export * from './Transfer';
+export * from './Transfer/TransferBase';
 
 export * from './Upload';
 
