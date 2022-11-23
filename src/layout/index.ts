@@ -1,3 +1,3 @@
 export * from './FormItem';
 export * from './FormLayout';
-export * from './FormItem/Base';
+export * from './FormItem/FormItemBase';

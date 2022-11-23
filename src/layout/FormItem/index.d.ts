@@ -1,29 +1,13 @@
 import React from 'react';
 
-import { CommonLayoutProps } from '../FormLayout';
+import { FormItemBaseProps } from './Base';
 
-export interface FormItemProps extends CommonLayoutProps {
-  prefixCls?: string,
-  className?: string,
-  style?: React.CSSProperties,
-  noLabel?: boolean,
-  label?: React.ReactNode,
-  labelStyle?: React.CSSProperties,
-  wrapperStyle?: React.CSSProperties,
-  tooltip?: React.ReactNode,
-  required?: boolean,
-  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {}),
-  feedbackText?: React.ReactNode,
-  feedbackIcon?: React.ReactNode,
-  extra?: React.ReactNode,
-  addonBefore?: React.ReactNode,
-  addonAfter?: React.ReactNode,
-  extraClassName?: string,
-  feedbackClassName?: string,
-  keepTopSpace?: boolean,
-  error?: boolean,
+export interface FormItemProps extends FormItemBaseProps {
   /** 不从FormLayout获取信息 */
   noFormLayout?: boolean,
+  /** 手动指定不从外层Field获取信息 */
+  noField?: boolean,
 }
 
+/** 适用于Field的decorator */
 export declare const FormItem:React.FC<React.PropsWithChildren<FormItemProps>>;

@@ -19,7 +19,7 @@ export const FormItemBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, children, className, style, error, feedbackClassName, extraClassName,
+    addonAfter, children, className, style, error, feedbackCls, extraCls,
     keepTopSpace,
   } = props;
   const prefix = `${prefixCls}-form-item`;
@@ -125,7 +125,7 @@ export const FormItemBase = (props) => {
     >
       <div className={cls({
         [`${prefix}-row`]: labelPosition === 'left',
-        [`${prefix}-column`]: labelPosition === 'top',
+        [`${prefix}-column`]: (labelPosition === 'top' || !labelPosition),
         [`${prefix}-error`]: !!error,
         [`${prefix}-${feedbackStatus}-help`]: ['warning', 'error'].includes(feedbackStatus),
       })}>
@@ -186,19 +186,17 @@ export const FormItemBase = (props) => {
           className={cls({
             [`${prefix}-${feedbackStatus}-help`]: !!feedbackStatus,
             [`${prefix}-help`]: true,
-            [`${feedbackClassName}`]: !!feedbackClassName,
+            [`${feedbackCls}`]: !!feedbackCls,
           })}
         >
           {feedbackText || <>&nbsp;</>}
         </div>
       )}
-      { !!extra && (<div className={cls({ [`${prefix}-extra`]: true, [`${extraClassName}`]: !!extraClassName })}>{extra}</div>)}
+      { !!extra && (<div className={cls({ [`${prefix}-extra`]: true, [`${extraCls}`]: !!extraCls })}>{extra}</div>)}
     </div>
   );
 };
 
-FormItemBase.defaultProps = {
-
-};
+FormItemBase.defaultProps = {};
 
 FormItemBase.displayName = 'muiFormilyFormItemBase';

@@ -5,8 +5,6 @@ export interface FieldBaseProps<T> {
   readOnly?: boolean,
   disabled?: boolean,
   error?: boolean,
-  /** 手动指定不从外层Field获取信息 */
-  noField?: boolean,
 }
 
 export interface IFieldOptionItem {

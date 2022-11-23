@@ -18,8 +18,6 @@ export interface CommonLayoutProps {
   feedbackLayout?: 'popover' | 'text',
   /** 手动指定不从外层Field获取信息 */
   noField?: boolean,
-  /** 手动指定无需获取form信息 */
-  noForm?: boolean,
 }
 
 declare const FormLayoutContext = createContext<CommonLayoutProps>(null);
@@ -35,6 +33,8 @@ interface ColsProps {
 
 export interface FormLayoutProps extends CommonLayoutProps, Omit<GridProps, 'item'> {
   defaultCols?: ColsProps,
+  /** 手动指定无需获取form信息 */
+  noForm?: boolean,
 }
 
 export declare const FormLayout: React.FC<React.PropsWithChildren<FormLayoutProps>>;
