@@ -11,6 +11,7 @@ export * from './Select';
 export * from './Select/SelectBase';
 
 export * from './Switch';
+export * from './Switch/SwitchBase';
 
 export * from './ToggleButtonGroup';
 
