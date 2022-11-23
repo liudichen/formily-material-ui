@@ -22,6 +22,9 @@ export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<Form
   checkedIcon?: React.ReactNode,
   size?: 'medium' | 'small',
   color?: 	'default'| 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string,
+
+  /** 不从FormLayout获取fullWidth信息 */
+  noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */
   withFormItem?: boolean,
   /** 当 withFormItem=true时传递给FormItemBase的className*/

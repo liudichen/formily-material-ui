@@ -20,8 +20,6 @@ export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBa
   showSecond?: boolean,
 
 
-  /** 手动指定不从外层Field获取信息 */
-  noField?: boolean,
   /** 不从FormLayout获取fullWidth等信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */

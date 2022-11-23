@@ -18,9 +18,6 @@ export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBa
   variant?: 'outlined' | 'filled' | 'standard',
   textFieldSx?: SxProps,
 
-
-  /** 手动指定不从外层Field获取信息 */
-  noField?: boolean,
   /** 不从FormLayout获取fullWidth等信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */

@@ -16,6 +16,8 @@ export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFiel
   required?: boolean,
   tooltip?: React.ReactNode,
   variant?: 'outlined' | 'filled' | 'standard',
+
+
   /** 不从FormLayout获取fullWidth信息 */
   noFormLayout?: boolean,
   /** 外层包裹FormItemBase? */
