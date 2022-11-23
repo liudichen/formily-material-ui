@@ -128,6 +128,7 @@ export const FormItemBase = (props) => {
         [`${prefix}-column`]: (labelPosition === 'top' || !labelPosition),
         [`${prefix}-error`]: !!error,
         [`${prefix}-${feedbackStatus}-help`]: ['warning', 'error'].includes(feedbackStatus),
+        [`${prefix}-default-help`]: !['warning', 'error'].includes(feedbackStatus) && !error,
       })}>
         {renderLabel()}
         <div className={`${prefix}-control`}>

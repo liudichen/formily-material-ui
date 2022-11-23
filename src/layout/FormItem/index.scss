@@ -195,17 +195,20 @@ $prefix: #{$prefixCls}-form-item;
 }
 
 .#{$prefix}-error-help {
-  color: $error-color !important;
+  color: $error-color;
 }
 
 .#{$prefix}-warning-help {
-  color: $warning-color !important;
+  color: $warning-color;
 }
 
 .#{$prefix}-success-help {
-  color: $success-color !important;
+  color: $success-color;
+}
+.#{$prefix}-default-help {
+  color: $card-text-color;
 }
 
 .#{$prefix}-blank-help {
-  color:transparent !important;
+  color: transparent;
 }
