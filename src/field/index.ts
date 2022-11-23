@@ -29,5 +29,6 @@ export * from './DateRangePicker';
 export * from './DateRangePicker/DateRangePickerBase';
 
 export * from './DateTimePicker';
+export * from './DateTimePicker/DateTimePickerBase';
 
 export * from './TimePicker';

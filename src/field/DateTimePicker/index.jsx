@@ -1,43 +1,17 @@
 import React from 'react';
-import { useControllableValue } from 'ahooks';
-import { TextField } from '@mui/material';
-import { DateTimePicker as MuiDateTimePicker } from '@mui/x-date-pickers';
 import { observer } from '@formily/react';
 
+import { DateTimePickerBase } from './DateTimePickerBase';
 import { useFormilyFieldProps } from '../../hooks';
+import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
 export const DateTimePicker = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, { label: true });
-  const {
-    // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, noField,
-    size, fullWidth, color, variant, TextFieldSx,
-    label, showInnerLabel,
-    ...restProps
-  } = formilyFieldProps;
-  const [value, onChange] = useControllableValue(formilyFieldProps, { defaultValue: null });
-
+  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig, fullWidth: true, label: true });
   return (
-    <MuiDateTimePicker
-      label={showInnerLabel ? label : undefined}
-      value={value || null}
-      onChange={onChange}
-      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
-      {...restProps}
+    <DateTimePickerBase
+      {...formilyFieldProps}
     />
   );
 });
-
-DateTimePicker.defaultProps = {
-  size: 'small',
-  inputFormat: 'YYYY/MM/DD hh:mm a',
-  disableMaskedInput: true,
-  componentsProps: {
-    actionBar: {
-      actions: ['today', 'clear', 'accept'],
-      translate: 'yes',
-    },
-  },
-};
 
 DateTimePicker.displayName = 'muiFormilyDateTimePicker';
