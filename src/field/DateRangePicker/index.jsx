@@ -1,47 +1,17 @@
 import React from 'react';
-import { useControllableValue } from 'ahooks';
-import { Box, TextField } from '@mui/material';
 import { observer } from '@formily/react';
 
-import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/DateRangePicker';
+import { DateRangePickerBase } from './DateRangePickerBase';
 import { useFormilyFieldProps } from '../../hooks';
+import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
 export const DateRangePicker = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props);
-  const {
-    // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, noField,
-    size, toText, toSx, fullWidth, color, variant, TextFieldSx,
-    ...restProps
-  } = formilyFieldProps;
-  const [value, onChange] = useControllableValue(formilyFieldProps);
+  const formilyFieldProps = useFormilyFieldProps(props, props.withFormItem ? { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig } : { ...UseFormilyFieldPropsFormFieldBaseConfig, fullWidth: true });
   return (
-    <MuiDateRangePicker
-      value={value || [null, null]}
-      onChange={onChange}
-      renderInput={(startProps, endProps) => (
-        <>
-          <TextField {...startProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>
-          <Box sx={toSx}>{ toText }</Box>
-          <TextField {...endProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>
-        </>
-      )}
-      {...restProps}
+    <DateRangePickerBase
+      {...formilyFieldProps}
     />
   );
 }, { forwardRef: true });
-
-DateRangePicker.defaultProps = {
-  size: 'small',
-  toText: '-',
-  toSx: { mx: 0.5 },
-  inputFormat: 'YYYY-MM-DD',
-  componentsProps: {
-    actionBar: {
-      actions: ['today', 'clear', 'accept'],
-      translate: 'yes',
-    },
-  },
-};
 
 DateRangePicker.displayName = 'muiFormilyDateRangePicker';
