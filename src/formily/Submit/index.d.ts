@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { LoadingButtonProps } from '../../utils';
+import { LoadingButtonProps } from 'mui-component';
 
 export interface SubmitProps extends LoadingButtonProps {
   resetOnSuccess?: boolean,

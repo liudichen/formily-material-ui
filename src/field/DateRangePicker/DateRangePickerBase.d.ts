@@ -1,7 +1,7 @@
 import React from 'react';
 import { SxProps } from '@mui/material';
+import { DateRangePickerProps as MuiDateRangePickerProps } from 'mui-component';
 
-import { DateRangePickerProps as MuiDateRangePickerProps } from '../../utils/component/DateRangePicker';
 import { FormItemBaseProps } from '../../layout';
 
 export interface DateRangePickerBaseProps extends MuiDateRangePickerProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>{

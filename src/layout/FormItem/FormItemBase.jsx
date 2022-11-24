@@ -2,11 +2,11 @@ import React from 'react';
 import { useCreation } from 'ahooks';
 import { Tooltip } from '@mui/material';
 import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
+import { Popover } from 'mui-component';
 import cls from 'classnames';
 
 import './index.scss';
 import { useOverflow } from '../../hooks';
-import { Popover } from '../../utils/component';
 import { prefixCls } from '../../utils';
 
 const ICON_MAP = {

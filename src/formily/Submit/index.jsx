@@ -1,8 +1,7 @@
 import React from 'react';
 import { useCreation, useMemoizedFn, useKeyPress } from 'ahooks';
 import { useParentForm, observer } from '@formily/react';
-
-import { LoadingButton } from '../../utils';
+import { LoadingButton } from 'mui-component';
 
 export const Submit = observer((props) => {
   const {

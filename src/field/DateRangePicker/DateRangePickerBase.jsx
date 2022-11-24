@@ -1,8 +1,8 @@
 import React from 'react';
 import { useControllableValue } from 'ahooks';
 import { Box, TextField } from '@mui/material';
+import { DateRangePicker as MuiDateRangePicker } from 'mui-component';
 
-import { DateRangePicker as MuiDateRangePicker } from '../../utils/component/DateRangePicker';
 import { FormItemBase } from '../../layout';
 
 export const DateRangePickerBase = (props) => {
