@@ -10,7 +10,7 @@ export const RadioGroupBase = (props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, formItemCls: className, formItemStyle: style, error, feedbackCls, extraCls,
+    addonAfter, formItemCls, formItemStyle, formItemPrefixCls, error, feedbackCls, extraCls,
     keepTopSpace,
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
@@ -67,8 +67,9 @@ export const RadioGroupBase = (props) => {
 
   return withFormItem ? (
     <FormItemBase
-      className={className}
-      style={style}
+      className={formItemCls}
+      style={formItemStyle}
+      prefixCls={formItemPrefixCls}
       extra={extra}
       extraCls={extraCls}
       error={error}

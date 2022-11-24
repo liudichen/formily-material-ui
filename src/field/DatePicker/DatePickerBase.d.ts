@@ -4,7 +4,7 @@ import { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
 
 import { FormItemBaseProps } from '../../layout';
 
-export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   size?: 'small' | 'medium',
   /** 显示内部label? */
   showInnerLabel?: boolean,
@@ -28,6 +28,8 @@ export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBa
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const DatePickerBase: React.FC<DatePickerBaseProps>;

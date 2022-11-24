@@ -3,7 +3,7 @@ import React from 'react';
 import { IFieldPropOptions, FieldBaseProps } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<FormGroupProps, 'sx'>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<FormGroupProps, 'sx'>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   /** 选项或返回选项的函数。
    *选项值：{value,label,color?,size?,disabled?,icon?,required?,checkedIcon?}
    */
@@ -33,6 +33,8 @@ export interface CheckboxGroupBaseProps extends FieldBaseProps<any[]>, Omit<Form
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const CheckboxGroupBase: React.FC<CheckboxGroupBaseProps>;

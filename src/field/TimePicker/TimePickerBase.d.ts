@@ -3,7 +3,7 @@ import { TimePickerProps as MuiTimePickerProps } from '@mui/x-date-pickers';
 
 import { FormItemBaseProps } from '../../layout';
 
-export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   size?: 'small' | 'medium',
   /** 显示内部label? */
   showInnerLabel?: boolean,
@@ -30,6 +30,8 @@ export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBa
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const TimePickerBase: React.FC<TimePickerBaseProps>;

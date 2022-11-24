@@ -12,7 +12,7 @@ interface IRenderChipParam {
   handleRemoveKeyWord: (keyword: string) => void,
 }
 
-export interface KeyWordsBaseProps extends FieldBaseProps<string[]>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface KeyWordsBaseProps extends FieldBaseProps<string[]>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   /** 文本输入框显示清空按钮? */
   showClear?: boolean,
   /** 点击添加后自动清空文本内容？ */
@@ -42,6 +42,8 @@ export interface KeyWordsBaseProps extends FieldBaseProps<string[]>, Omit<FormIt
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const KeyWordsBase: React.FC<KeyWordsBaseProps>;

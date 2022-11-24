@@ -5,7 +5,7 @@ import { ListCardCommonProps } from './ListCard';
 import { IFieldPropOptions, FieldBaseProps } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface TransferBaseProps extends FieldBaseProps<any[]>, ListCardCommonProps, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface TransferBaseProps extends FieldBaseProps<any[]>, ListCardCommonProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   options?: IFieldPropOptions,
   /** 保留不在options里的已选但不显示的值? */
   keepExtraItems?: boolean,
@@ -44,6 +44,8 @@ export interface TransferBaseProps extends FieldBaseProps<any[]>, ListCardCommon
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const TransferBase: React.FC<TransferBaseProps>;

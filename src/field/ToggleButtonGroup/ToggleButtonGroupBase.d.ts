@@ -4,7 +4,7 @@ import { SxProps, ToggleButtonGroupProps as MuiToggleButtonGroupProps } from '@m
 import { FieldBaseProps, IFieldPropOptions } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface ToggleButtonGroupBaseProps extends FieldBaseProps<any | any[]>, Omit<MuiToggleButtonGroupProps, 'value'|'onChange'>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface ToggleButtonGroupBaseProps extends FieldBaseProps<any | any[]>, Omit<MuiToggleButtonGroupProps, 'value'|'onChange'>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   options?: IFieldPropOptions
   minCount?: number,
   maxCount?: number,
@@ -25,6 +25,8 @@ export interface ToggleButtonGroupBaseProps extends FieldBaseProps<any | any[]>,
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const ToggleButtonGroupBase: React.FC<ToggleButtonGroupBaseProps>;

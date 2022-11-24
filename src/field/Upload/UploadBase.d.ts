@@ -5,7 +5,7 @@ import { UploadZoneProps } from './UploadZone';
 import { IUploadedFile, FieldBaseProps } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUploadedFile[]>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUploadedFile[]>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   isImage?: (file: IUploadedFile[]) => boolean,
   previewFile?: (file: IUploadedFile) => void,
   transformFile?: (file: IUploadedFile) => IUploadedFile,
@@ -37,6 +37,8 @@ export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUpload
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const UploadBase: React.FC<React.PropsWithChildren<UploadBaseProps>>;

@@ -4,7 +4,7 @@ import { AutocompleteProps, FormLabelProps } from '@mui/material';
 import { FieldBaseProps, IFieldOptionItem, IFieldPropOptions } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFieldOptionItem[] | null | undefined>, Omit<AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined>, 'value' | 'onChange' | 'defaultValue' | 'options'>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFieldOptionItem[] | null | undefined>, Omit<AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined>, 'value' | 'onChange' | 'defaultValue' | 'options'>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   options?: IFieldPropOptions,
   refreshOptionsFlag?: any,
   label?: string,
@@ -28,6 +28,8 @@ export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFiel
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const SelectBase: React.FC<SelectBaseProps>;

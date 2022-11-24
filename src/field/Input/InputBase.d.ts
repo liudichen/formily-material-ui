@@ -4,7 +4,7 @@ import { SxProps, InputProps as MuiInputProps, InputLabelProps, FormLabelProps, 
 import { FieldBaseProps } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<FormItemBaseProps, 'className' | 'style'> {
+export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   label?: React.ReactNode,
   /** 显示内部label? */
   showInnerLabel?: boolean,
@@ -48,6 +48,8 @@ export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<Fo
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
+  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  formItemPrefixCls?: string,
 }
 
 export declare const InputBase: React.FC<InputBaseProps>;
