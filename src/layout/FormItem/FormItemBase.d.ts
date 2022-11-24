@@ -3,7 +3,9 @@ import React from 'react';
 import { CommonLayoutProps } from '../FormLayout';
 
 export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
-  /** formItem内部className的前缀，用于引入自定义样式 */
+  /** formItem内部className的前缀，可以在引入自定义样式时使用
+   * @default iimm 可以通过样式覆盖来修改FormItem内部样式(不需要传递此值)
+   */
   prefixCls?: string,
   className?: string,
   style?: React.CSSProperties,

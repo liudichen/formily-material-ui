@@ -33,7 +33,9 @@ export interface RadioGroupBaseProps extends FieldBaseProps<any>, Omit<FormItemB
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
   formItemStyle?: React.CSSProperties,
-  /** 当 withFormItem=true时,传递给formItem内部className的前缀，用于引入自定义样式 */
+  /** 当 withFormItem=true时，传递给formItem的内部className的前缀，可以在引入自定义样式时使用
+   * @default iimm 可以通过样式覆盖来修改FormItem内部样式(不需要传递此值)
+   */
   formItemPrefixCls?: string,
 }
 
