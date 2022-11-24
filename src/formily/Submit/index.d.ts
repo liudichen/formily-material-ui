@@ -15,4 +15,4 @@ export interface SubmitProps extends LoadingButtonProps {
   keyPressExactMatch?: boolean,
 }
 
-export declare const Submit: React.FC<SubmitProps>;
+export declare const Submit: React.FC<React.PropsWithChildren<SubmitProps>>;

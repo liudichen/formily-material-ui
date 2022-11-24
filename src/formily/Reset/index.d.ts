@@ -8,4 +8,4 @@ export interface ResetProps extends ButtonProps {
   onResetValidateFailed?: (error: Error) => void,
 }
 
-export declare const Reset: React.FC<ResetProps>;
+export declare const Reset: React.FC<React.PropsWithChildren<ResetProps>>;

@@ -46,6 +46,6 @@ export interface StepFormProps extends BoxProps {
   nextProps?: Omit<SubmitProps, 'onSubmit' | 'onSubmitFailed'>,
 }
 
-declare const StepForm: React.ForwardRefRenderFunction<Form, StepFormProps>;
+declare const StepForm: React.ForwardRefRenderFunction<Form, React.PropsWithChildren<StepFormProps>>;
 
 export default StepForm;
