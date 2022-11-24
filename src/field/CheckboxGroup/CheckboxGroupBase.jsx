@@ -12,9 +12,9 @@ export const CheckboxGroupBase = (props) => {
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, formItemCls, formItemStyle, formItemPrefixCls, error, feedbackCls, extraCls,
     keepTopSpace,
-    options: optionsProp, withFormItem,
+    options: optionsProp,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, children, noField, noFormLayout,
+    value: valueProp, onChange: onChangeProp, defaultValue, children, noField, noFormLayout, withFormItem,
     readOnly, disabled,
     minCount, maxCount, layout,
     itemSx, labelPlacement,
