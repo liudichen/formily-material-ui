@@ -16,7 +16,7 @@ export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
   wrapperStyle?: React.CSSProperties,
   tooltip?: React.ReactNode,
   required?: boolean,
-  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | (string & {}),
+  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | 'default' | (string & {}),
   feedbackText?: React.ReactNode,
   feedbackIcon?: React.ReactNode,
   /** formItem下部额外内容 */

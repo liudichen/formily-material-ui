@@ -5,6 +5,12 @@ import { UploadZoneProps } from './UploadZone';
 import { IUploadedFile, FieldBaseProps } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
+interface UploadRefContent {
+  inputRef?: React.ElementRef,
+  rootRef?: React.ElementRef,
+  open?: () => void,
+}
+
 export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUploadedFile[]>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   isImage?: (file: IUploadedFile[]) => boolean,
   previewFile?: (file: IUploadedFile) => void,
@@ -25,7 +31,7 @@ export interface UploadBaseProps extends UploadZoneProps, FieldBaseProps<IUpload
   itemStyle?: React.CSSProperties,
   itemClassName?: string,
   className?: string,
-  uploadRef?: React.RefObject,
+  uploadRef?: React.RefObject<UploadRefContent>,
 
   /** 不从Field获取信息 */
   noField?: boolean,
