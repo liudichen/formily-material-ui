@@ -39,4 +39,4 @@ export interface ModalFormProps extends DialogProps {
   formRef?: React.MutableRefObject<Form>
 }
 
-export declare const ModalForm: React.ForwardRefExoticComponent<ModalFormProps>;
+export declare const ModalForm: React.ForwardRefExoticComponent<React.PropsWithChildren<ModalFormProps>>;

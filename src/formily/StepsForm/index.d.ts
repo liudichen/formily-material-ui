@@ -26,8 +26,8 @@ export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'v
   formRef?: React.RefObject<Form>
 }
 
-declare const StepsForm: React.ForwardRefExoticComponent<StepFormProps> & {
-  StepForm: React.FC<StepFormProps>
+declare const StepsForm: React.ForwardRefExoticComponent<React.PropsWithChildren<StepsFormProps>> & {
+  StepForm: React.FC<React.PropsWithChildren<StepFormProps>>
 };
 
 export {
