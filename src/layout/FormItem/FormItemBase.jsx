@@ -80,7 +80,7 @@ export const FormItemBase = (props) => {
     return labelChildren;
   };
   const renderTooltipIcon = () => {
-    if (tooltip && tooltipLayout === 'icon' && labelPosition !== 'inner') {
+    if (tooltip && (tooltipLayout === 'icon' || !tooltipLayout) && labelPosition !== 'inner') {
       return (
         <span>
           <Tooltip placement='top' title={tooltip} arrow>

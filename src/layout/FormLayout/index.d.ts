@@ -17,6 +17,7 @@ export interface CommonLayoutProps {
   fullWidth?: boolean,
   colon?: boolean,
   tooltipIcon?: React.ReactNode,
+  /** 帮助文本显示方式, text:在问题上显示tooltip, icon:在图标上显示tooltip */
   tooltipLayout?: 'text' | 'icon',
   showFeedback?: boolean,
   feedbackLayout?: 'popover' | 'text',
