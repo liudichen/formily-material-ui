@@ -20,6 +20,7 @@ export interface CommonLayoutProps {
   /** 帮助文本显示方式, text:在问题上显示tooltip, icon:在图标上显示tooltip */
   tooltipLayout?: 'text' | 'icon',
   showFeedback?: boolean,
+  /** 反馈/错误文本显示方式： text：以文本方式显示在组件下方, popover:以在图片上的tooltip方式显示在组件右侧 */
   feedbackLayout?: 'popover' | 'text',
   /** 手动指定不从外层Field获取信息 */
   noField?: boolean,
