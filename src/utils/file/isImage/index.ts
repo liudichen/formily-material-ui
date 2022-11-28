@@ -2,9 +2,9 @@ import { IUploadedFile } from '../../../types';
 
 const isImageFileType = (type: string) => type.indexOf('image/') === 0;
 const extname = (url = '') => {
-  const temp = url.split('/');
-  const filename = temp[temp.length - 1];
-  const filenameWithoutSuffix = filename.split(/#|\?/)[0];
+  const temp = url?.split('/');
+  const filename = temp?.[temp?.length - 1];
+  const filenameWithoutSuffix = filename?.split(/#|\?/)?.[0];
   return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [ '' ])[0];
 };
 
