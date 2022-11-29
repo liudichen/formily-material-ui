@@ -3,7 +3,7 @@ import { useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme, Paper } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import Close from '@mui/icons-material/Close';
 import Draggable from 'react-draggable';
 import classNames from 'classnames';
 
@@ -15,7 +15,7 @@ export const ModalForm = observer((props) => {
   const {
     trigger, title, titleProps, contentProps, actionsProps, triggerProps,
     children,
-    showClose, showReset, showSubmit,
+    showCloseIcon, showReset, showSubmit, CloseIcon,
     submitText, resetText, submitProps, resetProps, createFormOptions,
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
@@ -85,14 +85,14 @@ export const ModalForm = observer((props) => {
             sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }
             } >
             {title}
-            {showClose && (
+            {showCloseIcon && (
               <Tooltip arrow placement='top' title='关闭'>
                 <IconButton
                   aria-label='close'
                   onClick={onClose}
                   sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }}
                 >
-                  <CloseIcon/>
+                  {CloseIcon || <Close />}
                 </IconButton>
               </Tooltip>
             )}
@@ -124,7 +124,7 @@ export const ModalForm = observer((props) => {
 
 ModalForm.defaultProps = {
   fullWidth: true,
-  showClose: true,
+  showCloseIcon: true,
   showSubmit: true,
   showReset: true,
   resetText: '重置',

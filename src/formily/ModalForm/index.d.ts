@@ -17,7 +17,10 @@ export interface ModalFormProps extends DialogProps {
   titleProps?: DialogTitleProps,
   contentProps?: DialogContentProps,
   actionsProps?: DialogActionsProps,
-  showClose?: boolean,
+  /**显示右上角的关闭按钮? */
+  showCloseIcon?: boolean,
+  /**自定义右上角按钮图标 */
+  CloseIcon?: React.ReactNode,
   showReset?: boolean,
   resetProps?: ResetProps,
   resetText?: React.ReactNode,
