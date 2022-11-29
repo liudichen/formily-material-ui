@@ -6,7 +6,6 @@ import { ResetProps } from '../Reset';
 import { SubmitProps } from '../Submit';
 
 export interface ModalFormProps extends DialogProps {
-  memo?: boolean,
   /** 额外的DialogActions项（会放在Reset前） */
   extraActions?: React.ReactNode | React.ReactNode[],
   disabled?: boolean,
