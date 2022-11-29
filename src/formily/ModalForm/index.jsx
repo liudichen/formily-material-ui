@@ -35,7 +35,7 @@ export const ModalForm = observer((props) => {
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
-    if (trigger && res !== false || !trigger) {
+    if (trigger && res !== false) {
       setOpen(false);
     }
   });
