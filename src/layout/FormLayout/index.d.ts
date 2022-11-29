@@ -2,6 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { GridProps } from '@mui/material';
 
 export interface CommonLayoutProps {
+  /** lable/title显示的位置 */
   labelPosition?: 'top' | 'left' | 'inner',
   labelWidth?: number | string,
   labelAlign?: 'left' | 'right',
@@ -11,14 +12,16 @@ export interface CommonLayoutProps {
   wrapperWidth?: number | string,
   wrapperAlign?: 'left' | 'right',
   /**
-   * 子项fullWidth
+   * 子项fullWidth?
    * @default true
    */
   fullWidth?: boolean,
+  /** label/title显示冒号? */
   colon?: boolean,
   tooltipIcon?: React.ReactNode,
   /** 帮助文本显示方式, text:在问题上显示tooltip, icon:在图标上显示tooltip */
   tooltipLayout?: 'text' | 'icon',
+  /** 显示反馈/错误信息? */
   showFeedback?: boolean,
   /** 反馈/错误文本显示方式： text：以文本方式显示在组件下方, popover:以在图片上的tooltip方式显示在组件右侧 */
   feedbackLayout?: 'popover' | 'text',

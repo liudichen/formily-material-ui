@@ -26,6 +26,7 @@ export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
   /** formItem下部额外内容的className */
   extraCls?: string,
   feedbackCls?: string,
+  /** 当不显示label/title时是否保持label/title所占空间？ */
   keepTopSpace?: boolean,
   error?: boolean,
 }
