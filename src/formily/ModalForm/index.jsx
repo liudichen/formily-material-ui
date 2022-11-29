@@ -83,7 +83,7 @@ export const ModalForm = observer((props) => {
             {...(titleProps || {})}
             className={classNames(titleId, titleProps?.className)}
             sx={{ fontSize: '16px', ...(titleProps?.sx || {}) }
-            } 
+            }
           >
             {title}
             {showCloseIcon && (
