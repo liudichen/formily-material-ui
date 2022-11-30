@@ -29,7 +29,7 @@ export const ModalForm = observer((props) => {
   const titleId = useId();
   const [open, setOpen] = useSafeState(false);
   const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend]);
+  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend, createFormOptions]);
 
   React.useImperativeHandle(formRef, () => form, [form]);
 
@@ -104,7 +104,7 @@ export const ModalForm = observer((props) => {
           <DialogActions {...(actionsProps || {})}>
             {extraActions}
             { showReset && (
-              <Reset {...(resetProps || {})}>
+              <Reset disabled={form?.submitting} {...(resetProps || {})}>
                 {resetText}
               </Reset>
             )}
