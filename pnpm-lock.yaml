@@ -26,7 +26,7 @@ specifiers:
   eslint-config-egg: ^12.1.0
   eslint-plugin-react: ^7.31.10
   father: ^4.1.0
-  mui-component: ^1.0.2
+  mui-component: ^1.0.3
   react: ^18.2.0
   react-dom: ^18.2.0
   react-draggable: ^4.4.5
@@ -43,7 +43,7 @@ dependencies:
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
   dayjs: 1.11.6
-  mui-component: 1.0.2_5kfg3cqu3exdqo4r2x7hn2ux2e
+  mui-component: 1.0.3_5kfg3cqu3exdqo4r2x7hn2ux2e
   react-draggable: 4.4.5_biqbaboplfbrettd7655fr4n2y
   react-dropzone: 14.2.3_react@18.2.0
 
@@ -4551,8 +4551,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mui-component/1.0.2_5kfg3cqu3exdqo4r2x7hn2ux2e:
-    resolution: {integrity: sha512-rSEnrUFMDZcJbko6PrWHH1AjL0kLGD9DvxVAn9TbaBEytkPDPv4bDYbp4BpOFNYxi0vpdCCLthSITShkXA/lyQ==}
+  /mui-component/1.0.3_5kfg3cqu3exdqo4r2x7hn2ux2e:
+    resolution: {integrity: sha512-CznnjRO725fmck5IB3RzU8BlfHqYIeB3uKNebND/ejNvgiaPA5FmmYTKoUw1eaWSERl7M3EVnYzwseewzI2Dag==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
@@ -4574,7 +4574,6 @@ packages:
       classnames: 2.3.2
       dayjs: 1.11.6
       react: 18.2.0
-      react-device-detect: 2.2.2_biqbaboplfbrettd7655fr4n2y
       react-dom: 18.2.0_react@18.2.0
       react-draggable: 4.4.5_biqbaboplfbrettd7655fr4n2y
       react-responsive-carousel: 3.2.23
@@ -5394,17 +5393,6 @@ packages:
       safe-buffer: 5.2.1
     dev: true
 
-  /react-device-detect/2.2.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-zSN1gIAztUekp5qUT/ybHwQ9fmOqVT1psxpSlTn1pe0CO+fnJHKRLOWWac5nKxOxvOpD/w84hk1I+EydrJp7SA==}
-    peerDependencies:
-      react: '>= 0.14.0'
-      react-dom: '>= 0.14.0'
-    dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      ua-parser-js: 1.0.32
-    dev: false
-
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -6110,10 +6098,6 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-
-  /ua-parser-js/1.0.32:
-    resolution: {integrity: sha512-dXVsz3M4j+5tTiovFVyVqssXBu5HM47//YSOeZ9fQkdDKkfzv2v3PP1jmH6FUyPW+yCSn7aBVK1fGGKNhowdDA==}
-    dev: false
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
