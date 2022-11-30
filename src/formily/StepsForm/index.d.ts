@@ -16,6 +16,9 @@ export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'v
   direction?: 'horizontal'| 'vertical',
   labelPlacement?: 'horizontal'| 'vertical',
   onFinish?: (values?: object, allValues?: object) => void,
+  /** 传递给createForm的参数
+   * @default {validateFirst:true}
+  */
   createFormOptions?: IFormProps,
 
   ResultRender?: React.Component<ResultRenderProps> | React.FC<ResultRenderProps> | React.ElementType,
