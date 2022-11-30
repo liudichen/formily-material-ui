@@ -1,5 +1,6 @@
 import React from 'react';
 import { useControllableValue, useCreation, useMemoizedFn } from 'ahooks';
+import { toJS } from '@formily/reactive';
 import { DataGrid, zhCN, GridActionsCellItem } from '@mui/x-data-grid';
 import { Tooltip, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -50,7 +51,8 @@ export const EditableTableBase = (props) => {
     ...(sxProp || {}),
   } : sxProp), [sxProp, editingRowBorderColor]);
 
-  const [rows, setRows] = useControllableValue(props, { defaultValue: [] });
+  const [rowsRaw, setRows] = useControllableValue(props, { defaultValue: [] });
+  const rows = toJS(rowsRaw);
   const disabled = useCreation(() => !!(disabledProp || readOnly), [disabledProp, readOnly]);
   const onChange = useMemoizedFn((v) => {
     if (!readOnly && !disabledProp) {
