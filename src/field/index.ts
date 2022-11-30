@@ -25,6 +25,9 @@ export * from './Upload/UploadBase';
 export * from './KeyWords';
 export * from './KeyWords/KeyWordsBase';
 
+export * from './EditableTable';
+export * from './EditableTable/EditableTableBase';
+
 // ====== Date ==============
 export * from './DateTimeLocalizationProvider';
 

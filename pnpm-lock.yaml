@@ -11,6 +11,7 @@ specifiers:
   '@formily/reactive': ^2.2.12
   '@mui/icons-material': ^5.10.14
   '@mui/material': ^5.10.14
+  '@mui/x-data-grid': ^5.17.13
   '@mui/x-date-pickers': ^5.0.8
   '@tabler/icons': ^1.111.0
   '@types/jest': ^29.2.3
@@ -37,6 +38,7 @@ dependencies:
   '@formily/core': 2.2.13
   '@formily/react': 2.2.13_lw4diy5alwqpvaizz5boavgogi
   '@formily/reactive': 2.2.13
+  '@mui/x-data-grid': 5.17.13_6cphdsrmb7qhxzjhcm45nlu2ti
   '@tabler/icons': 1.114.0_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
