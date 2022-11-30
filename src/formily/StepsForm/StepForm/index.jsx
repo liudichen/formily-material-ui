@@ -29,6 +29,7 @@ const StepForm = observer((props) => {
     }
   });
   const onPreviousClick = useMemoizedFn(() => {
+    if (field?.submitting) return;
     onPrevious?.(field);
     handleStepChange?.('previous');
   });
@@ -45,6 +46,7 @@ const StepForm = observer((props) => {
           <Space sx={{}}>
             { !!stepIndex && (
               <Button
+                disabled={field?.submitting}
                 {...(previousProps || {})}
                 onClick={onPreviousClick}
               >
