@@ -1,30 +1,29 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babel/core': ^7.20.2
+  '@babel/core': ^7.20.5
   '@babel/eslint-parser': ^7.19.1
   '@babel/preset-react': ^7.18.6
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
-  '@formily/core': ^2.2.12
-  '@formily/react': ^2.2.12
-  '@formily/reactive': ^2.2.12
-  '@mui/icons-material': ^5.10.14
-  '@mui/material': ^5.10.14
-  '@mui/x-data-grid': ^5.17.13
-  '@mui/x-date-pickers': ^5.0.8
-  '@tabler/icons': ^1.111.0
+  '@formily/core': ^2.2.13
+  '@formily/react': ^2.2.13
+  '@formily/reactive': ^2.2.13
+  '@mui/icons-material': ^5.10.16
+  '@mui/material': ^5.10.16
+  '@mui/x-date-pickers': ^5.0.9
+  '@tabler/icons': ^1.114.0
   '@types/jest': ^29.2.3
   '@types/react': ^18.0.25
   '@types/react-dom': ^18.0.9
-  '@typescript-eslint/eslint-plugin': ^5.43.0
-  '@typescript-eslint/parser': ^5.43.0
+  '@typescript-eslint/eslint-plugin': ^5.45.0
+  '@typescript-eslint/parser': ^5.45.0
   ahooks: ^3.7.2
   classnames: ^2.3.2
   dayjs: ^1.11.6
-  eslint: ^8.27.0
+  eslint: ^8.28.0
   eslint-config-egg: ^12.1.0
-  eslint-plugin-react: ^7.31.10
+  eslint-plugin-react: ^7.31.11
   father: ^4.1.0
   mui-component: ^1.0.3
   react: ^18.2.0
@@ -32,13 +31,12 @@ specifiers:
   react-draggable: ^4.4.5
   react-dropzone: ^14.2.3
   sass: ^1.56.1
-  typescript: ^4.8.4
+  typescript: ^4.9.3
 
 dependencies:
   '@formily/core': 2.2.13
   '@formily/react': 2.2.13_lw4diy5alwqpvaizz5boavgogi
   '@formily/reactive': 2.2.13
-  '@mui/x-data-grid': 5.17.13_6cphdsrmb7qhxzjhcm45nlu2ti
   '@tabler/icons': 1.114.0_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
@@ -2173,7 +2171,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.4
-      caniuse-lite: 1.0.30001434
+      caniuse-lite: 1.0.30001435
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -2339,7 +2337,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001434
+      caniuse-lite: 1.0.30001435
       electron-to-chromium: 1.4.284
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
@@ -2387,8 +2385,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001434:
-    resolution: {integrity: sha512-aOBHrLmTQw//WFa2rcF1If9fa3ypkC1wzqqiKHgfdrXTWcU8C4gKVZT77eQAPWN1APys3+uQ0Df07rKauXGEYA==}
+  /caniuse-lite/1.0.30001435:
+    resolution: {integrity: sha512-kdCkUTjR+v4YAJelyiDTqiu82BDr4W4CP5sgTA0ZBmqn30XfS2ZghPLMowik9TPhS+psWJiUNxsqLyurDbmutA==}
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
