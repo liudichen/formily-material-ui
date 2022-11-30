@@ -77,6 +77,7 @@ interface IProps extends ICommonProps, CommonLayoutProps {
 
 import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
 
+/** 用来处理FormItem及字段项 props的hooks可以从FormLayout或Field 获取布局或label，error等信息*/
 export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFieldConfig = {}) => {
   const formatProps = {
     ...props,
