@@ -1,3 +1,4 @@
+/** 表单Field项的基本Props */
 export interface FieldBaseProps<T> {
   value?: T,
   defaultValue?: T,
