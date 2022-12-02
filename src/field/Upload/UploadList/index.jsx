@@ -28,22 +28,19 @@ const UploadList = (props) => {
   // 更新文件的预览图
   React.useEffect(() => {
     (items || []).forEach((file) => {
-      if (
-        typeof document === 'undefined' ||
+      if (!(typeof document === 'undefined' ||
         typeof window === 'undefined' ||
         !window?.FileReader ||
         !window?.File ||
-        file.url !== undefined
-      ) {
-        return;
-      }
-      file.url = '';
-      if (previewFile) {
-        previewFile(file).then((previewDataUrl) => {
+        file.url !== undefined)) {
+        file.url = '';
+        if (previewFile) {
+          previewFile(file).then((previewDataUrl) => {
           // Need append '' to avoid dead loop
-          file.url = previewDataUrl || '';
-          forceUpdate();
-        });
+            file.url = previewDataUrl || '';
+            forceUpdate();
+          });
+        }
       }
     });
   }, [items, previewFile]);

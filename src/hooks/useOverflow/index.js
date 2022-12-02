@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useSafeState, useSize } from 'ahooks';
 
 export const useOverflow = (threshold = 0, ratio = 1) => {
-  const [ overflow, setOverflow ] = useSafeState(false);
+  const [overflow, setOverflow] = useSafeState(false);
   const containerRef = useRef();
   const contentRef = useRef();
   const containerSize = useSize(containerRef);
@@ -16,7 +16,7 @@ export const useOverflow = (threshold = 0, ratio = 1) => {
         if (overflow) setOverflow(false);
       }
     });
-  }, [ containerWidth, ratio, threshold ]);
+  }, [containerWidth, ratio, threshold]);
 
   return {
     overflow,
