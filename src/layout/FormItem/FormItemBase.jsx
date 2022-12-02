@@ -198,6 +198,4 @@ export const FormItemBase = (props) => {
   );
 };
 
-FormItemBase.defaultProps = {};
-
 FormItemBase.displayName = 'muiFormilyFormItemBase';
