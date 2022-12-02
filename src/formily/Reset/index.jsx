@@ -11,6 +11,7 @@ export const Reset = observer((props) => {
     onResetValidateFailed,
     children,
     onClick,
+    disabled,
     ...restProps
   } = props;
   const form = useParentForm();
@@ -30,6 +31,7 @@ export const Reset = observer((props) => {
 
   return (
     <Button
+      disabled={disabled || form?.submitting}
       onClick={reset}
       {...restProps}
     >
