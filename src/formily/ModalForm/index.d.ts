@@ -1,5 +1,5 @@
 import React from 'react';
-import { DialogProps, DialogActionsProps, DialogContentProps, DialogTitleProps, LinkProps } from '@mui/material';
+import { BoxProps, DialogProps, DialogActionsProps, DialogContentProps, DialogTitleProps, LinkProps, IconButtonProps } from '@mui/material';
 import { Form, IFormProps } from '@formily/core';
 
 import { ResetProps } from '../Reset';
@@ -16,8 +16,14 @@ export interface ModalFormProps extends DialogProps {
   triggerProps?: LinkProps,
   /** 对话框标题 */
   title?: React.ReactNode,
-  /** 标题包裹的DialogTitle的props */
+  /** 标题包裹的DialogTitle的props
+   * @default 原始状态{display:'flex',alginItems:'start',bgcolor:'#f5f5f5',sx:{padding:0}}
+  */
   titleProps?: DialogTitleProps,
+  /** 包裹title内容的Box的props
+   * @default 初始状态{flex:1,fontSize:'16px',height:'100%',alignSelf:'center',marginLeft:1.5,marginY:0.5}
+   */
+  titleBoxProps?: BoxProps,
   /** 内容区包裹的DialogContent的props */
   contentProps?: DialogContentProps,
   /** 底部按钮区包裹的DialogActions的props */
@@ -26,6 +32,10 @@ export interface ModalFormProps extends DialogProps {
   showCloseIcon?: boolean,
   /** 自定义右上角按钮图标 */
   CloseIcon?: React.ReactNode,
+  /** 传递给关闭按钮包裹的IconButton的props
+   * @default 原始状态{sx:{px:0.25,py:0.5}}
+   */
+  closeIconButtonProps?: IconButtonProps,
   /** 显示重置按钮? */
   showReset?: boolean,
   /** 重置按钮的props */
@@ -55,6 +65,8 @@ export interface ModalFormProps extends DialogProps {
    * @default {validateFirst:true}
   */
   createFormOptions?: IFormProps,
+  /** 内容，优先级高于children */
+  content?: React.ReactNode | React.ReactNode[],
 }
 
 export declare const ModalForm: React.ForwardRefExoticComponent<React.PropsWithChildren<ModalFormProps>>;
