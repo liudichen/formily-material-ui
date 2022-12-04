@@ -2,33 +2,34 @@ import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme, Paper } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import { IconCircleX } from '@tabler/icons';
-import Draggable from 'react-draggable';
 import classNames from 'classnames';
+import { DraggablePaper } from 'mui-component';
 
 import { Reset } from '../Reset';
 import { Submit } from '../Submit';
-import { useId } from '../../hooks';
 
 export const ModalForm = observer((props) => {
   const {
     trigger, triggerProps,
     title, titleProps, titleBoxProps,
     contentProps, actionsProps,
-    children, content,
+    children, content, withDialogContentWrapper,
     showCloseIcon, CloseIcon, closeIconButtonProps,
     showReset, showSubmit, submitText, resetText, submitProps, resetProps, createFormOptions,
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
     disabled,
-    formRef, PaperComponent, fullScreen,
-    draggable, responsive, breakpoint, depend, disableVisibleRecreateForm,
+    formRef, PaperComponent,
+    fullScreen: fullScreenProp, draggable: draggableProp,
+    responsive, breakpoint, depend, disableVisibleRecreateForm,
     ...restProps
   } = props;
   const theme = useTheme();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
-  const titleId = useId();
+  const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
+  const draggable = draggableProp && !fullScreen;
   const [open, setOpen] = useSafeState(false);
   const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
   const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend, createFormOptions]);
@@ -46,14 +47,6 @@ export const ModalForm = observer((props) => {
     if (res === true) {
       onClose();
     }
-  });
-  const DraggablePaper = useMemoizedFn((props) => {
-    const { handle = `.${titleId}`, cancel = '[class*="MuiDialogContent-root"]', ...restProps } = props;
-    return (
-      <Draggable handle={handle} cancel={cancel}>
-        <Paper {...restProps} />
-      </Draggable>
-    );
   });
 
   return (
@@ -75,7 +68,7 @@ export const ModalForm = observer((props) => {
       )}
       <Dialog
         {...restProps}
-        fullScreen={fullScreen ?? (responsive ? down : undefined)}
+        fullScreen={fullScreen}
         PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
         open={trigger ? open : !!openProp}
         onClose={onClose}
@@ -87,10 +80,14 @@ export const ModalForm = observer((props) => {
               alignItems='start'
               bgcolor='#f5f5f5'
               {...(titleProps || {})}
-              className={classNames(titleId, titleProps?.className)}
+              className={classNames('dialog-draggable-title', titleProps?.className)}
               sx={{ padding: 0, ...(titleProps?.sx || {}) }}
             >
-              <Box flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5} {...(titleBoxProps || {})}>
+              <Box
+                flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5}
+                {...(titleBoxProps || {})}
+                sx={draggable ? ({ cursor: 'move', ...(titleBoxProps?.sx || {}) }) : titleBoxProps?.sx}
+              >
                 {title}
               </Box>
               {showCloseIcon && (
@@ -107,9 +104,13 @@ export const ModalForm = observer((props) => {
               )}
             </DialogTitle>
           )}
-          <DialogContent {...(contentProps || {})}>
-            {content ?? children}
-          </DialogContent>
+          { withDialogContentWrapper ? (
+            <DialogContent {...(contentProps || {})}>
+              {content ?? children}
+            </DialogContent>
+          ) : (
+            content ?? children
+          )}
           <DialogActions {...(actionsProps || {})}>
             {extraActions}
             { showReset && (
