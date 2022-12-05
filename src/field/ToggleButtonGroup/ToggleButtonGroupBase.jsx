@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSafeState, useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
 import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton } from '@mui/material';
+import { isEqual, isInArray } from '@iimm/shared';
 
 import { FormItemBase } from '../../layout';
-import { isEqual, isInArray, COLORS } from '../../utils';
+import { COLORS } from '../../utils';
 import { useFetchOptions } from '../../hooks';
 
 export const ToggleButtonGroupBase = (props) => {

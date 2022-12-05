@@ -1,10 +1,11 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
+import { isEqual } from '@iimm/shared';
 
 import { FormItemBase } from '../../layout';
 import { useFetchOptions } from '../../hooks';
-import { COLORS, isEqual } from '../../utils';
+import { COLORS } from '../../utils';
 
 export const RadioGroupBase = (props) => {
   const {

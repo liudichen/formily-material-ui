@@ -1,20 +1,13 @@
+import { isImageMimeType, getFileExtensionFromUrl } from '@iimm/shared';
+
 import { IUploadedFile } from '../../../types';
-
-const isImageFileType = (type: string) => type.indexOf('image/') === 0;
-const extname = (url = '') => {
-  const temp = url?.split('/');
-  const filename = temp?.[temp?.length - 1];
-  const filenameWithoutSuffix = filename?.split(/#|\?/)?.[0];
-  return (/\.[^./\\]*$/.exec(filenameWithoutSuffix) || [ '' ])[0];
-};
-
 
 export const isImage = (file: IUploadedFile) => {
   if (file.type && !file.thumbUrl && !file.url) {
-    return isImageFileType(file.type);
+    return isImageMimeType(file.type);
   }
   const url = file.thumbUrl || file.url || '';
-  const extension = extname(url);
+  const extension = getFileExtensionFromUrl(url);
   if (
     /^data:image\//.test(url) ||
     /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(extension)

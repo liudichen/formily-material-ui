@@ -1,4 +1,4 @@
-import { isInArray } from '../../../utils';
+import { isInArray } from '@iimm/shared';
 
 const intersection = (a: any[] = [], b: any[] = []) => {
   return a.filter(item => isInArray(item, b));

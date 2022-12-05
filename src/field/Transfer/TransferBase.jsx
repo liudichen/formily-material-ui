@@ -2,10 +2,9 @@ import React from 'react';
 import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from 'ahooks';
 import { Box, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons';
-import { useOverflow } from '@iimm/shared';
+import { useOverflow, isEqual, isInArray } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
-import { isInArray, isEqual } from '../../utils';
 import { intersection, not, union } from './util';
 import { FormItemBase } from '../../layout';
 import ListCard from './ListCard';

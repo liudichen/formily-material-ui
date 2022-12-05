@@ -1,9 +1,10 @@
 import React from 'react';
 import { useControllableValue, useSafeState } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
+import { isEqual } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
-import { isEqual, renderInnerLabel } from '../../utils';
+import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
 
 export const SelectBase = (props) => {

@@ -2,9 +2,10 @@ import React from 'react';
 import { useControllableValue, useMemoizedFn } from 'ahooks';
 import { Button } from '@mui/material';
 import classNames from 'classnames';
+import { fileToBase64 } from '@iimm/shared';
 
 import { updateFileList, removeFileItem } from './util';
-import { isImage, fileToBase64, prefixCls } from '../../utils';
+import { isImage, prefixCls } from '../../utils';
 import UploadZone from './UploadZone';
 import UploadList from './UploadList';
 import { FormItemBase } from '../../layout';

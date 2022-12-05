@@ -1,9 +1,10 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
+import { isEqual, isInArray } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
-import { isEqual, isInArray, COLORS } from '../../utils';
+import { COLORS } from '../../utils';
 import { FormItemBase } from '../../layout/FormItem/FormItemBase';
 
 export const CheckboxGroupBase = (props) => {

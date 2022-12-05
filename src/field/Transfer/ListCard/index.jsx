@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSafeState } from 'ahooks';
 import { Box, Card, CardHeader, Checkbox, Divider, FormControlLabel, List, ListItem, ListItemIcon, ListItemText, TextField } from '@mui/material';
+import { isEqual, isInArray } from '@iimm/shared';
 
 import { intersection } from '../util';
-import { isEqual, isInArray } from '../../../utils';
 
 const ListCard = (props) => {
   const {
