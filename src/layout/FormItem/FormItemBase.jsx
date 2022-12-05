@@ -3,10 +3,10 @@ import { useCreation } from 'ahooks';
 import { Tooltip } from '@mui/material';
 import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
 import { Popover } from 'mui-component';
+import { useOverflow } from '@iimm/shared';
 import cls from 'classnames';
 
 import './index.scss';
-import { useOverflow } from '../../hooks';
 import { prefixCls } from '../../utils';
 
 const ICON_MAP = {
