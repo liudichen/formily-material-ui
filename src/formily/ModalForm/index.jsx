@@ -141,6 +141,7 @@ ModalForm.defaultProps = {
   resetText: '重置',
   submitText: '提交',
   breakpoint: 'md',
+  withDialogContentWrapper: true,
 };
 
 ModalForm.displayName = 'muiFormilyModalForm';
