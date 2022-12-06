@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer, useForm } from '@formily/react';
+import { useCreation } from 'ahooks';
 import { Grid } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
 
@@ -27,8 +28,9 @@ export const FormLayout = observer((props) => {
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
   const form = useForm();
+  const layout = useCreation(() => ({ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }), [colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem]);
   return (
-    <FormLayoutContext.Provider value={{ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }}>
+    <FormLayoutContext.Provider value={layout}>
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) { return null; }
