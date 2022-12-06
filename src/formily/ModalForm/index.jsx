@@ -2,7 +2,7 @@ import React from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import { IconCircleX } from '@tabler/icons';
 import classNames from 'classnames';
 import { DraggablePaper } from 'mui-component';
