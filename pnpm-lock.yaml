@@ -26,7 +26,7 @@ specifiers:
   eslint-config-egg: ^12.1.0
   eslint-plugin-react: ^7.31.11
   father: ^4.1.0
-  mui-component: ^1.3.0
+  mui-component: ^1.3.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-dropzone: ^14.2.3
@@ -42,7 +42,7 @@ dependencies:
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
   dayjs: 1.11.6
-  mui-component: 1.3.0_nzzrsx6heikpbuh7bbwz776kuq
+  mui-component: 1.3.1_nzzrsx6heikpbuh7bbwz776kuq
   react-dropzone: 14.2.3_react@18.2.0
 
 devDependencies:
@@ -4582,8 +4582,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mui-component/1.3.0_nzzrsx6heikpbuh7bbwz776kuq:
-    resolution: {integrity: sha512-uIU9s4FFW/05NVvtopU2Mq8CBSoBko1EseuTbWvHPE40eI9JrkbJga/lnflVGqKffrBapoAc/1JYAr6FhJJOiA==}
+  /mui-component/1.3.1_nzzrsx6heikpbuh7bbwz776kuq:
+    resolution: {integrity: sha512-u2+zRjrcyFZOp1u6LNjg/hW2nvmdYc0X5fOfmAcgM68bbxmcroj+jYG3HcgIPXog/0pK4vduR61dqBsGogZUgw==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
