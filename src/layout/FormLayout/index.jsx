@@ -34,14 +34,14 @@ export const FormLayout = observer((props) => {
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) { return null; }
-          if ((child.type?.displayName || child.type?.render?.name)?.startsWith('Grid')) {
+          if (['Grid', 'Grid2'].includes(child.type?.displayName || child.type?.render?.name)) {
             return child;
           }
-          if (!noForm && form && child.type?.displayName === 'Field') {
+          if (!noForm && form && ['Field', 'ObjectField', 'ArrayField', 'VoidField'].includes(child.type?.displayName || child.type?.render?.name)) {
             const name = child.props.name;
             if (!name) { return null; }
-            const field = form?.query(`${name}`)?.take()?.display ?? form?.query(`*.${name}`)?.take()?.display;
-            if (field && field !== 'visible') {
+            const display = form?.query(`${name}`)?.take()?.display ?? form?.query(`*.${name}`)?.take()?.display;
+            if (display && display !== 'visible') {
               return null;
             }
           }
