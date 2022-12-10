@@ -9,7 +9,7 @@ specifiers:
   '@formily/core': ^2.2.14
   '@formily/react': ^2.2.14
   '@formily/reactive': ^2.2.14
-  '@iimm/shared': ^1.0.5
+  '@iimm/shared': ^1.1.0
   '@mui/icons-material': ^5.10.16
   '@mui/material': ^5.10.17
   '@mui/x-date-pickers': ^5.0.10
@@ -26,7 +26,7 @@ specifiers:
   eslint-config-egg: ^12.1.0
   eslint-plugin-react: ^7.31.11
   father: ^4.1.1
-  mui-component: ^1.5.0
+  mui-component: ^1.5.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-dropzone: ^14.2.3
@@ -37,12 +37,12 @@ dependencies:
   '@formily/core': 2.2.14
   '@formily/react': 2.2.14_gy2jcindbd2cqrfc5bqbaxpbry
   '@formily/reactive': 2.2.14
-  '@iimm/shared': 1.0.5_react@18.2.0
+  '@iimm/shared': 1.1.0_react@18.2.0
   '@tabler/icons': 1.116.1_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.2_react@18.2.0
   classnames: 2.3.2
   dayjs: 1.11.7
-  mui-component: 1.5.0_7i5nzwyxmuxmp5bxupcouwotgq
+  mui-component: 1.5.1_7i5nzwyxmuxmp5bxupcouwotgq
   react-dropzone: 14.2.3_react@18.2.0
 
 devDependencies:
@@ -837,8 +837,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iimm/shared/1.0.5_react@18.2.0:
-    resolution: {integrity: sha512-B98lkM6ezv5kxnvtSXsyXsno0w/3k1dQhFyN15+J2Uc1zHRhZrzt1i4p0/d1hZ8qVUCU23G53hpTJOq5g06iFA==}
+  /@iimm/shared/1.1.0_react@18.2.0:
+    resolution: {integrity: sha512-Tw9XzaomHmnAUQbznXaTlXezz9NojEbYOxmOaCQVwFyvQ6G4IqI9Q5KLTlK3TigGgs50gVkkxn6EgV45A5xpjw==}
     peerDependencies:
       react: '>=16.8'
     peerDependenciesMeta:
@@ -4665,8 +4665,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mui-component/1.5.0_7i5nzwyxmuxmp5bxupcouwotgq:
-    resolution: {integrity: sha512-tKKBwYuKvQ63nqC/l2UndEfWyZjGD6kfWOuwo2MvzFcCS45BQ0RJGibuavNapd7e2byb0lTx/hI+X7imQV/cHA==}
+  /mui-component/1.5.1_7i5nzwyxmuxmp5bxupcouwotgq:
+    resolution: {integrity: sha512-TPc+Pg6fIniAMmKeGvj/Vgyule3o+Bqs91CnLxiYN1NACp7zzgIG2IRg0eXSjmQY9zjiJS3k3Xbi7mbsAwfM/Q==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
@@ -4679,7 +4679,7 @@ packages:
     dependencies:
       '@emotion/react': 11.10.5_xl5my4wapvq2ctl7qwehtbgorq
       '@emotion/styled': 11.10.5_3djhvnr4jirfvebjqpipo7gthy
-      '@iimm/shared': 1.0.5_react@18.2.0
+      '@iimm/shared': 1.1.0_react@18.2.0
       '@mui/icons-material': 5.10.16_x5g5t372wpbxfzkqxtxktxetsq
       '@mui/material': 5.10.17_lskpmcsdi7ipu6qpuapyu56ihm
       '@mui/x-data-grid': 5.17.14_ywbsaf22bjalctxw3wjvx24upy
