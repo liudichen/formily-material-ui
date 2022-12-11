@@ -55,7 +55,7 @@ export const StepsForm = observer((props) => {
           alternativeLabel={alternativeLabel ?? (labelPlacement === 'vertical')}
           {...restProps}
         >
-          { React.Children.map(children, (child, index) => {
+          {React.Children.map(children, (child, index) => {
             if (!child) { return null; }
             const { title, subTitle, icon = StepIcon, onFinish: onFinishProp, name } = child.props;
             const overwriteProps = {
@@ -69,10 +69,10 @@ export const StepsForm = observer((props) => {
             }
             return (
               <Step>
-                <StepLabel optional={ subTitle } StepIconComponent={icon}>
-                  { title }
+                <StepLabel optional={subTitle} StepIconComponent={icon}>
+                  {title}
                 </StepLabel>
-                { (direction ?? orientation) === 'vertical' && (
+                {(direction ?? orientation) === 'vertical' && (
                   <StepContent {...(stepContentProps || {})}>
                     <ObjectField name={name ?? index}>
                       {(field) => {
@@ -89,7 +89,7 @@ export const StepsForm = observer((props) => {
             );
           })}
         </Stepper>
-        { (direction ?? orientation) !== 'vertical' && (
+        {(direction ?? orientation) !== 'vertical' && (
           React.Children.map(children, (child, index) => {
             if (!child || index !== activeStep) { return null; }
             const { onFinish: onFinishProp, name } = child.props;
@@ -107,7 +107,7 @@ export const StepsForm = observer((props) => {
                 {(field) => {
                   return (
                     <Box>
-                      { React.cloneElement(child, { ...overwriteProps, field })}
+                      {React.cloneElement(child, { ...overwriteProps, field })}
                     </Box>
                   );
                 }}
@@ -115,7 +115,7 @@ export const StepsForm = observer((props) => {
             );
           })
         )}
-        { activeStep === stepsCount && stepsCount !== 0 && (
+        {activeStep === stepsCount && stepsCount !== 0 && (
           <ResultRender
             handleStepChange={handleStepChange}
             form={form}
@@ -143,4 +143,4 @@ StepsForm.defaultProps = {
 };
 
 StepsForm.StepForm = StepForm;
-StepsForm.displayName = 'muiFormilyStepsForm';
+StepsForm.displayName = 'iimm.Mui.Formily.StepsForm';

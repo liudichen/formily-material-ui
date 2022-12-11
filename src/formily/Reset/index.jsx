@@ -47,4 +47,4 @@ Reset.defaultProps = {
   onResetValidateFailed: (error) => console.log('resetValidateFailed', error),
 };
 
-Reset.displayName = 'muiFormilyReset';
+Reset.displayName = 'iimm.Mui.Formily.Reset';

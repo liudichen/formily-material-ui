@@ -13,4 +13,4 @@ export const Input = observer((props) => {
   );
 });
 
-Input.displayName = 'muiFormilyInput';
+Input.displayName = 'iimm.Mui.Formily.Input';

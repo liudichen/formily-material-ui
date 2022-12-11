@@ -64,8 +64,8 @@ export const Submit = observer((props) => {
 Submit.defaultProps = {
   children: '提交',
   variant: 'contained',
-  onSubmitSuccess: () => {},
+  onSubmitSuccess: () => { },
   onSubmitFailed: (error) => { console.log('submitFailed', error); },
 };
 
-Submit.displayName = 'muiFormilySubmit';
+Submit.displayName = 'iimm.Mui.Formily.Submit';

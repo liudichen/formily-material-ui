@@ -24,7 +24,7 @@ export const DateTimePickerBase = (props) => {
       label={showInnerLabel ? label : undefined}
       value={value || null}
       onChange={onChange}
-      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
+      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx} />}
       {...restProps}
     />
   );
@@ -80,4 +80,4 @@ DateTimePickerBase.defaultProps = {
   },
 };
 
-DateTimePickerBase.displayName = 'muiFormilyDateTimePickerBase';
+DateTimePickerBase.displayName = 'iimm.Mui.Formily.DateTimePickerBase';

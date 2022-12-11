@@ -13,4 +13,4 @@ export const TimePicker = observer((props) => {
   );
 });
 
-TimePicker.displayName = 'muiFormilyTimePicker';
+TimePicker.displayName = 'iimm.Mui.Formily.TimePicker';

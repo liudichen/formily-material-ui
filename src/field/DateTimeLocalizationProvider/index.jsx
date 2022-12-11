@@ -20,4 +20,4 @@ DateTimeLocalizationProvider.defaultProps = {
   localeText: zhCN.components.MuiLocalizationProvider.defaultProps.localeText,
 };
 
-DateTimeLocalizationProvider.displayName = 'muiFormilyDateTimeLocalizationProvider';
+DateTimeLocalizationProvider.displayName = 'iimm.Mui.Formily.DateTimeLocalizationProvider';

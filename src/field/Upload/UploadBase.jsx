@@ -162,4 +162,4 @@ UploadBase.defaultProps = {
   previewFile: defaultPreviewFile,
 };
 
-UploadBase.displayName = 'muiFormilyUploadBase';
+UploadBase.displayName = 'iimm.Mui.Formily.UploadBase';

@@ -105,7 +105,7 @@ export const TransferBase = (props) => {
       flexDirection={overflow ? 'column' : 'row'}
       {...(containerBoxProps || {})}
     >
-      { loading ? (
+      {loading ? (
         <Skeleton
           variant='rectangular'
           width={width ?? minWidth ?? maxWidth}
@@ -144,24 +144,24 @@ export const TransferBase = (props) => {
         }}
       >
         <IconButton
-          color = 'primary'
+          color='primary'
           {...(iconButtonProps || {})}
-          onClick = {onClickToRight}
-          disabled = {disabled || readOnly || !leftChecked?.length}
+          onClick={onClickToRight}
+          disabled={disabled || readOnly || !leftChecked?.length}
         >
           <IconArrowBigRight />
         </IconButton>
         <IconButton
-          color = 'primary'
+          color='primary'
           tabIndex={-1}
           {...(iconButtonProps || {})}
-          onClick = {onClickToLeft}
-          disabled = {disabled || readOnly || !rightChecked?.length}
+          onClick={onClickToLeft}
+          disabled={disabled || readOnly || !rightChecked?.length}
         >
           <IconArrowBigLeft />
         </IconButton>
       </Box>
-      { loading ? (
+      {loading ? (
         <Skeleton
           variant='rectangular'
           width={width}
@@ -244,4 +244,4 @@ TransferBase.defaultProps = {
   overflowThreshold: 40,
 };
 
-TransferBase.displayName = 'muiFormilyTransferBase';
+TransferBase.displayName = 'iimm.Mui.Formily.TransferBase';

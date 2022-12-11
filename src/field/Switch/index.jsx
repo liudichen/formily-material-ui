@@ -13,4 +13,4 @@ export const Switch = observer((props) => {
   );
 });
 
-Switch.displayName = 'muiFormilySwitch';
+Switch.displayName = 'iimm.Mui.Formily.Switch';

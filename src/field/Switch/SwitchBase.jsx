@@ -25,7 +25,7 @@ export const SwitchBase = (props) => {
       alignItems='center'
       spacing={spacing}
     >
-      { !!left && (
+      {!!left && (
         <span
           onClick={() => { if (!readOnly && !props.disabled) onChange(false); }}
         >
@@ -45,7 +45,7 @@ export const SwitchBase = (props) => {
         edge={edge ?? (left ? false : 'start')}
         {...restProps}
       />
-      { !!right && (
+      {!!right && (
         <span
           onClick={() => { if (!readOnly && !props.disabled) onChange(true); }}
         >
@@ -105,4 +105,4 @@ SwitchBase.defaultProps = {
   color: 'primary',
 };
 
-SwitchBase.displayName = 'muiFormilySwitchBase';
+SwitchBase.displayName = 'iimm.Mui.Formily.SwitchBase';

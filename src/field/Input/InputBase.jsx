@@ -62,7 +62,7 @@ export const InputBase = (props) => {
             >
               <Close fontSize='small' />
             </IconButton>
-            { endAdornmentItem }
+            {endAdornmentItem}
           </InputAdornment>
         ) : endAdornmentItem ? (
           <InputAdornment
@@ -71,7 +71,7 @@ export const InputBase = (props) => {
               mr: props.multiline ? 1.5 : undefined,
             }}
           >
-            { endAdornmentItem }
+            {endAdornmentItem}
           </InputAdornment>
         ) : null,
         ...(InputProps || {}),
@@ -124,4 +124,4 @@ InputBase.defaultProps = {
   size: 'small',
 };
 
-InputBase.displayName = 'muiFormilyInputBase';
+InputBase.displayName = 'iimm.Mui.Formily.InputBase';

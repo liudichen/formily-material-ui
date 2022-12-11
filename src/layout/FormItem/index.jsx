@@ -14,4 +14,4 @@ export const FormItem = observer((props) => {
   );
 });
 
-FormItem.displayName = 'muiFormilyFormItem';
+FormItem.displayName = 'iimm.Mui.Formily.FormItem';

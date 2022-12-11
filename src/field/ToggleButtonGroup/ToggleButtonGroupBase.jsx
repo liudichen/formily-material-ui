@@ -79,7 +79,7 @@ export const ToggleButtonGroupBase = (props) => {
       color={color}
       {...restProps}
     >
-      { options.map((item, index) => (
+      {options.map((item, index) => (
         <MuiToggleButton
           key={index}
           size={item?.size ?? size}
@@ -90,7 +90,7 @@ export const ToggleButtonGroupBase = (props) => {
           selected={exclusive ? isEqual(item.value, value) : isInArray(item.value, value)}
           sx={item?.sx ?? itemSx}
         >
-          { item.label }
+          {item.label}
         </MuiToggleButton>
       ))}
     </MuiToggleButtonGroup>
@@ -142,4 +142,4 @@ ToggleButtonGroupBase.defaultProps = {
   itemMinWidth: 50,
 };
 
-ToggleButtonGroupBase.displayName = 'muiFormilyToggleButtonGroupBase';
+ToggleButtonGroupBase.displayName = 'iimm.Mui.Formily.ToggleButtonGroupBase';

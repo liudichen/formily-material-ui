@@ -13,4 +13,4 @@ export const RadioGroup = observer((props) => {
   );
 });
 
-RadioGroup.displayName = 'muiFormilyRadioGroup';
+RadioGroup.displayName = 'iimm.Mui.Formily.RadioGroup';

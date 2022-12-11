@@ -41,7 +41,7 @@ export const RadioGroupBase = (props) => {
       sx={sx}
       {...restProps}
     >
-      { options.map((item, index) => (
+      {options.map((item, index) => (
         <FormControlLabel
           key={index}
           label={item.label ?? ''}
@@ -110,4 +110,4 @@ RadioGroupBase.defaultProps = {
   layout: 'horizontal',
 };
 
-RadioGroupBase.displayName = 'muiFormilyRadioGroupBase';
+RadioGroupBase.displayName = 'iimm.Mui.Formily.RadioGroupBase';

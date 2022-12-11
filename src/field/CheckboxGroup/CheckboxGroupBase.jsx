@@ -63,7 +63,7 @@ export const CheckboxGroupBase = (props) => {
     </Skeleton>
   ) : (
     <FormGroup row={row ?? layout === 'horizontal'} {...restProps}>
-      { options.map((item, index) => (
+      {options.map((item, index) => (
         <FormControlLabel
           key={index}
           label={item.label ?? ''}
@@ -131,4 +131,4 @@ CheckboxGroupBase.defaultProps = {
   size: 'small',
 };
 
-CheckboxGroupBase.displayName = 'muiFormilyCheckboxGroupBase';
+CheckboxGroupBase.displayName = 'iimm.Mui.Formily.CheckboxGroupBase';

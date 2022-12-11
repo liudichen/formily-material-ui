@@ -7,8 +7,8 @@ import { useFormilyFieldProps } from '../../hooks';
 export const CheckboxGroup = observer((props) => {
   const formilyFieldProps = useFormilyFieldProps(props, { options: true });
   return (
-    <CheckboxGroupBase {...formilyFieldProps}/>
+    <CheckboxGroupBase {...formilyFieldProps} />
   );
 });
 
-CheckboxGroup.displayName = 'muiFormilyCheckboxGroup';
+CheckboxGroup.displayName = 'iimm.Mui.Formily.CheckboxGroup';

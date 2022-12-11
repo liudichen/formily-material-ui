@@ -23,7 +23,7 @@ export const TimePickerBase = (props) => {
       value={value || null}
       onChange={onChange}
       label={showInnerLabel ? label : undefined}
-      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>}
+      renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx} />}
       views={views ?? (showSecond ? ['hours', 'minutes', 'seconds'] : undefined)}
       inputFormat={inputFormat ?? (showSecond ? 'HH:mm:ss' : undefined)}
       {...restProps}
@@ -79,4 +79,4 @@ TimePickerBase.defaultProps = {
   },
 };
 
-TimePickerBase.displayName = 'muiFormilyTimePickerBase';
+TimePickerBase.displayName = 'iimm.Mui.Formily.TimePickerBase';

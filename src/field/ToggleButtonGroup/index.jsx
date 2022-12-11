@@ -20,4 +20,4 @@ ToggleButtonGroup.defaultProps = {
   itemMinWidth: 50,
 };
 
-ToggleButtonGroup.displayName = 'muiFormilyToggleButtonGroup';
+ToggleButtonGroup.displayName = 'iimm.Mui.Formily.ToggleButtonGroup';

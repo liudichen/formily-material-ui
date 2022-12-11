@@ -13,4 +13,4 @@ export const Select = observer((props) => {
   );
 });
 
-Select.displayName = 'muiFormilySelect';
+Select.displayName = 'iimm.Mui.Formily.Select';

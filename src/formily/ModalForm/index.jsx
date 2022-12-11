@@ -51,7 +51,7 @@ export const ModalForm = observer((props) => {
 
   return (
     <>
-      { !!trigger && (
+      {!!trigger && (
         <Link
           underline='none'
           {...(triggerProps || {})}
@@ -74,7 +74,7 @@ export const ModalForm = observer((props) => {
         onClose={onClose}
       >
         <FormProvider form={form}>
-          { (!!title || showCloseIcon) && (
+          {(!!title || showCloseIcon) && (
             <DialogTitle
               display='flex'
               alignItems='start'
@@ -98,13 +98,13 @@ export const ModalForm = observer((props) => {
                     aria-label='close'
                     onClick={onClose}
                   >
-                    {CloseIcon || <IconCircleX size='1.5em' stroke='1.5px' color='#8c8c8c'/>}
+                    {CloseIcon || <IconCircleX size='1.5em' stroke='1.5px' color='#8c8c8c' />}
                   </IconButton>
                 </Tooltip>
               )}
             </DialogTitle>
           )}
-          { withDialogContentWrapper ? (
+          {withDialogContentWrapper ? (
             <DialogContent {...(contentProps || {})}>
               {content ?? children}
             </DialogContent>
@@ -113,12 +113,12 @@ export const ModalForm = observer((props) => {
           )}
           <DialogActions {...(actionsProps || {})}>
             {extraActions}
-            { showReset && (
+            {showReset && (
               <Reset disabled={form?.submitting} {...(resetProps || {})}>
                 {resetText}
               </Reset>
             )}
-            { showSubmit && (
+            {showSubmit && (
               <Submit
                 {...(submitProps || {})}
                 onSubmit={onSubmit}
@@ -144,4 +144,4 @@ ModalForm.defaultProps = {
   withDialogContentWrapper: true,
 };
 
-ModalForm.displayName = 'muiFormilyModalForm';
+ModalForm.displayName = 'iimm.Mui.Formily.ModalForm';

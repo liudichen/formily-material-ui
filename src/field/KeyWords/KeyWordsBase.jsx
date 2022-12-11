@@ -73,7 +73,7 @@ export const KeyWordsBase = (props) => {
             onChange={onTextChange}
             ref={ref}
           />
-          { (showClear && !!text) ? (
+          {(showClear && !!text) ? (
             <IconButton
               size='small'
               sx={{ color: 'InactiveCaptionText' }}
@@ -94,7 +94,7 @@ export const KeyWordsBase = (props) => {
             {...(AddButtonProps || {})}
             onClick={handleAddKeyWord}
           >
-            { AddIcon }
+            {AddIcon}
           </IconButton>
         </Paper>
       ) : null}
@@ -106,7 +106,7 @@ export const KeyWordsBase = (props) => {
         gap={0.5}
         {...(chipsBoxProps || {})}
       >
-        { (value || []).map((ele, index) => {
+        {(value || []).map((ele, index) => {
           if (typeof renderChip === 'function') {
             const Node = renderChip({ item: ele, index, items: value, disabled: disabled || readOnly, handleRemoveKeyWord });
             return Node || null;
@@ -172,4 +172,4 @@ KeyWordsBase.defaultProps = {
   AddIcon: <TelegramIcon />,
 };
 
-KeyWordsBase.displayName = 'muiFormilyKeyWordsBase';
+KeyWordsBase.displayName = 'iimm.Mui.Formily.KeyWordsBase';

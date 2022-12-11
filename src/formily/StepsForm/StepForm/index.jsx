@@ -44,7 +44,7 @@ const StepForm = observer((props) => {
         </Grid>
         <Grid item xs={12}>
           <Space sx={{}}>
-            { !!stepIndex && (
+            {!!stepIndex && (
               <Button
                 disabled={field?.submitting}
                 {...(previousProps || {})}
@@ -60,7 +60,7 @@ const StepForm = observer((props) => {
               onSubmitFailed={onSubmitFail}
               onSubmit={onSubmit}
             >
-              { stepIndex + 1 === stepsCount ? nextText?.[1] : nextText?.[0] }
+              {stepIndex + 1 === stepsCount ? nextText?.[1] : nextText?.[0]}
             </Submit>
           </Space>
         </Grid>
@@ -74,6 +74,6 @@ StepForm.defaultProps = {
   previousText: '上一步',
 };
 
-StepForm.displayName = 'muiFormilyStepForm';
+StepForm.displayName = 'iimm.Mui.Formily.Steps.Form.StepForm';
 
 export default StepForm;

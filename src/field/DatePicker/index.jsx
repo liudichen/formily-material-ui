@@ -24,4 +24,4 @@ DatePicker.defaultProps = {
   },
 };
 
-DatePicker.displayName = 'muiFormilyDatePicker';
+DatePicker.displayName = 'iimm.Mui.Formily.DatePicker';

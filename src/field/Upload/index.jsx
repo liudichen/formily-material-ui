@@ -5,7 +5,7 @@ import { UploadBase } from './UploadBase';
 import { useFormilyFieldProps } from '../../hooks';
 
 export const Upload = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, { });
+  const formilyFieldProps = useFormilyFieldProps(props, {});
   return (
     <UploadBase
       {...formilyFieldProps}
@@ -13,4 +13,4 @@ export const Upload = observer((props) => {
   );
 });
 
-Upload.displayName = 'muiFormilyUpload';
+Upload.displayName = 'iimm.Mui.Formily.Upload';

@@ -14,4 +14,4 @@ export const KeyWords = observer((props) => {
   );
 });
 
-KeyWords.displayName = 'muiFormilyKeyWords';
+KeyWords.displayName = 'iimm.Mui.Formily.KeyWords';

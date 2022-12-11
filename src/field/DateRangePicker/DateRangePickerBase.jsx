@@ -23,9 +23,9 @@ export const DateRangePickerBase = (props) => {
       onChange={onChange}
       renderInput={(startProps, endProps) => (
         <>
-          <TextField {...startProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>
-          <Box sx={toSx}>{ toText }</Box>
-          <TextField {...endProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx}/>
+          <TextField {...startProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx} />
+          <Box sx={toSx}>{toText}</Box>
+          <TextField {...endProps} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx} />
         </>
       )}
       {...restProps}
@@ -84,4 +84,4 @@ DateRangePickerBase.defaultProps = {
   },
 };
 
-DateRangePickerBase.displayName = 'muiFormilyDateRangePickerBase';
+DateRangePickerBase.displayName = 'iimm.Mui.Formily.DateRangePickerBase';

@@ -89,4 +89,4 @@ SelectBase.defaultProps = {
   variant: 'outlined',
 };
 
-SelectBase.displayName = 'muiFormilySelectBase';
+SelectBase.displayName = 'iimm.Mui.Formily.SelectBase';
