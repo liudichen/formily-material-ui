@@ -1,4 +1,5 @@
 import React from 'react';
+import { IFormProps } from '@formily/core';
 import { ModalProps } from 'mui-component';
 
 import { ResetProps } from '../Reset';
