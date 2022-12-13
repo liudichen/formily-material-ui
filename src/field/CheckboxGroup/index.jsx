@@ -9,6 +9,6 @@ export const CheckboxGroup = observer((props) => {
   return (
     <CheckboxGroupBase {...formilyFieldProps} />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.CheckboxGroup' });
 
 CheckboxGroup.displayName = 'iimm.Mui.Formily.CheckboxGroup';

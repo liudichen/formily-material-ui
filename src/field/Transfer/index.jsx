@@ -11,6 +11,6 @@ export const Transfer = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.Transfer' });
 
 Transfer.displayName = 'iimm.Mui.Formily.Transfer';

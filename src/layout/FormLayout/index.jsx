@@ -54,7 +54,7 @@ export const FormLayout = observer((props) => {
       </Grid>
     </FormLayoutContext.Provider>
   );
-});
+}, { displayName: 'iimm.Mui.Formily.FormLayout' });
 
 FormLayout.defaultProps = {
   defaultCols: { xs: 6, sm: 4, md: 3, xl: 2 },
@@ -66,5 +66,7 @@ FormLayout.defaultProps = {
   fullWidth: true,
   withFormItem: true,
 };
+
+FormLayout.displayName = 'iimm.Mui.Formily.FormLayout';
 
 export default FormLayout;

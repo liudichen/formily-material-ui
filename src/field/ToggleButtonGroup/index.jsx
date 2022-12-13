@@ -11,7 +11,7 @@ export const ToggleButtonGroup = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.ToggleButtonGroup' });
 
 ToggleButtonGroup.defaultProps = {
   size: 'small',

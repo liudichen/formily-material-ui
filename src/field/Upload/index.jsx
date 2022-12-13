@@ -11,6 +11,6 @@ export const Upload = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.Upload' });
 
 Upload.displayName = 'iimm.Mui.Formily.Upload';

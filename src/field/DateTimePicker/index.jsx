@@ -11,6 +11,6 @@ export const DateTimePicker = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.DateTimePicker' });
 
 DateTimePicker.displayName = 'iimm.Mui.Formily.DateTimePicker';

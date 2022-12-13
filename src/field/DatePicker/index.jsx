@@ -11,7 +11,7 @@ export const DatePicker = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.DatePicker' });
 
 DatePicker.defaultProps = {
   size: 'small',

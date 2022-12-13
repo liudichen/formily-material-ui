@@ -11,6 +11,6 @@ export const Input = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.Input' });
 
 Input.displayName = 'iimm.Mui.Formily.Input';

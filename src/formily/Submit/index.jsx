@@ -59,7 +59,7 @@ export const Submit = observer((props) => {
       {children}
     </LoadingButton>
   );
-});
+}, { displayName: 'iimm.Mui.Formily.Submit' });
 
 Submit.defaultProps = {
   children: '提交',

@@ -12,6 +12,6 @@ export const FormItem = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.FormItem' });
 
 FormItem.displayName = 'iimm.Mui.Formily.FormItem';

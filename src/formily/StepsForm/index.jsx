@@ -132,7 +132,7 @@ export const StepsForm = observer((props) => {
       </FormProvider>
     </Box>
   );
-}, { forwardRef: true });
+}, { forwardRef: true, displayName: 'iimm.Mui.Formily.StepsForm' });
 
 StepsForm.defaultProps = {
   direction: 'horizontal',

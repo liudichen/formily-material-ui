@@ -38,7 +38,7 @@ export const Reset = observer((props) => {
       {children}
     </Button>
   );
-});
+}, { displayName: 'iimm.Mui.Formily.Reset' });
 
 Reset.defaultProps = {
   children: '重置',

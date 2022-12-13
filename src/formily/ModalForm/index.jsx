@@ -131,7 +131,7 @@ export const ModalForm = observer((props) => {
       </Dialog>
     </>
   );
-}, { forwardRef: true });
+}, { forwardRef: true, displayName: 'iimm.Mui.Formily.ModalForm' });
 
 ModalForm.defaultProps = {
   fullWidth: true,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCreation } from 'ahooks';
+import { observer } from '@formily/react';
 import { Tooltip } from '@mui/material';
 import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
 import { Popover } from 'mui-component';
@@ -15,7 +16,7 @@ const ICON_MAP = {
   warning: <ErrorOutlineOutlined fontSize='small' />,
 };
 
-export const FormItemBase = (props) => {
+export const FormItemBase = observer((props) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -196,6 +197,6 @@ export const FormItemBase = (props) => {
       {!!extra && (<div className={cls({ [`${prefix}-extra`]: true, [`${extraCls}`]: !!extraCls })}>{extra}</div>)}
     </div>
   );
-};
+}, { displayName: 'iimm.Mui.Formily.FormItemBase' });
 
 FormItemBase.displayName = 'iimm.Mui.Formily.FormItemBase';

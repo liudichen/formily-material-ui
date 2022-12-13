@@ -12,6 +12,6 @@ export const KeyWords = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.KeyWords' });
 
 KeyWords.displayName = 'iimm.Mui.Formily.KeyWords';

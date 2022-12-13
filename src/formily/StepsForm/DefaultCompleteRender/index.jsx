@@ -32,12 +32,14 @@ const DefaultCompleteRender = observer((props) => {
       }
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.StepsForm.DefaultCompleteRender' });
 
 DefaultCompleteRender.defaultProps = {
   resultTitle: '操作成功',
   resultSubTitle: '点击返回以再次操作',
   resultResetText: '返回',
 };
+
+DefaultCompleteRender.displayName = 'iimm.Mui.Formily.StepsForm.DefaultCompleteRender';
 
 export default DefaultCompleteRender;

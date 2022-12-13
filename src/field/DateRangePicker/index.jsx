@@ -11,6 +11,6 @@ export const DateRangePicker = observer((props) => {
       {...formilyFieldProps}
     />
   );
-});
+}, { displayName: 'iimm.Mui.Formily.DateRangePicker' });
 
 DateRangePicker.displayName = 'iimm.Mui.Formily.DateRangePicker';

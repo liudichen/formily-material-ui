@@ -67,13 +67,13 @@ const StepForm = observer((props) => {
       </Grid>
     </Box>
   );
-});
+}, { displayName: 'iimm.Mui.Formily.StepsForm.StepForm' });
 
 StepForm.defaultProps = {
   nextText: ['下一步', '提交'],
   previousText: '上一步',
 };
 
-StepForm.displayName = 'iimm.Mui.Formily.Steps.Form.StepForm';
+StepForm.displayName = 'iimm.Mui.Formily.StepsForm.StepForm';
 
 export default StepForm;
