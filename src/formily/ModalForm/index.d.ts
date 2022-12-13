@@ -5,7 +5,7 @@ import { ModalProps } from 'mui-component';
 import { ResetProps } from '../Reset';
 import { SubmitProps } from '../Submit';
 
-export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCancel' | 'onCancel' | 'cancelText' | 'cancelProps' | 'showConfirm' | 'onConfirm' | 'confirmText' | 'confirmProps'> {
+export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCancel' | 'onCancel' | 'cancelText' | 'cancelProps' | 'showConfirm' | 'onConfirm' | 'confirmText' | 'confirmProps' | 'setOpen'> {
   /** 额外的DialogActions项（会放在Reset前） */
   extraActions?: React.ReactNode | React.ReactNode[],
   /** 显示重置按钮? */
