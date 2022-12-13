@@ -1,11 +1,12 @@
 import React from 'react';
-import { useControllableValue, useSafeState } from 'ahooks';
+import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
 import { isEqual } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
 import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
+import { isInArray } from '@iimm/shared';
 
 export const SelectBase = (props) => {
   const {
@@ -16,6 +17,7 @@ export const SelectBase = (props) => {
     options: optionsProp, refreshOptionsFlag, showInnerLabel, innerLabelProps,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
+    allowExtraValue,
     placeholder, variant,
     disableCloseOnSelect,
     ...restProps
@@ -23,13 +25,22 @@ export const SelectBase = (props) => {
   const [loading, setLoading] = useSafeState(false);
   const [value, onChange] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
+  const onValidChange = useMemoizedFn((e, v) => {
+    if (allowExtraValue) {
+      onChange(v);
+    } else {
+      const optValues = (options || []).map((ele) => ele.value);
+      const value = props.multiple ? (v ? v.filter((ele) => isInArray(ele.value, optValues)) : v) : ((!v || isInArray(v.value, optValues)) ? v : null);
+      onChange(value);
+    }
+  });
   const dom = (
     <Autocomplete
       loading={loading}
       options={options}
       value={value || (props.multiple ? [] : null)}
       fullWidth={fullWidth}
-      onChange={(e, v) => onChange(v)}
+      onChange={onValidChange}
       isOptionEqualToValue={(op, v) => isEqual(op.value, v?.value)}
       disableCloseOnSelect={disableCloseOnSelect ?? props.multiple}
       renderInput={(params) => (

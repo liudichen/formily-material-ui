@@ -16,6 +16,8 @@ export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFiel
   required?: boolean,
   tooltip?: React.ReactNode,
   variant?: 'outlined' | 'filled' | 'standard',
+  /** 允许不再options里的值? */
+  allowExtraValue?: boolean,
 
 
   /** 不从Field获取信息 */
