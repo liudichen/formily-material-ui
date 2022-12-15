@@ -21,29 +21,31 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: [ '*.ts', '*.tsx' ],
       extends: 'eslint-config-egg/typescript',
       parser: '@typescript-eslint/parser',
       plugins: [
-        'react',
         '@typescript-eslint/eslint-plugin',
+        'react',
       ],
+      rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+      },
     },
   ],
   rules: {
-    'react/jsx-uses-react': 2,
+    'react/jsx-uses-react': 'off',
     'react/jsx-uses-vars': 'error',
     'generator-star-spacing': 'off',
     'babel/generator-star-spacing': 'off',
     'no-unused-vars': [
       'warn',
       {
-        argsIgnorePattern: '(^_)|(^props$)|(^e$)',
+        argsIgnorePattern: '(^_)|(^props$)|(^e$)|(^React$)',
       },
     ],
-    'array-bracket-spacing': ['warn', 'never'],
-    'arrow-parens': ['warn', 'always'],
-    'no-empty': ['error', { allowEmptyCatch: true }],
+    'arrow-parens': [ 'warn', 'always' ],
+    'no-empty': [ 'error', { allowEmptyCatch: true }],
     'prefer-promise-reject-errors': 'off',
   },
 };

@@ -3,7 +3,7 @@ import { LoadingButtonProps } from 'mui-component';
 
 export interface SubmitProps extends LoadingButtonProps {
   resetOnSuccess?: boolean,
-  onSubmit?: (value: object) => void,
+  onSubmit?: ((value: any) => void) | ((value: any) => Promise<void>),
   onSubmitSuccess?: (res: any) => void,
   onSubmitFailed?: (error: Error) => void,
   loading?: boolean,

@@ -15,7 +15,7 @@ export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<Fo
   /** 仅showInnerLabel=true时传递给内部Label */
   innerLabelProps?: FormLabelProps,
 
-  type: 'text' | 'password' | 'date' | 'color' | 'datetime-local' | 'email' | 'month' | 'number' | 'tel' | 'time' | 'url' | 'week' | 'datetime',
+  type?: 'text' | 'password' | 'date' | 'color' | 'datetime-local' | 'email' | 'month' | 'number' | 'tel' | 'time' | 'url' | 'week' | 'datetime',
   margin?: 'none' | 'dense' | 'normal',
   maxRows?: number | string,
   autoComplete?: string,
