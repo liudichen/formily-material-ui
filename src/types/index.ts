@@ -15,7 +15,7 @@ export interface IFieldOptionItem {
 
 export type IFieldPropOptionItem = string | number | IFieldOptionItem;
 
-type IFieldPropFnOption = () => IFieldOptionItem[] | Promise<IFieldOptionItem[]>;
+type IFieldPropFnOption = (() => IFieldOptionItem[]) | (() => Promise<IFieldOptionItem[]>);
 
 export type IFieldPropOptions = IFieldPropOptionItem[] | IFieldPropFnOption;
 
