@@ -48,6 +48,9 @@ interface IFormLayoutContext extends CommonLayoutProps {
 export interface FormLayoutProps extends IFormLayoutContext, Omit<GridProps, 'item'> {
   /** 手动指定无需获取form信息 */
   noForm?: boolean,
+  /** 默认Grid布局
+   * @default { xs: 6, sm: 4, md: 3, xl: 2 }
+   */
   defaultCols?: ColsProps,
 }
 
