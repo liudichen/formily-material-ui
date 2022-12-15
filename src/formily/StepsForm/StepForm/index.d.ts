@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: 柳涤尘 https://www.iimm.ink
- * @LastEditors: 柳涤尘 liudichen@foxmail.com
- * @Date: 2022-05-09 13:46:59
- * @LastEditTime: 2022-10-14 22:17:48
- */
 import React from 'react';
 import { StepIconProps, ButtonProps, BoxProps } from '@mui/material';
 import { ObjectField } from '@formily/core';
@@ -21,7 +14,7 @@ export interface StepFormProps extends BoxProps {
   name?: string,
   title?: React.ReactNode,
   subTitle?: React.ReactNode,
-  icon?: React.FunctionComponent<StepIconProps> | React.Component<StepIconProps>,
+  icon?: React.ComponentType<StepIconProps>,
   // -------------- 1 -------------
 
   // -------------- 2 -------------
@@ -37,7 +30,7 @@ export interface StepFormProps extends BoxProps {
   // -------------- 2 -------------
 
   handleStepChange?: (direction?: 'next' | 'previous' | number) => void,
-  onFinish?: (values?: object, allValues?: object, stepObjField: ObjectField) => void,
+  onFinish?: ((values?: object, allValues?: object, stepObjField: ObjectField) => void | boolean) | ((values?: object, allValues?: object, stepObjField: ObjectField) => Promise<void | boolean>),
   onSubmitFail?: (error?: Error) => void,
   onPrevious?: (stepObjField: ObjectField) => void,
   previousText?: React.ReactNode,

@@ -19,7 +19,7 @@ export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCa
   submitProps?: Omit<SubmitProps, 'onSubmit'>,
   submitText?: React.ReactNode,
   /** 返回值为true时窗口自动关闭 */
-  onFinish?: (values: any) => boolean | Promise<boolean>,
+  onFinish?: ((values: any) => boolean | void) | ((values: any) => Promise<boolean | void>),
   /** 重新创建form实例的depend，会自动传入open,如果只受modal显隐控制，则不要传此参数 */
   depend?: any,
   /** 禁用modl的open控制重新创建form实例 */
