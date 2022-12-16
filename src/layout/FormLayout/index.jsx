@@ -28,16 +28,16 @@ export const FormLayout = observer((props) => {
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
   const form = useForm();
-  const layout = useCreation(() => ({ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }), [colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem]);
+  const layout = useCreation(() => ({ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }), [ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem ]);
   return (
     <FormLayoutContext.Provider value={layout}>
       <Grid {...restProps} container>
         { React.Children.map(children, (child) => {
           if (!child) { return null; }
-          if (['Grid', 'Grid2'].includes(child.type?.displayName || child.type?.render?.name)) {
+          if ([ 'Grid', 'Grid2' ].includes(child.type?.displayName || child.type?.render?.name)) {
             return child;
           }
-          if (!noForm && form && ['Field', 'ObjectField', 'ArrayField', 'VoidField'].includes(child.type?.displayName || child.type?.render?.name)) {
+          if (!noForm && form && [ 'Field', 'ObjectField', 'ArrayField', 'VoidField' ].includes(child.type?.displayName || child.type?.render?.name)) {
             const name = child.props.name;
             if (!name) { return null; }
             const display = form?.query(`${name}`)?.take()?.display ?? form?.query(`*.${name}`)?.take()?.display;
@@ -46,7 +46,7 @@ export const FormLayout = observer((props) => {
             }
           }
           return (
-            <Grid item {...{ ...itemBaseProps, ...getItemColsProps(child.props) }}>
+            <Grid item {...{ ...itemBaseProps, ...getItemColsProps(child?.props) }}>
               {child}
             </Grid>
           );
