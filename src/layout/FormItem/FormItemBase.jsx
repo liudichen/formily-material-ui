@@ -32,7 +32,7 @@ export const FormItemBase = observer((props) => {
       sx.maxWidth = labelWidth === 'auto' ? undefined : labelWidth;
     }
     return sx;
-  }, [labelSx, labelWidth, labelPosition]);
+  }, [ labelSx, labelWidth, labelPosition ]);
   const wrapperStyle = useCreation(() => {
     const sx = wrapperSx || {};
     if (wrapperWidth) {
@@ -40,7 +40,7 @@ export const FormItemBase = observer((props) => {
       sx.maxWidth = wrapperWidth === 'auto' ? undefined : wrapperWidth;
     }
     return sx;
-  }, [wrapperSx, wrapperWidth]);
+  }, [ wrapperSx, wrapperWidth ]);
   const getOverflowTooltip = () => {
     if (overflow) {
       return (
@@ -128,8 +128,8 @@ export const FormItemBase = observer((props) => {
         [`${prefix}-row`]: labelPosition === 'left',
         [`${prefix}-column`]: (labelPosition === 'top' || !labelPosition),
         [`${prefix}-error`]: !!error,
-        [`${prefix}-${feedbackStatus}-help`]: ['warning', 'error'].includes(feedbackStatus),
-        [`${prefix}-default-help`]: !['warning', 'error'].includes(feedbackStatus) && !error,
+        [`${prefix}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
+        [`${prefix}-default-help`]: ![ 'warning', 'error' ].includes(feedbackStatus) && !error,
       })}>
         {renderLabel()}
         <div className={`${prefix}-control`}>
@@ -147,7 +147,7 @@ export const FormItemBase = observer((props) => {
               })}
             >
               {children}
-              {showFeedback && feedbackLayout === 'popover' && (['warning', 'error', 'success'].includes(feedbackStatus) ? (
+              {showFeedback && feedbackLayout === 'popover' && ([ 'warning', 'error', 'success' ].includes(feedbackStatus) ? (
                 <Popover
                   triggerType='hover'
                   trigger={(

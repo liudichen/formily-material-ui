@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FormItemBaseProps } from './Base';
+import { FormItemBaseProps } from './FormItemBase';
 
 export interface FormItemProps extends FormItemBaseProps {
   /** 不从FormLayout获取信息 */

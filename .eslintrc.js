@@ -30,11 +30,12 @@ module.exports = {
       ],
       rules: {
         '@typescript-eslint/ban-ts-comment': 'off',
+        'arrow-parens': [ 'warn', 'always' ],
       },
     },
   ],
   rules: {
-    'react/jsx-uses-react': 'off',
+    'react/jsx-uses-react': 1,
     'react/jsx-uses-vars': 'error',
     'generator-star-spacing': 'off',
     'babel/generator-star-spacing': 'off',
