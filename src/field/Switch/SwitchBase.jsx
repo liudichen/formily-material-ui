@@ -17,7 +17,7 @@ export const SwitchBase = (props) => {
     color, edge,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(props);
   const theme = useTheme();
   const dom = (
     <Stack
