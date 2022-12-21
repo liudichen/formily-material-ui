@@ -8,16 +8,16 @@ export interface FieldBaseProps<T> {
   error?: boolean,
 }
 
-export interface IFieldOptionItem {
-  value: any,
-  label: string,
+export interface IFieldOptionItem<V = any, L = string> {
+  value: V,
+  label: L,
 }
 
-export type IFieldPropOptionItem = string | number | IFieldOptionItem;
+export type IFieldPropOptionItem<V = any, L = string> = string | number | IFieldOptionItem<V, L>;
 
-type IFieldPropFnOption = (() => IFieldOptionItem[]) | (() => Promise<IFieldOptionItem[]>);
+type IFieldPropFnOption<V = any, L = string> = (() => IFieldOptionItem<V, L>[]) | (() => Promise<IFieldOptionItem<V, L>[]>);
 
-export type IFieldPropOptions = IFieldPropOptionItem[] | IFieldPropFnOption;
+export type IFieldPropOptions<V = any, L = string> = IFieldPropOptionItem<V, L>[] | IFieldPropFnOption<V, L>;
 
 export type IColors = 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning'| string;
 
