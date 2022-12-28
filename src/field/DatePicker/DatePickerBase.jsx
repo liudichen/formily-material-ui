@@ -16,13 +16,13 @@ export const DatePickerBase = (props) => {
     size, showInnerLabel, color, variant, TextFieldSx,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(props);
   const dom = (
     <MuiDatePicker
       label={showInnerLabel ? label : undefined}
       value={value || null}
       onChange={onChange}
-      renderInput={(params) => <TextField color={color} {...params} size={size} fullWidth={fullWidth} variant={variant} sx={TextFieldSx} />}
+      renderInput={(params) => <TextField color={color} {...params} error={error || params?.error} size={size} fullWidth={fullWidth} variant={variant} sx={TextFieldSx} />}
       {...restProps}
     />
   );
@@ -71,7 +71,7 @@ DatePickerBase.defaultProps = {
   inputFormat: 'YYYY-MM-DD',
   componentsProps: {
     actionBar: {
-      actions: ['today', 'clear', 'accept'],
+      actions: [ 'today', 'clear', 'accept' ],
       translate: 'yes',
     },
   },

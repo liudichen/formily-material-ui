@@ -30,11 +30,11 @@ export const ModalForm = observer((props) => {
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   const draggable = draggableProp && !fullScreen;
-  const [open, setOpen] = useSafeState(false);
+  const [ open, setOpen ] = useSafeState(false);
   const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [op, depend, createFormOptions]);
+  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [ op, depend, createFormOptions ]);
 
-  React.useImperativeHandle(formRef, () => form, [form]);
+  React.useImperativeHandle(formRef, () => form, [ form ]);
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);

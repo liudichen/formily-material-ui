@@ -16,10 +16,10 @@ export const DateRangePickerBase = (props) => {
     size, toText, toSx, color, variant, TextFieldSx,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(props);
   const dom = (
     <MuiDateRangePicker
-      value={value || [null, null]}
+      value={value || [ null, null ]}
       onChange={onChange}
       renderInput={(startProps, endProps) => (
         <>
@@ -78,7 +78,7 @@ DateRangePickerBase.defaultProps = {
   inputFormat: 'YYYY-MM-DD',
   componentsProps: {
     actionBar: {
-      actions: ['today', 'clear', 'accept'],
+      actions: [ 'today', 'clear', 'accept' ],
       translate: 'yes',
     },
   },
