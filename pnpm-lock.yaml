@@ -26,7 +26,7 @@ specifiers:
   eslint-config-egg: ^12.1.0
   eslint-plugin-react: ^7.31.11
   father: ^4.1.2
-  mui-component: ^1.8.2
+  mui-component: ^1.8.4
   react: ^18.2.0
   react-dom: ^18.2.0
   react-dropzone: ^14.2.3
@@ -42,7 +42,7 @@ dependencies:
   ahooks: 3.7.4_react@18.2.0
   classnames: 2.3.2
   dayjs: 1.11.7
-  mui-component: 1.8.2_fgzddkiyehqtazllrfxq62i4qi
+  mui-component: 1.8.4_fgzddkiyehqtazllrfxq62i4qi
   react-dropzone: 14.2.3_react@18.2.0
 
 devDependencies:
@@ -4691,8 +4691,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /mui-component/1.8.2_fgzddkiyehqtazllrfxq62i4qi:
-    resolution: {integrity: sha512-64+iAAvjnInNs4hQE3Io1V43zv50ShUfUSK2f/sxeUG7SuoJzY1B+mfc/GAgyLHCZN0HumV13dZReqW5rLnerQ==}
+  /mui-component/1.8.4_fgzddkiyehqtazllrfxq62i4qi:
+    resolution: {integrity: sha512-380EqVm1kygJVtNFBFHWP4iPVP45QEDmaZ7BBKjToMzNUbsDtm1KDrVu4WmAMslsQ6f7JgLzh1mkm3KESZ7mzg==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
@@ -4718,7 +4718,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-draggable: 4.4.5_biqbaboplfbrettd7655fr4n2y
-      react-pdf: 6.2.0_biqbaboplfbrettd7655fr4n2y
+      react-pdf: 6.2.1_biqbaboplfbrettd7655fr4n2y
       react-responsive-carousel: 3.2.23
       video-react: 0.16.0_biqbaboplfbrettd7655fr4n2y
     transitivePeerDependencies:
@@ -5056,7 +5056,7 @@ packages:
       process-warning: 1.0.0
       quick-format-unescaped: 4.0.4
       real-require: 0.1.0
-      safe-stable-stringify: 2.4.1
+      safe-stable-stringify: 2.4.2
       sonic-boom: 2.8.0
       thread-stream: 0.15.2
     dev: true
@@ -5606,8 +5606,8 @@ packages:
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
-  /react-pdf/6.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-FKUoUKKxoIipIbRHzXQZui1j+f1QcEuFuVL03qI1GFDm0jC4eUrMyOCpPR98lY7+rsCswPn1rjfKd+8k9PrZmQ==}
+  /react-pdf/6.2.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-yTMMFebYardEwRTLInT/ShVU2Flssh8ccgkc1DCAW8m+ONEynWWqgFy6VVkax4mpSoAPNXRgbfV7rETLQFJBNw==}
     peerDependencies:
       file-loader: ^6.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5831,8 +5831,8 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /safe-stable-stringify/2.4.1:
-    resolution: {integrity: sha512-dVHE6bMtS/bnL2mwualjc6IxEv1F+OCUpA46pKUj6F8uDbUM0jCCulPqRNPSnWwGNKx5etqMjZYdXtrm5KJZGA==}
+  /safe-stable-stringify/2.4.2:
+    resolution: {integrity: sha512-gMxvPJYhP0O9n2pvcfYfIuYgbledAOJFcqRThtPRmjscaipiwcwPPKLytpVzMkG2HAN87Qmo2d4PtGiri1dSLA==}
     engines: {node: '>=10'}
     dev: true
 

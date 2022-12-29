@@ -33,10 +33,10 @@ export const UploadBase = (props) => {
     showPreviewIcon, showRemoveIcon, previewIcon, removeIcon, children, uploadButtonProps, uploadButtonText, uploadRef,
     ...restProps
   } = props;
-  const [fileList, setFileList] = useControllableValue(props, { defaultValue: [] });
+  const [ fileList, setFileList ] = useControllableValue(props, { defaultValue: [] });
   const onInternalChange = useMemoizedFn(async (changedFileList) => {
     if (disabled || readOnly) return;
-    let cloneList = [...(changedFileList || [])];
+    let cloneList = [ ...(changedFileList || []) ];
     if (maxCount === 1) {
       cloneList = cloneList.slice(-1);
     } else {

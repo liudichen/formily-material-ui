@@ -23,8 +23,8 @@ const UploadList = (props) => {
     ...restProps
   } = props;
   const forceUpdate = useUpdate();
-  const [open, setOpen] = useSafeState(false);
-  const [selectedItem, setSelectedItem] = useSafeState(0);
+  const [ open, setOpen ] = useSafeState(false);
+  const [ selectedItem, setSelectedItem ] = useSafeState(0);
   // 更新文件的预览图
   React.useEffect(() => {
     (items || []).forEach((file) => {
@@ -43,7 +43,7 @@ const UploadList = (props) => {
         }
       }
     });
-  }, [items, previewFile]);
+  }, [ items, previewFile ]);
 
   const internalIconRender = useMemoizedFn((file) => {
     if (typeof iconRender === 'function') {
