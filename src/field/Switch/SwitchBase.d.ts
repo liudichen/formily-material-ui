@@ -3,7 +3,10 @@ import { SwitchProps as MuiSwitchProps } from '@mui/material';
 
 import { FormItemBaseProps } from '../../layout';
 
-export interface SwitchBaseProps extends MuiSwitchProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>{
+export interface SwitchBaseProps extends Omit<MuiSwitchProps, 'onChange' | 'checked'>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
+  value?: boolean,
+  onChange?: (v?: boolean) => void,
+
   readOnly?: boolean,
   error?: boolean,
   spacing?: number,
