@@ -4,7 +4,7 @@ import { AutocompleteProps, FormLabelProps } from '@mui/material';
 import { FieldBaseProps, IFieldOptionItem, IFieldPropOptions } from '../../types';
 import { FormItemBaseProps } from '../../layout';
 
-export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFieldOptionItem[] | null | undefined>, Omit<AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined>, 'value' | 'onChange' | 'defaultValue' | 'options'>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
+export interface SelectBaseProps extends FieldBaseProps<IFieldOptionItem | IFieldOptionItem[] | null | undefined>, Partial<Omit<AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined>, 'value' | 'onChange' | 'defaultValue' | 'options'>>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'> {
   options?: IFieldPropOptions,
   refreshOptionsFlag?: any,
   label?: string,
