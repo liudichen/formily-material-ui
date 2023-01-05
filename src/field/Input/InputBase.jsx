@@ -19,7 +19,7 @@ export const InputBase = (props) => {
     inputProps, InputProps, endAdornmentItem,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props, { defaultValue: '' });
+  const [ value, onChange ] = useControllableValue(props, { defaultValue: '' });
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;
@@ -34,7 +34,7 @@ export const InputBase = (props) => {
       return showClearProp ?? true;
     }
     return showClearProp ?? false;
-  }, [showClearProp, props.type]);
+  }, [ showClearProp, props.type ]);
   const dom = (
     <MuiTextField
       value={value ?? ''}

@@ -5,7 +5,7 @@ import { useFormilyFieldProps } from '../../hooks';
 import { SelectBase } from './SelectBase';
 
 export const Select = observer((props) => {
-  const formilyFieldProps = useFormilyFieldProps(props, { options: true, required: true, label: true, tooltip: true, error: true, fullWidth: true });
+  const formilyFieldProps = useFormilyFieldProps(props, { options: true, required: true, label: true, tooltip: true, error: true, fullWidth: true, showInnerLabel: true });
   return (
     <SelectBase
       {...formilyFieldProps}
@@ -13,4 +13,3 @@ export const Select = observer((props) => {
   );
 }, { displayName: 'iimm.Mui.Formily.Select' });
 
-Select.displayName = 'iimm.Mui.Formily.Select';

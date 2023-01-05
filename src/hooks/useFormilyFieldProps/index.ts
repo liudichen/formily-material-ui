@@ -2,8 +2,9 @@ import React from 'react';
 import { useField } from '@formily/react';
 import { isVoidField } from '@formily/core';
 
-import { ICommonProps } from '../../types';
-import { useFormLayout, CommonLayoutProps } from '../../layout/FormLayout';
+import { useFormLayout } from '../../layout/FormLayout';
+import type { ICommonProps } from '../../types';
+import type { CommonLayoutProps } from '../../layout/FormLayout';
 
 interface IUseFormilyFieldConfig {
   /** 是否从Field获取label(title)配置 */
@@ -56,6 +57,8 @@ interface IUseFormilyFieldConfig {
   feedbackLayout?: boolean,
   /** 是否从FormLayout获取配置*/
   noFormLayout?: boolean,
+  /** 是否从FormLayout获取showInnerLabel配置*/
+  showInnerLabel?: boolean,
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
@@ -109,6 +112,7 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
     if (config?.tooltipLayout) formatProps.tooltipLayout = props.tooltipLayout ?? layout.tooltipLayout;
     if (config?.showFeedback) formatProps.showFeedback = props.showFeedback ?? layout.showFeedback;
     if (config?.feedbackLayout) formatProps.feedbackLayout = props.feedbackLayout ?? layout.feedbackLayout;
+    if (config?.showInnerLabel) formatProps.showInnerLabel = props.showInnerLabel ?? layout.showInnerLabel;
   }
   if (field && !props.noField) {
     if (config?.display) { formatProps.display = props.display ?? field.display; }

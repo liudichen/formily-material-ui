@@ -2,6 +2,8 @@ import React, { createContext, useContext } from 'react';
 import { GridProps } from '@mui/material';
 
 export interface CommonLayoutProps {
+  /** Input Select组件显示border上的标签 */
+  showInnerLabel?: boolean,
   /** lable/title显示的位置 */
   labelPosition?: 'top' | 'left' | 'inner',
   labelWidth?: number | string,
@@ -27,6 +29,7 @@ export interface CommonLayoutProps {
   feedbackLayout?: 'popover' | 'text',
   /** 手动指定不从外层Field获取信息 */
   noField?: boolean,
+
 }
 
 interface ColsProps {

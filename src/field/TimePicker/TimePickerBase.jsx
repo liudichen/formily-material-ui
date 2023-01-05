@@ -17,14 +17,14 @@ export const TimePickerBase = (props) => {
     showInnerLabel, showSecond, views, inputFormat,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props, { defaultValue: null });
+  const [ value, onChange ] = useControllableValue(props, { defaultValue: null });
   const dom = (
     <MuiTimePicker
       value={value || null}
       onChange={onChange}
       label={showInnerLabel ? label : undefined}
       renderInput={(params) => <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={TextFieldSx} />}
-      views={views ?? (showSecond ? ['hours', 'minutes', 'seconds'] : undefined)}
+      views={views ?? (showSecond ? [ 'hours', 'minutes', 'seconds' ] : undefined)}
       inputFormat={inputFormat ?? (showSecond ? 'HH:mm:ss' : undefined)}
       {...restProps}
     />
@@ -73,7 +73,7 @@ TimePickerBase.defaultProps = {
   size: 'small',
   componentsProps: {
     actionBar: {
-      actions: ['today', 'clear', 'accept'],
+      actions: [ 'today', 'clear', 'accept' ],
       translate: 'yes',
     },
   },

@@ -22,8 +22,8 @@ export const SelectBase = (props) => {
     disableCloseOnSelect,
     ...restProps
   } = props;
-  const [loading, setLoading] = useSafeState(false);
-  const [value, onChange] = useControllableValue(props);
+  const [ loading, setLoading ] = useSafeState(false);
+  const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
   const onValidChange = useMemoizedFn((e, v) => {
     if (allowExtraValue) {

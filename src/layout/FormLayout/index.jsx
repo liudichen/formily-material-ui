@@ -21,14 +21,14 @@ const getItemColsProps = (props) => {
 export const FormLayout = observer((props) => {
   const {
     // eslint-disable-next-line no-unused-vars
-    colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, withFormItem,
+    colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, withFormItem, showInnerLabel,
     xs, sm, md, lg, xl, defaultCols, noField, noForm,
     children,
     ...restProps
   } = props;
   const itemBaseProps = getItemColsProps((xs || sm || md || lg || xl) ? { xs, sm, md, lg, xl } : defaultCols);
   const form = useForm();
-  const layout = useCreation(() => ({ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem }), [ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem ]);
+  const layout = useCreation(() => ({ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem, showInnerLabel }), [ colon, labelAlign, labelLayout, labelPosition, wrapperAlign, labelWrap, labelWidth, wrapperWidth, wrapperWrap, fullWidth, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout, noField, withFormItem, showInnerLabel ]);
   return (
     <FormLayoutContext.Provider value={layout}>
       <Grid {...restProps} container>
