@@ -14,7 +14,7 @@ const ListCard = (props) => {
     listSx, cardSx, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps,
   } = props;
   const checkedNumber = intersection(checked, items).length;
-  const [keyword, setKeyword] = useSafeState('');
+  const [ keyword, setKeyword ] = useSafeState('');
   const onKeywordChange = (v) => {
     if (readOnly || disabled) return;
     setKeyword(v);

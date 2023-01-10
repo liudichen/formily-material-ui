@@ -24,13 +24,13 @@ export const TransferBase = (props) => {
     showSearch, showSelectAll, titles,
   } = props;
   /** value是右侧的值(可能存在不显示的不在列表里的值) */
-  const [value, setValue] = useControllableValue(props, { defaultValue: [] });
-  const [checked, setChecked] = useSafeState([]);
-  const [loading, setLoading] = useSafeState(false);
-  const [optionsValues, setOptionsValues] = useSafeState([]);
+  const [ value, setValue ] = useControllableValue(props, { defaultValue: [] });
+  const [ checked, setChecked ] = useSafeState([]);
+  const [ loading, setLoading ] = useSafeState(false);
+  const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (items) => setOptionsValues(items.map((ele) => ele.value)), deps: refreshFlag });
   const postValue = useMemoizedFn((values) => {
-    let v = Array.isArray(values) ? [...values] : [];
+    let v = Array.isArray(values) ? [ ...values ] : [];
     if (!v.length) {
       return [];
     }
@@ -42,7 +42,7 @@ export const TransferBase = (props) => {
   });
   const handleToggle = useMemoizedFn((value) => {
     const currentIndex = checked.findIndex((ele) => isEqual(value, ele));
-    const newChecked = [...checked];
+    const newChecked = [ ...checked ];
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
@@ -63,7 +63,7 @@ export const TransferBase = (props) => {
   });
   const left = useCreation(() => {
     return not(optionsValues, value);
-  }, [optionsValues, value]);
+  }, [ optionsValues, value ]);
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, value);
   const onClickToLeft = useMemoizedFn(() => {
@@ -87,14 +87,14 @@ export const TransferBase = (props) => {
       sx.maxWidth = maxWidth || containerWidth;
     }
     return sx;
-  }, [cardSxProp, width, minWidth, maxWidth, containerWidth]);
+  }, [ cardSxProp, width, minWidth, maxWidth, containerWidth ]);
   const listSx = useCreation(() => {
     const sx = { ...(listSxProp || {}) };
     if (height) sx.height = height;
     if (minHeight) sx.minHeight = minHeight;
     if (maxHeight) sx.maxHeight = maxHeight;
     return sx;
-  }, [listSxProp, height, minHeight, maxHeight]);
+  }, [ listSxProp, height, minHeight, maxHeight ]);
   const dom = (
     <Box
       ref={containerRef}
@@ -236,7 +236,7 @@ export const TransferBase = (props) => {
 TransferBase.defaultProps = {
   showSelectAll: true,
   keepExtraItems: true,
-  titles: ['可选项', '已选项'],
+  titles: [ '可选项', '已选项' ],
   maxHeight: '85vh',
   minHeight: 250,
   minWidth: 200,
