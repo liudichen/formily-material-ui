@@ -9,7 +9,7 @@ specifiers:
   '@formily/core': ^2.2.16
   '@formily/react': ^2.2.16
   '@formily/reactive': ^2.2.16
-  '@iimm/shared': ^1.2.0
+  '@iimm/shared': ^1.2.1
   '@mui/icons-material': ^5.11.0
   '@mui/material': ^5.11.4
   '@mui/x-date-pickers': ^5.0.13
@@ -37,7 +37,7 @@ dependencies:
   '@formily/core': 2.2.16
   '@formily/react': 2.2.16_shhpwlmtpypp5sfwuukigzy6se
   '@formily/reactive': 2.2.16
-  '@iimm/shared': 1.2.0_react@18.2.0
+  '@iimm/shared': 1.2.1_react@18.2.0
   '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
   ahooks: 3.7.4_react@18.2.0
   classnames: 2.3.2
@@ -838,8 +838,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@iimm/shared/1.2.0_react@18.2.0:
-    resolution: {integrity: sha512-wL871M0A4pdQ3ailgAivjbwlp/7t8/tMFOCI05LvkwI0u9mmAjdr5DsTEF5ResLDIKJ75R98xuXz7ywLYc/kJg==}
+  /@iimm/shared/1.2.1_react@18.2.0:
+    resolution: {integrity: sha512-u1Qe/WHEGXmA6Tv6W5Es4atyh3e+kWzfJhNthsGZFlRTsMUgPmJ4aF0l/Bo0yWQD0+efTTzX4Ql0zpjF+qaGSQ==}
     peerDependencies:
       react: '>=16.8'
     peerDependenciesMeta:
@@ -4755,7 +4755,7 @@ packages:
       '@emotion/react': 11.10.5_jp5qgyg6plq757v5hojp7ls2oe
       '@emotion/styled': 11.10.5_jp5djshq6aqfasno3mth3hguci
       '@iimm/icons': 1.1.0_react@18.2.0
-      '@iimm/shared': 1.2.0_react@18.2.0
+      '@iimm/shared': 1.2.1_react@18.2.0
       '@mui/icons-material': 5.11.0_6zueiyxsk3wwk7ardr4xipkxnu
       '@mui/material': 5.11.4_lskpmcsdi7ipu6qpuapyu56ihm
       '@mui/x-data-grid': 5.17.18_fw5fsjkluzkaqx4hea3mxt62ym
