@@ -6,7 +6,7 @@ import { useOverflow, isEqual, isInArray, intersection, differenceSet as not, un
 
 import { useFetchOptions } from '../../hooks';
 import { FormItemBase } from '../../layout';
-import ListCard from './ListCard';
+import { ListCard } from './ListCard';
 
 export const TransferBase = (props) => {
   const {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BoxProps, IconButtonProps } from '@mui/material';
 
-import { ListCardCommonProps } from './ListCard';
+import type { ListCardCommonProps } from './ListCard';
 import { IFieldPropOptions, FieldBaseProps } from '../../types';
 import { FormItemBaseProps, FormItemExtraProps } from '../../layout';
 
