@@ -1,6 +1,6 @@
 import React from 'react';
-import { IFormProps, Form } from '@formily/core';
-import { StepperProps, StepIconProps } from '@mui/material';
+import type { IFormProps, Form } from '@formily/core';
+import type { StepperProps, StepIconProps } from '@mui/material';
 
 import { ResultRenderProps } from './DefaultCompleteRender';
 import { StepFormProps } from './StepForm';
@@ -28,7 +28,6 @@ declare const StepsForm: React.ForwardRefExoticComponent<React.PropsWithChildren
 
 export {
   StepsForm,
-  StepsFormProps,
   StepFormProps,
   ResultRenderProps,
   StepIconProps,

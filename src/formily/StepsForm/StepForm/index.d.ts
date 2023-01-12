@@ -1,6 +1,6 @@
 import React from 'react';
-import { StepIconProps, ButtonProps, BoxProps } from '@mui/material';
-import { ObjectField } from '@formily/core';
+import type { StepIconProps, ButtonProps, BoxProps } from '@mui/material';
+import type { ObjectField } from '@formily/core';
 
 import { SubmitProps } from '../../Submit';
 
