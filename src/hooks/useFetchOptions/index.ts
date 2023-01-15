@@ -28,7 +28,7 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
           result = [ ...res ];
         }
       }
-      result = result.map(item => (typeof item === 'object' ? item : { value: item, label: `${item}` }));
+      result = result.map((item) => (typeof item === 'object' ? item : { value: item, label: `${item}` }));
       onLoading?.(false);
       setOptions(result as IFieldOptionItem[]);
       callback?.(result as IFieldOptionItem[]);

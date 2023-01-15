@@ -42,13 +42,13 @@ export const Submit = observer((props) => {
     const Op = {};
     if (keyPressEvents) Op.envents = keyPressEvents;
     if (typeof keyPressExactMatch === 'boolean') Op.exactMatch = keyPressExactMatch;
-    if (['number', 'string'].includes(typeof keyPressTarget)) {
+    if ([ 'number', 'string' ].includes(typeof keyPressTarget)) {
       Op.target = () => document.getElementById(keyPressTarget);
-    } else if (['object', 'function'].includes(typeof keyPressTarget)) {
+    } else if ([ 'object', 'function' ].includes(typeof keyPressTarget)) {
       Op.target = keyPressTarget;
     }
     return Op;
-  }, [keyPressEvents, keyPressTarget, keyPressExactMatch]);
+  }, [ keyPressEvents, keyPressTarget, keyPressExactMatch ]);
   useKeyPress('enter', () => autoSubmit(), options);
   return (
     <LoadingButton
