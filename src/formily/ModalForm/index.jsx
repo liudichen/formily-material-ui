@@ -3,7 +3,7 @@ import { useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
 import { Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
-import { IconCircleX } from '@tabler/icons';
+import { IconCircleX } from '@tabler/icons-react';
 import classNames from 'classnames';
 import { DraggablePaper } from 'mui-component';
 

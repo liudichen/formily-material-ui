@@ -6,7 +6,7 @@
 ## Install
 
 ```bash
-npm install
+npm install @iimm/formily-mui
 ```
 
 ```bash

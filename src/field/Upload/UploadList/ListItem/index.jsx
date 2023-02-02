@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { Tooltip } from '@mui/material';
-import { IconTrash } from '@tabler/icons';
+import { IconTrash } from '@tabler/icons-react';
 import classNames from 'classnames';
 
 import { prefixCls as prefix } from '../../../../utils';
