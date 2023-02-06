@@ -49,7 +49,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
-    "@mui/x-date-pickers": "^5.0.16",
+    "@mui/x-date-pickers": "^5.0.17",
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
@@ -69,11 +69,11 @@
     "@formily/react": "^2.2.17",
     "@formily/reactive": "^2.2.17",
     "@iimm/shared": "^1.2.1",
-    "@tabler/icons-react": "^2.1.2",
+    "@tabler/icons-react": "^2.2.0",
     "ahooks": "^3.7.4",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
-    "mui-component": "^1.8.19",
+    "mui-component": "^1.9.1",
     "react-dropzone": "^14.2.3"
   }
 }
