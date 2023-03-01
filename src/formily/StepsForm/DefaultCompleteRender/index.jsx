@@ -2,7 +2,8 @@ import React from 'react';
 import { useMemoizedFn } from 'ahooks';
 import { observer } from '@formily/react';
 import { Button } from '@mui/material';
-import { Result, Space } from 'mui-component';
+import { Space } from '@iimm/react-shared';
+import { Result } from 'mui-component';
 
 const DefaultCompleteRender = observer((props) => {
   const { resultActions, resultTitle, resultSubTitle, showResultReset, resultResetText, resultResetProps, onResultReset, handleStepChange, form } = props;

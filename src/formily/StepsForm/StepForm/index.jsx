@@ -3,7 +3,7 @@ import { useMemoizedFn } from 'ahooks';
 import { toJS } from '@formily/reactive';
 import { observer } from '@formily/react';
 import { Box, Button, Grid } from '@mui/material';
-import { Space } from 'mui-component';
+import { Space } from '@iimm/react-shared';
 
 import { Submit } from '../../Submit';
 
@@ -43,7 +43,7 @@ const StepForm = observer((props) => {
           {children}
         </Grid>
         <Grid item xs={12}>
-          <Space sx={{}}>
+          <Space>
             {!!stepIndex && (
               <Button
                 disabled={field?.submitting}
@@ -70,7 +70,7 @@ const StepForm = observer((props) => {
 }, { displayName: 'iimm.Mui.Formily.StepsForm.StepForm' });
 
 StepForm.defaultProps = {
-  nextText: ['下一步', '提交'],
+  nextText: [ '下一步', '提交' ],
   previousText: '上一步',
 };
 
