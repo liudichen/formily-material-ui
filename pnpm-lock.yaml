@@ -9,6 +9,7 @@ specifiers:
   '@formily/core': ^2.2.19
   '@formily/react': ^2.2.19
   '@formily/reactive': ^2.2.19
+  '@iimm/react-shared': ^0.1.0
   '@iimm/shared': ^1.2.1
   '@mui/icons-material': ^5.11.9
   '@mui/material': ^5.11.10
@@ -37,6 +38,7 @@ dependencies:
   '@formily/core': 2.2.19
   '@formily/react': 2.2.19_hhvwo7en3nzszln43rdoyw7c4u
   '@formily/reactive': 2.2.19
+  '@iimm/react-shared': 0.1.0_react@18.2.0
   '@iimm/shared': 1.2.1_react@18.2.0
   '@tabler/icons-react': 2.5.0_react@18.2.0
   ahooks: 3.7.4_react@18.2.0
@@ -1023,6 +1025,17 @@ packages:
       react: '>=16.0.0'
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /@iimm/react-shared/0.1.0_react@18.2.0:
+    resolution: {integrity: sha512-mW6nzEwgpEFcftEHAFlvy/NoH/8f4P/yUwGRs2M5UMbHT5CtRipiIYCNKWlCzJYrh4fl8o92WNF5zFBhFCer4g==}
+    peerDependencies:
+      react: '>=17.0.0'
+    dependencies:
+      ahooks: 3.7.5_react@18.2.0
+      react: 18.2.0
+      react-is: 18.2.0
+      smooth-scroll-into-view-if-needed: 1.1.33
     dev: false
 
   /@iimm/shared/1.2.1_react@18.2.0:
@@ -2119,6 +2132,24 @@ packages:
 
   /ahooks/3.7.4_react@18.2.0:
     resolution: {integrity: sha512-hvgdqzPUKXn95mK3cGlDCi/ZZqv+FRibCUCFT8zW3hCwLGvixVfnHrIW2/2lgzPdLo8mLjp/XOdIJvcPvE2lgQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@types/js-cookie': 2.2.7
+      ahooks-v3-count: 1.0.0
+      dayjs: 1.11.7
+      intersection-observer: 0.12.2
+      js-cookie: 2.2.1
+      lodash: 4.17.21
+      react: 18.2.0
+      resize-observer-polyfill: 1.5.1
+      screenfull: 5.2.0
+      tslib: 2.5.0
+    dev: false
+
+  /ahooks/3.7.5_react@18.2.0:
+    resolution: {integrity: sha512-RWkJYK5xj9ZXROj9jABRDqdpTBimkY1tlyeJQ8Ci7MAl1sC5xzSzwO20ydk6BjtdbWt56DPCYZhq4lGu3O2Zwg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0

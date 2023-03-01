@@ -68,6 +68,7 @@
     "@formily/core": "^2.2.19",
     "@formily/react": "^2.2.19",
     "@formily/reactive": "^2.2.19",
+    "@iimm/react-shared": "^0.1.0",
     "@iimm/shared": "^1.2.1",
     "@tabler/icons-react": "^2.5.0",
     "ahooks": "^3.7.4",
