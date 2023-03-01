@@ -12,7 +12,6 @@ export interface CommonLayoutProps {
   wrapperAlign?: 'left' | 'right',
   wrapperWrap?: boolean,
   wrapperWidth?: number | string,
-  wrapperAlign?: 'left' | 'right',
   /**
    * 子项fullWidth?
    * @default true
