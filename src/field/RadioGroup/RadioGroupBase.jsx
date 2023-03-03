@@ -20,9 +20,9 @@ export const RadioGroupBase = (props) => {
     labelPlacement, icon, checkedIcon, row,
     ...restProps
   } = props;
-  const [loading, setLoading] = useSafeState(false);
+  const [ loading, setLoading ] = useSafeState(false);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading });
-  const [value, onChange] = useControllableValue(props);
+  const [ value, onChange ] = useControllableValue(props);
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });

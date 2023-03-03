@@ -2,7 +2,8 @@ import React from 'react';
 import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from 'ahooks';
 import { Box, IconButton, Skeleton } from '@mui/material';
 import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons-react';
-import { useOverflow, isEqual, isInArray, intersection, differenceSet as not, union } from '@iimm/shared';
+import { isEqual, isInArray, intersection, differenceSet as not, union } from '@iimm/shared';
+import { useOverflow } from '@iimm/react-shared';
 
 import { useFetchOptions } from '../../hooks';
 import { FormItemBase } from '../../layout';
