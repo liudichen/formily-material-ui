@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
+import { toJS } from '@formily/reactive';
 
 import { IFieldOptionItem, IFieldPropOptions, IFieldPropOptionItem } from '../../types';
 
@@ -20,7 +21,7 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
     onLoading?.(true);
     try {
       if (Array.isArray(optionsProp) && optionsProp.length) {
-        result = [ ...optionsProp ];
+        result = [ ...toJS(optionsProp) ];
       }
       if (!result.length && typeof optionsProp === 'function') {
         const res = await optionsProp();
