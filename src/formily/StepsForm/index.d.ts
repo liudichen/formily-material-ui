@@ -6,6 +6,7 @@ import { ResultRenderProps } from './DefaultCompleteRender';
 import { StepFormProps } from './StepForm';
 
 export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'values' | 'form' | 'handleStepChange'> {
+  form?: Form,
   direction?: 'horizontal'| 'vertical',
   labelPlacement?: 'horizontal'| 'vertical',
   onFinish?: ((values?: object, allValues?: object) => void | boolean) | ((values?: object, allValues?: object) => Promise<void | boolean>),

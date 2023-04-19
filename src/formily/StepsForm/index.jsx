@@ -15,7 +15,7 @@ export const StepsForm = observer((props) => {
     ResultRender, resultTitle, resultSubTitle, showResultReset, resultActions, resultResetText, resultResetProps, onResultReset,
     stepContentProps,
     direction, orientation, alternativeLabel, labelPlacement, depend,
-    formRef,
+    formRef, form: formProp,
     ...restProps
   } = props;
   const [ stepsCount, setStepCount ] = useSafeState(() => React.Children.count(children));
@@ -33,7 +33,7 @@ export const StepsForm = observer((props) => {
     setStepCount(count);
   }, [ count ]);
   const [ activeStep, setActiveStep ] = useSafeState(0);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [ depend, createFormOptions ]);
+  const form = React.useMemo(() => formProp || createForm(createFormOptions || { validateFirst: true }), [ depend, createFormOptions, formProp ]);
   React.useImperativeHandle(formRef, () => form, [ form ]);
   const handleStepChange = useMemoizedFn((step) => {
     if (typeof step === 'number') {
