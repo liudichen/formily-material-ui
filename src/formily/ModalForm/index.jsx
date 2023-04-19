@@ -21,7 +21,7 @@ export const ModalForm = observer((props) => {
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
     disabled,
-    formRef, PaperComponent,
+    formRef, PaperComponent, form: formProp,
     fullScreen: fullScreenProp, draggable: draggableProp,
     responsive, breakpoint, depend, disableVisibleRecreateForm,
     ...restProps
@@ -32,7 +32,7 @@ export const ModalForm = observer((props) => {
   const draggable = draggableProp && !fullScreen;
   const [ open, setOpen ] = useSafeState(false);
   const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
-  const form = React.useMemo(() => createForm(createFormOptions || { validateFirst: true }), [ op, depend, createFormOptions ]);
+  const form = React.useMemo(() => formProp || createForm(createFormOptions || { validateFirst: true }), [ op, depend, createFormOptions, formProp ]);
 
   React.useImperativeHandle(formRef, () => form, [ form ]);
 

@@ -25,6 +25,7 @@ export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCa
   /** 禁用modl的open控制重新创建form实例 */
   disableVisibleRecreateForm?: boolean,
   formRef?: React.MutableRefObject<Form>,
+  form?: Form,
   /** 传递给createForm的参数
    * @default {validateFirst:true}
   */
