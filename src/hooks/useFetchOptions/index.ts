@@ -21,7 +21,7 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
     onLoading?.(true);
     try {
       if (Array.isArray(optionsProp) && optionsProp.length) {
-        result = isObservable(optionsProp) ? [ ...toJS(optionsProp) ]        :[...optionsProp];
+        result = isObservable(optionsProp) ? [ ...toJS(optionsProp) ] : [ ...optionsProp ];
       }
       if (!result.length && typeof optionsProp === 'function') {
         const res = await optionsProp();

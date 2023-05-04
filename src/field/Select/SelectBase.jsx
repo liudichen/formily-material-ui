@@ -1,12 +1,12 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
-import { isEqual } from '@iimm/shared';
+import { isEqual, isInArray } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
 import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
-import { isInArray } from '@iimm/shared';
+import { useEffect } from 'react';
 
 export const SelectBase = (props) => {
   const {
@@ -34,6 +34,14 @@ export const SelectBase = (props) => {
       onChange(value);
     }
   });
+  const syncOptionsValue = useMemoizedFn(() => {
+    onValidChange(undefined, value);
+  });
+  useEffect(() => {
+    if (!allowExtraValue && options?.length) {
+      syncOptionsValue();
+    }
+  }, [ options, allowExtraValue ]);
   const dom = (
     <Autocomplete
       loading={loading}
