@@ -17,7 +17,7 @@ export const DateTimePickerBase = (props) => {
     showInnerLabel,
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props, { defaultValue: null });
+  const [ value, onChange ] = useControllableValue(props, { defaultValue: null });
 
   const dom = (
     <MuiDateTimePicker
@@ -74,7 +74,7 @@ DateTimePickerBase.defaultProps = {
   disableMaskedInput: true,
   componentsProps: {
     actionBar: {
-      actions: ['today', 'clear', 'accept'],
+      actions: [ 'today', 'clear', 'accept' ],
       translate: 'yes',
     },
   },
