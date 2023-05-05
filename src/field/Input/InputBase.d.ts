@@ -1,10 +1,10 @@
 import React from 'react';
-import { SxProps, InputProps as MuiInputProps, InputLabelProps, FormLabelProps, SelectProps } from '@mui/material';
+import type { SxProps, InputProps as MuiInputProps, InputLabelProps, FormLabelProps, SelectProps, TextFieldProps } from '@mui/material';
 
 import { FieldBaseProps } from '../../types';
 import { FormItemBaseProps, FormItemExtraProps } from '../../layout';
 
-export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>, FormItemExtraProps {
+export interface InputBaseProps extends FieldBaseProps<string | number>, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>, FormItemExtraProps, Omit<TextFieldProps, 'value'|'onChange'|'defaultValue'> {
   label?: React.ReactNode,
   /** 显示内部label? */
   showInnerLabel?: boolean,
