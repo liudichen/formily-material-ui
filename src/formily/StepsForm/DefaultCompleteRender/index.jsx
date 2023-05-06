@@ -6,7 +6,7 @@ import { Space } from '@iimm/react-shared';
 import { Result } from 'mui-component';
 
 const DefaultCompleteRender = observer((props) => {
-  const { resultActions, resultTitle, resultSubTitle, showResultReset, resultResetText, resultResetProps, onResultReset, handleStepChange, form } = props;
+  const { resultActions, resultTitle, resultSubTitle, showResultReset, resultResetText, resultResetProps, onResultReset, handleStepChange, form, status = 'success' } = props;
   const handleReset = useMemoizedFn(() => {
     onResultReset?.();
     form?.reset('*');
@@ -14,7 +14,7 @@ const DefaultCompleteRender = observer((props) => {
   });
   return (
     <Result
-      status='success'
+      status={status}
       title={resultTitle}
       subTitle={resultSubTitle}
       actions={

@@ -7,13 +7,15 @@
  */
 import React from 'react';
 import { Form } from '@formily/core';
-import { ButtonProps } from '@mui/material';
+import type { ButtonProps } from '@mui/material';
+import type { ResultProps } from 'mui-component';
 
 export interface ResultRenderProps {
   handleStepChange?: (direction?: 'next' | 'previous' | number) => void,
   /**
    * 表单的所有字段值汇总,不可手动指定，由StepsForm组件自动生成并传递
    */
+  status?: ResultProps['status']
   values?: object,
   form?: Form,
   resultTitle?: React.ReactNode,

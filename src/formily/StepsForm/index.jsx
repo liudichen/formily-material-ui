@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm } from '@formily/core';
 import { toJS } from '@formily/reactive';
 import { FormProvider, ObjectField, observer } from '@formily/react';
@@ -33,7 +33,7 @@ export const StepsForm = observer((props) => {
     setStepCount(count);
   }, [ count ]);
   const [ activeStep, setActiveStep ] = useSafeState(0);
-  const form = React.useMemo(() => formProp || createForm(createFormOptions || { validateFirst: true }), [ depend, createFormOptions, formProp ]);
+  const form = useCreation(() => formProp || createForm(createFormOptions || { validateFirst: true }), [ depend, createFormOptions, formProp ]);
   React.useImperativeHandle(formRef, () => form, [ form ]);
   const handleStepChange = useMemoizedFn((step) => {
     if (typeof step === 'number') {
