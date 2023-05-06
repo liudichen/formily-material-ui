@@ -24,7 +24,7 @@ export const SelectBase = (props) => {
   const fetchRef = useRef(false);
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag, fetchRef });
   const onValidChange = useMemoizedFn((e, v) => {
     if (allowExtraValue) {
       onChange(v);
