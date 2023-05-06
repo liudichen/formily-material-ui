@@ -21,8 +21,8 @@ export const KeyWordsBase = (props) => {
     chipProps, renderChip, InputBasePaperProps,
   } = props;
   const ref = React.useRef();
-  const [text, setText] = useSafeState('');
-  const [value, onChange] = useControllableValue(props, { defaultValue: [] });
+  const [ text, setText ] = useSafeState('');
+  const [ value, onChange ] = useControllableValue(props, { defaultValue: [] });
   const onTextChange = useMemoizedFn((e) => {
     const v = (e.target.value || '').trim();
     setText(v);
@@ -31,7 +31,7 @@ export const KeyWordsBase = (props) => {
     const txt = typeof textConvert === 'function' ? textConvert(text) : text;
     if (!txt) { return; }
     if (!value?.includes(txt)) {
-      const newValue = [...(value || [])];
+      const newValue = [ ...(value || []) ];
       newValue.push(txt);
       onChange(newValue);
     }
@@ -41,12 +41,12 @@ export const KeyWordsBase = (props) => {
   const handleRemoveKeyWord = useMemoizedFn((kw) => {
     const index = (value || []).findIndex((ele) => ele === kw);
     if (index !== -1) {
-      const newValue = [...value];
+      const newValue = [ ...value ];
       newValue.splice(index, 1);
       onChange(newValue);
     }
   });
-  useKeyPress(['enter'], () => handleAddKeyWord(), { events: ['keyup'], target: ref });
+  useKeyPress([ 'enter' ], () => handleAddKeyWord(), { events: [ 'keyup' ], target: ref });
   const dom = (
     <Stack
       spacing={1}

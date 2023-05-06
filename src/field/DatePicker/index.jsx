@@ -18,7 +18,7 @@ DatePicker.defaultProps = {
   inputFormat: 'YYYY-MM-DD',
   componentsProps: {
     actionBar: {
-      actions: ['today', 'clear', 'accept'],
+      actions: [ 'today', 'clear', 'accept' ],
       translate: 'yes',
     },
   },

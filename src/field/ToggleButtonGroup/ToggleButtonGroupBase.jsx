@@ -20,9 +20,9 @@ export const ToggleButtonGroupBase = (props) => {
     layout, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
     ...restProps
   } = props;
-  const [loading, setLoading] = useSafeState(false);
-  const [value, onChange] = useControllableValue(props);
-  const [optionsValues, setOptionsValues] = useSafeState([]);
+  const [ loading, setLoading ] = useSafeState(false);
+  const [ value, onChange ] = useControllableValue(props);
+  const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)) });
   const itemSx = useCreation(() => {
     if (!itemWidth && !itemMaxWidth && !itemMinWidth) return itemSxProp;
@@ -33,7 +33,7 @@ export const ToggleButtonGroupBase = (props) => {
     if (itemMinWidth) sx.minWidth = itemMinWidth;
     if (itemMaxWidth) sx.maxWidth = itemMaxWidth;
     return sx;
-  }, [itemSxProp, itemWidth, itemFullWidth, itemMinWidth, itemMaxWidth]);
+  }, [ itemSxProp, itemWidth, itemFullWidth, itemMinWidth, itemMaxWidth ]);
 
   const handleChange = useMemoizedFn((v) => {
     if (readOnly) { return; }
@@ -42,7 +42,7 @@ export const ToggleButtonGroupBase = (props) => {
         onChange(v);
       }
     } else {
-      const newValue = [...(value || [])];
+      const newValue = [ ...(value || []) ];
       if (isInArray(v, newValue)) {
         const index = newValue.findIndex((ele) => isEqual(v, ele));
         newValue.splice(index, 1);
