@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
 import { isEqual, isInArray } from '@iimm/shared';
@@ -22,6 +22,7 @@ export const SelectBase = (props) => {
     disableCloseOnSelect,
     ...restProps
   } = props;
+  const fetchRef = useRef(false);
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag });
@@ -38,7 +39,7 @@ export const SelectBase = (props) => {
     onValidChange(undefined, value);
   });
   useEffect(() => {
-    if (!allowExtraValue && options?.length) {
+    if (!allowExtraValue && fetchRef.current) {
       syncOptionsValue();
     }
   }, [ options, allowExtraValue ]);

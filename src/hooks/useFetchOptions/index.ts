@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type MutableRefObject, useEffect } from 'react';
 import { useMemoizedFn, useSafeState } from 'ahooks';
 import { toJS, isObservable } from '@formily/reactive';
 
@@ -11,10 +11,11 @@ interface IUseFieldOptionsConfig {
   callback?: (options: IFieldOptionItem[]) => void,
   /** 更新依赖项数组,不需要传递optionsProp,optionsProp会默认加入 */
   deps?: any,
+  fetchRef?: MutableRefObject<boolean>
 }
 
 export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFieldOptionsConfig = {}) => {
-  const { onLoading, callback, deps } = config;
+  const { onLoading, callback, deps, fetchRef } = config;
   const [ options, setOptions ] = useSafeState<IFieldOptionItem[]>([]);
   const getOptions = useMemoizedFn(async () => {
     let result: IFieldPropOptionItem[] = [];
@@ -31,8 +32,11 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
       }
       result = result.map((item) => (typeof item === 'object' ? item : { value: item, label: `${item}` }));
       onLoading?.(false);
-      setOptions(result as IFieldOptionItem[]);
       callback?.(result as IFieldOptionItem[]);
+      setOptions(() => {
+        if (fetchRef && !fetchRef.current) fetchRef.current = true;
+        return result as IFieldOptionItem[];
+      });
     } catch (error) {
       onLoading?.(false);
     }
