@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
 import { isEqual, isInArray } from '@iimm/shared';
@@ -6,7 +6,6 @@ import { isEqual, isInArray } from '@iimm/shared';
 import { useFetchOptions } from '../../hooks';
 import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
-import { useEffect } from 'react';
 
 export const SelectBase = (props) => {
   const {
