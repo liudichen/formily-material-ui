@@ -1,11 +1,11 @@
-import React from 'react';
+import type { ComponentType, FC, RefObject, ForwardRefExoticComponent, PropsWithChildren } from 'react';
 import type { IFormProps, Form } from '@formily/core';
 import type { StepperProps, StepIconProps } from '@mui/material';
 
-import { ResultRenderProps } from './DefaultCompleteRender';
-import { StepFormProps } from './StepForm';
+import type { ResultRenderProps as StepsFormResultRenderProps } from './DefaultCompleteRender';
+import type { StepFormProps } from './StepForm';
 
-export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'values' | 'form' | 'handleStepChange'> {
+export interface StepsFormProps extends StepperProps, Omit<StepsFormResultRenderProps, 'values' | 'form' | 'handleStepChange'> {
   form?: Form,
   direction?: 'horizontal'| 'vertical',
   labelPlacement?: 'horizontal'| 'vertical',
@@ -15,21 +15,21 @@ export interface StepsFormProps extends StepperProps, Omit<ResultRenderProps, 'v
   */
   createFormOptions?: IFormProps,
 
-  ResultRender?: React.ComponentType<ResultRenderProps>,
+  ResultRender?: ComponentType<StepsFormResultRenderProps>,
 
   /** 重建form实例的depend项 */
   depend?: any,
   /** 获取form实例 */
-  formRef?: React.RefObject<Form>
+  formRef?: RefObject<Form>
 }
 
-declare const StepsForm: React.ForwardRefExoticComponent<React.PropsWithChildren<StepsFormProps>> & {
-  StepForm: React.FC<React.PropsWithChildren<StepFormProps>>
+declare const StepsForm: ForwardRefExoticComponent<PropsWithChildren<StepsFormProps>> & {
+  StepForm: FC<PropsWithChildren<StepFormProps>>
 };
 
 export {
   StepsForm,
   StepFormProps,
-  ResultRenderProps,
+  StepsFormResultRenderProps,
   StepIconProps,
 };

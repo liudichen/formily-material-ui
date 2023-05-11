@@ -25,6 +25,7 @@ export interface ResultRenderProps {
   resultActions?: React.ReactNode | React.ReactNode[],
   resultResetText?: React.ReactNode,
   resultResetProps?: Omit<ButtonProps, 'onClick'> // { variant: 'outlined' }
+  resultContent?: ResultProps['content']
 }
 
 declare const DefaultCompleteRender:React.FunctionComponent<ResultRenderProps>;

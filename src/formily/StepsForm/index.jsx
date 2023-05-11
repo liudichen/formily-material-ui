@@ -12,7 +12,7 @@ export const StepsForm = observer((props) => {
   const {
     children,
     onFinish, createFormOptions,
-    ResultRender, resultTitle, resultSubTitle, showResultReset, resultActions, resultResetText, resultResetProps, onResultReset,
+    ResultRender, resultTitle, resultSubTitle, showResultReset, resultActions, resultResetText, resultResetProps, onResultReset, resultContent,
     stepContentProps,
     direction, orientation, alternativeLabel, labelPlacement, depend,
     formRef, form: formProp,
@@ -127,6 +127,7 @@ export const StepsForm = observer((props) => {
             resultResetText={resultResetText}
             resultResetProps={resultResetProps}
             onResultReset={onResultReset}
+            resultContent={resultContent}
           />
         )}
       </FormProvider>
