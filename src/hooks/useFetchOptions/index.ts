@@ -1,8 +1,8 @@
-import { type MutableRefObject, useEffect } from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import { type MutableRefObject } from 'react';
+import { useDeepCompareEffect, useMemoizedFn, useSafeState } from 'ahooks';
 import { toJS } from '@formily/reactive';
 
-import { IFieldOptionItem, IFieldPropOptions, IFieldPropOptionItem } from '../../types';
+import type { IFieldOptionItem, IFieldPropOptions, IFieldPropOptionItem } from '../../types';
 
 interface IUseFieldOptionsConfig {
   /** 外部管理Loading状态：setLoading */
@@ -41,7 +41,7 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
       onLoading?.(false);
     }
   });
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     getOptions();
   }, [ optionsProp, deps ]);
   return options;
