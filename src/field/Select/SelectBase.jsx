@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
+import React, { useRef } from 'react';
+import { useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from 'ahooks';
 import { Autocomplete, TextField } from '@mui/material';
 import { isEqual, isInArray } from '@iimm/shared';
 
@@ -37,7 +37,7 @@ export const SelectBase = (props) => {
   const syncOptionsValue = useMemoizedFn(() => {
     onValidChange(undefined, value);
   });
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     if (!allowExtraValue && fetchRef.current) {
       syncOptionsValue();
     }
