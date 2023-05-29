@@ -1,6 +1,6 @@
-import React from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
-import { FormItemBaseProps } from './FormItemBase';
+import type { FormItemBaseProps } from './FormItemBase';
 
 export interface FormItemProps extends FormItemBaseProps {
   /** 不从FormLayout获取信息 */
@@ -10,4 +10,4 @@ export interface FormItemProps extends FormItemBaseProps {
 }
 
 /** 适用于Field的decorator */
-export declare const FormItem:React.FC<React.PropsWithChildren<FormItemProps>>;
+export declare const FormItem: FC<PropsWithChildren<FormItemProps>>;

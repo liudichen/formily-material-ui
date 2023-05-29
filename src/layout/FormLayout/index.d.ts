@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from 'react';
-import { GridProps } from '@mui/material';
+import { createContext, useContext, type ReactNode, type FC, type PropsWithChildren } from 'react';
+import { type GridProps } from '@mui/material';
 
 export interface CommonLayoutProps {
   /** Input Select组件显示border上的标签 */
@@ -19,7 +19,7 @@ export interface CommonLayoutProps {
   fullWidth?: boolean,
   /** label/title显示冒号? */
   colon?: boolean,
-  tooltipIcon?: React.ReactNode,
+  tooltipIcon?: ReactNode,
   /** 帮助文本显示方式, text:在问题上显示tooltip, icon:在图标上显示tooltip */
   tooltipLayout?: 'text' | 'icon',
   /** 显示反馈/错误信息? */
@@ -63,6 +63,6 @@ export declare const useFormLayout = () => useContext(FormLayoutContext);
  *  ```<Grid item>{child}</Grid>```
  * 同时，本组件接受一些传递给子组件的布局信息
  */
-export declare const FormLayout: React.FC<React.PropsWithChildren<FormLayoutProps>>;
+export declare const FormLayout: FC<PropsWithChildren<FormLayoutProps>>;
 
 export default FormLayout;

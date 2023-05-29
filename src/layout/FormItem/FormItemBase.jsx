@@ -2,7 +2,7 @@ import React from 'react';
 import { useCreation } from 'ahooks';
 import { observer } from '@formily/react';
 import { Tooltip } from '@mui/material';
-import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined } from '@mui/icons-material';
+import { ErrorOutlineOutlined, HighlightOffOutlined, CheckCircleOutline, RemoveOutlined, HelpOutline } from '@mui/icons-material';
 import { Popover } from 'mui-component';
 import { useOverflow } from '@iimm/react-shared';
 import cls from 'classnames';
@@ -85,7 +85,7 @@ export const FormItemBase = observer((props) => {
       return (
         <span>
           <Tooltip placement='top' title={tooltip} arrow>
-            <span style={{ cursor: 'help' }}>{tooltipIcon}</span>
+            <span style={{ cursor: 'help' }}>{tooltipIcon ?? <HelpOutline fontSize='small' />}</span>
           </Tooltip>
         </span>
       );

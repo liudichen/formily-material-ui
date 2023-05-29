@@ -1,6 +1,6 @@
-import React from 'react';
+import type{ CSSProperties, ReactNode, FC, PropsWithChildren } from 'react';
 
-import { CommonLayoutProps } from '../FormLayout';
+import type { CommonLayoutProps } from '../FormLayout';
 
 export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
   /** formItem内部className的前缀，可以在引入自定义样式时使用
@@ -8,21 +8,21 @@ export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
    */
   prefixCls?: string,
   className?: string,
-  style?: React.CSSProperties,
+  style?: CSSProperties,
   noLabel?: boolean,
-  label?: React.ReactNode,
+  label?: ReactNode,
   /** 传递给包裹的FormItem的labelStyle */
-  labelStyle?: React.CSSProperties,
-  wrapperStyle?: React.CSSProperties,
-  tooltip?: React.ReactNode,
+  labelStyle?: CSSProperties,
+  wrapperStyle?: CSSProperties,
+  tooltip?: ReactNode,
   required?: boolean,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | 'default' | (string & {}),
-  feedbackText?: React.ReactNode,
-  feedbackIcon?: React.ReactNode,
+  feedbackText?: ReactNode,
+  feedbackIcon?: ReactNode,
   /** formItem下部额外内容 */
-  extra?: React.ReactNode,
-  addonBefore?: React.ReactNode,
-  addonAfter?: React.ReactNode,
+  extra?: ReactNode,
+  addonBefore?: ReactNode,
+  addonAfter?: ReactNode,
   /** formItem下部额外内容的className */
   extraCls?: string,
   feedbackCls?: string,
@@ -42,7 +42,7 @@ export interface FormItemExtraProps {
   /** 当 withFormItem=true时传递给FormItemBase的className*/
   formItemCls?: string,
   /** 当 withFormItem=true时传递给FormItemBase的style*/
-  formItemStyle?: React.CSSProperties,
+  formItemStyle?: CSSProperties,
   /** 当 withFormItem=true时，传递给formItem的内部className的前缀，可以在引入自定义样式时使用
    * @default iimm 可以通过样式覆盖来修改FormItem内部样式(不需要传递此值)
    */
@@ -50,4 +50,4 @@ export interface FormItemExtraProps {
 }
 
 /** 所有属性均需要手动指定，无法从外部获取 */
-export declare const FormItemBase: React.FC<React.PropsWithChildren<FormItemBaseProps>>;
+export declare const FormItemBase: FC<PropsWithChildren<FormItemBaseProps>>;
