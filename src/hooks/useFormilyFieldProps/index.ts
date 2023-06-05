@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { useField } from '@formily/react';
 import { isVoidField } from '@formily/core';
 
@@ -62,8 +62,8 @@ interface IUseFormilyFieldConfig {
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
-  label?: React.ReactNode,
-  tooltip?: React.ReactNode,
+  label?: ReactNode,
+  tooltip?: ReactNode,
   defaultValue?: any,
   disabled?: boolean,
   readOnly?: boolean,
@@ -72,7 +72,7 @@ interface IProps extends ICommonProps, CommonLayoutProps {
   options?: any,
   display?: 'visible' | 'hidden' | 'none' | string,
   feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | string,
-  feedbackText?: React.ReactNode,
+  feedbackText?: ReactNode,
   /** 不从FormLayout获取信息 */
   noFormLayout?: boolean,
   withFormItem?: boolean,
@@ -82,7 +82,7 @@ import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemCo
 
 /** 用来处理FormItem及字段项 props的hooks可以从FormLayout或Field 获取布局或label，error等信息*/
 export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFieldConfig = {}) => {
-  const formatProps = {
+  const formatProps: IProps = {
     ...props,
   };
   const layout = useFormLayout();
