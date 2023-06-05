@@ -29,3 +29,4 @@ export interface ResultRenderProps {
 }
 
 declare const DefaultCompleteRender: ComponentType<ResultRenderProps>;
+export default DefaultCompleteRender;
