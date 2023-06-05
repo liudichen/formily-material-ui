@@ -21,6 +21,7 @@ export interface StepsFormProps extends StepperProps, Omit<StepsFormResultRender
   depend?: any,
   /** 获取form实例 */
   formRef?: RefObject<Form>
+  showReset?: boolean
 }
 
 declare const StepsForm: ForwardRefExoticComponent<PropsWithChildren<StepsFormProps>> & {

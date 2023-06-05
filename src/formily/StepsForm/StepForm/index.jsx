@@ -10,7 +10,7 @@ import { Submit } from '../../Submit';
 const StepForm = observer((props) => {
   const { stepIndex, stepsCount, onFinish, onPrevious, nextProps, nextText, previousText, previousProps, children, handleStepChange, onSubmitFail,
     // eslint-disable-next-line no-unused-vars
-    title, subTitle, icon, name, field,
+    title, subTitle, icon, name, field, showReset, onReset, resetProps,
     ...restProps } = props;
 
   const onSubmit = useMemoizedFn(async (stepValues) => {
@@ -44,6 +44,17 @@ const StepForm = observer((props) => {
         </Grid>
         <Grid item xs={12}>
           <Space>
+            { showReset && (
+              <Button
+                size='small'
+                variant='outlined'
+                color='secondary'
+                {...(resetProps || {})}
+                onClick={onReset}
+              >
+                重置
+              </Button>
+            )}
             {!!stepIndex && (
               <Button
                 disabled={field?.submitting}

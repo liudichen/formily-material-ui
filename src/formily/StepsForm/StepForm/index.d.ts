@@ -37,6 +37,9 @@ export interface StepFormProps extends BoxProps {
   previousProps?: Omit<ButtonProps, 'onClick'>,
   nextText?: [React.ReactNode, React.ReactNode],
   nextProps?: Omit<SubmitProps, 'onSubmit' | 'onSubmitFailed'>,
+  showReset?: boolean
+  onReset?: () => void | (() => Promise<void>)
+  resetProps?: Omit<ButtonProps, 'onClick'>
 }
 
 declare const StepForm: React.ForwardRefRenderFunction<Form, React.PropsWithChildren<StepFormProps>>;

@@ -15,7 +15,7 @@ export const StepsForm = observer((props) => {
     ResultRender, resultTitle, resultSubTitle, showResultReset, resultActions, resultResetText, resultResetProps, onResultReset, resultContent,
     stepContentProps,
     direction, orientation, alternativeLabel, labelPlacement, depend,
-    formRef, form: formProp,
+    formRef, form: formProp, showReset: showResetParent,
     ...restProps
   } = props;
   const [ stepsCount, setStepCount ] = useSafeState(() => React.Children.count(children));
@@ -45,6 +45,10 @@ export const StepsForm = observer((props) => {
         setActiveStep((s) => (s - 1) || 0);
       }
     }
+  });
+  const handleReset = useMemoizedFn(() => {
+    form?.reset('*');
+    setActiveStep(0);
   });
   return (
     <Box>
@@ -92,15 +96,23 @@ export const StepsForm = observer((props) => {
         {(direction ?? orientation) !== 'vertical' && (
           React.Children.map(children, (child, index) => {
             if (!child || index !== activeStep) { return null; }
-            const { onFinish: onFinishProp, name } = child.props;
+            const { onFinish: onFinishProp, name, showReset: showResetProp, onReset } = child.props;
+            const showReset = showResetProp ?? showResetParent;
             const overwriteProps = {
               handleStepChange,
               current: activeStep,
               stepIndex: index,
               stepsCount,
+              showReset,
             };
             if (!onFinishProp && index + 1 === stepsCount && onFinish) {
               overwriteProps.onFinish = onFinish;
+            }
+            if (showReset) {
+              overwriteProps.showReset = () => {
+                handleReset();
+                onReset();
+              };
             }
             return (
               <ObjectField name={name ?? index}>
