@@ -1,9 +1,9 @@
-import { useEffect, useImperativeHandle, Children, cloneElement, ReactNode } from 'react';
-import type { ComponentType, RefObject } from 'react';
+import { useEffect, useImperativeHandle, Children, cloneElement } from 'react';
+import type { ComponentType, RefObject, ReactNode } from 'react';
 import { useCreation, useMemoizedFn, useSafeState } from 'ahooks';
 import { createForm, type IFormProps, type Form } from '@formily/core';
 import { toJS } from '@formily/reactive';
-import { FormProvider, ObjectField, observer } from '@formily/react';
+import { FormProvider, ObjectField } from '@formily/react';
 import { Box, Step, StepContent, StepIcon, StepLabel, Stepper, type StepperProps, type StepContentProps, type StepIconProps } from '@mui/material';
 
 import { StepForm, type StepFormProps } from './StepForm';
@@ -30,7 +30,7 @@ interface StepsFormProps extends StepperProps, Omit<StepsFormResultRenderProps, 
   children?: ReactNode
 }
 
-const StepsFormFn = (props: StepsFormProps) => {
+const StepsForm = (props: StepsFormProps) => {
   const {
     children,
     onFinish, createFormOptions,
@@ -178,14 +178,12 @@ const StepsFormFn = (props: StepsFormProps) => {
     </Box>
   );
 };
-StepsFormFn.defaultProps = {
+StepsForm.defaultProps = {
   showResultReset: true,
   resultResetText: '返回',
 };
 
-StepsFormFn.StepForm = StepForm;
-
-const StepsForm = observer(StepsFormFn, { forwardRef: true, displayName: 'iimm.Mui.Formily.StepsForm' });
+StepsForm.StepForm = StepForm;
 
 export {
   StepsForm,
