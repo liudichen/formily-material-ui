@@ -10,7 +10,6 @@ import cls from 'classnames';
 import './index.scss';
 import { prefixCls } from '../../utils';
 import type { CommonLayoutProps } from '../FormLayout';
-import { IProps } from 'ahooks/lib/useWhyDidYouUpdate';
 
 export interface FormItemBaseProps extends Omit<CommonLayoutProps, 'noField'> {
   /** formItem内部className的前缀，可以在引入自定义样式时使用
@@ -66,7 +65,7 @@ const ICON_MAP: Record<string, ReactNode> = {
   warning: <ErrorOutlineOutlined fontSize='small' />,
 };
 
-export const FormItemBase = observer((props: IProps) => {
+export const FormItemBase = observer((props: FormItemBaseProps) => {
   const {
     labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
     noLabel, label, labelStyle: labelSx, wrapperStyle: wrapperSx, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
@@ -179,8 +178,8 @@ export const FormItemBase = observer((props: IProps) => {
         [`${prefix}-row`]: labelPosition === 'left',
         [`${prefix}-column`]: (labelPosition === 'top' || !labelPosition),
         [`${prefix}-error`]: !!error,
-        [`${prefix}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus),
-        [`${prefix}-default-help`]: ![ 'warning', 'error' ].includes(feedbackStatus) && !error,
+        [`${prefix}-${feedbackStatus}-help`]: [ 'warning', 'error' ].includes(feedbackStatus as string),
+        [`${prefix}-default-help`]: ![ 'warning', 'error' ].includes(feedbackStatus as string) && !error,
       })}>
         {renderLabel()}
         <div className={`${prefix}-control`}>
@@ -198,7 +197,7 @@ export const FormItemBase = observer((props: IProps) => {
               })}
             >
               {children}
-              {showFeedback && feedbackLayout === 'popover' && ([ 'warning', 'error', 'success' ].includes(feedbackStatus) ? (
+              {showFeedback && feedbackLayout === 'popover' && ([ 'warning', 'error', 'success' ].includes(feedbackStatus as string) ? (
                 <Popover
                   triggerType='hover'
                   trigger={(
@@ -206,12 +205,12 @@ export const FormItemBase = observer((props: IProps) => {
                       [`${prefix}-feedback-icon}`]: true,
                       [`${prefix}-${feedbackStatus}-help`]: !!feedbackStatus,
                     })}>
-                      {feedbackIcon ?? ICON_MAP[feedbackStatus]}
+                      {feedbackIcon ?? ICON_MAP[feedbackStatus as string]}
                     </div>
                   )}
                   content={
                     <div className={cls({ [`${prefix}-help`]: true })} >
-                      <span className={`${prefix}-${feedbackStatus}-help`}>{ICON_MAP[feedbackStatus]}</span>
+                      <span className={`${prefix}-${feedbackStatus}-help`}>{ICON_MAP[feedbackStatus as string]}</span>
                       {feedbackText}
                     </div>
                   }
