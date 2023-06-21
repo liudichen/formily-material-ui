@@ -1,4 +1,4 @@
-import type { ReactNode, MutableRefObject, FC } from 'react';
+import type { ReactNode, MutableRefObject, FC, PropsWithChildren } from 'react';
 import type { IFormProps, Form } from '@formily/core';
 import type { ModalProps } from 'mui-component';
 
