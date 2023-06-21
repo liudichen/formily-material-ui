@@ -1,4 +1,4 @@
-import type { ReactNode, MutableRefObject } from 'react';
+import type { ReactNode, MutableRefObject, FC } from 'react';
 import type { IFormProps, Form } from '@formily/core';
 import type { ModalProps } from 'mui-component';
 
@@ -30,6 +30,7 @@ export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCa
    * @default {validateFirst:true}
   */
   createFormOptions?: IFormProps,
+  ref?: any
 }
 
-export declare const ModalForm: ForwardRefExoticComponent<PropsWithChildren<ModalFormProps>>;
+export declare const ModalForm: FC<PropsWithChildren<ModalFormProps>>;
