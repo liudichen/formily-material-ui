@@ -1,6 +1,6 @@
-import React from 'react';
-import { SxProps } from '@mui/material';
-import { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
+import type { ReactNode, FC } from 'react';
+import type { SxProps } from '@mui/material';
+import type { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
 
 import { FormItemBaseProps, FormItemExtraProps } from '../../layout';
 
@@ -8,7 +8,7 @@ export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBa
   size?: 'small' | 'medium',
   /** 显示内部label? */
   showInnerLabel?: boolean,
-  label?: React.ReactNode,
+  label?: ReactNode,
   defaultValue?: any,
   /** 文本框宽度拉满？ */
   fullWidth?: boolean,
@@ -19,4 +19,4 @@ export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBa
   textFieldSx?: SxProps,
 }
 
-export declare const DatePickerBase: React.FC<DatePickerBaseProps>;
+export declare const DatePickerBase: FC<DatePickerBaseProps>;
