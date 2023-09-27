@@ -126,6 +126,7 @@ const StepsForm = (props: StepsFormProps) => {
               name,
               showReset: showResetProp,
               onReset,
+              // @ts-ignore
             } = child?.props || {};
             const showReset = showResetProp ?? showResetParent;
             const overwriteProps: Partial<StepFormProps> = {
