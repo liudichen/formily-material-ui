@@ -60,6 +60,7 @@ export const SelectBase = (props) => {
           label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
         />
       )}
+      getOptionDisabled={(option) => !!option?.disabled }
       {...restProps}
     />
   );
