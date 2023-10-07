@@ -42,6 +42,9 @@ interface StepsFormProps
   formRef?: RefObject<Form>;
   showReset?: boolean;
   children?: ReactNode;
+
+  /** 保持子步骤表单项一直存在(只隐藏)? */
+  keepAlive?: boolean;
 }
 
 const StepsForm = (props: StepsFormProps) => {
@@ -67,6 +70,7 @@ const StepsForm = (props: StepsFormProps) => {
     formRef,
     form: formProp,
     showReset: showResetParent,
+    keepAlive,
     ...restProps
   } = props;
   const [stepsCount, setStepCount] = useSafeState(() => Children.count(children));
@@ -104,6 +108,7 @@ const StepsForm = (props: StepsFormProps) => {
     form?.reset("*");
     setActiveStep(0);
   });
+
   return (
     <Box>
       <FormProvider form={form}>
@@ -165,7 +170,7 @@ const StepsForm = (props: StepsFormProps) => {
         </Stepper>
         {(direction ?? orientation) !== "vertical" &&
           Children.map(children, (child, index) => {
-            if (!child) {
+            if (!child || (!keepAlive && index !== activeStep)) {
               return null;
             }
             // @ts-ignore
