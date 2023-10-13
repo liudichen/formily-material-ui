@@ -17,8 +17,8 @@ export interface IFieldOptionItem<V = any, L = string> {
 export type IFieldPropOptionItem<V = any, L = string> = string | number | IFieldOptionItem<V, L>;
 
 type IFieldPropFnOption<V = any, L = string> =
-  | (() => IFieldOptionItem<V, L>[])
-  | (() => Promise<IFieldOptionItem<V, L>[]>);
+  | ((refresh?: boolean) => IFieldOptionItem<V, L>[])
+  | ((refresh?: boolean) => Promise<IFieldOptionItem<V, L>[]>);
 
 export type IFieldPropOptions<V = any, L = string> = IFieldPropOptionItem<V, L>[] | IFieldPropFnOption<V, L>;
 
@@ -33,4 +33,13 @@ export interface IUploadedFile extends File {
   thumbUrl?: string;
   status?: "error" | "done" | "uploading";
   message?: string;
+}
+
+export interface RefreshOptionsProps {
+  /** 显示刷新选项的按钮? */
+  showRefresh?: boolean;
+  /** refesh刷新选项的受控属性 */
+  refresh?: number;
+  /** refesh刷新选项的受控属性 */
+  onRefreshChange?: (refresh: number) => void;
 }

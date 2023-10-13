@@ -1,11 +1,13 @@
 import React, { useRef } from 'react';
-import { useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from 'ahooks';
-import { Autocomplete, TextField } from '@mui/material';
+import { useCreation, useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from 'ahooks';
+import { Autocomplete, IconButton, TextField } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { isEqual, isInArray } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
 import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
+import './style.scss';
 
 export const SelectBase = (props) => {
   const {
@@ -13,18 +15,27 @@ export const SelectBase = (props) => {
     noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
     addonAfter, formItemCls, formItemStyle, formItemPrefixCls, error, feedbackCls, extraCls,
     keepTopSpace,
-    options: optionsProp, refreshOptionsFlag, showInnerLabel, innerLabelProps,
+    options: optionsProp, showInnerLabel, innerLabelProps,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
     allowExtraValue,
     placeholder, variant,
     disableCloseOnSelect,
+    // eslint-disable-next-line no-unused-vars
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const [ loading, setLoading ] = useSafeState(false);
+  const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [ props.readOnly, props.disabled ]);
   const [ value, onChange ] = useControllableValue(props);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refreshOptionsFlag, fetchRef });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef });
+
+  const doRefresh = useMemoizedFn(() => {
+    onRefreshChange(refresh + 1);
+  });
+
   const onValidChange = useMemoizedFn((e, v) => {
     if (allowExtraValue) {
       onChange(v);
@@ -37,11 +48,13 @@ export const SelectBase = (props) => {
   const syncOptionsValue = useMemoizedFn(() => {
     onValidChange(undefined, value);
   });
+
   useDeepCompareEffect(() => {
-    if (!allowExtraValue && fetchRef.current) {
+    if (!readOnly && !allowExtraValue && fetchRef.current) {
       syncOptionsValue();
     }
-  }, [ options, allowExtraValue ]);
+  }, [ options, allowExtraValue, readOnly ]);
+
   const dom = (
     <Autocomplete
       loading={loading}
@@ -54,7 +67,17 @@ export const SelectBase = (props) => {
       renderInput={(params) => (
         <TextField
           placeholder={placeholder}
-          {...params}
+          {...(readOnly || !showRefresh ? params : {
+            ...params,
+            InputProps: {
+              ...(params.InputProps || {}),
+              endAdornment: <>
+                <IconButton className='refresh-icon-i' size='small' title='刷新选项列表' onClick={doRefresh}>
+                  <Refresh />
+                </IconButton>
+              </>,
+            },
+          })}
           error={error}
           variant={variant}
           label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}

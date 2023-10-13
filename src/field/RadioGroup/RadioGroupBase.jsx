@@ -18,10 +18,13 @@ export const RadioGroupBase = (props) => {
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
     layout, sx, size, color, disabled, itemSx, readOnly,
     labelPlacement, icon, checkedIcon, row,
+    // eslint-disable-next-line no-unused-vars
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
     ...restProps
   } = props;
   const [ loading, setLoading ] = useSafeState(false);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading });
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh });
   const [ value, onChange ] = useControllableValue(props);
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);

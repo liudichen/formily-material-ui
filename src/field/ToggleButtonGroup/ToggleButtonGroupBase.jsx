@@ -18,12 +18,15 @@ export const ToggleButtonGroupBase = (props) => {
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
     minCount, maxCount, exclusive, orientation,
     layout, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
+    // eslint-disable-next-line no-unused-vars
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
     ...restProps
   } = props;
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)) });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)), deps: refresh });
   const itemSx = useCreation(() => {
     if (!itemWidth && !itemMaxWidth && !itemMinWidth) return itemSxProp;
     const sx = { ...(itemSxProp || {}) };

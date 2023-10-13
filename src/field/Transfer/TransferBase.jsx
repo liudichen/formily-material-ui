@@ -17,18 +17,21 @@ export const TransferBase = (props) => {
     keepTopSpace,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
-    options: optionsProp, refreshFlag,
+    options: optionsProp,
     listSx: listSxProp, cardSx: cardSxProp, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps, iconButtonProps,
     keepExtraItems, width, minWidth, maxWidth, height, minHeight, maxHeight, containerBoxProps, overflowThreshold, overflowRatio,
     readOnly, disabled,
     showSearch, showSelectAll, titles,
+    // eslint-disable-next-line no-unused-vars
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
   } = props;
   /** value是右侧的值(可能存在不显示的不在列表里的值) */
   const [ value, setValue ] = useControllableValue(props, { defaultValue: [] });
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const [ checked, setChecked ] = useSafeState([]);
   const [ loading, setLoading ] = useSafeState(false);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (items) => setOptionsValues(items.map((ele) => ele.value)), deps: refreshFlag });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (items) => setOptionsValues(items.map((ele) => ele.value)), deps: refresh });
   const postValue = useMemoizedFn((values) => {
     let v = Array.isArray(values) ? [ ...values ] : [];
     if (!v.length) {

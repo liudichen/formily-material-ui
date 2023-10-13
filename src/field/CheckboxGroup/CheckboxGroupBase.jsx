@@ -21,12 +21,16 @@ export const CheckboxGroupBase = (props) => {
     itemSx, labelPlacement,
     row,
     icon, checkedIcon, size, color,
+    // eslint-disable-next-line no-unused-vars
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
     ...restProps
   } = props;
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const [ loading, setLoading ] = useSafeState(false);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const [ value, onChange ] = useControllableValue(props);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)) });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)), deps: refresh });
+
   const handleChange = useMemoizedFn((e, optionValue) => {
     if (readOnly) { return; }
     const checked = e.target.checked;
@@ -53,6 +57,7 @@ export const CheckboxGroupBase = (props) => {
       onChange(newValue);
     }
   });
+
   const dom = loading ? (
     <Skeleton
       variant='rectangular'
