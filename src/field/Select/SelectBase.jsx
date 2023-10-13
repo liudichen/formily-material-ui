@@ -75,6 +75,7 @@ export const SelectBase = (props) => {
                 <IconButton className='refresh-icon-i' size='small' title='刷新选项列表' onClick={doRefresh}>
                   <Refresh />
                 </IconButton>
+                {params?.InputLabelProps?.endAdornment}
               </>,
             },
           })}
