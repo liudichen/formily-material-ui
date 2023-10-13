@@ -42,4 +42,8 @@ export interface RefreshOptionsProps {
   refresh?: number;
   /** refesh刷新选项的受控属性 */
   onRefreshChange?: (refresh: number) => void;
+  /** 刷新选项的文本 */
+  refreshText?: string;
+  /** 刷新选项的图标 */
+  refreshIcon?: React.ReactNode;
 }

@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSafeState, useMemoizedFn, useControllableValue, useCreation } from 'ahooks';
-import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton } from '@mui/material';
+import { Checkbox, Skeleton, ToggleButtonGroup as MuiToggleButtonGroup, ToggleButton as MuiToggleButton, Tooltip } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { isEqual, isInArray } from '@iimm/shared';
 
 import { FormItemBase } from '../../layout';
 import { COLORS } from '../../utils';
 import { useFetchOptions } from '../../hooks';
+import { BoxWithFullWidth } from '../common';
+import '../../styles/refresh.scss';
 
 export const ToggleButtonGroupBase = (props) => {
   const {
@@ -19,13 +22,18 @@ export const ToggleButtonGroupBase = (props) => {
     minCount, maxCount, exclusive, orientation,
     layout, size, color, disabled, readOnly, itemSx: itemSxProp, itemWidth, itemMinWidth, itemMaxWidth, itemFullWidth,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh sx={{ color: '#eb2f96' }} />,
     ...restProps
   } = props;
   const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
+
+  const doRefresh = useMemoizedFn(() => {
+    onRefreshChange(refresh + 1);
+  });
+
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)), deps: refresh });
   const itemSx = useCreation(() => {
     if (!itemWidth && !itemMaxWidth && !itemMinWidth) return itemSxProp;
@@ -96,6 +104,15 @@ export const ToggleButtonGroupBase = (props) => {
           {item.label}
         </MuiToggleButton>
       ))}
+      { showRefresh && !readOnly && !disabled && (
+        <BoxWithFullWidth>
+          <Tooltip arrow placement='top' title={refreshText}>
+            <IconButton size={size} onClick={doRefresh} className='refresh-icon-i'>
+              {refreshIcon}
+            </IconButton>
+          </Tooltip>
+        </BoxWithFullWidth>
+      )}
     </MuiToggleButtonGroup>
   );
   return withFormItem ? (

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from 'ahooks';
-import { Box, IconButton, Skeleton } from '@mui/material';
-import { IconArrowBigLeft, IconArrowBigRight } from '@tabler/icons-react';
+import { Box, IconButton, Skeleton, Tooltip } from '@mui/material';
+import { IconArrowBigLeft, IconArrowBigRight, IconRefresh } from '@tabler/icons-react';
 import { isEqual, isInArray, intersection, differenceSet as not, union } from '@iimm/shared';
 import { useOverflow } from '@iimm/react-shared';
 
 import { useFetchOptions } from '../../hooks';
 import { FormItemBase } from '../../layout';
 import { ListCard } from './ListCard';
+import '../../styles/refresh.scss';
 
 export const TransferBase = (props) => {
   const {
@@ -23,7 +24,7 @@ export const TransferBase = (props) => {
     readOnly, disabled,
     showSearch, showSelectAll, titles,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <IconRefresh color='#eb2f96' />,
   } = props;
   /** value是右侧的值(可能存在不显示的不在列表里的值) */
   const [ value, setValue ] = useControllableValue(props, { defaultValue: [] });
@@ -32,6 +33,11 @@ export const TransferBase = (props) => {
   const [ loading, setLoading ] = useSafeState(false);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (items) => setOptionsValues(items.map((ele) => ele.value)), deps: refresh });
+
+  const doRefresh = useMemoizedFn(() => {
+    onRefreshChange(refresh + 1);
+  });
+
   const postValue = useMemoizedFn((values) => {
     let v = Array.isArray(values) ? [ ...values ] : [];
     if (!v.length) {
@@ -163,6 +169,17 @@ export const TransferBase = (props) => {
         >
           <IconArrowBigLeft />
         </IconButton>
+        { showRefresh && !readOnly && !disabled && (
+          <Tooltip arrow placement='top' title={refreshText}>
+            <IconButton
+              onClick={doRefresh}
+              className='refresh-icon-i'
+              tabIndex={-1}
+            >
+              {refreshIcon}
+            </IconButton>
+          </Tooltip>
+        )}
       </Box>
       {loading ? (
         <Skeleton

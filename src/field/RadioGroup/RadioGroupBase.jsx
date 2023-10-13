@@ -1,11 +1,13 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
 import { FormControlLabel, Radio, RadioGroup as MuiRadioGroup, Skeleton } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { isEqual } from '@iimm/shared';
 
 import { FormItemBase } from '../../layout';
 import { useFetchOptions } from '../../hooks';
 import { COLORS } from '../../utils';
+import '../../styles/refresh.scss';
 
 export const RadioGroupBase = (props) => {
   const {
@@ -19,13 +21,18 @@ export const RadioGroupBase = (props) => {
     layout, sx, size, color, disabled, itemSx, readOnly,
     labelPlacement, icon, checkedIcon, row,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh sx={{ color: '#eb2f96' }} />,
     ...restProps
   } = props;
   const [ loading, setLoading ] = useSafeState(false);
   const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh });
   const [ value, onChange ] = useControllableValue(props);
+
+  const doRefresh = useMemoizedFn(() => {
+    onRefreshChange(refresh + 1);
+  });
+
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
@@ -66,6 +73,16 @@ export const RadioGroupBase = (props) => {
           }
         />
       ))}
+      { showRefresh && !readOnly && !disabled && (
+        <FormControlLabel className='refresh-icon-i'
+          label={refreshText}
+          control={
+            <IconButton size={size} onClick={doRefresh} title={typeof refreshText === 'string' ? refreshText : undefined}>
+              {refreshIcon}
+            </IconButton>
+          }
+        />
+      )}
     </MuiRadioGroup>
   );
 

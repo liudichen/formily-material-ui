@@ -7,7 +7,7 @@ import { isEqual, isInArray } from '@iimm/shared';
 import { useFetchOptions } from '../../hooks';
 import { renderInnerLabel } from '../../utils';
 import { FormItemBase } from '../../layout';
-import './style.scss';
+import '../../styles/refresh.scss';
 
 export const SelectBase = (props) => {
   const {
@@ -22,7 +22,7 @@ export const SelectBase = (props) => {
     placeholder, variant,
     disableCloseOnSelect,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh />,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
@@ -72,8 +72,8 @@ export const SelectBase = (props) => {
             InputProps: {
               ...(params.InputProps || {}),
               endAdornment: <>
-                <IconButton className='refresh-icon-i' size='small' title='刷新选项列表' onClick={doRefresh}>
-                  <Refresh />
+                <IconButton className='refresh-icon-i' size='small' title={refreshText} onClick={doRefresh}>
+                  {refreshIcon}
                 </IconButton>
                 {params?.InputLabelProps?.endAdornment}
               </>,

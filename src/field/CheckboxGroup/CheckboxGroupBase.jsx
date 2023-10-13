@@ -1,11 +1,13 @@
 import React from 'react';
 import { useControllableValue, useMemoizedFn, useSafeState } from 'ahooks';
-import { Checkbox, FormControlLabel, FormGroup, Skeleton } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup, Skeleton, Tooltip } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { isEqual, isInArray } from '@iimm/shared';
 
 import { useFetchOptions } from '../../hooks';
 import { COLORS } from '../../utils';
 import { FormItemBase } from '../../layout/FormItem/FormItemBase';
+import '../../styles/refresh.scss';
 
 export const CheckboxGroupBase = (props) => {
   const {
@@ -16,13 +18,13 @@ export const CheckboxGroupBase = (props) => {
     options: optionsProp,
     // eslint-disable-next-line no-unused-vars
     value: valueProp, onChange: onChangeProp, defaultValue, children, noField, noFormLayout, withFormItem,
-    readOnly, disabled,
+    readOnly: readOnly, disabled,
     minCount, maxCount, layout,
     itemSx, labelPlacement,
     row,
     icon, checkedIcon, size, color,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp,
+    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh sx={{ color: '#eb2f96' }} />,
     ...restProps
   } = props;
   const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
@@ -30,6 +32,10 @@ export const CheckboxGroupBase = (props) => {
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
   const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)), deps: refresh });
+
+  const doRefresh = useMemoizedFn(() => {
+    onRefreshChange(refresh + 1);
+  });
 
   const handleChange = useMemoizedFn((e, optionValue) => {
     if (readOnly) { return; }
@@ -88,6 +94,18 @@ export const CheckboxGroupBase = (props) => {
           }
         />
       ))}
+      { showRefresh && !readOnly && !disabled && (
+        <FormControlLabel className='refresh-icon-i'
+          label={refreshText}
+          control={
+            <Tooltip arrow placement='top' title={refreshText}>
+              <IconButton size={size} onClick={doRefresh} >
+                {refreshIcon}
+              </IconButton>
+            </Tooltip>
+          }
+        />
+      )}
     </FormGroup>
   );
   return withFormItem ? (
