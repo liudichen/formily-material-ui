@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-import { FormItemBase, type FormItemBaseProps } from "../../layout";
+import { FormItemBase, type FormItemExtraProps, type FormItemBaseProps } from "../../layout";
 import { renderInnerLabel } from "../../utils";
 import type { FieldBaseProps } from "../../types";
 
@@ -51,7 +51,6 @@ export const InputBase = (props: InputBaseProps) => {
     feedbackCls,
     extraCls,
     keepTopSpace,
-    // eslint-disable-next-line no-unused-vars
     value: valueProp,
     onChange: onChangeProp,
     defaultValue,
@@ -68,7 +67,7 @@ export const InputBase = (props: InputBaseProps) => {
     size = "small",
     ...restProps
   } = props;
-  const [value, onChange] = useControllableValue(props, { defaultValue: "" });
+  const [value, onChange] = useControllableValue<number | string>(props, { defaultValue: "" });
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;
