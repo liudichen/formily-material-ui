@@ -1,23 +1,27 @@
-import React from 'react';
-import { TimePickerProps as MuiTimePickerProps } from '@mui/x-date-pickers';
+import type { ReactNode, FC } from "react";
+import type { TimePickerProps as MuiTimePickerProps } from "@mui/x-date-pickers";
 
-import { FormItemBaseProps, FormItemExtraProps } from '../../layout';
+import type { FormItemBaseProps, FormItemExtraProps } from "../../layout";
+import type { FieldBaseProps } from "../../types";
 
-export interface TimePickerBaseProps extends MuiTimePickerProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>, FormItemExtraProps {
-  size?: 'small' | 'medium',
+export interface TimePickerBaseProps
+  extends Omit<MuiTimePickerProps, "value" | "onChange">,
+    Omit<FormItemBaseProps, "className" | "style" | "prefixCls">,
+    FieldBaseProps<any>,
+    FormItemExtraProps {
+  size?: "small" | "medium";
   /** 显示内部label? */
-  showInnerLabel?: boolean,
-  label?: React.ReactNode,
-  defaultValue?: any,
+  showInnerLabel?: boolean;
+  label?: ReactNode;
   /** 文本框宽度拉满？ */
-  fullWidth?: boolean,
+  fullWidth?: boolean;
   /** 选中时文本框颜色 */
-  color?: 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning',
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   /** 文本框样式 */
-  variant?: 'outlined' | 'filled' | 'standard',
-  textFieldSx?: SxProps,
+  variant?: "outlined" | "filled" | "standard";
+  textFieldSx?: SxProps;
   /** 显示秒？ */
-  showSecond?: boolean,
+  showSecond?: boolean;
 }
 
-export declare const TimePickerBase: React.FC<TimePickerBaseProps>;
+export declare const TimePickerBase: FC<TimePickerBaseProps>;

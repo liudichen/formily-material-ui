@@ -1,8 +1,7 @@
-import React from 'react';
+import type { FC } from "react";
 
-import { SelectBaseProps } from './SelectBase';
+import type { SelectBaseProps } from "./SelectBase";
 
-export interface SelectProps extends SelectBaseProps {
-}
+export interface SelectProps extends SelectBaseProps {}
 
-export declare const Select: React.FC<SelectProps>;
+export declare const Select: FC<SelectProps>;

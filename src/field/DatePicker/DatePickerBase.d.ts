@@ -1,22 +1,26 @@
-import type { ReactNode, FC } from 'react';
-import type { SxProps } from '@mui/material';
-import type { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers';
+import type { ReactNode, FC } from "react";
+import type { SxProps } from "@mui/material";
+import type { DatePickerProps as MuiDatePickerProps } from "@mui/x-date-pickers";
 
-import { FormItemBaseProps, FormItemExtraProps } from '../../layout';
+import type { FormItemBaseProps, FormItemExtraProps } from "../../layout";
+import type { FieldBaseProps } from "../../types";
 
-export interface DatePickerBaseProps extends MuiDatePickerProps, Omit<FormItemBaseProps, 'className' | 'style' | 'prefixCls'>, FormItemExtraProps {
-  size?: 'small' | 'medium',
+export interface DatePickerBaseProps
+  extends Omit<MuiDatePickerProps, "value" | "onChange">,
+    Omit<FormItemBaseProps, "className" | "style" | "prefixCls">,
+    FieldBaseProps<any>,
+    FormItemExtraProps {
+  size?: "small" | "medium";
   /** 显示内部label? */
-  showInnerLabel?: boolean,
-  label?: ReactNode,
-  defaultValue?: any,
+  showInnerLabel?: boolean;
+  label?: ReactNode;
   /** 文本框宽度拉满？ */
-  fullWidth?: boolean,
+  fullWidth?: boolean;
   /** 选中时文本框颜色 */
-  color?: 'primary'| 'secondary'| 'error'| 'info'| 'success'| 'warning',
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   /** 文本框样式 */
-  variant?: 'outlined' | 'filled' | 'standard',
-  textFieldSx?: SxProps,
+  variant?: "outlined" | "filled" | "standard";
+  textFieldSx?: SxProps;
 }
 
 export declare const DatePickerBase: FC<DatePickerBaseProps>;
