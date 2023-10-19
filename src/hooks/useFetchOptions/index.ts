@@ -15,9 +15,12 @@ interface IUseFieldOptionsConfig {
   fetchRef?: MutableRefObject<boolean>;
 }
 
-export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFieldOptionsConfig = {}) => {
+export function useFetchOptions<T extends IFieldOptionItem = any>(
+  optionsProp?: IFieldPropOptions,
+  config: IUseFieldOptionsConfig = {}
+) {
   const { onLoading, callback, deps, fetchRef } = config;
-  const [options, setOptions] = useSafeState<IFieldOptionItem[]>([]);
+  const [options, setOptions] = useSafeState<T[]>([]);
   const refresh = deps || 0;
   const refreshRef = useRef(refresh);
 
@@ -39,10 +42,10 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
       result = result.map((item) => (typeof item === "object" ? item : { value: item, label: `${item}` }));
       onLoading?.(false);
       if (!isEqual(options, result)) {
-        callback?.(result as IFieldOptionItem[]);
+        callback?.(result as T[]);
         setOptions(() => {
           if (fetchRef && !fetchRef.current) fetchRef.current = true;
-          return result as IFieldOptionItem[];
+          return result as T[];
         });
       }
     } catch (error) {
@@ -56,4 +59,4 @@ export const useFetchOptions = (optionsProp?: IFieldPropOptions, config: IUseFie
   }, [optionsProp, refresh]);
 
   return options;
-};
+}

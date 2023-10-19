@@ -1,4 +1,4 @@
-import type { ElementType, ReactElement, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useControllableValue, useCreation, useMemoizedFn } from "ahooks";
 import {
   TextField as MuiTextField,
@@ -6,10 +6,6 @@ import {
   IconButton,
   type TextFieldProps,
   type FormLabelProps,
-  type SelectProps,
-  type SxProps,
-  type InputLabelProps,
-  type InputProps as MuiInputProps,
 } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
@@ -177,11 +173,11 @@ export interface InputBaseProps
     Omit<FormItemBaseProps, "className" | "style" | "prefixCls">,
     FormItemExtraProps,
     Omit<TextFieldProps, "value" | "onChange" | "defaultValue"> {
-  label?: React.ReactNode;
+  label?: ReactNode;
   /** 显示内部label? */
   showInnerLabel?: boolean;
   fullWidth?: boolean;
-  tooltip?: React.ReactNode;
+  tooltip?: ReactNode;
   showClear?: boolean;
   required?: boolean;
   /** 仅showInnerLabel=true时传递给内部Label */
@@ -203,23 +199,5 @@ export interface InputBaseProps
     | "datetime";
   margin?: "none" | "dense" | "normal";
   maxRows?: number | string;
-  autoComplete?: string;
-  autoFocus?: boolean;
-  classes?: object;
-  color?: "primary" | "default" | "secondary" | "error" | "info" | "success" | "warning" | string;
-  id?: string;
-  multiline?: boolean;
-  name?: string;
-  placeholder?: string;
-  rows?: number | string;
-  select?: boolean;
-  SelectProps?: SelectProps;
-  size?: "small" | "medium" | string;
-  variant?: "outlined" | "filled" | "standard";
-  focused?: boolean;
-  component?: ReactElement | ElementType;
-  sx?: SxProps;
   endAdornmentItem?: ReactNode;
-  InputLabelProps?: Omit<InputLabelProps, "endAdornment">;
-  InputProps?: MuiInputProps;
 }

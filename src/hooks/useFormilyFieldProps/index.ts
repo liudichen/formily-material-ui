@@ -1,88 +1,88 @@
-import type { ReactNode } from 'react';
-import { useField } from '@formily/react';
-import { isVoidField } from '@formily/core';
+import type { ReactNode } from "react";
+import { useField } from "@formily/react";
+import { isVoidField } from "@formily/core";
 
-import { useFormLayout } from '../../layout/FormLayout';
-import type { ICommonProps } from '../../types';
-import type { CommonLayoutProps } from '../../layout/FormLayout';
+import { useFormLayout } from "../../layout/FormLayout";
+import type { ICommonProps } from "../../types";
+import type { CommonLayoutProps } from "../../layout/FormLayout";
 
 interface IUseFormilyFieldConfig {
   /** 是否从Field获取label(title)配置 */
-  label?: boolean,
+  label?: boolean;
   /** 是否从Field获取required配置 */
-  required?: boolean,
+  required?: boolean;
   /** 是否从Field获取error配置 */
-  error?: boolean,
+  error?: boolean;
   /** 是否从Field获取tooltip(description配置 */
-  tooltip?: boolean,
+  tooltip?: boolean;
   /** 是否从Field获取optionos(dataSource)配置 */
-  options?: boolean,
+  options?: boolean;
   /** 是否从Field获取display配置 */
-  display?: boolean,
+  display?: boolean;
   /** 是否从Field获取defaultValue(initialValue)配置 */
-  defaultValue?: boolean,
+  defaultValue?: boolean;
   /** 是否从Field获取disabled配置 */
-  disabled?: boolean,
+  disabled?: boolean;
   /** 是否从Field获取readOnly配置 */
-  readOnly?: boolean,
+  readOnly?: boolean;
   /** 是否从Field获取feedbackText配置 */
-  feedbackText?: boolean,
+  feedbackText?: boolean;
   /** 是否从Field获取feedbackStatus配置 */
-  feedbackStatus?: boolean,
+  feedbackStatus?: boolean;
   /** 是否从Field获取fullWidth配置 */
-  fullWidth?: boolean,
+  fullWidth?: boolean;
   /** 是否从FormLayout获取labelPosition配置*/
-  labelPosition?: boolean,
+  labelPosition?: boolean;
   /** 是否从FormLayout获取labelAlign配置 */
-  labelAlign?: boolean,
+  labelAlign?: boolean;
   /** 是否从FormLayout获取labelWidth配置*/
-  labelWidth?: boolean,
+  labelWidth?: boolean;
   /** 是否从FormLayout获取labelWrap配置 */
-  labelWrap?: boolean,
+  labelWrap?: boolean;
   /** 是否从FormLayout获取wrapperAlign配置 */
-  wrapperAlign?: boolean,
+  wrapperAlign?: boolean;
   /** 是否从FormLayout获取wrapperWidth配置*/
-  wrapperWidth?: boolean,
+  wrapperWidth?: boolean;
   /** 是否从FormLayout获取wrapperWrap配置 */
-  wrapperWrap?: boolean,
+  wrapperWrap?: boolean;
   /** 是否从FormLayout获取colon配置 */
-  colon?: boolean,
+  colon?: boolean;
   /** 是否从FormLayout获取tooltipIcon配置 */
-  tooltipIcon?: boolean,
+  tooltipIcon?: boolean;
   /** 是否从FormLayout获取tooltipLayout配置*/
-  tooltipLayout?: boolean,
+  tooltipLayout?: boolean;
   /** 是否从FormLayout获取showFeedback配置 */
-  showFeedback?: boolean,
+  showFeedback?: boolean;
   /** 是否从FormLayout获取feedbackLayout配置*/
-  feedbackLayout?: boolean,
+  feedbackLayout?: boolean;
   /** 是否从FormLayout获取配置*/
-  noFormLayout?: boolean,
+  noFormLayout?: boolean;
   /** 是否从FormLayout获取showInnerLabel配置*/
-  showInnerLabel?: boolean,
+  showInnerLabel?: boolean;
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
-  label?: ReactNode,
-  tooltip?: ReactNode,
-  defaultValue?: any,
-  disabled?: boolean,
-  readOnly?: boolean,
-  error?: boolean,
-  required?: boolean,
-  options?: any,
-  display?: 'visible' | 'hidden' | 'none' | string,
-  feedbackStatus?: 'error' | 'warning' | 'success' | 'pending' | string,
-  feedbackText?: ReactNode,
+  label?: ReactNode;
+  tooltip?: ReactNode;
+  defaultValue?: any;
+  disabled?: boolean;
+  readOnly?: boolean;
+  error?: boolean;
+  required?: boolean;
+  options?: any;
+  display?: "visible" | "hidden" | "none" | string;
+  feedbackStatus?: "error" | "warning" | "success" | "pending" | string;
+  feedbackText?: ReactNode;
   /** 不从FormLayout获取信息 */
-  noFormLayout?: boolean,
-  withFormItem?: boolean,
+  noFormLayout?: boolean;
+  withFormItem?: boolean;
 }
 
-import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from '../../utils';
+import { UseFormilyFieldPropsFormFieldBaseConfig, UseFormilyFieldPropsFormItemConfig } from "../../utils";
 
 /** 用来处理FormItem及字段项 props的hooks可以从FormLayout或Field 获取布局或label，error等信息*/
-export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFieldConfig = {}) => {
-  const formatProps: IProps = {
+export function useFormilyFieldProps<T extends IProps = IProps>(props: T, extraConfig: IUseFormilyFieldConfig = {}) {
+  const formatProps: T = {
     ...props,
   };
   const layout = useFormLayout();
@@ -93,7 +93,11 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
 
   let config = {} as IUseFormilyFieldConfig;
   if (withFormItem) {
-    config = { ...UseFormilyFieldPropsFormItemConfig, ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
+    config = {
+      ...UseFormilyFieldPropsFormItemConfig,
+      ...UseFormilyFieldPropsFormFieldBaseConfig,
+      ...(extraConfig || {}),
+    };
   } else {
     config = { ...UseFormilyFieldPropsFormFieldBaseConfig, ...(extraConfig || {}) };
   }
@@ -115,9 +119,15 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
     if (config?.showInnerLabel) formatProps.showInnerLabel = props.showInnerLabel ?? layout.showInnerLabel;
   }
   if (field && !props.noField) {
-    if (config?.display) { formatProps.display = props.display ?? field.display; }
-    if (config?.label) { formatProps.label = props.label ?? field.title; }
-    if (config?.tooltip) { formatProps.tooltip = props?.tooltip ?? field.description; }
+    if (config?.display) {
+      formatProps.display = props.display ?? field.display;
+    }
+    if (config?.label) {
+      formatProps.label = props.label ?? field.title;
+    }
+    if (config?.tooltip) {
+      formatProps.tooltip = props?.tooltip ?? field.description;
+    }
   }
   if (formatProps.noField || !field || isVoidField(field)) {
     return formatProps;
@@ -136,10 +146,10 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
   }
   if (config?.required) {
     const takeRequired = () => {
-      if (field.required && field.pattern !== 'readPretty') {
+      if (field.required && field.pattern !== "readPretty") {
         return true;
       }
-      if ('required' in props) {
+      if ("required" in props) {
         return props.required;
       }
       return false;
@@ -150,7 +160,9 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
     formatProps.options = field.dataSource ?? props.options;
   }
   if (config?.feedbackStatus) {
-    formatProps.feedbackStatus = props.feedbackStatus ?? (field.validating ? 'pending' : (field.decoratorProps.feedbackStatus || field.validateStatus));
+    formatProps.feedbackStatus =
+      props.feedbackStatus ??
+      (field.validating ? "pending" : field.decoratorProps.feedbackStatus || field.validateStatus);
   }
   if (config?.feedbackText) {
     const takeMessage = () => {
@@ -159,9 +171,7 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
       const split = (messages: any[]) => {
         return messages.reduce((buf, text, index) => {
           if (!text) return buf;
-          return index < messages.length - 1
-            ? buf.concat([ text, ', ' ])
-            : buf.concat([ text ]);
+          return index < messages.length - 1 ? buf.concat([text, ", "]) : buf.concat([text]);
         }, []);
       };
       if (field.selfErrors.length) return split(field.selfErrors);
@@ -171,4 +181,4 @@ export const useFormilyFieldProps = (props: IProps, extraConfig: IUseFormilyFiel
     formatProps.feedbackText = takeMessage();
   }
   return formatProps;
-};
+}
