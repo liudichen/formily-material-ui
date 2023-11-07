@@ -72,7 +72,7 @@ export const SelectBase = (props) => {
             InputProps: {
               ...(params.InputProps || {}),
               endAdornment: <>
-                <IconButton className='refresh-icon-i' size='small' title={refreshText} onClick={doRefresh}>
+                <IconButton className='refresh-icon-i' size='small' title={refreshText} onClick={doRefresh} sx={{p:0}}>
                   {refreshIcon}
                 </IconButton>
                 {params?.InputProps?.endAdornment}
