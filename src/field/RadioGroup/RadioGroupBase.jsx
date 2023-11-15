@@ -25,12 +25,12 @@ export const RadioGroupBase = (props) => {
     ...restProps
   } = props;
   const [ loading, setLoading ] = useSafeState(false);
-  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh', defaultValue: 0 });
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh });
   const [ value, onChange ] = useControllableValue(props);
 
   const doRefresh = useMemoizedFn(() => {
-    onRefreshChange(refresh + 1);
+    onRefreshChange((+refresh || 0) + 1);
   });
 
   const handleChange = useMemoizedFn((value) => {

@@ -26,14 +26,14 @@ export const SelectBase = (props) => {
     ...restProps
   } = props;
   const fetchRef = useRef(false);
-  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh', defaultValue: 0 });
   const [ loading, setLoading ] = useSafeState(false);
   const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [ props.readOnly, props.disabled ]);
   const [ value, onChange ] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef });
 
   const doRefresh = useMemoizedFn(() => {
-    onRefreshChange(refresh + 1);
+    onRefreshChange((+refresh || 0) + 1);
   });
 
   const onValidChange = useMemoizedFn((e, v) => {

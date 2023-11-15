@@ -85,6 +85,7 @@ export const CheckboxGroupBase = (props: CheckboxGroupBaseProps) => {
   const [refresh, onRefreshChange] = useControllableValue(props, {
     trigger: "onRefreshChange",
     valuePropName: "refresh",
+    defaultValue: 0,
   });
   const [loading, setLoading] = useSafeState(false);
   const [optionsValues, setOptionsValues] = useSafeState<CheckboxOptionItem[]>([]);
@@ -96,7 +97,7 @@ export const CheckboxGroupBase = (props: CheckboxGroupBaseProps) => {
   });
 
   const doRefresh = useMemoizedFn(() => {
-    onRefreshChange(refresh + 1);
+    onRefreshChange((+refresh || 0) + 1);
   });
 
   const handleChange = useMemoizedFn((e, optionValue) => {

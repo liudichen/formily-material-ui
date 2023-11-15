@@ -25,13 +25,13 @@ export const ToggleButtonGroupBase = (props) => {
     showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh sx={{ color: '#eb2f96' }} />,
     ...restProps
   } = props;
-  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
+  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh', defaultValue: 0 });
   const [ loading, setLoading ] = useSafeState(false);
   const [ value, onChange ] = useControllableValue(props);
   const [ optionsValues, setOptionsValues ] = useSafeState([]);
 
   const doRefresh = useMemoizedFn(() => {
-    onRefreshChange(refresh + 1);
+    onRefreshChange((+refresh || 0) + 1);
   });
 
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (opts) => setOptionsValues(opts.map((ele) => ele.value)), deps: refresh });
