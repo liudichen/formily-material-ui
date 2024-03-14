@@ -67,8 +67,12 @@ export const InputBase = (props: InputBaseProps) => {
   const onTextFieldChange = useMemoizedFn((e) => {
     if (readOnly || props.disabled) return;
     const v = e.target.value;
-    if (props.type === "number" && v !== "") {
-      onChange(+v);
+    if (props.type === "number") {
+      if (v !== "" && v !== null && v !== undefined) {
+        onChange(isNaN(+v) ? ((v === null ? null : undefined) as any) : +v);
+      } else {
+        onChange(v || undefined);
+      }
     } else {
       onChange(v ?? "");
     }
@@ -79,6 +83,7 @@ export const InputBase = (props: InputBaseProps) => {
     }
     return showClearProp ?? false;
   }, [showClearProp, props.type]);
+
   const dom = (
     <MuiTextField
       value={value ?? ""}
@@ -126,6 +131,7 @@ export const InputBase = (props: InputBaseProps) => {
       {...restProps}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
       className={formItemCls}
