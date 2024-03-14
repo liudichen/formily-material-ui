@@ -69,9 +69,9 @@ export const InputBase = (props: InputBaseProps) => {
     const v = e.target.value;
     if (props.type === "number") {
       if (v !== "" && v !== null && v !== undefined) {
-        onChange(isNaN(+v) ? ((v === null ? null : undefined) as any) : +v);
+        onChange(isNaN(+v) ? (undefined as any) : +v);
       } else {
-        onChange(v || undefined);
+        onChange(v || ((v === null ? null : undefined) as any));
       }
     } else {
       onChange(v ?? "");
