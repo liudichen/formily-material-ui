@@ -1,35 +1,79 @@
-import React, { useRef } from 'react';
-import { useCreation, useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from 'ahooks';
-import { Autocomplete, IconButton, TextField } from '@mui/material';
-import { Refresh } from '@mui/icons-material';
-import { isEqual, isInArray } from '@iimm/shared';
+import React, { useRef } from "react";
+import { useCreation, useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from "ahooks";
+import { Autocomplete, IconButton, TextField } from "@mui/material";
+import { Refresh } from "@mui/icons-material";
+import { isEqual, isInArray } from "@iimm/shared";
 
-import { useFetchOptions } from '../../hooks';
-import { renderInnerLabel } from '../../utils';
-import { FormItemBase } from '../../layout';
-import '../../styles/refresh.scss';
+import { useFetchOptions } from "../../hooks";
+import { renderInnerLabel } from "../../utils";
+import { FormItemBase } from "../../layout";
+import "../../styles/refresh.scss";
 
 export const SelectBase = (props) => {
   const {
-    labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
-    noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, formItemCls, formItemStyle, formItemPrefixCls, error, feedbackCls, extraCls,
+    labelPosition,
+    labelWidth,
+    labelAlign,
+    labelWrap,
+    wrapperAlign,
+    wrapperWrap,
+    wrapperWidth,
+    fullWidth,
+    colon,
+    tooltipIcon,
+    tooltipLayout,
+    showFeedback,
+    feedbackLayout,
+    noLabel,
+    label,
+    labelStyle,
+    wrapperStyle,
+    tooltip,
+    required,
+    feedbackStatus,
+    feedbackText,
+    feedbackIcon,
+    extra,
+    addonBefore,
+    addonAfter,
+    formItemCls,
+    formItemStyle,
+    formItemPrefixCls,
+    error,
+    feedbackCls,
+    extraCls,
     keepTopSpace,
-    options: optionsProp, showInnerLabel, innerLabelProps,
+    options: optionsProp,
+    showInnerLabel,
+    innerLabelProps,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
+    value: valueProp,
+    onChange: onChangeProp,
+    defaultValue,
+    noField,
+    noFormLayout,
+    withFormItem,
     allowExtraValue,
-    placeholder, variant,
+    placeholder,
+    variant,
     disableCloseOnSelect,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <Refresh />,
+    showRefresh,
+    refresh: refreshProp,
+    onRefreshChange: onRefreshChangeProp,
+    refreshText = "刷新选项",
+    refreshIcon = <Refresh />,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
-  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh', defaultValue: 0 });
-  const [ loading, setLoading ] = useSafeState(false);
-  const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [ props.readOnly, props.disabled ]);
-  const [ value, onChange ] = useControllableValue(props);
+  const [refresh, onRefreshChange] = useControllableValue(props, {
+    trigger: "onRefreshChange",
+    valuePropName: "refresh",
+    defaultValue: 0,
+  });
+  const [loading, setLoading] = useSafeState(false);
+  const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [props.readOnly, props.disabled]);
+  const [value, onChange] = useControllableValue(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef });
 
   const doRefresh = useMemoizedFn(() => {
@@ -41,7 +85,13 @@ export const SelectBase = (props) => {
       onChange(v);
     } else {
       const optValues = (options || []).map((ele) => ele.value);
-      const value = props.multiple ? (v ? v.filter((ele) => isInArray(ele.value, optValues)) : v) : ((!v || isInArray(v.value, optValues)) ? v : null);
+      const value = props.multiple
+        ? v
+          ? v.filter((ele) => isInArray(ele.value, optValues))
+          : v
+        : !v || isInArray(v.value, optValues)
+          ? v
+          : null;
       onChange(value);
     }
   });
@@ -53,7 +103,7 @@ export const SelectBase = (props) => {
     if (!readOnly && !allowExtraValue && fetchRef.current) {
       syncOptionsValue();
     }
-  }, [ options, allowExtraValue, readOnly ]);
+  }, [options, allowExtraValue, readOnly]);
 
   const dom = (
     <Autocomplete
@@ -67,27 +117,38 @@ export const SelectBase = (props) => {
       renderInput={(params) => (
         <TextField
           placeholder={placeholder}
-          {...(readOnly || !showRefresh ? params : {
-            ...params,
-            InputProps: {
-              ...(params.InputProps || {}),
-              endAdornment: <>
-                <IconButton className='refresh-icon-i' size='small' title={refreshText} onClick={doRefresh} sx={{p:0}}>
-                  {refreshIcon}
-                </IconButton>
-                {params?.InputProps?.endAdornment}
-              </>,
-            },
-          })}
+          {...(readOnly || !showRefresh
+            ? params
+            : {
+                ...params,
+                InputProps: {
+                  ...(params.InputProps || {}),
+                  endAdornment: (
+                    <>
+                      <IconButton
+                        className="refresh-icon-i"
+                        size="small"
+                        title={refreshText}
+                        onClick={doRefresh}
+                        sx={{ p: 0 }}
+                      >
+                        {refreshIcon}
+                      </IconButton>
+                      {params?.InputProps?.endAdornment}
+                    </>
+                  ),
+                },
+              })}
           error={error}
           variant={variant}
           label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
         />
       )}
-      getOptionDisabled={(option) => !!option?.disabled }
+      getOptionDisabled={(option) => !!option?.disabled}
       {...restProps}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
       className={formItemCls}
@@ -125,12 +186,14 @@ export const SelectBase = (props) => {
     >
       {dom}
     </FormItemBase>
-  ) : dom;
+  ) : (
+    dom
+  );
 };
 
 SelectBase.defaultProps = {
-  size: 'small',
-  variant: 'outlined',
+  size: "small",
+  variant: "outlined",
 };
 
-SelectBase.displayName = 'iimm.Mui.Formily.SelectBase';
+SelectBase.displayName = "iimm.Mui.Formily.SelectBase";

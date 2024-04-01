@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 import { StepForm, type StepFormProps } from "./StepForm";
-import DefaultCompleteRender, { type ResultRenderProps as StepsFormResultRenderProps } from "./DefaultCompleteRender";
+import { DefaultCompleteRender, type ResultRenderProps as StepsFormResultRenderProps } from "./DefaultCompleteRender";
 
 interface StepsFormProps
   extends StepperProps,
