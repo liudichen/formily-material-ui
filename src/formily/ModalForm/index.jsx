@@ -2,7 +2,7 @@ import {useImperativeHandle} from 'react';
 import { useMemoizedFn, useControllableValue,useCreation } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
-import { Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme ,Paper} from '@mui/material';
 import { IconCircleX } from '@tabler/icons-react';
 import { useGlobalId } from "@iimm/react-shared";
 import Draggable from "react-draggable";
