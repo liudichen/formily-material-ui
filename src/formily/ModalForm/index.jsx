@@ -1,11 +1,11 @@
-import React from 'react';
-import { useMemoizedFn, useSafeState } from 'ahooks';
+import {useImperativeHandle} from 'react';
+import { useMemoizedFn, useControllableValue,useCreation } from 'ahooks';
 import { createForm } from '@formily/core';
 import { FormProvider, observer } from '@formily/react';
 import { Box, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Tooltip, useMediaQuery, useTheme } from '@mui/material';
 import { IconCircleX } from '@tabler/icons-react';
-import classNames from 'classnames';
-import { DraggablePaper } from 'mui-component';
+import { useGlobalId } from "@iimm/react-shared";
+import Draggable from "react-draggable";
 
 import { Reset } from '../Reset';
 import { Submit } from '../Submit';
@@ -17,24 +17,38 @@ export const ModalForm = observer((props) => {
     contentProps, actionsProps,
     children, content, withDialogContentWrapper,
     showCloseIcon, CloseIcon, closeIconButtonProps,
-    showReset, showSubmit, submitText, resetText, submitProps, resetProps, createFormOptions,
+    showReset, showSubmit, submitText, resetText, submitProps, resetProps,
     onFinish, extraActions,
     open: openProp, onClose: onCloseProp,
     disabled,
     formRef, PaperComponent, form: formProp,
     fullScreen: fullScreenProp, draggable: draggableProp,
-    responsive, breakpoint, depend, disableVisibleRecreateForm,
+    responsive, breakpoint,  disableVisibleRecreateForm,
     ...restProps
   } = props;
   const theme = useTheme();
+  const tId = useGlobalId();
   const down = useMediaQuery(theme.breakpoints.down(breakpoint));
   const fullScreen = fullScreenProp ?? (responsive ? down : undefined);
   const draggable = draggableProp && !fullScreen;
-  const [ open, setOpen ] = useSafeState(false);
-  const op = disableVisibleRecreateForm || (trigger ? open : !!openProp);
-  const form = React.useMemo(() => formProp || createForm(createFormOptions || { validateFirst: true }), [ op, depend, createFormOptions, formProp ]);
+  const [open, setOpen] = useControllableValue(props, {
+    defaultValue: false,
+    valuePropName: "open",
+    trigger: "setOpen",
+  });
+  const op = !!(disableVisibleRecreateForm || formProp) ? true:  open;
+  const form = useCreation(() => formProp || createForm({}), [ op, formProp ]);
 
-  React.useImperativeHandle(formRef, () => form, [ form ]);
+    const Commponent = useCreation(() => {
+    if (!draggable) return undefined;
+    return (props) => (
+      <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper {...props} />
+      </Draggable>
+    );
+  }, [draggable, tId]);
+
+  useImperativeHandle(formRef, () => form, [ form ]);
 
   const onClose = useMemoizedFn(async (e, reason) => {
     const res = await onCloseProp?.(e, reason);
@@ -67,9 +81,9 @@ export const ModalForm = observer((props) => {
         </Link>
       )}
       <Dialog
+        PaperComponent={PaperComponent ?? Commponent}
         {...restProps}
         fullScreen={fullScreen}
-        PaperComponent={PaperComponent ?? (draggable ? DraggablePaper : undefined)}
         open={trigger ? open : !!openProp}
         onClose={onClose}
       >
@@ -80,10 +94,10 @@ export const ModalForm = observer((props) => {
               alignItems='start'
               bgcolor='#f5f5f5'
               {...(titleProps || {})}
-              className={classNames('dialog-draggable-title', titleProps?.className)}
               sx={{ padding: 0, ...(titleProps?.sx || {}) }}
             >
               <Box
+                id={tId}
                 flex={1} fontSize='16px' height='100%' alignSelf='center' marginLeft={1.5} marginY={0.5}
                 {...(titleBoxProps || {})}
                 sx={draggable ? ({ cursor: 'move', ...(titleBoxProps?.sx || {}) }) : titleBoxProps?.sx}

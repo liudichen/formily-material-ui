@@ -1,4 +1,4 @@
-import type { ReactNode, MutableRefObject, FC, PropsWithChildren } from 'react';
+import type { ReactNode, MutableRefObject, FC, PropsWithChildren,Dispatch,SetStateAction } from 'react';
 import type { IFormProps, Form } from '@formily/core';
 import type { ModalProps } from 'mui-component';
 
@@ -20,17 +20,15 @@ export interface ModalFormProps extends Omit<ModalProps, 'showActions' | 'showCa
   submitText?: ReactNode,
   /** 返回值为true时窗口自动关闭 */
   onFinish?: ((values: any) => boolean | void) | ((values: any) => Promise<boolean | void>),
-  /** 重新创建form实例的depend，会自动传入open,如果只受modal显隐控制，则不要传此参数 */
-  depend?: any,
   /** 禁用modl的open控制重新创建form实例 */
   disableVisibleRecreateForm?: boolean,
   formRef?: MutableRefObject<Form>,
   form?: Form,
-  /** 传递给createForm的参数
-   * @default {validateFirst:true}
-  */
-  createFormOptions?: IFormProps,
   ref?: any
+  /** 受控属性,控制是否开启 */
+  open?: boolean;
+  /** 受控属性 */
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 export declare const ModalForm: FC<PropsWithChildren<ModalFormProps>>;
