@@ -86,7 +86,6 @@ export const ModalForm = observer(
       onClose: onCloseProp,
       disabled,
       formRef,
-      PaperComponent,
       form: formProp,
       fullScreen: fullScreenProp,
       draggable: draggableProp,
@@ -150,15 +149,15 @@ export const ModalForm = observer(
             {trigger}
           </Link>
         )}
-        <Dialog
-          fullWidth={fullWidth}
-          PaperComponent={PaperComponent ?? Commponent}
-          {...restProps}
-          fullScreen={fullScreen}
-          open={trigger ? open : !!openProp}
-          onClose={onClose}
-        >
-          <FormProvider form={form}>
+        <FormProvider form={form}>
+          <Dialog
+            fullWidth={fullWidth}
+            PaperComponent={Commponent}
+            {...restProps}
+            fullScreen={fullScreen}
+            open={trigger ? open : !!openProp}
+            onClose={onClose}
+          >
             {(!!title || showCloseIcon) && (
               <DialogTitle
                 display="flex"
@@ -212,8 +211,8 @@ export const ModalForm = observer(
                 </Submit>
               )}
             </DialogActions>
-          </FormProvider>
-        </Dialog>
+          </Dialog>
+        </FormProvider>
       </>
     );
   },
