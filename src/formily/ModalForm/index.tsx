@@ -108,7 +108,7 @@ export const ModalForm = observer(
       trigger: "setOpen",
     });
     const op = !!disableVisibleRecreateForm || !!formProp ? true : open;
-    const form = useCreation(() => (!!formProp ? formProp : createForm({})), [op, formProp]);
+    const form = useCreation(() => (!!formProp ? formProp : createForm({ validateFirst: true })), [op, formProp]);
 
     const Commponent = useCreation(() => {
       if (!draggable) return undefined;
