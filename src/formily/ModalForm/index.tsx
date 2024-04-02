@@ -55,6 +55,7 @@ export interface ModalFormProps
   disableVisibleRecreateForm?: boolean;
   formRef?: MutableRefObject<Form>;
   form?: Form;
+  resetOnClose?: boolean;
   ref?: any;
 }
 
@@ -93,6 +94,7 @@ export const ModalForm = observer(
       breakpoint = "md",
       fullWidth = true,
       disableVisibleRecreateForm,
+      resetOnClose,
       ...restProps
     } = props;
     const theme = useTheme();
@@ -123,6 +125,9 @@ export const ModalForm = observer(
       const res: any = await onCloseProp?.(e, reason);
       if (trigger && res !== false) {
         setOpen(false);
+      }
+      if (resetOnClose) {
+        form?.reset("*");
       }
     });
     const onSubmit = useMemoizedFn(async (values) => {

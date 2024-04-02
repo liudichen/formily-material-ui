@@ -42,6 +42,7 @@ export const Submit = observer(
       ...restProps
     } = props;
     const form = useParentForm();
+
     const submit = useMemoizedFn((e?: any) => {
       if (!form) return;
       if (onClick) {
@@ -50,9 +51,9 @@ export const Submit = observer(
       if (onSubmit) {
         form
           .submit(onSubmit)
-          .then((res) => {
+          .then((res: any) => {
             onSubmitSuccess?.(res);
-            if (resetOnSuccess && res! === true) {
+            if (resetOnSuccess && res === true) {
               form?.reset("*");
             }
           })

@@ -23,7 +23,9 @@ export const Reset = observer(
       disabled,
       ...restProps
     } = props;
+
     const form = useParentForm();
+
     const reset = useMemoizedFn((e) => {
       if (!form) return;
       if (onClick) {
