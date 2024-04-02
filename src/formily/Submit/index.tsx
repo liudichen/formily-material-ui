@@ -46,14 +46,14 @@ export const Submit = observer(
     const submit = useMemoizedFn((e?: any) => {
       if (!form) return;
       if (onClick) {
-        if (onClick?.(e)! === false) return;
+        if ((onClick?.(e) as any) === false) return;
       }
       if (onSubmit) {
         form
           .submit(onSubmit)
           .then((res: any) => {
             onSubmitSuccess?.(res);
-            if (resetOnSuccess && res === true) {
+            if (!!resetOnSuccess && res !== false) {
               form?.reset("*");
             }
           })
