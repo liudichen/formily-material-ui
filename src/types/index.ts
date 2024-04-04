@@ -39,6 +39,7 @@ export interface IUploadedFile extends File {
   thumbUrl?: string;
   status?: "error" | "done" | "uploading";
   message?: string;
+  error?: any;
 }
 
 export interface RefreshOptionsProps {
