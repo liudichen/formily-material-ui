@@ -5,11 +5,11 @@ import { isEqual } from "@iimm/shared";
 
 import type { IFieldOptionItem, IFieldPropOptions, IFieldPropOptionItem } from "../../types";
 
-interface IUseFieldOptionsConfig {
+interface IUseFieldOptionsConfig<T extends IFieldOptionItem = any> {
   /** 外部管理Loading状态：setLoading */
   onLoading?: (loading: boolean) => void;
   /** 获取完options后进行的其他操作，不会影响返回options，为options的副作用 */
-  callback?: (options: IFieldOptionItem[]) => void;
+  callback?: (options: T[]) => void;
   /** 更新依赖项数组,不需要传递optionsProp,optionsProp会默认加入 */
   deps?: any;
   fetchRef?: MutableRefObject<boolean>;
@@ -17,7 +17,7 @@ interface IUseFieldOptionsConfig {
 
 export function useFetchOptions<T extends IFieldOptionItem = any>(
   optionsProp?: IFieldPropOptions,
-  config: IUseFieldOptionsConfig = {}
+  config: IUseFieldOptionsConfig<T> = {}
 ) {
   const { onLoading, callback, deps, fetchRef } = config;
   const [options, setOptions] = useSafeState<T[]>([]);

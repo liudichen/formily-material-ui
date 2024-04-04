@@ -1,4 +1,4 @@
-import { useImperativeHandle, type ReactNode, type MutableRefObject, useEffect, useRef } from "react";
+import { useImperativeHandle, type ReactNode, type MutableRefObject, useEffect } from "react";
 import { useMemoizedFn, useControllableValue, useCreation } from "ahooks";
 import { createForm, type Form } from "@formily/core";
 import { FormProvider, observer } from "@formily/react";
@@ -101,9 +101,6 @@ export const ModalForm = observer(
 
     const innerForm = useCreation(() => createForm({ validateFirst: true }), []);
     const form = formProp ?? innerForm;
-
-    const formRef2 = useRef(form);
-    console.log(resetOnClose, "xx", formRef2.current === formProp, formRef2.current === innerForm);
 
     const theme = useTheme();
     const tId = useGlobalId();

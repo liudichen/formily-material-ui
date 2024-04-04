@@ -1,15 +1,16 @@
-import React, { useRef } from "react";
+import { type CSSProperties, type ReactNode, useRef } from "react";
 import { useCreation, useControllableValue, useMemoizedFn, useSafeState, useDeepCompareEffect } from "ahooks";
-import { Autocomplete, IconButton, TextField } from "@mui/material";
+import { Autocomplete, type AutocompleteProps, IconButton, TextField, type FormLabelProps } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
 import { isEqual, isInArray } from "@iimm/shared";
 
 import { useFetchOptions } from "../../hooks";
 import { renderInnerLabel } from "../../utils";
-import { FormItemBase } from "../../layout";
+import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
+import type { FieldBaseProps, IFieldOptionItem, IFieldPropOptions, RefreshOptionsProps } from "../../types";
 import "../../styles/refresh.scss";
 
-export const SelectBase = (props) => {
+export const SelectBase = (props: SelectBaseProps) => {
   const {
     labelPosition,
     labelWidth,
@@ -55,7 +56,7 @@ export const SelectBase = (props) => {
     withFormItem,
     allowExtraValue,
     placeholder,
-    variant,
+    variant = "outlined",
     disableCloseOnSelect,
     // eslint-disable-next-line no-unused-vars
     showRefresh,
@@ -63,6 +64,7 @@ export const SelectBase = (props) => {
     onRefreshChange: onRefreshChangeProp,
     refreshText = "刷新选项",
     refreshIcon = <Refresh />,
+    size = "small",
     ...restProps
   } = props;
   const fetchRef = useRef(false);
@@ -73,7 +75,7 @@ export const SelectBase = (props) => {
   });
   const [loading, setLoading] = useSafeState(false);
   const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [props.readOnly, props.disabled]);
-  const [value, onChange] = useControllableValue(props);
+  const [value, onChange] = useControllableValue<any>(props);
   const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef });
 
   const doRefresh = useMemoizedFn(() => {
@@ -87,7 +89,7 @@ export const SelectBase = (props) => {
       const optValues = (options || []).map((ele) => ele.value);
       const value = props.multiple
         ? v
-          ? v.filter((ele) => isInArray(ele.value, optValues))
+          ? v.filter((ele: IFieldOptionItem) => isInArray(ele.value, optValues))
           : v
         : !v || isInArray(v.value, optValues)
           ? v
@@ -145,6 +147,7 @@ export const SelectBase = (props) => {
         />
       )}
       getOptionDisabled={(option) => !!option?.disabled}
+      size={size}
       {...restProps}
     />
   );
@@ -191,9 +194,42 @@ export const SelectBase = (props) => {
   );
 };
 
-SelectBase.defaultProps = {
-  size: "small",
-  variant: "outlined",
-};
+export interface SelectBaseProps<V extends IFieldOptionItem = IFieldOptionItem>
+  extends FieldBaseProps<V | V[] | null | undefined>,
+    Partial<
+      Omit<
+        AutocompleteProps<unknown, boolean | undefined, boolean | undefined, boolean | undefined>,
+        "value" | "onChange" | "defaultValue" | "options"
+      >
+    >,
+    Omit<FormItemBaseProps, "className" | "style" | "prefixCls">,
+    RefreshOptionsProps,
+    FormItemExtraProps {
+  options?: IFieldPropOptions;
+  label?: string;
+  /** 显示内部label? */
+  /** 仅showInnerLabel=true时传递给内部Label */
+  innerLabelProps?: FormLabelProps;
+  showInnerLabel?: boolean;
+  placeholder?: string;
+  required?: boolean;
+  tooltip?: ReactNode;
+  variant?: "outlined" | "filled" | "standard";
+  /** 允许不再options里的值? */
+  allowExtraValue?: boolean;
 
-SelectBase.displayName = "iimm.Mui.Formily.SelectBase";
+  /** 不从Field获取信息 */
+  noField?: boolean;
+  /** 不从FormLayout获取fullWidth信息 */
+  noFormLayout?: boolean;
+  /** 外层包裹FormItemBase? */
+  withFormItem?: boolean;
+  /** 当 withFormItem=true时传递给FormItemBase的className*/
+  formItemCls?: string;
+  /** 当 withFormItem=true时传递给FormItemBase的style*/
+  formItemStyle?: CSSProperties;
+  /** 当 withFormItem=true时，传递给formItem的内部className的前缀，可以在引入自定义样式时使用
+   * @default iimm 可以通过样式覆盖来修改FormItem内部样式(不需要传递此值)
+   */
+  formItemPrefixCls?: string;
+}
