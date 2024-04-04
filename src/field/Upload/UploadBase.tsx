@@ -1,6 +1,6 @@
 import type { CSSProperties, ElementRef, ReactNode, RefObject } from "react";
 import { useControllableValue, useMemoizedFn } from "ahooks";
-import { Button, ButtonProps } from "@mui/material";
+import { Button, type ButtonProps } from "@mui/material";
 import classNames from "classnames";
 import { fileToBase64 } from "@iimm/shared";
 
