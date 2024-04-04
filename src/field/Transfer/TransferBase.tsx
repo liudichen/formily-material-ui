@@ -1,45 +1,110 @@
-import React from 'react';
-import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from 'ahooks';
-import { Box, IconButton, Skeleton, Tooltip } from '@mui/material';
-import { IconArrowBigLeft, IconArrowBigRight, IconRefresh } from '@tabler/icons-react';
-import { isEqual, isInArray, intersection, differenceSet as not, union } from '@iimm/shared';
-import { useOverflow } from '@iimm/react-shared';
+import { ReactNode } from "react";
+import { useCreation, useControllableValue, useSafeState, useMemoizedFn } from "ahooks";
+import { Box, type BoxProps, IconButton, type IconButtonProps, Skeleton, Tooltip } from "@mui/material";
+import { IconArrowBigLeft, IconArrowBigRight, IconRefresh } from "@tabler/icons-react";
+import { isEqual, isInArray, intersection, differenceSet as not, union } from "@iimm/shared";
+import { useOverflow } from "@iimm/react-shared";
 
-import { useFetchOptions } from '../../hooks';
-import { FormItemBase } from '../../layout';
-import { ListCard } from './ListCard';
-import '../../styles/refresh.scss';
+import { useFetchOptions } from "../../hooks";
+import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
+import { ListCard, type ListCardCommonProps } from "./ListCard";
+import type { IFieldPropOptions, FieldBaseProps, RefreshOptionsProps } from "../../types";
+import "../../styles/refresh.scss";
 
-export const TransferBase = (props) => {
+const defaultTitles = ["可选项", "已选项"];
+
+export const TransferBase = (props: TransferBaseProps) => {
   const {
-    labelPosition, labelWidth, labelAlign, labelWrap, wrapperAlign, wrapperWrap, wrapperWidth, fullWidth, colon, tooltipIcon, tooltipLayout, showFeedback, feedbackLayout,
-    noLabel, label, labelStyle, wrapperStyle, tooltip, required, feedbackStatus, feedbackText, feedbackIcon, extra, addonBefore,
-    addonAfter, formItemCls, formItemStyle, formItemPrefixCls, error, feedbackCls, extraCls,
+    labelPosition,
+    labelWidth,
+    labelAlign,
+    labelWrap,
+    wrapperAlign,
+    wrapperWrap,
+    wrapperWidth,
+    fullWidth,
+    colon,
+    tooltipIcon,
+    tooltipLayout,
+    showFeedback,
+    feedbackLayout,
+    noLabel,
+    label,
+    labelStyle,
+    wrapperStyle,
+    tooltip,
+    required,
+    feedbackStatus,
+    feedbackText,
+    feedbackIcon,
+    extra,
+    addonBefore,
+    addonAfter,
+    formItemCls,
+    formItemStyle,
+    formItemPrefixCls,
+    error,
+    feedbackCls,
+    extraCls,
     keepTopSpace,
     // eslint-disable-next-line no-unused-vars
-    value: valueProp, onChange: onChangeProp, defaultValue, noField, noFormLayout, withFormItem,
+    value: valueProp,
+    onChange: onChangeProp,
+    defaultValue,
+    noField,
+    noFormLayout,
+    withFormItem,
     options: optionsProp,
-    listSx: listSxProp, cardSx: cardSxProp, cardHeaderSx, listItemProps, searchProps, itemCheckboxProps, listItemTextProps, iconButtonProps,
-    keepExtraItems, width, minWidth, maxWidth, height, minHeight, maxHeight, containerBoxProps, overflowThreshold, overflowRatio,
-    readOnly, disabled,
-    showSearch, showSelectAll, titles,
+    listSx: listSxProp,
+    cardSx: cardSxProp,
+    cardHeaderSx,
+    searchProps,
+    itemCheckboxProps,
+    listItemTextProps,
+    iconButtonProps,
+    keepExtraItems = true,
+    width,
+    minWidth = 200,
+    maxWidth,
+    height,
+    minHeight = 250,
+    maxHeight = "85vh",
+    containerBoxProps,
+    overflowThreshold = 40,
+    overflowRatio = 1.5,
+    readOnly,
+    disabled,
+    showSearch,
+    showSelectAll = true,
+    titles = defaultTitles,
     // eslint-disable-next-line no-unused-vars
-    showRefresh, refresh: refreshProp, onRefreshChange: onRefreshChangeProp, refreshText = '刷新选项', refreshIcon = <IconRefresh color='#eb2f96' />,
+    showRefresh,
+    refresh: refreshProp,
+    onRefreshChange: onRefreshChangeProp,
+    refreshText = "刷新选项",
+    refreshIcon = <IconRefresh color="#eb2f96" />,
   } = props;
   /** value是右侧的值(可能存在不显示的不在列表里的值) */
-  const [ value, setValue ] = useControllableValue(props, { defaultValue: [] });
-  const [ refresh, onRefreshChange ] = useControllableValue(props, { trigger: 'onRefreshChange', valuePropName: 'refresh' });
-  const [ checked, setChecked ] = useSafeState([]);
-  const [ loading, setLoading ] = useSafeState(false);
-  const [ optionsValues, setOptionsValues ] = useSafeState([]);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, callback: (items) => setOptionsValues(items.map((ele) => ele.value)), deps: refresh });
+  const [value, setValue] = useControllableValue<any[]>(props, { defaultValue: [] });
+  const [refresh, onRefreshChange] = useControllableValue(props, {
+    trigger: "onRefreshChange",
+    valuePropName: "refresh",
+  });
+  const [checked, setChecked] = useSafeState<any[]>([]);
+  const [loading, setLoading] = useSafeState(false);
+  const [optionsValues, setOptionsValues] = useSafeState<any[]>([]);
+  const options = useFetchOptions(optionsProp, {
+    onLoading: setLoading,
+    callback: (items) => setOptionsValues(items.map((ele) => ele.value)),
+    deps: refresh,
+  });
 
   const doRefresh = useMemoizedFn(() => {
     onRefreshChange(refresh + 1);
   });
 
   const postValue = useMemoizedFn((values) => {
-    let v = Array.isArray(values) ? [ ...values ] : [];
+    let v = Array.isArray(values) ? [...values] : [];
     if (!v.length) {
       return [];
     }
@@ -51,7 +116,7 @@ export const TransferBase = (props) => {
   });
   const handleToggle = useMemoizedFn((value) => {
     const currentIndex = checked.findIndex((ele) => isEqual(value, ele));
-    const newChecked = [ ...checked ];
+    const newChecked = [...checked];
     if (currentIndex === -1) {
       newChecked.push(value);
     } else {
@@ -61,7 +126,7 @@ export const TransferBase = (props) => {
   });
   const handleToggleAll = useMemoizedFn((items) => {
     let newChecked = [];
-    const enabledItems = items.filter((item) => !(options.find((ele) => isEqual(item, ele.value))?.disabled));
+    const enabledItems = items.filter((item: any) => !options.find((ele) => isEqual(item, ele.value))?.disabled);
     if (intersection(checked, enabledItems).length === enabledItems.length) {
       newChecked = not(checked, enabledItems);
     } else {
@@ -72,7 +137,7 @@ export const TransferBase = (props) => {
   });
   const left = useCreation(() => {
     return not(optionsValues, value);
-  }, [ optionsValues, value ]);
+  }, [optionsValues, value]);
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, value);
   const onClickToLeft = useMemoizedFn(() => {
@@ -89,41 +154,41 @@ export const TransferBase = (props) => {
   });
   const { overflow, containerRef, contentRef, containerWidth } = useOverflow(overflowThreshold, overflowRatio);
   const cardSx = useCreation(() => {
-    const sx = { ...(cardSxProp || {}) };
+    const sx: any = { ...(cardSxProp || {}) };
     if (width) sx.width = width;
     if (minWidth) sx.minWidth = minWidth;
     if (maxWidth || containerWidth) {
       sx.maxWidth = maxWidth || containerWidth;
     }
     return sx;
-  }, [ cardSxProp, width, minWidth, maxWidth, containerWidth ]);
+  }, [cardSxProp, width, minWidth, maxWidth, containerWidth]);
   const listSx = useCreation(() => {
-    const sx = { ...(listSxProp || {}) };
+    const sx: any = { ...(listSxProp || {}) };
     if (height) sx.height = height;
     if (minHeight) sx.minHeight = minHeight;
     if (maxHeight) sx.maxHeight = maxHeight;
     return sx;
-  }, [ listSxProp, height, minHeight, maxHeight ]);
+  }, [listSxProp, height, minHeight, maxHeight]);
   const dom = (
     <Box
       ref={containerRef}
-      display='flex'
-      gap={'4px'}
-      alignItems='center'
-      justifyContent='center'
-      flexDirection={overflow ? 'column' : 'row'}
+      display="flex"
+      gap={"4px"}
+      alignItems="center"
+      justifyContent="center"
+      flexDirection={overflow ? "column" : "row"}
       {...(containerBoxProps || {})}
     >
       {loading ? (
         <Skeleton
-          variant='rectangular'
+          variant="rectangular"
           width={width ?? minWidth ?? maxWidth}
           height={height ?? minHeight ?? maxHeight}
-          animation='wave'
+          animation="wave"
         />
       ) : (
         <ListCard
-          ref={contentRef}
+          ref={contentRef as any}
           error={error}
           readOnly={readOnly}
           disabled={disabled}
@@ -139,21 +204,20 @@ export const TransferBase = (props) => {
           listSx={listSx}
           cardSx={cardSx}
           cardHeaderSx={cardHeaderSx}
-          listItemProps={listItemProps}
           searchProps={searchProps}
           listItemTextProps={listItemTextProps}
           itemCheckboxProps={itemCheckboxProps}
         />
       )}
       <Box
-        display='flex'
-        flexDirection='column'
+        display="flex"
+        flexDirection="column"
         sx={{
-          transform: overflow ? 'rotate(90deg)' : undefined,
+          transform: overflow ? "rotate(90deg)" : undefined,
         }}
       >
         <IconButton
-          color='primary'
+          color="primary"
           {...(iconButtonProps || {})}
           onClick={onClickToRight}
           disabled={disabled || readOnly || !leftChecked?.length}
@@ -161,7 +225,7 @@ export const TransferBase = (props) => {
           <IconArrowBigRight />
         </IconButton>
         <IconButton
-          color='primary'
+          color="primary"
           tabIndex={-1}
           {...(iconButtonProps || {})}
           onClick={onClickToLeft}
@@ -169,25 +233,16 @@ export const TransferBase = (props) => {
         >
           <IconArrowBigLeft />
         </IconButton>
-        { showRefresh && !readOnly && !disabled && (
-          <Tooltip arrow placement='top' title={refreshText}>
-            <IconButton
-              onClick={doRefresh}
-              className='refresh-icon-i'
-              tabIndex={-1}
-            >
+        {showRefresh && !readOnly && !disabled && (
+          <Tooltip arrow placement="top" title={refreshText}>
+            <IconButton onClick={doRefresh} className="refresh-icon-i" tabIndex={-1}>
               {refreshIcon}
             </IconButton>
           </Tooltip>
         )}
       </Box>
       {loading ? (
-        <Skeleton
-          variant='rectangular'
-          width={width}
-          height={height ?? minHeight ?? maxHeight}
-          animation='wave'
-        />
+        <Skeleton variant="rectangular" width={width} height={height ?? minHeight ?? maxHeight} animation="wave" />
       ) : (
         <ListCard
           error={error}
@@ -205,7 +260,6 @@ export const TransferBase = (props) => {
           listSx={listSx}
           cardSx={cardSx}
           cardHeaderSx={cardHeaderSx}
-          listItemProps={listItemProps}
           searchProps={searchProps}
           listItemTextProps={listItemTextProps}
           itemCheckboxProps={itemCheckboxProps}
@@ -250,18 +304,43 @@ export const TransferBase = (props) => {
     >
       {dom}
     </FormItemBase>
-  ) : dom;
+  ) : (
+    dom
+  );
 };
 
-TransferBase.defaultProps = {
-  showSelectAll: true,
-  keepExtraItems: true,
-  titles: [ '可选项', '已选项' ],
-  maxHeight: '85vh',
-  minHeight: 250,
-  minWidth: 200,
-  overflowRatio: 1.5,
-  overflowThreshold: 40,
-};
-
-TransferBase.displayName = 'iimm.Mui.Formily.TransferBase';
+export interface TransferBaseProps
+  extends FieldBaseProps<any[]>,
+    ListCardCommonProps,
+    Omit<FormItemBaseProps, "className" | "style" | "prefixCls">,
+    FormItemExtraProps,
+    RefreshOptionsProps {
+  options?: IFieldPropOptions;
+  /** 保留不在options里的已选但不显示的值? */
+  keepExtraItems?: boolean;
+  titles?: ReactNode | [leftTitle: ReactNode, rightTitle: ReactNode];
+  /** 每个框的宽度 */
+  width?: number | string;
+  /** 每个框内容的高度 */
+  height?: number | string;
+  /** 每个框内容的min高度 */
+  minHeight?: number | string;
+  /** 每个框内容的max高度 */
+  maxHeight?: number | string;
+  minWidth?: number | string;
+  maxWidth?: number | string;
+  /** 判断是否需要卡片竖排的限度(ratio个卡片的宽度加上该限度不应大于容器宽度)
+   * @default  40
+   */
+  overflowThreshold?: number;
+  /** 判断是否需要卡片竖排首个卡片宽度的倍数(ratio个卡片的宽度加上该限度不应大于容器宽度)
+   * @default 1.5
+   */
+  overflowRatio?: number;
+  /**
+   * 箭头按钮的props
+   */
+  iconButtonProps?: IconButtonProps;
+  /** 最外层的Box组件的props */
+  containerBoxProps?: BoxProps;
+}
