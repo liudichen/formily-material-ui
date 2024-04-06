@@ -63,7 +63,7 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
     textFieldSx,
     showInnerLabel,
     renderInput,
-    inputFormat = "YYYY/MM/DD hh:mm a",
+    inputFormat = "YYYY/MM/DD HH:mm:ss",
     disableMaskedInput = true,
     componentsProps = defaultComponentsProps,
     ...restProps
