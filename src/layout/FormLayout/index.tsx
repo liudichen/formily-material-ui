@@ -24,7 +24,7 @@ const defaultTooltipIcon = <HelpOutline fontSize="small" />;
 const defaultLayoutCols: FormLayoutCols = { xs: 6, sm: 4, md: 3, xl: 2 };
 
 export const FormLayout = observer(
-  (props: FormLayoutProps) => {
+  (props: PropsWithChildren<FormLayoutProps>) => {
     const {
       // eslint-disable-next-line no-unused-vars
       colon,
