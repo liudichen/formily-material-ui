@@ -1,4 +1,3 @@
-import React from "react";
 import { observer } from "@formily/react";
 
 import { useFormilyFieldProps } from "../../hooks";

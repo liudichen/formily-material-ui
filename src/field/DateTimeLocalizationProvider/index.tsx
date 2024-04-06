@@ -1,11 +1,10 @@
-import React from 'react';
-import { LocalizationProvider, zhCN } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import zh from 'dayjs/locale/zh-cn';
-import type { LocalizationProviderProps } from '@mui/x-date-pickers';
+import { LocalizationProvider, zhCN } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import zh from "dayjs/locale/zh-cn";
+import type { LocalizationProviderProps } from "@mui/x-date-pickers";
 
-export interface DateTimeLocalizationProvider extends Omit<LocalizationProviderProps, 'dateAdapter'>{
-  dateAdapter?: LocalizationProviderProps['dateAdapter']
+export interface DateTimeLocalizationProvider extends Omit<LocalizationProviderProps, "dateAdapter"> {
+  dateAdapter?: LocalizationProviderProps["dateAdapter"];
 }
 
 export const DateTimeLocalizationProvider = (props: DateTimeLocalizationProvider) => {
@@ -28,4 +27,4 @@ export const DateTimeLocalizationProvider = (props: DateTimeLocalizationProvider
   );
 };
 
-DateTimeLocalizationProvider.displayName = 'iimm.Mui.Formily.DateTimeLocalizationProvider';
+DateTimeLocalizationProvider.displayName = "iimm.Mui.Formily.DateTimeLocalizationProvider";
