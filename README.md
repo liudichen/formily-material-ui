@@ -30,7 +30,7 @@ FormItemBase可以用于在表单中展示其他内容以外观与表单一致�
 ```typescript
 const demo =() => (
   <>
-    <FormItem label="姓名" fullWidth showFeedback >
+    <FormItemBase label="姓名" fullWidth showFeedback >
      要展示的内容
     </FormItem>
   <>
