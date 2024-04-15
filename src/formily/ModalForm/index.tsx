@@ -13,10 +13,13 @@ import {
   Tooltip,
   useMediaQuery,
   useTheme,
+  Paper,
+  type PaperProps,
 } from "@mui/material";
 import { IconArrowsMaximize, IconArrowsMinimize, IconCircleX } from "@tabler/icons-react";
 import { Space, useGlobalId } from "@iimm/react-shared";
-import { type ModalProps, DraggablePaperRender } from "mui-component";
+import { type ModalProps } from "mui-component";
+import Draggable from "react-draggable";
 
 import { Reset, type ResetProps } from "../Reset";
 import { Submit, type SubmitProps } from "../Submit";
@@ -151,13 +154,12 @@ export const ModalForm = observer(
     });
 
     const Commponent = useCreation(() => {
-      const ele = !draggable
-        ? undefined
-        : DraggablePaperRender({
-            handle: `${tId}`,
-            cancel: '[class*="MuiDialogContent-root"]',
-          });
-      return ele;
+      if (!draggable) return undefined;
+      return (props: PaperProps) => (
+        <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+          <Paper {...props} />
+        </Draggable>
+      );
     }, [draggable, tId]);
 
     useImperativeHandle(formRef, () => form, [form]);
