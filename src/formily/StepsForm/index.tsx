@@ -55,9 +55,9 @@ const StepsForm = (props: StepsFormProps) => {
     ResultRender = DefaultCompleteRender,
     resultTitle,
     resultSubTitle,
-    showResultReset,
+    showResultReset = true,
     resultActions,
-    resultResetText,
+    resultResetText = "返回",
     resultResetProps,
     onResultReset,
     resultContent,
@@ -222,10 +222,6 @@ const StepsForm = (props: StepsFormProps) => {
       </FormProvider>
     </Box>
   );
-};
-StepsForm.defaultProps = {
-  showResultReset: true,
-  resultResetText: "返回",
 };
 
 StepsForm.StepForm = StepForm;
