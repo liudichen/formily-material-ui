@@ -159,7 +159,7 @@ export const ModalForm = observer(
       if (!draggable) return undefined;
       return (props: PaperProps) => (
         <Draggable nodeRef={nodeRef} handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
-          <Paper {...props} />
+          <Paper {...props} ref={nodeRef} />
         </Draggable>
       );
     }, [draggable, tId]);
