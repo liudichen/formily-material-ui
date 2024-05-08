@@ -1,4 +1,4 @@
-import { useImperativeHandle, type ReactNode, type MutableRefObject, useEffect } from "react";
+import { useImperativeHandle, type ReactNode, type MutableRefObject, useEffect, useRef } from "react";
 import { useMemoizedFn, useControllableValue, useCreation } from "ahooks";
 import { createForm, type Form } from "@formily/core";
 import { FormProvider, observer } from "@formily/react";
@@ -113,6 +113,8 @@ export const ModalForm = observer(
       defaultValue: false,
     });
 
+    const nodeRef = useRef(null);
+
     const draggable = !!draggableProp && !fullScreen;
 
     const [open, setOpen] = useControllableValue(props, {
@@ -156,7 +158,7 @@ export const ModalForm = observer(
     const Commponent = useCreation(() => {
       if (!draggable) return undefined;
       return (props: PaperProps) => (
-        <Draggable handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
+        <Draggable nodeRef={nodeRef} handle={`#${tId}`} cancel={'[class*="MuiDialogContent-root"]'}>
           <Paper {...props} />
         </Draggable>
       );

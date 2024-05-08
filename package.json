@@ -1,6 +1,6 @@
 {
   "name": "@iimm/formily-mui",
-  "version": "1.14.2",
+  "version": "1.14.3",
   "description": "form field components based on @mui/material and @formily/react",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -67,7 +67,7 @@
     "father": "^4.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.76.0",
+    "sass": "^1.77.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
@@ -80,7 +80,7 @@
     "ahooks": "^3.7.11",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
-    "mui-component": "^1.17.0",
+    "mui-component": "^1.17.2",
     "react-draggable": "^4.4.6",
     "react-dropzone": "^14.2.3"
   }
