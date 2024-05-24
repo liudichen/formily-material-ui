@@ -141,24 +141,26 @@ export const UploadBase = (props: UploadBaseProps) => {
         [`${className}`]: !!className,
       })}
     >
-      <UploadZone
-        ref={uploadRef}
-        multiple={maxCount !== 1}
-        disabled={disabled || readOnly}
-        accept={accept}
-        onDrop={onDrop}
-        onDropAccepted={onInternalDropAccepted}
-        onDropRejected={onDropRejected}
-        maxFiles={maxCount}
-        validator={validator}
-        {...restProps}
-      >
-        {children || (
-          <Button variant="outlined" size="small" {...(uploadButtonProps || {})}>
-            {uploadButtonText || "文件上传"}
-          </Button>
-        )}
-      </UploadZone>
+      {!(!!maxCount && fileList?.length >= maxCount) && (
+        <UploadZone
+          ref={uploadRef}
+          multiple={maxCount !== 1}
+          disabled={disabled || readOnly}
+          accept={accept}
+          onDrop={onDrop}
+          onDropAccepted={onInternalDropAccepted}
+          onDropRejected={onDropRejected}
+          maxFiles={maxCount}
+          validator={validator}
+          {...restProps}
+        >
+          {children || (
+            <Button variant="outlined" size="small" {...(uploadButtonProps || {})}>
+              {uploadButtonText || "文件上传"}
+            </Button>
+          )}
+        </UploadZone>
+      )}
       <UploadList
         items={fileList || []}
         isImage={isImageProp}
