@@ -11,13 +11,16 @@ $upload-prefix-cls: #{$prefixCls}-upload;
   line-height: $line-height-base;
   list-style: none;
   font-feature-settings: $font-feature-settings-base;
+
   &-error {
     color: $error-color !important;
+
     &:hover {
       color: $error-color !important;
       opacity: 1;
     }
   }
+
   &-list {
     box-sizing: border-box;
     margin: 0;
@@ -29,17 +32,9 @@ $upload-prefix-cls: #{$prefixCls}-upload;
     list-style: none;
     transition: background-color 0.3s;
     font-feature-settings: $font-feature-settings-base;
-    &::before {
-      display: table;
-      content: '';
-    }
 
-    &::after {
-      display: table;
-      clear: both;
-      content: '';
-    }
     line-height: $line-height-base;
+
     &-item {
       display: flex;
       width: 100%;
@@ -52,11 +47,13 @@ $upload-prefix-cls: #{$prefixCls}-upload;
       transition: opacity $animation-duration-slow, height $animation-duration-slow;
       border: $border-width-base $border-style-base $border-color-base;
       border-radius: $border-radius-md;
+
       &:hover {
         background-color: $item-hover-bg;
         border-color: $text-color-secondary;
         opacity: 1;
       }
+
       &::before {
         display: table;
         width: 0;
@@ -75,15 +72,18 @@ $upload-prefix-cls: #{$prefixCls}-upload;
         margin-right: 4px;
         color: $primary-5;
         cursor: pointer;
+
         img {
           max-width: 100%;
           max-height: 100%;
           object-fit: contain;
         }
       }
+
       &-thumbnail-file {
         cursor: default;
       }
+
       &-name {
         color: $text-color;
         flex: 1;
@@ -93,6 +93,7 @@ $upload-prefix-cls: #{$prefixCls}-upload;
         white-space: nowrap;
         padding: 0 $padding-xs;
       }
+
       &-action-icon {
         transition: opacity $animation-duration-slow;
         position: static;
@@ -101,15 +102,27 @@ $upload-prefix-cls: #{$prefixCls}-upload;
         right: 0;
         opacity: 0.4;
         cursor: pointer;
+
         &:hover {
           opacity: 1;
         }
       }
     }
-    
+
     &-item-error {
       border-color: $error-color;
       border-style: dashed;
     }
-  } 
+
+    &::before {
+      display: table;
+      content: '';
+    }
+
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+  }
 }
