@@ -1,6 +1,6 @@
 {
   "name": "@iimm/formily-mui",
-  "version": "1.14.6",
+  "version": "1.14.7",
   "description": "form field components based on @mui/material and @formily/react",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -43,13 +43,13 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.9",
+    "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
     "@babel/preset-react": "^7.24.7",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.5",
-    "@mui/material": "^5.16.5",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
     "@mui/x-date-pickers": "^5.0.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -64,7 +64,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "father": "^4.4.5",
+    "father": "^4.4.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.77.8",
