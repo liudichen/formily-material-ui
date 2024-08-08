@@ -31,6 +31,7 @@ export function useFetchOptions<T extends IFieldOptionItem = any>(
       if (Array.isArray(optionsProp) && optionsProp.length) {
         result = [...toJS(optionsProp)];
       }
+
       if (!result.length && typeof optionsProp === "function") {
         const res = await optionsProp(refreshRef.current !== refresh);
         if (Array.isArray(res)) {
@@ -39,7 +40,14 @@ export function useFetchOptions<T extends IFieldOptionItem = any>(
         }
       }
 
-      result = result.map((item) => (typeof item === "object" ? item : { value: item, label: `${item}` }));
+      result = result.map((item) =>
+        typeof item === "object"
+          ? item
+          : {
+              value: item,
+              label: item.toString(),
+            }
+      );
       onLoading?.(false);
       if (!isEqual(options, result)) {
         callback?.(result as T[]);
