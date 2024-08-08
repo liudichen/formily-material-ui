@@ -41,11 +41,11 @@ export function useFetchOptions<T extends IFieldOptionItem = any>(
       }
 
       result = result.map((item) =>
-        typeof item === "object"
+        typeof item === "object" && item !== null
           ? item
           : {
               value: item,
-              label: item.toString(),
+              label: item === null || typeof item === "number" ? item?.toString() : item,
             }
       );
       onLoading?.(false);
