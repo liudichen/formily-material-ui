@@ -1,11 +1,12 @@
 import { type ReactNode } from "react";
 import { useControllableValue } from "ahooks";
-import { TextField, type SxProps } from "@mui/material";
+import { type FormLabelProps, TextField, type SxProps } from "@mui/material";
 import {
   DateTimePicker as MuiDateTimePicker,
   type DateTimePickerProps as MuiDateTimePickerProps,
 } from "@mui/x-date-pickers";
 
+import { renderInnerLabel } from "../../utils";
 import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
 import type { FieldBaseProps } from "../../types";
 
@@ -66,13 +67,13 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
     inputFormat = "YYYY/MM/DD HH:mm:ss",
     disableMaskedInput = true,
     componentsProps = defaultComponentsProps,
+    innerLabelProps,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
 
   const dom = (
     <MuiDateTimePicker
-      label={showInnerLabel ? label : undefined}
       value={value || null}
       onChange={onChange}
       inputFormat={inputFormat}
@@ -85,6 +86,7 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
         ))
       }
       {...restProps}
+      label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
     />
   );
   return withFormItem ? (
@@ -146,4 +148,6 @@ export interface DateTimePickerBaseProps<TInputDate = any, TDate = any>
   variant?: "outlined" | "filled" | "standard";
   textFieldSx?: SxProps;
   renderInput?: MuiDateTimePickerProps<TInputDate, TDate>["renderInput"];
+  /** 仅showInnerLabel=true时传递给内部Label */
+  innerLabelProps?: FormLabelProps;
 }

@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { useControllableValue } from "ahooks";
-import { TextField, type SxProps } from "@mui/material";
+import { type FormLabelProps, TextField, type SxProps } from "@mui/material";
 import { DatePicker as MuiDatePicker, type DatePickerProps as MuiDatePickerProps } from "@mui/x-date-pickers";
 
+import { renderInnerLabel } from "../../utils";
 import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
 import type { FieldBaseProps } from "../../types";
 
@@ -61,6 +62,7 @@ export const DatePickerBase = (props: DatePickerBaseProps) => {
     inputFormat = "YYYY-MM-DD",
     componentsProps = defaultComponentsProps,
     textFieldSx,
+    innerLabelProps,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props);
@@ -80,6 +82,7 @@ export const DatePickerBase = (props: DatePickerBaseProps) => {
           fullWidth={fullWidth}
           variant={variant}
           sx={textFieldSx}
+          label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
         />
       )}
       {...restProps}
@@ -144,4 +147,6 @@ export interface DatePickerBaseProps<TInputDate = any, TDate = any>
   variant?: "outlined" | "filled" | "standard";
   textFieldSx?: SxProps;
   renderInput?: MuiDatePickerProps<TInputDate, TDate>["renderInput"];
+  /** 仅showInnerLabel=true时传递给内部Label */
+  innerLabelProps?: FormLabelProps;
 }

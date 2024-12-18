@@ -114,7 +114,7 @@ export const SelectBase = (props: SelectBaseProps) => {
       value={value || (props.multiple ? [] : null)}
       fullWidth={fullWidth}
       onChange={onValidChange}
-      isOptionEqualToValue={(op, v) => isEqual(op.value, v?.value)}
+      isOptionEqualToValue={(op: any, v: any) => isEqual(op.value, v?.value)}
       disableCloseOnSelect={disableCloseOnSelect ?? props.multiple}
       renderInput={(params) => (
         <TextField
@@ -146,7 +146,7 @@ export const SelectBase = (props: SelectBaseProps) => {
           label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
         />
       )}
-      getOptionDisabled={(option) => !!option?.disabled}
+      getOptionDisabled={(option: any) => !!option?.disabled}
       size={size}
       {...restProps}
     />

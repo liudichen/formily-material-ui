@@ -1,8 +1,9 @@
 import { type ReactNode } from "react";
 import { useControllableValue } from "ahooks";
-import { type SxProps, TextField } from "@mui/material";
+import { type FormLabelProps, type SxProps, TextField } from "@mui/material";
 import { TimePicker as MuiTimePicker, type TimePickerProps as MuiTimePickerProps } from "@mui/x-date-pickers";
 
+import { renderInnerLabel } from "../../utils";
 import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
 import type { FieldBaseProps } from "../../types";
 
@@ -64,6 +65,7 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
     renderInput,
     inputFormat,
     componentsProps = defaultComponentsProps,
+    innerLabelProps,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
@@ -75,7 +77,15 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
       renderInput={
         renderInput ||
         ((params) => (
-          <TextField {...params} size={size} fullWidth={fullWidth} color={color} variant={variant} sx={textFieldSx} />
+          <TextField
+            {...params}
+            size={size}
+            fullWidth={fullWidth}
+            color={color}
+            variant={variant}
+            sx={textFieldSx}
+            label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
+          />
         ))
       }
       views={views ?? (showSecond ? ["hours", "minutes", "seconds"] : undefined)}
@@ -145,4 +155,6 @@ export interface TimePickerBaseProps<TInputDate = any, TDate = any>
   textFieldSx?: SxProps;
   /** 显示秒？ */
   showSecond?: boolean;
+  /** 仅showInnerLabel=true时传递给内部Label */
+  innerLabelProps?: FormLabelProps;
 }

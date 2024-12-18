@@ -17,6 +17,7 @@ import { isEqual, isInArray } from "@iimm/shared";
 import { useFetchOptions } from "../../hooks";
 import { FormItemBase, type FormItemExtraProps, type FormItemBaseProps } from "../../layout/FormItem/FormItemBase";
 import type { FieldBaseProps, IFieldOptionItem, IFieldPropOptions, RefreshOptionsProps } from "../../types";
+
 import "../../styles/refresh.scss";
 
 export const CheckboxGroupBase = (props: CheckboxGroupBaseProps) => {
