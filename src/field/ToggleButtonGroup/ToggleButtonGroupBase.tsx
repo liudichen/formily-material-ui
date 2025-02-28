@@ -14,7 +14,6 @@ import { isEqual, isInArray } from "@iimm/shared";
 import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
 import { COLORS } from "../../utils";
 import { useFetchOptions } from "../../hooks";
-import { BoxWithFullWidth } from "../common";
 import type { FieldBaseProps, IFieldPropOptions, RefreshOptionsProps } from "../../types";
 import "../../styles/refresh.scss";
 
@@ -174,13 +173,11 @@ export const ToggleButtonGroupBase = (props: ToggleButtonGroupBaseProps) => {
         </MuiToggleButton>
       ))}
       {showRefresh && !readOnly && !disabled && (
-        <BoxWithFullWidth>
-          <Tooltip arrow placement="top" title={refreshText}>
-            <IconButton size={size} onClick={doRefresh} className="refresh-icon-i">
-              {refreshIcon}
-            </IconButton>
-          </Tooltip>
-        </BoxWithFullWidth>
+        <Tooltip arrow placement="top" title={refreshText}>
+          <IconButton size={size} onClick={doRefresh} className="refresh-icon-i">
+            {refreshIcon}
+          </IconButton>
+        </Tooltip>
       )}
     </MuiToggleButtonGroup>
   );
