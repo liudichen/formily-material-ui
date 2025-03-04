@@ -46,7 +46,7 @@ const demo =() => (
 
 ### 字段组件类型
 
-包含字段类型： Input、Select、CheckboxGroup、RadioGroup、Switch、DatePicker、TimePicker、DateTimePicker、Upload、KeyWords、Transfer、ToggleButtonGroup
+包含字段类型： Input、Select、CheckboxGroup、RadioGroup、Switch、DatePicker、TimePicker、DateTimePicker、Upload、KeyWords、Transfer、ToggleButtonGroup、NumberRange
 
 ## 简单示例
 
