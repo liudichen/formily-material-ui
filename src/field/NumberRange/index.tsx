@@ -192,7 +192,7 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
 
 export const NumberRange = observer(
   (props: NumberRangeProps) => (
-    <NumberRange
+    <NumberRangeBase
       {...useFormilyFieldProps(props, {
         error: true,
         tooltip: true,
