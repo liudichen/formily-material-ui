@@ -242,7 +242,7 @@ export interface CheckboxGroupBaseProps
   color?: "default" | "primary" | "secondary" | "error" | "info" | "success" | "warning" | string;
 }
 
-interface CheckboxOptionItem<V = any, L extends any = string> extends IFieldOptionItem<V, L> {
+interface CheckboxOptionItem<V = any, L extends ReactNode = ReactNode> extends IFieldOptionItem<V, L> {
   size?: CheckboxProps["size"];
   color?: CheckboxProps["color"];
   icon?: CheckboxProps["icon"];
