@@ -121,6 +121,7 @@ export function useFormilyFieldProps<T extends IProps = IProps>(props: T, extraC
     if (config?.showFeedback) formatProps.showFeedback = props.showFeedback ?? layout.showFeedback;
     if (config?.feedbackLayout) formatProps.feedbackLayout = props.feedbackLayout ?? layout.feedbackLayout;
     if (config?.showInnerLabel) formatProps.showInnerLabel = props.showInnerLabel ?? layout.showInnerLabel;
+    if (config?.keepFeedbackSpace) formatProps.keepFeedbackSpace = props.keepFeedbackSpace ?? layout.keepFeedbackSpace;
   }
   if (field && !props.noField) {
     if (config?.display) {
@@ -183,9 +184,6 @@ export function useFormilyFieldProps<T extends IProps = IProps>(props: T, extraC
       if (field.selfSuccesses.length) return split(field.selfSuccesses);
     };
     formatProps.feedbackText = takeMessage();
-  }
-  if (config?.keepFeedbackSpace) {
-    formatProps.keepFeedbackSpace = props.keepFeedbackSpace ?? layout.keepFeedbackSpace;
   }
   return formatProps;
 }
