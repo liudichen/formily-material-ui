@@ -43,6 +43,10 @@ export interface FormItemBaseProps extends Omit<CommonLayoutProps, "noField"> {
   feedbackCls?: string;
   /** 当不显示label/title时是否保持label/title所占空间？ */
   keepTopSpace?: boolean;
+  /** 在没有内容时使用空格填充feedback?
+   * @default true
+   */
+  keepFeedbackSpace?: boolean;
   error?: boolean;
   children?: ReactNode;
 }
@@ -106,6 +110,7 @@ export const FormItemBase = observer(
       feedbackCls,
       extraCls,
       keepTopSpace,
+      keepFeedbackSpace,
     } = props;
     const prefix = `${prefixCls}-form-item`;
     const { overflow, containerRef, contentRef } = useOverflow();
@@ -278,7 +283,7 @@ export const FormItemBase = observer(
               [`${feedbackCls}`]: !!feedbackCls,
             })}
           >
-            {feedbackText || <>&nbsp;</>}
+            {feedbackText || (keepFeedbackSpace !== false && <>&nbsp;</>)}
           </div>
         )}
         {!!extra && <div className={cls({ [`${prefix}-extra`]: true, [`${extraCls}`]: !!extraCls })}>{extra}</div>}

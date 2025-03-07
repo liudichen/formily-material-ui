@@ -59,6 +59,10 @@ interface IUseFormilyFieldConfig {
   noFormLayout?: boolean;
   /** 是否从FormLayout获取showInnerLabel配置*/
   showInnerLabel?: boolean;
+  /** 是否从FormLayout获取keepFeedbackSpace配置
+   * @default true
+   */
+  keepFeedbackSpace?: boolean;
 }
 
 interface IProps extends ICommonProps, CommonLayoutProps {
@@ -179,6 +183,9 @@ export function useFormilyFieldProps<T extends IProps = IProps>(props: T, extraC
       if (field.selfSuccesses.length) return split(field.selfSuccesses);
     };
     formatProps.feedbackText = takeMessage();
+  }
+  if (config?.keepFeedbackSpace) {
+    formatProps.keepFeedbackSpace = props.keepFeedbackSpace ?? layout.keepFeedbackSpace;
   }
   return formatProps;
 }

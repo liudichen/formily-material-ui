@@ -27,6 +27,7 @@ export const UseFormilyFieldPropsFormItemConfig = {
   tooltipLayout: true,
   showFeedback: true,
   feedbackLayout: true,
+  keepFeedbackSpace: true,
 };
 
 /** 适用于useFormilyFieldProps时formfield的基础通用config */

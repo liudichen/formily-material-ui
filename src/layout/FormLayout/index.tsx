@@ -52,6 +52,7 @@ export const FormLayout = observer(
       noForm,
       children,
       spacing = 0.5,
+      keepFeedbackSpace,
       ...restProps
     } = props;
     const itemBaseProps = getItemColsProps(
@@ -78,6 +79,7 @@ export const FormLayout = observer(
         noField,
         withFormItem,
         showInnerLabel,
+        keepFeedbackSpace,
       }),
       [
         colon,
@@ -96,6 +98,7 @@ export const FormLayout = observer(
         noField,
         withFormItem,
         showInnerLabel,
+        keepFeedbackSpace,
       ]
     );
     return (
@@ -179,6 +182,7 @@ export interface CommonLayoutProps {
   feedbackLayout?: "popover" | "text";
   /** 手动指定不从外层Field获取信息 */
   noField?: boolean;
+  keepFeedbackSpace?: boolean;
 }
 
 export interface FormLayoutProps extends IFormLayoutContext, Omit<GridProps, "item"> {

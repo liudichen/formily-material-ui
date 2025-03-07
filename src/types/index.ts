@@ -12,19 +12,22 @@ export interface FieldBaseProps<T = any> {
 
 interface EmptyInterface {}
 
-export type IFieldOptionItem<V = any, L = string, E extends any = EmptyInterface> = {
+export type IFieldOptionItem<V = any, L extends ReactNode = ReactNode, E extends any = EmptyInterface> = {
   value: V;
   label: L;
   disabled?: boolean;
 } & E;
 
-export type IFieldPropOptionItem<V = any, L = string, E = EmptyInterface> = string | number | IFieldOptionItem<V, L, E>;
+export type IFieldPropOptionItem<V = any, L extends ReactNode = ReactNode, E = EmptyInterface> =
+  | string
+  | number
+  | IFieldOptionItem<V, L, E>;
 
-type IFieldPropFnOption<V = any, L = string, E = EmptyInterface> =
+type IFieldPropFnOption<V = any, L extends ReactNode = ReactNode, E = EmptyInterface> =
   | ((refresh?: boolean) => IFieldOptionItem<V, L, E>[])
   | ((refresh?: boolean) => Promise<IFieldOptionItem<V, L, E>[]>);
 
-export type IFieldPropOptions<V = any, L = string, E = EmptyInterface> =
+export type IFieldPropOptions<V = any, L extends ReactNode = ReactNode, E = EmptyInterface> =
   | IFieldPropOptionItem<V, L, E>[]
   | IFieldPropFnOption<V, L, E>;
 
