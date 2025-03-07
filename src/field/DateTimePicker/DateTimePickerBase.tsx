@@ -68,6 +68,7 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
     disableMaskedInput = true,
     componentsProps = defaultComponentsProps,
     innerLabelProps,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
@@ -89,8 +90,10 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
       label={renderInnerLabel({ showInnerLabel, label, error, required, innerLabelProps, tooltip })}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

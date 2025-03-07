@@ -50,6 +50,7 @@ export const SwitchBase = (props: SwitchBaseProps) => {
     spacing,
     color = "primary",
     edge,
+    keepFeedbackSpace,
     ...restProps
   } = props;
 
@@ -106,6 +107,7 @@ export const SwitchBase = (props: SwitchBaseProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

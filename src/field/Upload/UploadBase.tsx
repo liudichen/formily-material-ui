@@ -86,9 +86,11 @@ export const UploadBase = (props: UploadBaseProps) => {
     uploadButtonProps,
     uploadButtonText,
     uploadRef,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [fileList, setFileList] = useControllableValue<IUploadedFile[]>(props, { defaultValue: [] });
+
   const onInternalChange = useMemoizedFn(async (changedFileList) => {
     if (disabled || readOnly) return;
     let cloneList = [...(changedFileList || [])];
@@ -105,6 +107,7 @@ export const UploadBase = (props: UploadBaseProps) => {
     }
     setFileList(cloneList);
   });
+
   const handleRemove = useMemoizedFn(async (file) => {
     let res: any = onRemove;
     if (typeof res === "function") {
@@ -118,6 +121,7 @@ export const UploadBase = (props: UploadBaseProps) => {
       await onInternalChange(newFileList);
     }
   });
+
   const onInternalDropAccepted = useMemoizedFn(async (acceptedFiles, e) => {
     const newFileList = updateFileList(acceptedFiles, fileList);
     if (newFileList) {
@@ -181,6 +185,7 @@ export const UploadBase = (props: UploadBaseProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

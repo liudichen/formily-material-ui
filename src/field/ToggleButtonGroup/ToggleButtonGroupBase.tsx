@@ -81,6 +81,7 @@ export const ToggleButtonGroupBase = (props: ToggleButtonGroupBaseProps) => {
     onRefreshChange: onRefreshChangeProp,
     refreshText = "刷新选项",
     refreshIcon = <Refresh sx={{ color: "#eb2f96" }} />,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [refresh, onRefreshChange] = useControllableValue(props, {
@@ -144,6 +145,7 @@ export const ToggleButtonGroupBase = (props: ToggleButtonGroupBaseProps) => {
       }
     }
   });
+
   const dom = loading ? (
     <Skeleton variant="rectangular" animation="wave" width={"100%"}>
       <Checkbox />
@@ -181,8 +183,10 @@ export const ToggleButtonGroupBase = (props: ToggleButtonGroupBaseProps) => {
       )}
     </MuiToggleButtonGroup>
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

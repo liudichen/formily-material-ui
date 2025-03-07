@@ -65,6 +65,7 @@ export const SelectBase = (props: SelectBaseProps) => {
     refreshText = "刷新选项",
     refreshIcon = <Refresh />,
     size = "small",
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
@@ -154,6 +155,7 @@ export const SelectBase = (props: SelectBaseProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

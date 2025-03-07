@@ -64,6 +64,7 @@ export const KeyWordsBase = (props: KeyWordsBaseProps) => {
     chipProps,
     renderChip,
     InputBasePaperProps,
+    keepFeedbackSpace,
   } = props;
   const ref = useRef();
   const [text, setText] = useSafeState("");
@@ -168,8 +169,10 @@ export const KeyWordsBase = (props: KeyWordsBaseProps) => {
       </Box>
     </Stack>
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

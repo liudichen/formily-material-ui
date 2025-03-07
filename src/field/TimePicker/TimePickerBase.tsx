@@ -66,6 +66,7 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
     inputFormat,
     componentsProps = defaultComponentsProps,
     innerLabelProps,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
@@ -94,8 +95,10 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
       {...restProps}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

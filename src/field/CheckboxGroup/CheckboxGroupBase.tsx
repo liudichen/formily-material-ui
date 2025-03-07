@@ -81,6 +81,7 @@ export const CheckboxGroupBase = (props: CheckboxGroupBaseProps) => {
     onRefreshChange: onRefreshChangeProp,
     refreshText = "刷新选项",
     refreshIcon = <Refresh sx={{ color: "#eb2f96" }} />,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [refresh, onRefreshChange] = useControllableValue(props, {
@@ -174,8 +175,10 @@ export const CheckboxGroupBase = (props: CheckboxGroupBaseProps) => {
       )}
     </FormGroup>
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

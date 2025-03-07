@@ -70,6 +70,7 @@ export const RadioGroupBase = (props: RadioGroupBaseProps) => {
     refreshText = "刷新选项",
     refreshIcon = <Refresh sx={{ color: "#eb2f96" }} />,
     name,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [loading, setLoading] = useSafeState(false);
@@ -88,6 +89,7 @@ export const RadioGroupBase = (props: RadioGroupBaseProps) => {
   const handleChange = useMemoizedFn((value) => {
     if (!readOnly) onChange(value ?? null);
   });
+
   const dom = loading ? (
     <Skeleton variant="rectangular" animation="wave" width={"100%"}>
       <Radio />
@@ -136,6 +138,7 @@ export const RadioGroupBase = (props: RadioGroupBaseProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

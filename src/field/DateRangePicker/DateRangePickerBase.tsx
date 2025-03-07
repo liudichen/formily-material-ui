@@ -43,6 +43,7 @@ export const DateRangePickerBase = (props: DateRangePickerBaseProps) => {
     feedbackCls,
     extraCls,
     keepTopSpace,
+    keepFeedbackSpace,
     // eslint-disable-next-line no-unused-vars
     value: valueProp,
     onChange: onChangeProp,
@@ -59,6 +60,7 @@ export const DateRangePickerBase = (props: DateRangePickerBaseProps) => {
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props);
+
   const dom = (
     <MuiDateRangePicker
       value={value || [null, null]}
@@ -87,8 +89,10 @@ export const DateRangePickerBase = (props: DateRangePickerBaseProps) => {
       {...restProps}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

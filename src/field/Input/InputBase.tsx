@@ -61,6 +61,7 @@ export const InputBase = (props: InputBaseProps) => {
     InputProps,
     endAdornmentItem,
     size = "small",
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue<number | string>(props, { defaultValue: "" });
@@ -134,6 +135,7 @@ export const InputBase = (props: InputBaseProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

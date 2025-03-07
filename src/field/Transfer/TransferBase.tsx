@@ -83,6 +83,7 @@ export const TransferBase = (props: TransferBaseProps) => {
     onRefreshChange: onRefreshChangeProp,
     refreshText = "刷新选项",
     refreshIcon = <IconRefresh color="#eb2f96" />,
+    keepFeedbackSpace,
   } = props;
   /** value是右侧的值(可能存在不显示的不在列表里的值) */
   const [value, setValue] = useControllableValue<any[]>(props, { defaultValue: [] });
@@ -114,6 +115,7 @@ export const TransferBase = (props: TransferBaseProps) => {
     }
     return v;
   });
+
   const handleToggle = useMemoizedFn((value) => {
     const currentIndex = checked.findIndex((ele) => isEqual(value, ele));
     const newChecked = [...checked];
@@ -124,6 +126,7 @@ export const TransferBase = (props: TransferBaseProps) => {
     }
     setChecked(newChecked);
   });
+
   const handleToggleAll = useMemoizedFn((items) => {
     let newChecked = [];
     const enabledItems = items.filter((item: any) => !options.find((ele) => isEqual(item, ele.value))?.disabled);
@@ -135,24 +138,30 @@ export const TransferBase = (props: TransferBaseProps) => {
     newChecked = intersection(newChecked, optionsValues);
     setChecked(newChecked);
   });
+
   const left = useCreation(() => {
     return not(optionsValues, value);
   }, [optionsValues, value]);
+
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, value);
+
   const onClickToLeft = useMemoizedFn(() => {
     if (readOnly || disabled) return;
     const newValue = postValue(not(value, rightChecked));
     setValue(newValue);
     setChecked(not(checked, rightChecked));
   });
+
   const onClickToRight = useMemoizedFn(() => {
     if (readOnly || disabled) return;
     const newValue = postValue(union(value, leftChecked));
     setValue(newValue);
     setChecked(not(checked, leftChecked));
   });
+
   const { overflow, containerRef, contentRef, containerWidth } = useOverflow(overflowThreshold, overflowRatio);
+
   const cardSx = useCreation(() => {
     const sx: any = { ...(cardSxProp || {}) };
     if (width) sx.width = width;
@@ -162,6 +171,7 @@ export const TransferBase = (props: TransferBaseProps) => {
     }
     return sx;
   }, [cardSxProp, width, minWidth, maxWidth, containerWidth]);
+
   const listSx = useCreation(() => {
     const sx: any = { ...(listSxProp || {}) };
     if (height) sx.height = height;
@@ -169,6 +179,7 @@ export const TransferBase = (props: TransferBaseProps) => {
     if (maxHeight) sx.maxHeight = maxHeight;
     return sx;
   }, [listSxProp, height, minHeight, maxHeight]);
+
   const dom = (
     <Box
       ref={containerRef}
@@ -269,6 +280,7 @@ export const TransferBase = (props: TransferBaseProps) => {
   );
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

@@ -79,7 +79,7 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
     step,
     size = "small",
     spacing = 0.25,
-
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [value, setValue] = useControllableValue<NumberRangeValueType>(props, { defaultValue: null });
@@ -150,6 +150,7 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
 
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}

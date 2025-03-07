@@ -63,9 +63,11 @@ export const DatePickerBase = (props: DatePickerBaseProps) => {
     componentsProps = defaultComponentsProps,
     textFieldSx,
     innerLabelProps,
+    keepFeedbackSpace,
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props);
+
   const dom = (
     <MuiDatePicker
       label={showInnerLabel ? label : undefined}
@@ -88,8 +90,10 @@ export const DatePickerBase = (props: DatePickerBaseProps) => {
       {...restProps}
     />
   );
+
   return withFormItem ? (
     <FormItemBase
+      keepFeedbackSpace={keepFeedbackSpace}
       className={formItemCls}
       style={formItemStyle}
       prefixCls={formItemPrefixCls}
