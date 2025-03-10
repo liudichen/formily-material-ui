@@ -70,6 +70,7 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
     ...restProps
   } = props;
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
+
   const dom = (
     <MuiTimePicker
       value={value || null}
