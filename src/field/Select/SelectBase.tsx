@@ -66,6 +66,7 @@ export const SelectBase = (props: SelectBaseProps) => {
     refreshIcon = <Refresh />,
     size = "small",
     keepFeedbackSpace,
+    autoSelectSingleOption,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
@@ -88,25 +89,46 @@ export const SelectBase = (props: SelectBaseProps) => {
       onChange(v);
     } else {
       const optValues = (options || []).map((ele) => ele.value);
-      const value = props.multiple
+      let value = props.multiple
         ? v
           ? v.filter((ele: IFieldOptionItem) => isInArray(ele.value, optValues))
           : v
         : !v || isInArray(v.value, optValues)
           ? v
           : null;
+      if (autoSelectSingleOption && !props.multiple && !value) {
+        const validOptions = (options || []).filter((x) => !x.disabled);
+        if (validOptions.length === 1) {
+          value = validOptions[0];
+        }
+      }
       onChange(value);
     }
   });
+
   const syncOptionsValue = useMemoizedFn(() => {
     onValidChange(undefined, value);
   });
 
-  useDeepCompareEffect(() => {
-    if (!readOnly && !allowExtraValue && fetchRef.current) {
-      syncOptionsValue();
+  const autoSelectSingleOptionFn = useMemoizedFn(() => {
+    if (readOnly) return;
+    if (props.multiple) return;
+    if (!autoSelectSingleOption) return;
+    const validOption = (options || []).filter((x) => !x.disabled);
+    if (validOption.length === 1 && !value) {
+      onChange(validOption[0]);
     }
-  }, [options, allowExtraValue, readOnly]);
+  });
+
+  useDeepCompareEffect(() => {
+    if (!readOnly) {
+      if (!allowExtraValue && fetchRef.current) {
+        syncOptionsValue();
+      } else if (autoSelectSingleOption && !props.multiple) {
+        autoSelectSingleOptionFn();
+      }
+    }
+  }, [options, allowExtraValue, readOnly, autoSelectSingleOption, !!props.multiple]);
 
   const dom = (
     <Autocomplete
@@ -208,6 +230,8 @@ export interface SelectBaseProps<V extends IFieldOptionItem = IFieldOptionItem>
     RefreshOptionsProps,
     FormItemExtraProps {
   options?: IFieldPropOptions;
+  /**当只有一个可选项时自动选择？仅单选模式时生效 */
+  autoSelectSingleOption?: boolean;
   label?: string;
   /** 显示内部label? */
   /** 仅showInnerLabel=true时传递给内部Label */
