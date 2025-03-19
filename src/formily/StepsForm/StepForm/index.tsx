@@ -88,6 +88,7 @@ export const StepForm = observer(
         handleStepChange?.("next");
       }
     });
+
     const onPreviousClick = useMemoizedFn(() => {
       if (field?.submitting) return;
       onPrevious?.(field!);

@@ -161,14 +161,17 @@ const StepsForm = (props: StepsFormProps) => {
                 onReset?.();
               };
             }
+
+            const key = name ?? index;
+
             return (
-              <Step>
+              <Step key={key}>
                 <StepLabel optional={subTitle} StepIconComponent={icon}>
                   {title}
                 </StepLabel>
                 {(direction ?? orientation) === "vertical" && (
                   <StepContent {...(stepContentProps || {})}>
-                    <ObjectField name={name ?? index}>
+                    <ObjectField name={key}>
                       {(field) => {
                         return <>{cloneElement(child as any, { ...overwriteProps, field })}</>;
                       }}
@@ -203,8 +206,11 @@ const StepsForm = (props: StepsFormProps) => {
                 onReset?.();
               };
             }
+
+            const key = name ?? index;
+
             return (
-              <ObjectField name={name ?? index}>
+              <ObjectField name={key} key={key}>
                 {(field) => {
                   return (
                     <Box sx={index !== activeStep ? { display: "none" } : {}}>
