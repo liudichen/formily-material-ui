@@ -7,13 +7,6 @@ import { renderInnerLabel } from "../../utils";
 import { FormItemBase, type FormItemBaseProps, type FormItemExtraProps } from "../../layout";
 import type { FieldBaseProps } from "../../types";
 
-const defaultComponentsProps: TimePickerBaseProps["componentsProps"] = {
-  actionBar: {
-    actions: ["clear", "accept"],
-    translate: "yes",
-  },
-};
-
 export const TimePickerBase = (props: TimePickerBaseProps) => {
   const {
     labelPosition,
@@ -60,11 +53,8 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
     variant,
     textFieldSx,
     showInnerLabel,
-    showSecond,
     views,
     renderInput,
-    inputFormat,
-    componentsProps = defaultComponentsProps,
     innerLabelProps,
     keepFeedbackSpace,
     ...restProps
@@ -90,9 +80,6 @@ export const TimePickerBase = (props: TimePickerBaseProps) => {
           />
         ))
       }
-      views={views ?? (showSecond ? ["hours", "minutes", "seconds"] : undefined)}
-      inputFormat={inputFormat ?? (showSecond ? "HH:mm:ss" : undefined)}
-      componentsProps={componentsProps}
       {...restProps}
     />
   );
@@ -157,8 +144,6 @@ export interface TimePickerBaseProps<TInputDate = any, TDate = any>
   /** 文本框样式 */
   variant?: "outlined" | "filled" | "standard";
   textFieldSx?: SxProps;
-  /** 显示秒？ */
-  showSecond?: boolean;
   /** 仅showInnerLabel=true时传递给内部Label */
   innerLabelProps?: FormLabelProps;
 }
