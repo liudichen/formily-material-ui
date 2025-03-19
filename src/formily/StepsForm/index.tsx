@@ -73,37 +73,48 @@ const StepsForm = (props: StepsFormProps) => {
     keepAlive,
     ...restProps
   } = props;
+
   const [stepsCount, setStepCount] = useSafeState(() => Children.count(children));
+
   const getCount = useMemoizedFn(() => {
     let count = 0;
+    const stepNodes: ReactNode[] = [];
     Children.map(children, (child) => {
       if (child) {
+        stepNodes.push(child);
         count += 1;
       }
     });
-    return count;
+    return [stepNodes, count] as const;
   });
-  const count = getCount();
+
+  const [stepNodes, count] = getCount();
+
   useEffect(() => {
     setStepCount(count);
   }, [count]);
+
   const [activeStep, setActiveStep] = useSafeState(0);
+
   const form = useCreation(
     () => formProp || createForm(createFormOptions || { validateFirst: true }),
     [depend, createFormOptions, formProp]
   );
+
   useImperativeHandle(formRef, () => form, [form]);
-  const handleStepChange = useMemoizedFn((step) => {
+
+  const handleStepChange = useMemoizedFn((step?: number | "next" | "previous") => {
     if (typeof step === "number") {
       setActiveStep(step);
     } else {
       if (step === "next") {
         setActiveStep((s) => s + 1);
       } else if (step === "previous") {
-        setActiveStep((s) => s - 1 || 0);
+        setActiveStep((s) => (s - 1 < 0 ? 0 : s - 1));
       }
     }
   });
+
   const handleReset = useMemoizedFn(() => {
     form?.reset("*");
     setActiveStep(0);
@@ -118,7 +129,7 @@ const StepsForm = (props: StepsFormProps) => {
           alternativeLabel={alternativeLabel ?? labelPlacement === "vertical"}
           {...restProps}
         >
-          {Children.map(children, (child, index) => {
+          {stepNodes.map((child, index) => {
             if (!child) {
               return null;
             }
@@ -169,7 +180,7 @@ const StepsForm = (props: StepsFormProps) => {
           })}
         </Stepper>
         {(direction ?? orientation) !== "vertical" &&
-          Children.map(children, (child, index) => {
+          stepNodes.map((child, index) => {
             if (!child || (!keepAlive && index !== activeStep)) {
               return null;
             }
