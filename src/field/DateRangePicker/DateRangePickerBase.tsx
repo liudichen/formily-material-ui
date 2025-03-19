@@ -57,8 +57,9 @@ export const DateRangePickerBase = (props: DateRangePickerBaseProps) => {
     color,
     variant,
     textFieldSx,
+    key,
     ...restProps
-  } = props;
+  } = props as DateRangePickerBaseProps & { key?: string | number };
   const [value, onChange] = useControllableValue(props);
 
   const dom = (

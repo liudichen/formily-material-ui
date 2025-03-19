@@ -64,8 +64,9 @@ export const DatePickerBase = (props: DatePickerBaseProps) => {
     textFieldSx,
     innerLabelProps,
     keepFeedbackSpace,
+    key,
     ...restProps
-  } = props;
+  } = props as DatePickerBaseProps & { key?: string | number };
   const [value, onChange] = useControllableValue(props);
 
   const dom = (

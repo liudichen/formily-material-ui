@@ -69,8 +69,9 @@ export const DateTimePickerBase = (props: DateTimePickerBaseProps) => {
     componentsProps = defaultComponentsProps,
     innerLabelProps,
     keepFeedbackSpace,
+    key,
     ...restProps
-  } = props;
+  } = props as DateTimePickerBaseProps & { key?: string | number };
   const [value, onChange] = useControllableValue(props, { defaultValue: null });
 
   const dom = (
