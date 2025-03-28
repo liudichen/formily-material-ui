@@ -1,8 +1,9 @@
 @use 'def.scss';
+@use 'theme.scss';
 
 .#{def.$iconfont-css-prefix} {
   display: inline-block;
-  color: $icon-color;
+  color: theme.$icon-color;
   font-style: normal;
   line-height: 0;
   text-align: center;
@@ -12,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  > * {
+  >* {
     line-height: 1;
   }
 
@@ -29,7 +30,7 @@
   }
 
   // https://github.com/ant-design/ant-design/issues/33703
-  & > & {
+  &>& {
     line-height: 0;
     vertical-align: 0;
   }

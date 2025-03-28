@@ -1,35 +1,40 @@
 @use '../../styles/theme.scss';
+@use '../../styles/def.scss';
+@use '../../styles/color.scss';
 
-$prefix: #{$prefixCls}-form-item;
+$prefix: #{def.$prefixCls}-form-item;
 
-.#{$prefix} {
+.#{def.$prefix} {
   display: flex;
   position: relative;
   flex-direction: column;
   margin-bottom: 4px;
+
   &-label {
     label {
       cursor: text;
     }
   }
 }
-.#{$prefix}-row {
+
+.#{def.$prefix}-row {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.#{$prefix}-column {
+
+.#{def.$prefix}-column {
   display: flex;
   flex-direction: column;
   // align-items: center;
   align-content: center;
 }
 
-.#{$prefix}-error {
-  color: $error-color;
+.#{def.$prefix}-error {
+  color: color.$error-color;
 }
 
-.#{$prefix}-label {
+.#{def.$prefix}-label {
   position: relative;
   display: flex;
   align-content: center;
@@ -54,19 +59,20 @@ $prefix: #{$prefixCls}-form-item;
   }
 }
 
-.#{$prefix}-label-align-left {
-  > .#{$prefix}-label {
+.#{def.$prefix}-label-align-left {
+  >.#{def.$prefix}-label {
     justify-content: flex-start;
   }
 }
-.#{$prefix}-label-align-right {
-  > .#{$prefix}-label {
+
+.#{def.$prefix}-label-align-right {
+  >.#{def.$prefix}-label {
     justify-content: flex-end;
   }
 }
 
-.#{$prefix}-label-wrap {
-  .#{$prefix}-label {
+.#{def.$prefix}-label-wrap {
+  .#{def.$prefix}-label {
     label {
       white-space: pre-line;
       word-break: break-all;
@@ -74,14 +80,14 @@ $prefix: #{$prefixCls}-form-item;
   }
 }
 
-.#{$prefix}-control {
+.#{def.$prefix}-control {
   flex: 1;
   max-width: 100%;
 
-  .#{$prefix}-control-content {
+  .#{def.$prefix}-control-content {
     display: flex;
 
-    .#{$prefix}-control-content-component {
+    .#{def.$prefix}-control-content-component {
       width: 100%;
 
       &-has-feedback-icon {
@@ -92,14 +98,14 @@ $prefix: #{$prefixCls}-form-item;
       }
     }
 
-    .#{$prefix}-addon-before {
+    .#{def.$prefix}-addon-before {
       margin-right: 8px;
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
     }
 
-    .#{$prefix}-addon-after {
+    .#{def.$prefix}-addon-after {
       margin-left: 8px;
       display: inline-flex;
       align-items: center;
@@ -107,15 +113,15 @@ $prefix: #{$prefixCls}-form-item;
     }
   }
 
-  .#{$prefix}-help,
-  .#{$prefix}-extra {
+  .#{def.$prefix}-help,
+  .#{def.$prefix}-extra {
     min-height: 22px;
     line-height: 22px;
   }
 }
 
 
-.#{$prefix}-label-tooltip-icon {
+.#{def.$prefix}-label-tooltip-icon {
   margin-left: 4px;
   color: #00000073;
   display: flex;
@@ -126,39 +132,39 @@ $prefix: #{$prefixCls}-form-item;
   }
 }
 
-.#{$prefix}-control-align-left {
-  .#{$prefix}-control-content {
+.#{def.$prefix}-control-align-left {
+  .#{def.$prefix}-control-content {
     justify-content: flex-start;
   }
 }
 
-.#{$prefix}-control-align-right {
-  .#{$prefix}-control-content {
+.#{def.$prefix}-control-align-right {
+  .#{def.$prefix}-control-content {
     justify-content: flex-end;
   }
 }
 
-.#{$prefix}-control-wrap {
-  .#{$prefix}-control {
+.#{def.$prefix}-control-wrap {
+  .#{def.$prefix}-control {
     white-space: pre-line;
     word-break: break-all;
   }
 }
 
-.#{$prefix}-required {
-  color: $error-color;
+.#{def.$prefix}-required {
+  color: color.$error-color;
   margin-right: 4px;
   display: inline-block;
   font-family: SimSun, sans-serif;
 }
 
-.#{$prefix}-colon {
+.#{def.$prefix}-colon {
   margin-left: 2px;
   margin-right: 4px;
 }
 
-.#{$prefix}-help,
-.#{$prefix}-extra {
+.#{def.$prefix}-help,
+.#{def.$prefix}-extra {
   clear: both;
   // min-height: @form-item-margin-bottom - 2;
   color: rgba(0, 0, 0, 0.45);
@@ -166,11 +172,11 @@ $prefix: #{$prefixCls}-form-item;
   padding-top: 0px;
 }
 
-.#{$prefix}-fullness {
-  > .#{$prefix}-control {
-    > .#{$prefix}-control-content {
-      > .#{$prefix}-control-content-component {
-        > *:first-child {
+.#{def.$prefix}-fullness {
+  >.#{def.$prefix}-control {
+    >.#{def.$prefix}-control-content {
+      >.#{def.$prefix}-control-content-component {
+        >*:first-child {
           width: 100%;
         }
       }
@@ -178,7 +184,7 @@ $prefix: #{$prefixCls}-form-item;
   }
 }
 
-.#{$prefix}-control-content-component-has-feedback-icon {
+.#{def.$prefix}-control-content-component-has-feedback-icon {
   border-radius: 2px;
   // border: 1px solid @border-color-base;
   padding-right: 8px;
@@ -187,28 +193,29 @@ $prefix: #{$prefixCls}-form-item;
   outline: none;
 }
 
-.#{$prefix}-error {
+.#{def.$prefix}-error {
   &:not([disabled]):hover {
-    border-color: $error-color;
+    border-color: color.$error-color;
   }
-  
+
 }
 
-.#{$prefix}-error-help {
-  color: $error-color;
+.#{def.$prefix}-error-help {
+  color: color.$error-color;
 }
 
-.#{$prefix}-warning-help {
-  color: $warning-color;
+.#{def.$prefix}-warning-help {
+  color: color.$warning-color;
 }
 
-.#{$prefix}-success-help {
-  color: $success-color;
+.#{def.$prefix}-success-help {
+  color: color.$success-color;
 }
-.#{$prefix}-default-help {
+
+.#{def.$prefix}-default-help {
   color: theme.$card-text-color;
 }
 
-.#{$prefix}-blank-help {
+.#{def.$prefix}-blank-help {
   color: transparent;
 }
