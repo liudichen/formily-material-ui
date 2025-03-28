@@ -4,7 +4,7 @@
 
 $prefix: #{def.$prefixCls}-form-item;
 
-.#{def.$prefix} {
+.#{$prefix} {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -17,24 +17,24 @@ $prefix: #{def.$prefixCls}-form-item;
   }
 }
 
-.#{def.$prefix}-row {
+.#{$prefix}-row {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.#{def.$prefix}-column {
+.#{$prefix}-column {
   display: flex;
   flex-direction: column;
   // align-items: center;
   align-content: center;
 }
 
-.#{def.$prefix}-error {
+.#{$prefix}-error {
   color: color.$error-color;
 }
 
-.#{def.$prefix}-label {
+.#{$prefix}-label {
   position: relative;
   display: flex;
   align-content: center;
@@ -59,20 +59,20 @@ $prefix: #{def.$prefixCls}-form-item;
   }
 }
 
-.#{def.$prefix}-label-align-left {
-  >.#{def.$prefix}-label {
+.#{$prefix}-label-align-left {
+  >.#{$prefix}-label {
     justify-content: flex-start;
   }
 }
 
-.#{def.$prefix}-label-align-right {
-  >.#{def.$prefix}-label {
+.#{$prefix}-label-align-right {
+  >.#{$prefix}-label {
     justify-content: flex-end;
   }
 }
 
-.#{def.$prefix}-label-wrap {
-  .#{def.$prefix}-label {
+.#{$prefix}-label-wrap {
+  .#{$prefix}-label {
     label {
       white-space: pre-line;
       word-break: break-all;
@@ -80,14 +80,14 @@ $prefix: #{def.$prefixCls}-form-item;
   }
 }
 
-.#{def.$prefix}-control {
+.#{$prefix}-control {
   flex: 1;
   max-width: 100%;
 
-  .#{def.$prefix}-control-content {
+  .#{$prefix}-control-content {
     display: flex;
 
-    .#{def.$prefix}-control-content-component {
+    .#{$prefix}-control-content-component {
       width: 100%;
 
       &-has-feedback-icon {
@@ -98,14 +98,14 @@ $prefix: #{def.$prefixCls}-form-item;
       }
     }
 
-    .#{def.$prefix}-addon-before {
+    .#{$prefix}-addon-before {
       margin-right: 8px;
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
     }
 
-    .#{def.$prefix}-addon-after {
+    .#{$prefix}-addon-after {
       margin-left: 8px;
       display: inline-flex;
       align-items: center;
@@ -113,15 +113,15 @@ $prefix: #{def.$prefixCls}-form-item;
     }
   }
 
-  .#{def.$prefix}-help,
-  .#{def.$prefix}-extra {
+  .#{$prefix}-help,
+  .#{$prefix}-extra {
     min-height: 22px;
     line-height: 22px;
   }
 }
 
 
-.#{def.$prefix}-label-tooltip-icon {
+.#{$prefix}-label-tooltip-icon {
   margin-left: 4px;
   color: #00000073;
   display: flex;
@@ -132,39 +132,39 @@ $prefix: #{def.$prefixCls}-form-item;
   }
 }
 
-.#{def.$prefix}-control-align-left {
-  .#{def.$prefix}-control-content {
+.#{$prefix}-control-align-left {
+  .#{$prefix}-control-content {
     justify-content: flex-start;
   }
 }
 
-.#{def.$prefix}-control-align-right {
-  .#{def.$prefix}-control-content {
+.#{$prefix}-control-align-right {
+  .#{$prefix}-control-content {
     justify-content: flex-end;
   }
 }
 
-.#{def.$prefix}-control-wrap {
-  .#{def.$prefix}-control {
+.#{$prefix}-control-wrap {
+  .#{$prefix}-control {
     white-space: pre-line;
     word-break: break-all;
   }
 }
 
-.#{def.$prefix}-required {
+.#{$prefix}-required {
   color: color.$error-color;
   margin-right: 4px;
   display: inline-block;
   font-family: SimSun, sans-serif;
 }
 
-.#{def.$prefix}-colon {
+.#{$prefix}-colon {
   margin-left: 2px;
   margin-right: 4px;
 }
 
-.#{def.$prefix}-help,
-.#{def.$prefix}-extra {
+.#{$prefix}-help,
+.#{$prefix}-extra {
   clear: both;
   // min-height: @form-item-margin-bottom - 2;
   color: rgba(0, 0, 0, 0.45);
@@ -172,10 +172,10 @@ $prefix: #{def.$prefixCls}-form-item;
   padding-top: 0px;
 }
 
-.#{def.$prefix}-fullness {
-  >.#{def.$prefix}-control {
-    >.#{def.$prefix}-control-content {
-      >.#{def.$prefix}-control-content-component {
+.#{$prefix}-fullness {
+  >.#{$prefix}-control {
+    >.#{$prefix}-control-content {
+      >.#{$prefix}-control-content-component {
         >*:first-child {
           width: 100%;
         }
@@ -184,7 +184,7 @@ $prefix: #{def.$prefixCls}-form-item;
   }
 }
 
-.#{def.$prefix}-control-content-component-has-feedback-icon {
+.#{$prefix}-control-content-component-has-feedback-icon {
   border-radius: 2px;
   // border: 1px solid @border-color-base;
   padding-right: 8px;
@@ -193,29 +193,29 @@ $prefix: #{def.$prefixCls}-form-item;
   outline: none;
 }
 
-.#{def.$prefix}-error {
+.#{$prefix}-error {
   &:not([disabled]):hover {
     border-color: color.$error-color;
   }
 
 }
 
-.#{def.$prefix}-error-help {
+.#{$prefix}-error-help {
   color: color.$error-color;
 }
 
-.#{def.$prefix}-warning-help {
+.#{$prefix}-warning-help {
   color: color.$warning-color;
 }
 
-.#{def.$prefix}-success-help {
+.#{$prefix}-success-help {
   color: color.$success-color;
 }
 
-.#{def.$prefix}-default-help {
+.#{$prefix}-default-help {
   color: theme.$card-text-color;
 }
 
-.#{def.$prefix}-blank-help {
+.#{$prefix}-blank-help {
   color: transparent;
 }
