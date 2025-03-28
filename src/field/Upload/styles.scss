@@ -1,22 +1,25 @@
-@import '../../styles/theme.scss';
+@use '../../styles/theme.scss';
+@use "../../styles/color";
+@use "../../styles/def";
 
-$upload-prefix-cls: #{$prefixCls}-upload;
+
+$upload-prefix-cls: #{def.$prefixCls}-upload;
 
 .#{$upload-prefix-cls} {
   margin: 0;
   padding: 0;
-  color: $text-color;
-  font-size: $font-size-base;
-  font-variant: $font-variant-base;
-  line-height: $line-height-base;
+  color: theme.$text-color;
+  font-size: theme.$font-size-base;
+  font-variant: theme.$font-variant-base;
+  line-height: theme.$line-height-base;
   list-style: none;
-  font-feature-settings: $font-feature-settings-base;
+  font-feature-settings: theme.$font-feature-settings-base;
 
   &-error {
-    color: $error-color !important;
+    color: color.$error-color !important;
 
     &:hover {
-      color: $error-color !important;
+      color: color.$error-color !important;
       opacity: 1;
     }
   }
@@ -25,32 +28,32 @@ $upload-prefix-cls: #{$prefixCls}-upload;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: $text-color;
-    font-size: $font-size-base;
-    font-variant: $font-variant-base;
-    line-height: $line-height-base;
+    color: theme.$text-color;
+    font-size: theme.$font-size-base;
+    font-variant: theme.$font-variant-base;
+    line-height: theme.$line-height-base;
     list-style: none;
     transition: background-color 0.3s;
-    font-feature-settings: $font-feature-settings-base;
+    font-feature-settings: theme.$font-feature-settings-base;
 
-    line-height: $line-height-base;
+    line-height: theme.$line-height-base;
 
     &-item {
       display: flex;
       width: 100%;
       align-items: center;
       justify-content: center;
-      padding-left: $margin-xs;
-      padding-right: $margin-xs;
-      margin-top: $margin-xss;
-      margin-bottom: $margin-xss;
-      transition: opacity $animation-duration-slow, height $animation-duration-slow;
-      border: $border-width-base $border-style-base $border-color-base;
-      border-radius: $border-radius-md;
+      padding-left: theme.$margin-xs;
+      padding-right: theme.$margin-xs;
+      margin-top: theme.$margin-xss;
+      margin-bottom: theme.$margin-xss;
+      transition: opacity theme.$animation-duration-slow, height theme.$animation-duration-slow;
+      border: theme.$border-width-base theme.$border-style-base theme.$border-color-base;
+      border-radius: theme.$border-radius-md;
 
       &:hover {
-        background-color: $item-hover-bg;
-        border-color: $text-color-secondary;
+        background-color: theme.$item-hover-bg;
+        border-color: theme.$text-color-secondary;
         opacity: 1;
       }
 
@@ -70,7 +73,7 @@ $upload-prefix-cls: #{$prefixCls}-upload;
         align-items: center;
         opacity: 0.8;
         margin-right: 4px;
-        color: $primary-5;
+        color: color.$primary-5;
         cursor: pointer;
 
         img {
@@ -85,20 +88,20 @@ $upload-prefix-cls: #{$prefixCls}-upload;
       }
 
       &-name {
-        color: $text-color;
+        color: theme.$text-color;
         flex: 1;
         margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: 0 $padding-xs;
+        padding: 0 theme.$padding-xs;
       }
 
       &-action-icon {
-        transition: opacity $animation-duration-slow;
+        transition: opacity theme.$animation-duration-slow;
         position: static;
         flex: none;
-        color: $text-color;
+        color: theme.$text-color;
         right: 0;
         opacity: 0.4;
         cursor: pointer;
@@ -110,7 +113,7 @@ $upload-prefix-cls: #{$prefixCls}-upload;
     }
 
     &-item-error {
-      border-color: $error-color;
+      border-color: color.$error-color;
       border-style: dashed;
     }
 

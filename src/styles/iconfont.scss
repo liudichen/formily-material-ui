@@ -1,6 +1,6 @@
-@import './def.scss';
+@use 'def.scss';
 
-.#{$iconfont-css-prefix} {
+.#{def.$iconfont-css-prefix} {
   display: inline-block;
   color: $icon-color;
   font-style: normal;
@@ -39,8 +39,8 @@
   }
 }
 
-.#{$iconfont-css-prefix}-spin,
-.#{$iconfont-css-prefix}-spin::before {
+.#{def.$iconfont-css-prefix}-spin,
+.#{def.$iconfont-css-prefix}-spin::before {
   display: inline-block;
   animation: loadingCircle 1s infinite linear;
 }

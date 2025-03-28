@@ -1,5 +1,5 @@
-@import './def.scss';
-@import './color.scss';
+@use 'def.scss';
+@use 'color.scss';
 
 $card-text-color: #616161;
 
@@ -16,7 +16,7 @@ $disabled-color-dark: #a6a6a6;
 // Border color
 $border-color-base: #d9d9d9; // base border outline a component
 $border-color-split: #f0f0f0; // split border inside a component
-$border-color-inverse: $white;
+$border-color-inverse: color.$white;
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
 $border-radius-base: 2px;
@@ -40,13 +40,13 @@ $margin-xss: 4px; // more small
 
 $text-color: #262626;
 $text-color-secondary: #8c8c8c;
-$text-color-inverse: $white;
+$text-color-inverse: color.$white;
 $icon-color: inherit;
 $icon-color-hover: #404040;
 $heading-color: #262626;
 $text-color-dark: #d9d9d9;
 $text-color-secondary-dark: #a6a6a6;
-$text-selection-bg: $primary-color;
+$text-selection-bg: color.$primary-color;
 $font-variant-base: tabular-nums;
 $font-feature-settings-base: 'tnum';
 $font-size-base: 14px;

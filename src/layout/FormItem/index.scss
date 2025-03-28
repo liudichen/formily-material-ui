@@ -1,4 +1,4 @@
-@import '../../styles/theme.scss';
+@use '../../styles/theme.scss';
 
 $prefix: #{$prefixCls}-form-item;
 
@@ -206,7 +206,7 @@ $prefix: #{$prefixCls}-form-item;
   color: $success-color;
 }
 .#{$prefix}-default-help {
-  color: $card-text-color;
+  color: theme.$card-text-color;
 }
 
 .#{$prefix}-blank-help {
