@@ -113,7 +113,7 @@ export const SelectBase = (props: SelectBaseProps) => {
   const autoSelectSingleOptionFn = useMemoizedFn(() => {
     if (readOnly) return;
     if (props.multiple) return;
-    if (!autoSelectSingleOption) return;
+    if (autoSelectSingleOption === false) return;
     const validOption = (options || []).filter((x) => !x.disabled);
     if (validOption.length === 1 && !value) {
       onChange(validOption[0]);
@@ -124,7 +124,7 @@ export const SelectBase = (props: SelectBaseProps) => {
     if (!readOnly) {
       if (!allowExtraValue && fetchRef.current) {
         syncOptionsValue();
-      } else if (autoSelectSingleOption && !props.multiple) {
+      } else if (autoSelectSingleOption !== false && !props.multiple) {
         autoSelectSingleOptionFn();
       }
     }
@@ -230,7 +230,9 @@ export interface SelectBaseProps<V extends IFieldOptionItem = IFieldOptionItem>
     RefreshOptionsProps,
     FormItemExtraProps {
   options?: IFieldPropOptions;
-  /**当只有一个可选项时自动选择？仅单选模式时生效 */
+  /**当只有一个可选项时自动选择？仅单选模式时生效
+   * @default true
+   */
   autoSelectSingleOption?: boolean;
   label?: string;
   /** 显示内部label? */
