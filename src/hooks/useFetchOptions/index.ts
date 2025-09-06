@@ -13,6 +13,7 @@ interface IUseFieldOptionsConfig<T extends IFieldOptionItem = any> {
   /** 更新依赖项数组,不需要传递optionsProp,optionsProp会默认加入 */
   deps?: any;
   fetchRef?: MutableRefObject<boolean>;
+  allSelectable?: boolean;
 }
 
 export function useFetchOptions<T extends IFieldOptionItem = any>(
@@ -49,6 +50,15 @@ export function useFetchOptions<T extends IFieldOptionItem = any>(
             }
       );
       onLoading?.(false);
+      if (config?.allSelectable && result?.length && result.some((x) => typeof x === "object" && x?.disabled)) {
+        result = result.map((x) => {
+          if (typeof x === "object" && x?.disabled) {
+            const { disabled, ...rest } = x;
+            return rest;
+          }
+          return x;
+        });
+      }
       if (!isEqual(options, result)) {
         callback?.(result as T[]);
         setOptions(() => {

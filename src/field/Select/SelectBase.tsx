@@ -67,6 +67,7 @@ export const SelectBase = (props: SelectBaseProps) => {
     size = "small",
     keepFeedbackSpace,
     autoSelectSingleOption,
+    allSelectable,
     ...restProps
   } = props;
   const fetchRef = useRef(false);
@@ -78,7 +79,7 @@ export const SelectBase = (props: SelectBaseProps) => {
   const [loading, setLoading] = useSafeState(false);
   const readOnly = useCreation(() => !!(props.readOnly || props.disabled), [props.readOnly, props.disabled]);
   const [value, onChange] = useControllableValue<any>(props);
-  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef });
+  const options = useFetchOptions(optionsProp, { onLoading: setLoading, deps: refresh, fetchRef, allSelectable });
 
   const doRefresh = useMemoizedFn(() => {
     onRefreshChange((+refresh || 0) + 1);
@@ -245,6 +246,8 @@ export interface SelectBaseProps<V extends IFieldOptionItem = IFieldOptionItem>
   variant?: "outlined" | "filled" | "standard";
   /** 允许不再options里的值? */
   allowExtraValue?: boolean;
+  /**所有选项都可选?(disabled的也可选?) */
+  allSelectable?: boolean;
 
   /** 不从Field获取信息 */
   noField?: boolean;
