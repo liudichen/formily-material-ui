@@ -97,7 +97,7 @@ export const SelectBase = (props: SelectBaseProps) => {
         : !v || isInArray(v.value, optValues)
           ? v
           : null;
-      if (autoSelectSingleOption && !props.multiple && !value) {
+      if (autoSelectSingleOption !== false && !props.multiple && !value) {
         const validOptions = (options || []).filter((x) => !x.disabled);
         if (validOptions.length === 1) {
           value = validOptions[0];
