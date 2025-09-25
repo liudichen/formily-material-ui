@@ -97,7 +97,7 @@ export const SelectBase = (props: SelectBaseProps) => {
         : !v || isInArray(v.value, optValues)
           ? v
           : null;
-      if (autoSelectSingleOption !== false && !props.multiple && !value) {
+      if (autoSelectSingleOption !== false && !!props.required && !props.multiple && !value) {
         const validOptions = (options || []).filter((x) => !x.disabled);
         if (validOptions.length === 1) {
           value = validOptions[0];
@@ -113,7 +113,7 @@ export const SelectBase = (props: SelectBaseProps) => {
 
   const autoSelectSingleOptionFn = useMemoizedFn(() => {
     if (readOnly) return;
-    if (props.multiple) return;
+    if (props.multiple || !props.required) return;
     if (autoSelectSingleOption === false) return;
     const validOption = (options || []).filter((x) => !x.disabled);
     if (validOption.length === 1 && !value) {
@@ -125,11 +125,11 @@ export const SelectBase = (props: SelectBaseProps) => {
     if (!readOnly) {
       if (!allowExtraValue && fetchRef.current) {
         syncOptionsValue();
-      } else if (autoSelectSingleOption !== false && !props.multiple) {
+      } else if (autoSelectSingleOption !== false && !props.multiple && !!props.required) {
         autoSelectSingleOptionFn();
       }
     }
-  }, [options, allowExtraValue, readOnly, autoSelectSingleOption, !!props.multiple]);
+  }, [options, allowExtraValue, readOnly, autoSelectSingleOption, !!props.multiple, !props.required]);
 
   const dom = (
     <Autocomplete
@@ -231,7 +231,7 @@ export interface SelectBaseProps<V extends IFieldOptionItem = IFieldOptionItem>
     RefreshOptionsProps,
     FormItemExtraProps {
   options?: IFieldPropOptions;
-  /**当只有一个可选项时自动选择？仅单选模式时生效
+  /**当只有一个可选项时自动选择？仅单选模式且required=true时生效
    * @default true
    */
   autoSelectSingleOption?: boolean;
