@@ -238,6 +238,7 @@ export const FormItemBase = observer(
                 {children}
                 {showFeedback &&
                   feedbackLayout === "popover" &&
+                  Boolean(keepFeedbackSpace || feedbackText) &&
                   (["warning", "error", "success"].includes(feedbackStatus as string) ? (
                     <Popover
                       triggerType="hover"
