@@ -125,6 +125,7 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
   const dom = (
     <Stack direction="row" spacing={spacing} alignItems="center" display="flex">
       <TextField
+        error={error}
         label={labels?.[0] || "≥"}
         sx={{ flex: 1 }}
         {...restProps}
@@ -136,6 +137,7 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
       />
       <span>{divider}</span>
       <TextField
+        error={error}
         label={labels?.[1] || "≤"}
         sx={{ flex: 1 }}
         {...restProps}
