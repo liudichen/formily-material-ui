@@ -7,7 +7,7 @@ import { useFormilyFieldProps } from "../../hooks";
 import { FormItemBase, type FormItemExtraProps, type FormItemBaseProps } from "../../layout";
 import type { FieldBaseProps } from "../../types";
 
-type FieldValueType = number | null | undefined;
+type FieldValueType = number | null;
 
 export type NumberRangeValueType = [FieldValueType, FieldValueType] | null;
 
@@ -86,14 +86,14 @@ export const NumberRangeBase = (props: NumberRangeProps) => {
 
   const onFieldChange = useCreation(() => {
     const onChangeFty = (index: number) => (e: ChangeEvent<HTMLInputElement>) => {
-      const rawFieldValue = e.target.value;
-      const fieldValue =
-        (typeof rawFieldValue === "string" && rawFieldValue) || typeof rawFieldValue === "number"
-          ? +rawFieldValue
-          : null;
+      const rawFieldValue = (e.target.value || "").trim();
+      let fieldValue: number | null = rawFieldValue ? Number(rawFieldValue) : null;
+      if (fieldValue !== null && isNaN(fieldValue)) {
+        fieldValue = null;
+      }
 
       setValue((prevValue) => {
-        let newValue = [...(prevValue || [null, null])] as [FieldValueType, FieldValueType];
+        let newValue: [FieldValueType, FieldValueType] = [...(prevValue || [null, null])];
         newValue[index] = fieldValue;
         newValue = newValue.map((v) => (typeof v === "string" ? +v : v || v === 0 ? v : null)) as [
           FieldValueType,
